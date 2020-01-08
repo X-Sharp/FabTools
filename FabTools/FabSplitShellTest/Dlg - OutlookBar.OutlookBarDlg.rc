@@ -1,0 +1,8 @@
+ OutlookBarDlg DIALOGEX  28, 25, 133, 144
+STYLE	4|1024|1073741824
+FONT	8, "MS Shell Dlg"
+BEGIN
+	CONTROL	"", 100, "_VOCustomControl", 0x40000000L, 4, 3, 124, 137
+END
+
+

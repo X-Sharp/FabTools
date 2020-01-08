@@ -1,0 +1,44 @@
+DESIGNERSTART = VOWindowEditor,DATAWINDOW,MyWindow
+GUID=86621AB2-54DD-422D-B091-65052C4881FD
+  Name=MyWindow
+  Class=DATAWINDOW
+  Caption=DataWindow Caption
+  Order=0
+  Left=8
+  Width=420
+  Top=8
+  Height=320
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=0
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=,"DataWindow Caption",,
+  Property=HyperLabel=#MyWindow,,,
+
+SUBCONTROLSSTART
+CONTROL=PUSHBUTTON
+GUID=FA49B55C-62F5-4EE9-96BC-C1AEBA343F61
+  Name=ClosePB
+  Class=PUSHBUTTON
+  Caption=&Close
+  Order=1
+  Left=331
+  Width=80
+  Top=289
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"&Close",,
+  Property=HyperLabel=#ClosePB,,,
+
+SUBCONTROLSEND
+DESIGNEREND = MyWindow
+

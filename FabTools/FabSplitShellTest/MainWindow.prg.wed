@@ -1,0 +1,27 @@
+DESIGNERSTART = VOWindowEditor,SHELLWINDOW,MainWindow
+GUID=C791F43E-99B1-482C-812B-4EF7E69CD86F
+  Name=MainWindow
+  Class=SHELLWINDOW
+  Caption=Fab Bank
+  Order=0
+  Left=16
+  Width=800
+  Top=16
+  Height=600
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=0
+  Styles=13565952
+  Exstyles=256
+  Property=HyperLabel=,"Fab Bank",,
+  Property=InheritClassName=FabSplitShellWindow
+  Property=HyperLabel=#MainWindow,,,
+  Property=Menu=MainMenu
+  Property=Icon=ICON_AA
+
+SUBCONTROLSSTART
+SUBCONTROLSEND
+DESIGNEREND = MainWindow
+

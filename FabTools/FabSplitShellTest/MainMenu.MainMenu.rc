@@ -1,0 +1,13 @@
+ MainMenu MENU
+Begin
+	POPUP "Folder"
+	BEGIN
+		MENUITEM "&Open", 3374
+		MENUITEM SEPARATOR
+		MENUITEM "Quit", 3376
+		MENUITEM SEPARATOR
+		MENUITEM "New", 3378
+		MENUITEM "Split Test", 3379
+	END
+End
+ 

@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.Default.props" />
+  <PropertyGroup>
+    <ProjectGuid>{5ed9239d-dbb3-4ab8-8d19-cef010154e54}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FabSplitShellTest3</RootNamespace>
+    <AssemblyName>Fab SplitShell Test3</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <Name>Fab SplitShell Test3</Name>
+    <Nologo>true</Nologo>
+    <GenerateFullPaths>true</GenerateFullPaths>
+    <Dialect>VO</Dialect>
+    <LB>true</LB>
+    <OutputName>Fab SplitShell Test3</OutputName>
+    <StartupObject />
+    <ApplicationIcon />
+    <Prefer32Bit>True</Prefer32Bit>
+    <VulcanCompatibleResources>False</VulcanCompatibleResources>
+    <AZ>false</AZ>
+    <CS>false</CS>
+    <OVF>true</OVF>
+    <Unsafe>true</Unsafe>
+    <INS>true</INS>
+    <NS>false</NS>
+    <VO1>true</VO1>
+    <VO2>true</VO2>
+    <VO3>true</VO3>
+    <VO4>true</VO4>
+    <VO5>true</VO5>
+    <VO6>true</VO6>
+    <VO7>true</VO7>
+    <VO8>true</VO8>
+    <VO9>true</VO9>
+    <VO10>true</VO10>
+    <VO11>false</VO11>
+    <VO12>false</VO12>
+    <VO13>true</VO13>
+    <VO14>false</VO14>
+    <VO15>true</VO15>
+    <VO16>true</VO16>
+    <NoStandardDefs>false</NoStandardDefs>
+    <IncludePaths />
+    <XSharpProjectversion>2.2.0.0</XSharpProjectversion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'" Label="Configuration">
+    <PlatformTarget>x86</PlatformTarget>
+    <EmitDebugInformation>true</EmitDebugInformation>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(SolutionDir)$(Configuration)</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <OutputPath>$(SolutionDir)$(Configuration)</OutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <UseSharedCompilation>true</UseSharedCompilation>
+    <DisabledWarnings>9032;9043;618;162;165;649;9025</DisabledWarnings>
+    <WarningLevel>4</WarningLevel>
+    <PPO>false</PPO>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'" Label="Configuration">
+    <PlatformTarget>x86</PlatformTarget>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <EmitDebugInformation>false</EmitDebugInformation>
+    <DebugType>pdbonly</DebugType>
+    <OutputPath>$(SolutionDir)$(Configuration)</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseSharedCompilation>true</UseSharedCompilation>
+    <DisabledWarnings>9032;9043;618;162;165;649;9025</DisabledWarnings>
+    <PPO>false</PPO>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.targets" />
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="XSharp.Core">
+      <SpecificVersion>false</SpecificVersion>
+    </Reference>
+    <Reference Include="XSharp.RT">
+      <SpecificVersion>false</SpecificVersion>
+    </Reference>
+    <Reference Include="XSharp.VO">
+      <SpecificVersion>false</SpecificVersion>
+    </Reference>
+    <Reference Include="VOSystemClasses">
+      <SpecificVersion>false</SpecificVersion>
+    </Reference>
+    <Reference Include="VORDDClasses">
+      <SpecificVersion>false</SpecificVersion>
+    </Reference>
+    <Reference Include="VOGUIClasses">
+      <SpecificVersion>false</SpecificVersion>
+    </Reference>
+    <Reference Include="VOWin32APILibrary">
+      <SpecificVersion>false</SpecificVersion>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Start.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <VOBinary Include="MainWindow.MainWindow.xsfrm">
+      <DependentUpon>MainWindow.prg</DependentUpon>
+    </VOBinary>
+    <Compile Include="MainMenu.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <NativeResource Include="MainMenu.MainMenu.rc">
+      <DependentUpon>MainMenu.prg</DependentUpon>
+    </NativeResource>
+    <VOBinary Include="MainMenu.MainMenu.xsmnu">
+      <DependentUpon>MainMenu.prg</DependentUpon>
+    </VOBinary>
+    <Compile Include="XP Styles.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Resources.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <NativeResource Include="Resources.ICON_AA.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources.ICON_COMPTES.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources.ICON_DEPENSE.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources.ICON_NEW.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources.ICON_RECETTE.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <Compile Include="Dw.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <NativeResource Include="Dw.MyWindow.rc">
+      <DependentUpon>Dw.prg</DependentUpon>
+    </NativeResource>
+    <VOBinary Include="Dw.MyWindow.xsfrm">
+      <DependentUpon>Dw.prg</DependentUpon>
+    </VOBinary>
+    <Compile Include="MySplitWindow.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dlg - OutlookBar.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <NativeResource Include="Dlg - OutlookBar.OutlookBarDlg.rc">
+      <DependentUpon>Dlg - OutlookBar.prg</DependentUpon>
+    </NativeResource>
+    <VOBinary Include="Dlg - OutlookBar.OutlookBarDlg.xsfrm">
+      <DependentUpon>Dlg - OutlookBar.prg</DependentUpon>
+    </VOBinary>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME2.ICO" />
+    <None Include="Resources\Money1.ico" />
+    <None Include="Resources\New1.ico" />
+    <None Include="Resources\Write2.ico" />
+    <None Include="Resources\Write6.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FabOutlookBar\FabOutlookBar.xsproj">
+      <Name>FabOutlookBar</Name>
+      <Project>{29651908-b583-4e70-86d5-ce27f3a095c1}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabSplitShellLib\FabSplitShellLib.xsproj">
+      <Name>FabSplitShellLib</Name>
+      <Project>{4917d936-b6e8-440a-9ce7-6411b6e7488e}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- This next bit is required unless the macro used to Import your targets is defined in an MSBuild toolset. -->
+  <ProjectExtensions>
+    <ProjectCapabilities>
+      <ProjectConfigurationsDeclaredAsItems />
+    </ProjectCapabilities>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+</Project>
