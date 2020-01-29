@@ -342,7 +342,7 @@ ASSIGN PosType( sNew )
 		SELF:symPosType := sNew
 	ENDIF
 	//
-RETURN SELF:symPosType
+
 
 METHOD Refresh() 
 	//
@@ -363,7 +363,7 @@ ASSIGN ShowBottomPane( lNew )
 	//
 	SELF:__AdjustClient()
 	//
-RETURN SELF:lShowBottom
+
 
 ACCESS ShowLeftPane	
 RETURN SELF:lShowLeft
@@ -377,8 +377,7 @@ ASSIGN ShowLeftPane( lNew )
 	ENDIF
 	//
 	SELF:__AdjustClient()
-	//
-RETURN SELF:lShowLeft
+
 
 END CLASS
 

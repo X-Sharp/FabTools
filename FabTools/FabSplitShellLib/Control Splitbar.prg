@@ -224,7 +224,7 @@ ASSIGN Pointer(oNewPointer)
 		SetCursor( LoadCursor(0, IDC_ARROW) )
 	ENDIF
 	//
-RETURN SELF:oPointer
+
 
 METHOD ReleaseMouse( ) 
 	//

@@ -11,6 +11,10 @@ Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabSplitShellLib", "FabSpli
 EndProject
 Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabSplitShellTest", "FabSplitShellTest\FabSplitShellTest.xsproj", "{5ED9239D-DBB3-4AB8-8D19-CEF010154E54}"
 EndProject
+Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabTools", "FabTools\FabTools.xsproj", "{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}"
+EndProject
+Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabTwain", "FabTwain\FabTwain.xsproj", "{2720B640-4614-42EB-B6A2-C5EB10558EE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{5ED9239D-DBB3-4AB8-8D19-CEF010154E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED9239D-DBB3-4AB8-8D19-CEF010154E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED9239D-DBB3-4AB8-8D19-CEF010154E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2720B640-4614-42EB-B6A2-C5EB10558EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2720B640-4614-42EB-B6A2-C5EB10558EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2720B640-4614-42EB-B6A2-C5EB10558EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2720B640-4614-42EB-B6A2-C5EB10558EE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
