@@ -15,6 +15,11 @@ Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabTools", "FabTools\FabToo
 EndProject
 Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabTwain", "FabTwain\FabTwain.xsproj", "{2720B640-4614-42EB-B6A2-C5EB10558EE3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B0EB998-92E0-4B69-9497-6B3A8F82AA33}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
