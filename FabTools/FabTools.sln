@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabTwainTest", "FabTwainTest\FabTwainTest.xsproj", "{2606F8FB-5100-4C96-A31C-1CC99F5439A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{2720B640-4614-42EB-B6A2-C5EB10558EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2720B640-4614-42EB-B6A2-C5EB10558EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2720B640-4614-42EB-B6A2-C5EB10558EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2606F8FB-5100-4C96-A31C-1CC99F5439A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2606F8FB-5100-4C96-A31C-1CC99F5439A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2606F8FB-5100-4C96-A31C-1CC99F5439A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2606F8FB-5100-4C96-A31C-1CC99F5439A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

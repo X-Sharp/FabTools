@@ -1,0 +1,18 @@
+ MainMenu MENU
+Begin
+	POPUP "File"
+	BEGIN
+		MENUITEM "Select Source...", 25748
+		MENUITEM "Scan New", 25749
+		MENUITEM SEPARATOR
+		MENUITEM "Printer Setup...", 25751
+		MENUITEM "Print", 25752
+		MENUITEM SEPARATOR
+		MENUITEM "Quit", 25754
+	END
+	POPUP "Help"
+	BEGIN
+		MENUITEM "About...", 25756
+	END
+End
+ 

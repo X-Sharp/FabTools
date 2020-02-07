@@ -2,18 +2,44 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.Default.props" />
   <PropertyGroup>
-    <ProjectGuid>210dbe32-b8b3-4a5f-946f-3d15a9691bb5</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>2720b640-4614-42eb-b6a2-c5eb10558ee3</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FabTools</RootNamespace>
-    <AssemblyName>FabTools</AssemblyName>
+    <RootNamespace>FabTwain</RootNamespace>
+    <AssemblyName>FabTwain</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <Name>FabTools</Name>
+    <Name>FabTwain</Name>
     <Nologo>true</Nologo>
     <GenerateFullPaths>true</GenerateFullPaths>
     <Dialect>VO</Dialect>
-    <OutputName>FabTools</OutputName>
-    <XSharpProjectversion>2.2.0.0</XSharpProjectversion>
+    <na>false</na>
+    <az>false</az>
+    <nostddef>false</nostddef>
+    <ins>true</ins>
+    <unsafe>true</unsafe>
+    <vo2>true</vo2>
+    <vo3>true</vo3>
+    <vo4>true</vo4>
+    <vo6>true</vo6>
+    <vo7>true</vo7>
+    <vo9>true</vo9>
+    <vo10>true</vo10>
+    <vo13>true</vo13>
+    <vo14>true</vo14>
+    <vo15>true</vo15>
+    <vo16>true</vo16>
+    <lb>true</lb>
+    <OutputName>FabTwain</OutputName>
+    <CS>false</CS>
+    <NamedArgs>false</NamedArgs>
+    <OVF>true</OVF>
+    <NS>false</NS>
+    <NoStandardDefs>false</NoStandardDefs>
+    <IncludePaths />
+    <StandardDefs />
+    <MemVar>false</MemVar>
+    <Undeclared>false</Undeclared>
+    <InitLocals>false</InitLocals>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'" Label="Configuration">
     <PlatformTarget>x86</PlatformTarget>
@@ -56,16 +82,18 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="XSharp.Core" />
-    <Reference Include="XSharp.RT" />
+    <Reference Include="XSharp.Rt" />
     <Reference Include="XSharp.VO" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="! Read Me.prg" />
+    <Compile Include="DefinesCountry.prg" />
+    <Compile Include="DefinesLangage.prg" />
     <Compile Include="Properties\AssemblyInfo.prg">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Program.prg">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="FabTwain.prg" />
+    <Compile Include="TwainDefinitions.prg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

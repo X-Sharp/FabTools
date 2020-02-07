@@ -28,8 +28,19 @@
     <vo14>true</vo14>
     <vo15>true</vo15>
     <vo16>true</vo16>
-    <lb>false</lb>
+    <lb>true</lb>
     <OutputName>FabTwain</OutputName>
+    <CS>false</CS>
+    <NamedArgs>false</NamedArgs>
+    <OVF>true</OVF>
+    <NS>false</NS>
+    <NoStandardDefs>false</NoStandardDefs>
+    <IncludePaths />
+    <StandardDefs />
+    <MemVar>false</MemVar>
+    <Undeclared>false</Undeclared>
+    <InitLocals>false</InitLocals>
+    <XSharpProjectversion>2.2.2.0</XSharpProjectversion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'" Label="Configuration">
     <PlatformTarget>x86</PlatformTarget>

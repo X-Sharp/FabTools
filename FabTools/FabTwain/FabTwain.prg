@@ -1582,18 +1582,18 @@ BEGIN NAMESPACE FabTwain
  	// container type
 			pcap.ConType := TWON_ONEVALUE
 	// We will store the Value in a TW_ONEVALUE structure
-			pcap.hContainer := DWORD( _CAST, GlobalAlloc( GHND, _SizeOf( TW_ONEVALUE ) ) )
+			pcap.hContainer :=GlobalAlloc( GHND, _SizeOf( TW_ONEVALUE ) )
 			IF ( pcap.hContainer == 0 )
 				SELF:__Trace("Cannot Allocate Global Memory for TWAIN." + NTrim( TWERR_GLOBALALLOC ) )
 				SELF:OnTwainError( TWERR_GLOBALALLOC )
 				RETURN FALSE
 			ENDIF
 	// Ok, get a pointer
-			pv := GlobalLock( PTR( _CAST, pcap.hContainer ) )
+			pv := GlobalLock( pcap.hContainer )
 	// and store data and type
 			pv.ItemType := ItemType
 			pv.Item := ItemVal
-			GlobalUnlock( PTR( _CAST, pcap.hContainer ) )
+			GlobalUnlock( pcap.hContainer )
 	// Make the call
 			lOk := SELF:__DS( DG_CONTROL, DAT_CAPABILITY, MSG_SET, @pcap )
 	// And don't forget to free the TW_ONEVALUE structure !!
@@ -1690,7 +1690,7 @@ BEGIN NAMESPACE FabTwain
 			RETURN
 
 		METHOD TwainDispatch( lpmsg AS _WINMsg ) AS LOGIC PASCAL 
-//p Check for DataSource UI Message
+			//p Check for DataSource UI Message
 //d This method will ask the DataSource to check if the message is
 //d for the DataSource User Interface, or for the application
 //d In the ModalAcquire(), the ModalEventLopp() disable the Owner, and get Windows messages,

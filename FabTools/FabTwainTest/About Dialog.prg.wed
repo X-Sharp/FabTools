@@ -1,0 +1,207 @@
+DESIGNERSTART = VOWindowEditor,DIALOGWINDOW,AboutDlg
+GUID=C07CA2C4-808D-4152-BAFC-DC99359323CA
+  Name=AboutDlg
+  Class=DIALOGWINDOW
+  Caption=About FabTwain
+  Order=0
+  Left=18
+  Width=348
+  Top=18
+  Height=190
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=0
+  Styles=2160590980
+  Exstyles=257
+  Property=HyperLabel=,"About FabTwain",,
+  Property=HyperLabel=#AboutDlg,,,
+
+SUBCONTROLSSTART
+CONTROL=PUSHBUTTON
+GUID=210798D8-A8D6-4886-B755-8C0EB72F9595
+  Name=ClosePB
+  Class=PUSHBUTTON
+  Caption=&Close
+  Order=1
+  Left=259
+  Width=80
+  Top=133
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"&Close",,
+  Property=HyperLabel=#ClosePB,,,
+
+CONTROL=CUSTOMCONTROL
+GUID=7A87FC37-1B29-4CFC-AFED-C242B0405E60
+  Name=HomePage
+  Class=CUSTOMCONTROL
+  Caption=http://www.fabtoys.net
+  Order=2
+  Left=49
+  Width=126
+  Top=73
+  Height=18
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=#HomePage,,,
+  Property=InheritClassName=FabHyperLink
+  Property=HyperLabel=,"http://www.fabtoys.net",,
+
+CONTROL=FIXEDICON
+GUID=D0DBF368-0396-4594-B1E9-D3FE4D494F06
+  Name=FixedIcon1
+  Class=FIXEDICON
+  Caption=
+  Order=3
+  Left=7
+  Width=32
+  Top=7
+  Height=32
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1082130435
+  Exstyles=0
+  Property=HyperLabel=#FixedIcon1,,,
+  Property=HyperLabel=,"ICON_SCAN",,
+
+CONTROL=FIXEDTEXT
+GUID=CFEB0638-F8A9-4FC5-BB97-0B8C9F280C7E
+  Name=FixedText1
+  Class=FIXEDTEXT
+  Caption=Fab Twain Test 1.0
+  Order=4
+  Left=49
+  Width=114
+  Top=7
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=,"Fab Twain Test 1.0",,
+  Property=HyperLabel=#FixedText1,,,
+
+CONTROL=FIXEDTEXT
+GUID=E5EEF966-93C3-4F11-85A0-797E22B478BF
+  Name=FixedText2
+  Class=FIXEDTEXT
+  Caption=Test Application for the Fab Twain Library
+  Order=5
+  Left=49
+  Width=210
+  Top=25
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=,"Test Application for the Fab Twain Library",,
+  Property=HyperLabel=#FixedText2,,,
+
+CONTROL=FIXEDTEXT
+GUID=1B470F54-67FB-4CEB-B5E2-7ADD52B35BDC
+  Name=FixedText3
+  Class=FIXEDTEXT
+  Caption=For comments, bug reports ...
+  Order=6
+  Left=49
+  Width=144
+  Top=55
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=,"For comments, bug reports ...",,
+  Property=HyperLabel=#FixedText3,,,
+
+CONTROL=CUSTOMCONTROL
+GUID=4665E342-E6B5-4C17-B59B-16A0B6E7A38F
+  Name=EMail
+  Class=CUSTOMCONTROL
+  Caption=EMail:fabrice@fabtoys.net
+  Order=7
+  Left=49
+  Width=126
+  Top=91
+  Height=18
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=#EMail,,,
+  Property=InheritClassName=FabHyperLink
+  Property=HyperLabel=,"EMail:fabrice@fabtoys.net",,
+
+CONTROL=FIXEDTEXT
+GUID=E229867C-53BC-4FBA-A03D-DF2396C9D25D
+  Name=FixedText4
+  Class=FIXEDTEXT
+  Caption=To get more info about Twain
+  Order=8
+  Left=49
+  Width=156
+  Top=115
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=,"To get more info about Twain",,
+  Property=HyperLabel=#FixedText4,,,
+
+CONTROL=CUSTOMCONTROL
+GUID=FD5430CC-5451-48BD-9DEF-16159F6CD7A7
+  Name=EMail1
+  Class=CUSTOMCONTROL
+  Caption=http://www.twain.org
+  Order=9
+  Left=49
+  Width=126
+  Top=133
+  Height=18
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=#EMail1,,,
+  Property=InheritClassName=FabHyperLink
+  Property=HyperLabel=,"http://www.twain.org",,
+
+SUBCONTROLSEND
+DESIGNEREND = AboutDlg
+

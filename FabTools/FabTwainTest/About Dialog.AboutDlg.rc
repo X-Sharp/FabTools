@@ -1,0 +1,16 @@
+ AboutDlg DIALOGEX  13, 28, 228, 97
+STYLE	4|128|2147483648|12582912|524288
+CAPTION	"About FabTwain"
+FONT	8, "MS Shell Dlg"
+BEGIN
+	CONTROL	"&Close", 100, "Button", 65536|1073741824, 172, 81, 53, 12
+	CONTROL	"http://www.fabtoys.net", 101, "_VOCustomControl", 0x40000000L, 32, 44, 84, 11
+	CONTROL	"Fab Twain Test 1.0", 103, "Static", 1073741824, 32, 3, 76, 13
+	CONTROL	"Test Application for the Fab Twain Library", 104, "Static", 1073741824, 32, 14, 140, 13
+	CONTROL	"For comments, bug reports ...", 105, "Static", 1073741824, 32, 33, 96, 12
+	CONTROL	"EMail:fabrice@fabtoys.net", 106, "_VOCustomControl", 0x40000000L, 32, 55, 84, 11
+	CONTROL	"To get more info about Twain", 107, "Static", 1073741824, 32, 70, 104, 12
+	CONTROL	"http://www.twain.org", 108, "_VOCustomControl", 0x40000000L, 32, 81, 84, 11
+END
+
+

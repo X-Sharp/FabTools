@@ -1,0 +1,608 @@
+DESIGNERSTART = VOWindowEditor,DIALOGWINDOW,MainDialog
+GUID=3FB7DEE8-8C75-4683-8CA9-56E40E5765C2
+  Name=MainDialog
+  Class=DIALOGWINDOW
+  Caption=Fab Twain Test
+  Order=0
+  Left=50
+  Width=549
+  Top=50
+  Height=380
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=0
+  Styles=2160590980
+  Exstyles=257
+  Property=HyperLabel=,"Fab Twain Test",,
+  Property=HyperLabel=#MainDialog,,,
+
+SUBCONTROLSSTART
+CONTROL=PUSHBUTTON
+GUID=2475B291-F620-4F68-8968-8236DDBA9746
+  Name=ScanPB
+  Class=PUSHBUTTON
+  Caption=&Scan
+  Order=1
+  Left=437
+  Width=90
+  Top=37
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"&Scan",,
+  Property=HyperLabel=#ScanPB,,,
+
+CONTROL=PUSHBUTTON
+GUID=8E57C7CB-81DF-4A71-8AC8-CE06C19EBA02
+  Name=SavePB
+  Class=PUSHBUTTON
+  Caption=&Save
+  Order=2
+  Left=437
+  Width=90
+  Top=77
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"&Save",,
+  Property=HyperLabel=#SavePB,,,
+
+CONTROL=PUSHBUTTON
+GUID=09846391-7B84-4AB5-94EB-DC6E95D98783
+  Name=PrintPB
+  Class=PUSHBUTTON
+  Caption=Print
+  Order=3
+  Left=437
+  Width=90
+  Top=117
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"Print",,
+  Property=HyperLabel=#PrintPB,,,
+
+CONTROL=CHECKBOX
+GUID=7EEA853B-1F9B-49F0-9FD4-409CB378DEF7
+  Name=PrintFit
+  Class=CHECKBOX
+  Caption=Fit to Page
+  Order=4
+  Left=439
+  Width=90
+  Top=175
+  Height=18
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807363
+  Exstyles=0
+  Property=HyperLabel=,"Fit to Page",,
+  Property=HyperLabel=#PrintFit,,,
+
+CONTROL=PUSHBUTTON
+GUID=A1B7D0D3-CE79-49E8-9BCF-E9BB71B408E1
+  Name=ClosePB
+  Class=PUSHBUTTON
+  Caption=&Close
+  Order=5
+  Left=437
+  Width=90
+  Top=287
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"&Close",,
+  Property=HyperLabel=#ClosePB,,,
+
+CONTROL=PUSHBUTTON
+GUID=8C9F58C5-0099-4A77-88FF-4B3AD3D9A7C7
+  Name=NextPB
+  Class=PUSHBUTTON
+  Caption=Next
+  Order=6
+  Left=27
+  Width=50
+  Top=97
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"Next",,
+  Property=HyperLabel=#NextPB,,,
+
+CONTROL=PUSHBUTTON
+GUID=1296DCA2-C19B-403D-8CF2-577F2E71F599
+  Name=PrevPB
+  Class=PUSHBUTTON
+  Caption=Previous
+  Order=7
+  Left=27
+  Width=50
+  Top=127
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"Previous",,
+  Property=HyperLabel=#PrevPB,,,
+
+CONTROL=PUSHBUTTON
+GUID=F356B513-82BA-4A68-9136-5A44C1948E0F
+  Name=DelPB
+  Class=PUSHBUTTON
+  Caption=Del
+  Order=8
+  Left=25
+  Width=54
+  Top=157
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"Del",,
+  Property=HyperLabel=#DelPB,,,
+
+CONTROL=CHECKBOX
+GUID=360292D9-FE56-417D-8386-D4169FC4602B
+  Name=FitChk
+  Class=CHECKBOX
+  Caption=Fit to Window
+  Order=9
+  Left=103
+  Width=84
+  Top=97
+  Height=18
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807363
+  Exstyles=0
+  Property=HyperLabel=,"Fit to Window",,
+  Property=HyperLabel=#FitChk,,,
+
+CONTROL=CHECKBOX
+GUID=3EEAA6AD-2FC7-4107-BF7D-E42C6A48BED6
+  Name=HideUI
+  Class=CHECKBOX
+  Caption=Hide UI
+  Order=13
+  Left=107
+  Width=90
+  Top=217
+  Height=18
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807363
+  Exstyles=0
+  Property=HyperLabel=,"Hide UI",,
+  Property=HyperLabel=#HideUI,,,
+
+CONTROL=CHECKBOX
+GUID=544AD70C-8797-4B00-8B19-F118CE8B3503
+  Name=HideError
+  Class=CHECKBOX
+  Caption=Hide Errors
+  Order=14
+  Left=107
+  Width=100
+  Top=237
+  Height=18
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807363
+  Exstyles=0
+  Property=HyperLabel=,"Hide Errors",,
+  Property=HyperLabel=#HideError,,,
+
+CONTROL=COMBOBOX
+GUID=F37F2CE9-9C6B-437F-925F-B2F896AB0441
+  Name=PixType
+  Class=COMBOBOX
+  Caption=
+  Order=15
+  Left=19
+  Width=78
+  Top=205
+  Height=90
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1075906563
+  Exstyles=0
+  Property=HyperLabel=#PixType,,,
+  Property=FillUsing=Self:FillPixelType 
+
+CONTROL=CUSTOMCONTROL
+GUID=FFA10506-47B4-46D1-9EAC-1F69AFFE6FB7
+  Name=TwainImg
+  Class=CUSTOMCONTROL
+  Caption=Scan Image
+  Order=16
+  Left=227
+  Width=190
+  Top=37
+  Height=270
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1082130432
+  Exstyles=0
+  Property=HyperLabel=,"Scan Image",,
+  Property=HyperLabel=#TwainImg,,,
+  Property=ContextMenu=TwainContext
+  Property=InheritClassName=FabPaintLibCtrl
+
+CONTROL=GROUPBOX
+GUID=5969B239-12C7-4A04-A53B-730E08202888
+  Name=GroupBox1
+  Class=GROUPBOX
+  Caption=Image
+  Order=17
+  Left=7
+  Width=210
+  Top=37
+  Height=270
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1073872903
+  Exstyles=0
+  Property=HyperLabel=,"Image",,
+  Property=HyperLabel=#GroupBox1,,,
+
+CONTROL=FIXEDTEXT
+GUID=B2C26A5D-A642-42C7-9370-2C814591A925
+  Name=CurrentTxt
+  Class=FIXEDTEXT
+  Caption=Current
+  Order=18
+  Left=67
+  Width=50
+  Top=57
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=,"Current",,
+  Property=HyperLabel=#CurrentTxt,,,
+
+CONTROL=FIXEDTEXT
+GUID=FFC843C2-40AB-4FF7-9F2D-C43D50466F88
+  Name=FixedText1
+  Class=FIXEDTEXT
+  Caption=Current :
+  Order=19
+  Left=17
+  Width=50
+  Top=57
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=,"Current :",,
+  Property=HyperLabel=#FixedText1,,,
+
+CONTROL=GROUPBOX
+GUID=595D7ABA-18A0-474D-B2CC-8BCFA66B84E8
+  Name=ImgBox
+  Class=GROUPBOX
+  Caption=Select
+  Order=20
+  Left=18
+  Width=69
+  Top=78
+  Height=121
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1073872903
+  Exstyles=0
+  Property=HyperLabel=,"Select",,
+  Property=HyperLabel=#ImgBox,,,
+
+CONTROL=GROUPBOX
+GUID=D85930C2-2DF0-41A5-9880-10E9F86377E9
+  Name=ViewBox
+  Class=GROUPBOX
+  Caption=View
+  Order=21
+  Left=97
+  Width=114
+  Top=77
+  Height=122
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073872903
+  Exstyles=0
+  Property=HyperLabel=,"View",,
+  Property=HyperLabel=#ViewBox,,,
+
+CONTROL=VERTICALSPINNER
+GUID=0E95B802-C212-4B6E-A16D-3375494F69E2
+  Name=ResolutionSpinner
+  Class=VERTICALSPINNER
+  Caption=
+  Order=22
+  Left=89
+  Width=12
+  Top=235
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073741878
+  Exstyles=0
+  Property=Range=0,
+  Property=Range=,300
+  Property=HyperLabel=#ResolutionSpinner,,,
+
+CONTROL=SINGLELINEEDIT
+GUID=D68C176C-42BF-4B94-80CB-2FC8C51A8B7C
+  Name=Resolution
+  Class=SINGLELINEEDIT
+  Caption=
+  Order=23
+  Left=19
+  Width=78
+  Top=235
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1082204288
+  Exstyles=512
+  Property=HyperLabel=#Resolution,,,
+  Property=TooltipText="DPI"
+
+CONTROL=SINGLELINEEDIT
+GUID=7D924909-409B-47DF-B620-39DE534B78C4
+  Name=PrintQty
+  Class=SINGLELINEEDIT
+  Caption=
+  Order=24
+  Left=477
+  Width=30
+  Top=147
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1082196096
+  Exstyles=512
+  Property=HyperLabel=#PrintQty,,,
+
+CONTROL=VERTICALSPINNER
+GUID=9998F2BF-42DD-4D0C-B6DD-D4855C73253A
+  Name=PrintQtySpinner
+  Class=VERTICALSPINNER
+  Caption=
+  Order=25
+  Left=507
+  Width=13
+  Top=147
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073741874
+  Exstyles=0
+  Property=Range=1,
+  Property=Range=,10
+  Property=HyperLabel=#PrintQtySpinner,,,
+
+CONTROL=FIXEDTEXT
+GUID=8485C922-66B6-421F-A814-1C9315E928F6
+  Name=FixedText2
+  Class=FIXEDTEXT
+  Caption=Qty :
+  Order=26
+  Left=437
+  Width=39
+  Top=147
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1073741824
+  Exstyles=0
+  Property=HyperLabel=,"Qty :",,
+  Property=HyperLabel=#FixedText2,,,
+
+CONTROL=GROUPBOX
+GUID=34D22E9B-8403-4B8A-B467-2BC6954EDD2E
+  Name=PrintBox
+  Class=GROUPBOX
+  Caption=Printing
+  Order=27
+  Left=427
+  Width=110
+  Top=97
+  Height=120
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=Yes
+  Deleted=2
+  Styles=1073872903
+  Exstyles=0
+  Property=HyperLabel=,"Printing",,
+  Property=HyperLabel=#PrintBox,,,
+  Property=OwnerAlignment=OA_CENTER
+
+CONTROL=PUSHBUTTON
+GUID=3DA6A420-EFD3-4E7E-B2E5-2EB71468CA23
+  Name=ZoomLess
+  Class=PUSHBUTTON
+  Caption=-
+  Order=28
+  Left=121
+  Width=50
+  Top=121
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"-",,
+  Property=HyperLabel=#ZoomLess,,,
+
+CONTROL=PUSHBUTTON
+GUID=EC22DEE8-D217-43A5-A430-3D08CFEBFA04
+  Name=ZoomNormal
+  Class=PUSHBUTTON
+  Caption=Normal
+  Order=29
+  Left=121
+  Width=50
+  Top=145
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"Normal",,
+  Property=HyperLabel=#ZoomNormal,,,
+
+CONTROL=PUSHBUTTON
+GUID=840DA112-2D8F-4536-946C-011BF491FB37
+  Name=ZoomMore
+  Class=PUSHBUTTON
+  Caption=+
+  Order=30
+  Left=121
+  Width=50
+  Top=169
+  Height=20
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807360
+  Exstyles=0
+  Property=HyperLabel=,"+",,
+  Property=HyperLabel=#ZoomMore,,,
+
+CONTROL=CHECKBOX
+GUID=6670B98D-CD6B-4B14-A676-0EEBE9C0BCBC
+  Name=PrintGDI
+  Class=CHECKBOX
+  Caption=Use GDI Mode
+  Order=31
+  Left=439
+  Width=90
+  Top=193
+  Height=18
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1073807363
+  Exstyles=0
+  Property=HyperLabel=,"Use GDI Mode",,
+  Property=HyperLabel=#PrintGDI,,,
+
+CONTROL=COMBOBOX
+GUID=DD07824B-EF4C-4F78-B5C7-FE1A6923B2EB
+  Name=FormatPage
+  Class=COMBOBOX
+  Caption=
+  Order=32
+  Left=19
+  Width=78
+  Top=265
+  Height=90
+  Browseindex=-1
+  Browsesize=0
+  Subform=No
+  Nosave=No
+  Deleted=2
+  Styles=1075906563
+  Exstyles=0
+  Property=HyperLabel=#FormatPage,,,
+  Property=FillUsing=Self:FillFormatPage 
+
+SUBCONTROLSEND
+DESIGNEREND = MainDialog
+
