@@ -1,0 +1,67 @@
+#include "..\GlobalDefines.vh"
+ImgViewShellMenu MENU
+Begin
+	POPUP "&File"
+	BEGIN
+		MENUITEM "&Open...\tCTRL+O", IDM_ImgViewShellMenu_File_Open_ID
+		MENUITEM "Save &As ...\tCTRL+Q", IDM_ImgViewShellMenu_File_Save_As__ID
+		MENUITEM "&Close", IDM_ImgViewShellMenu_File_Close_ID
+		MENUITEM SEPARATOR
+		MENUITEM "&Print", IDM_ImgViewShellMenu_File_Print_ID
+		MENUITEM "P&rint Setup...", IDM_ImgViewShellMenu_File_Print_Setup_ID
+		MENUITEM SEPARATOR
+		MENUITEM "&Send ...", IDM_ImgViewShellMenu_File_Send__ID
+		MENUITEM SEPARATOR
+		MENUITEM "E&xit\tALT+F4", IDM_ImgViewShellMenu_File_Exit_ID
+	END
+	POPUP "&Edit"
+	BEGIN
+		MENUITEM "&Copy\tCTRL+C", IDM_ImgViewShellMenu_Edit_Copy_ID
+		MENUITEM "&Paste\tCTRL+P", IDM_ImgViewShellMenu_Edit_Paste_ID
+	END
+	POPUP "&Image"
+	BEGIN
+		POPUP "&Copy"
+		BEGIN
+			MENUITEM "No Change", IDM_ImgViewShellMenu_Image_Copy_No_Change_ID
+			MENUITEM "1 bpp", IDM_ImgViewShellMenu_Image_Copy__1_bpp_ID
+			MENUITEM "8 bpp", IDM_ImgViewShellMenu_Image_Copy__8_bpp_ID
+			MENUITEM "32 bpp", IDM_ImgViewShellMenu_Image_Copy__32_bpp_ID
+		END
+		POPUP "&Resize"
+		BEGIN
+			MENUITEM "Bilinear", IDM_ImgViewShellMenu_Image_Resize_Bilinear_ID
+			MENUITEM "Box", IDM_ImgViewShellMenu_Image_Resize_Box_ID
+			MENUITEM "Gaussian", IDM_ImgViewShellMenu_Image_Resize_Gaussian_ID
+			MENUITEM "Hamming", IDM_ImgViewShellMenu_Image_Resize_Hamming_ID
+		END
+		MENUITEM "Cr&op", IDM_ImgViewShellMenu_Image_Crop_ID
+		MENUITEM "&Grayscale", IDM_ImgViewShellMenu_Image_Grayscale_ID
+		MENUITEM "Ro&tate", IDM_ImgViewShellMenu_Image_Rotate_ID
+		MENUITEM "&Invert", IDM_ImgViewShellMenu_Image_Invert_ID
+		MENUITEM SEPARATOR
+		MENUITEM "Zoom +", IDM_ImgViewShellMenu_Image_Zoom_b2_ID
+		MENUITEM "Zoom -", IDM_ImgViewShellMenu_Image_Zoom__ID
+		MENUITEM SEPARATOR
+		MENUITEM "Contrast", IDM_ImgViewShellMenu_Image_Contrast_ID
+		MENUITEM "Lightness", IDM_ImgViewShellMenu_Image_Lightness_ID
+		MENUITEM "Intensity", IDM_ImgViewShellMenu_Image_Intensity_ID
+		MENUITEM SEPARATOR
+		MENUITEM "EXIF Data", IDM_ImgViewShellMenu_Image_EXIF_Data_ID
+	END
+	POPUP "&Window"
+	BEGIN
+		MENUITEM "&Cascade", IDM_ImgViewShellMenu_Window_Cascade_ID
+		MENUITEM "&Tile", IDM_ImgViewShellMenu_Window_Tile_ID
+		MENUITEM "Close A&ll", IDM_ImgViewShellMenu_Window_Close_All_ID
+	END
+	POPUP "&Help"
+	BEGIN
+		MENUITEM "&Index\tF1", IDM_ImgViewShellMenu_Help_Index_ID
+		MENUITEM "&Context Help\tCTRL+F1", IDM_ImgViewShellMenu_Help_Context_Help_ID
+		MENUITEM "&Using Help", IDM_ImgViewShellMenu_Help_Using_Help_ID
+		MENUITEM SEPARATOR
+		MENUITEM "&About...", IDM_ImgViewShellMenu_Help_About_ID
+	END
+End
+ 

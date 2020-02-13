@@ -1,0 +1,11 @@
+
+#include "..\Dlg Progress.vh"
+Progress DIALOGEX  8, 19, 179, 12
+STYLE	DS_3DLOOK|DS_CENTER|WS_POPUP|WS_CAPTION
+CAPTION	"Loading..."
+FONT	8, "MS Shell Dlg"
+BEGIN
+	CONTROL	"", PROGRESS_PROGRESSBAR1, "msctls_progress32", PBS_SMOOTH|WS_CHILD, 0, 0, 179, 12, WS_EX_STATICEDGE
+END
+
+

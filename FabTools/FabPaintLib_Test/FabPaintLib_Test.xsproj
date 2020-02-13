@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.Default.props" />
+  <PropertyGroup>
+    <Dialect>Vulcan</Dialect>
+    <PlatformTarget>x86</PlatformTarget>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TransporterVersion>1.1.157.0</TransporterVersion>
+    <ProjectGuid>{B79E2352-598D-472D-BB21-EB5CBBF4C3E7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <Nologo>true</Nologo>
+    <GenerateFullPaths>false</GenerateFullPaths>
+    <Name>FabPaintLib_Test</Name>
+    <RootNamespace>Fab_PaintLib_Test</RootNamespace>
+    <VO3>true</VO3>
+    <UnSafe>true</UnSafe>
+    <VO5>true</VO5>
+    <VO10>true</VO10>
+    <VO11>true</VO11>
+    <VO9>true</VO9>
+    <VO2>true</VO2>
+    <VO4>true</VO4>
+    <OVF>true</OVF>
+    <FOVF>true</FOVF>
+    <VO12>false</VO12>
+    <LB>true</LB>
+    <CS>false</CS>
+    <AZ>false</AZ>
+    <VO6>true</VO6>
+    <VO7>true</VO7>
+    <VO8>true</VO8>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <XSharpProjectversion>2.3.0.0</XSharpProjectversion>
+    <StartupObject />
+    <ApplicationIcon />
+    <VulcanCompatibleResources>False</VulcanCompatibleResources>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <EmitDebugInformation>true</EmitDebugInformation>
+    <DefineConstants>DEBUG</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <OutputPath>$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <EmitDebugInformation>false</EmitDebugInformation>
+    <DefineConstants>NDEBUG</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <OutputPath>$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FreeImageNET, Version=3.13.1.1, Culture=neutral, PublicKeyToken=null">
+      <Name>FreeImageNET</Name>
+      <AssemblyName>FreeImageNET.dll</AssemblyName>
+      <HintPath>Debug\FreeImageNET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <Name>System.Drawing</Name>
+      <AssemblyName>System.Drawing.dll</AssemblyName>
+    </Reference>
+    <Reference Include="VOGUIClasses, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VOGUIClasses</Name>
+      <AssemblyName>VOGUIClasses.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Redist\VOGUIClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="VOSystemClasses, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VOSystemClasses</Name>
+      <AssemblyName>VOSystemClasses.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Redist\VOSystemClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="VOWin32APILibrary, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VOWin32APILibrary</Name>
+      <AssemblyName>VOWin32APILibrary.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Redist\VOWin32APILibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.Core, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
+      <Name>XSharp.Core</Name>
+      <AssemblyName>XSharp.Core.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Assemblies\XSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.RT, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
+      <Name>XSharp.RT</Name>
+      <AssemblyName>XSharp.RT.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Assemblies\XSharp.RT.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.VO, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
+      <Name>XSharp.VO</Name>
+      <AssemblyName>XSharp.VO.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Assemblies\XSharp.VO.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FabCtrl\FabCtrl.xsproj">
+      <Name>FabCtrl</Name>
+      <Project>{3807F7DE-0633-4A33-B011-B5748FDEE3C9}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabPaintLib\FabPaintLib.xsproj">
+      <Name>FabPaintLib</Name>
+      <Project>{0272327B-FC8C-4B26-A0CB-41EB7F1D945E}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabPaintLib_Control\FabPaintLib_Control.xsproj">
+      <Name>FabPaintLib_Control</Name>
+      <Project>{E7092356-5697-44DF-A3E2-3921F23D78C9}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.prg" />
+    <Compile Include="! ReadMe !.prg" />
+    <Compile Include="Dlg About.prg" />
+    <Compile Include="Dlg EXIF.prg" />
+    <Compile Include="Dlg Input.prg" />
+    <Compile Include="Dlg Progress.prg" />
+    <Compile Include="Menu EmptyShell.prg" />
+    <Compile Include="Menu ImgView.prg" />
+    <Compile Include="Open Dialog.prg" />
+    <Compile Include="Printer.prg" />
+    <Compile Include="Ressources.prg" />
+    <Compile Include="StandardDialog.prg" />
+    <Compile Include="Start.prg" />
+    <Compile Include="Wnd ImgView.prg" />
+    <Compile Include="Wnd MultiImgView.prg" />
+    <Compile Include="Wnd Shell.prg" />
+    <Compile Include="_Start.prg" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeResource Include="Resources\Dlg About.HelpAbout.rc">
+      <DependentUpon>Dlg About.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Dlg EXIF.EXIFDlg.rc">
+      <DependentUpon>Dlg EXIF.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Dlg Input.InputBox.rc">
+      <DependentUpon>Dlg Input.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Dlg Progress.Progress.rc">
+      <DependentUpon>Dlg Progress.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Menu EmptyShell.EmptyShellMenu.rc">
+      <DependentUpon>Menu EmptyShell.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Menu EmptyShell.EmptyShellMenu_Accelerator.rc">
+      <DependentUpon>Menu EmptyShell.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Menu ImgView.ImgViewShellMenu.rc">
+      <DependentUpon>Menu ImgView.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Menu ImgView.ImgViewShellMenu_Accelerator.rc">
+      <DependentUpon>Menu ImgView.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Open Dialog.TestDlg.rc">
+      <DependentUpon>Open Dialog.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Start.VS_VERSION_INFO.rc">
+      <DependentUpon>Start.prg</DependentUpon>
+    </NativeResource>
+  </ItemGroup>
+  <ItemGroup>
+    <VOBinary Include="Dlg About.HELPABOUT.vnfrm">
+      <DependentUpon>Dlg About.prg</DependentUpon>
+    </VOBinary>
+    <VOBinary Include="Dlg EXIF.EXIFDlg.vnfrm">
+      <DependentUpon>Dlg EXIF.prg</DependentUpon>
+    </VOBinary>
+    <None Include="Dlg About.vh">
+      <DependentUpon>Dlg About.prg</DependentUpon>
+    </None>
+    <VOBinary Include="Dlg Input.InputBox.vnfrm">
+      <DependentUpon>Dlg Input.prg</DependentUpon>
+    </VOBinary>
+    <None Include="Dlg EXIF.vh">
+      <DependentUpon>Dlg EXIF.prg</DependentUpon>
+    </None>
+    <VOBinary Include="Dlg Progress.Progress.vnfrm">
+      <DependentUpon>Dlg Progress.prg</DependentUpon>
+    </VOBinary>
+    <None Include="Dlg Input.vh">
+      <DependentUpon>Dlg Input.prg</DependentUpon>
+    </None>
+    <VOBinary Include="Menu EmptyShell.EmptyShellMenu.vnmnu">
+      <DependentUpon>Menu EmptyShell.prg</DependentUpon>
+    </VOBinary>
+    <VOBinary Include="Menu ImgView.ImgViewShellMenu.vnmnu">
+      <DependentUpon>Menu ImgView.prg</DependentUpon>
+    </VOBinary>
+    <VOBinary Include="Open Dialog.TESTDLG.vnfrm">
+      <DependentUpon>Open Dialog.prg</DependentUpon>
+    </VOBinary>
+    <None Include="Dlg Progress.vh">
+      <DependentUpon>Dlg Progress.prg</DependentUpon>
+    </None>
+    <None Include="Open Dialog.vh">
+      <DependentUpon>Open Dialog.prg</DependentUpon>
+    </None>
+    <None Include="GlobalDefines.vh" />
+    <None Include="Properties\CavoWED.inf" />
+    <None Include="Properties\CavoWED.tpl" />
+    <None Include="Properties\CavoDED.tpl" />
+    <None Include="Properties\CavoFED.tpl" />
+    <None Include="Wnd ImgView.vh">
+      <DependentUpon>Wnd ImgView.prg</DependentUpon>
+    </None>
+    <VOBinary Include="Wnd Shell.ImgViewShell.vnfrm">
+      <DependentUpon>Wnd Shell.prg</DependentUpon>
+    </VOBinary>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.targets" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <ProjectCapabilities>
+      <ProjectConfigurationsDeclaredAsItems />
+    </ProjectCapabilities>
+  </ProjectExtensions>
+</Project>

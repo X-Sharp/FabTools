@@ -1,0 +1,13 @@
+#include "..\GlobalDefines.vh"
+
+ImgViewShellMenu_Accelerator ACCELERATORS
+Begin
+	79, IDM_ImgViewShellMenu_File_Open_ID, CONTROL, VIRTKEY
+	65, IDM_ImgViewShellMenu_File_Save_As__ID, CONTROL, VIRTKEY
+	VK_F4, IDM_ImgViewShellMenu_File_Exit_ID, ALT, VIRTKEY
+	67, IDM_ImgViewShellMenu_Edit_Copy_ID, CONTROL, VIRTKEY
+	80, IDM_ImgViewShellMenu_Edit_Paste_ID, CONTROL, VIRTKEY
+	VK_F1, IDM_ImgViewShellMenu_Help_Index_ID, VIRTKEY
+	VK_F1, IDM_ImgViewShellMenu_Help_Context_Help_ID, CONTROL, VIRTKEY
+End
+ 

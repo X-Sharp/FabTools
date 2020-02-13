@@ -1,0 +1,22 @@
+#include "..\GlobalDefines.vh"
+
+EmptyShellMenu MENU
+Begin
+	POPUP "&File"
+	BEGIN
+		MENUITEM "&Open..\tCTRL+O", IDM_EmptyShellMenu_File_Open_ID
+		MENUITEM "&Paste from Clipboard...", IDM_EmptyShellMenu_File_Paste_from_Clipboard_ID
+		MENUITEM SEPARATOR
+		MENUITEM "P&rint Setup...", IDM_EmptyShellMenu_File_Print_Setup_ID
+		MENUITEM SEPARATOR
+		MENUITEM "E&xit\tALT+F4", IDM_EmptyShellMenu_File_Exit_ID
+	END
+	POPUP "&Help"
+	BEGIN
+		MENUITEM "&Index\tF1", IDM_EmptyShellMenu_Help_Index_ID
+		MENUITEM "&Using help", IDM_EmptyShellMenu_Help_Using_help_ID
+		MENUITEM SEPARATOR
+		MENUITEM "&About...", IDM_EmptyShellMenu_Help_About_ID
+	END
+End
+ 

@@ -5,13 +5,14 @@ USING System
 USING System.Collections.Generic
 USING System.Linq
 USING System.Text
+USING VO
 
 BEGIN NAMESPACE FabTwain
 
 
 	CLASS FabTwain
 //p Link to Twain with Objects
-//d This class provide most needed services for Twain support in your application.
+//d This classUsingide most needed services for TwaiUsingport in your application.
 //d Using this class, you can use a Twain compliant device, to get Images
 //d Most of needed setting have implementing, but if some are missing
 //d the class provide at least low-level acces so you can implement your need by sub-classing.

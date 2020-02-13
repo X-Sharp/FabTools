@@ -1,0 +1,9 @@
+#include "..\GlobalDefines.vh"
+
+EmptyShellMenu_Accelerator ACCELERATORS
+Begin
+	79, IDM_EmptyShellMenu_File_Open_ID, CONTROL, VIRTKEY
+	VK_F4, IDM_EmptyShellMenu_File_Exit_ID, ALT, VIRTKEY
+	VK_F1, IDM_EmptyShellMenu_Help_Index_ID, VIRTKEY
+End
+ 

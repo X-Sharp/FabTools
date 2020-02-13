@@ -1,0 +1,11 @@
+// Open Dialog.vh
+
+#define TESTDLG_FIXEDTEXT1 (100 )
+#define TESTDLG_WNDCHECK (101 )
+#define TESTDLG_PUSHPB (102 )
+#define TESTDLG_RADIOGRP (103 )
+#define TESTDLG_CHOOSE1 (104 )
+#define TESTDLG_CHOOSE2 (105 )
+#define TESTDLG_PICTURE (102 )
+#define TESTDLG_PREVIEW (101 )
+#define TESTDLG_STC32 0x045f
