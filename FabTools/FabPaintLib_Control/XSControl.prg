@@ -39,7 +39,7 @@ class FabPaintLib_Control inherit System.Windows.Forms.ScrollableControl
 			    SELF:Invalidate()
 		    ENDIF
 	    ENDIF
-    RETURN SELF:oImg
+    RETURN 
 
 
     // Drawing the Image

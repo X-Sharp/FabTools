@@ -1,37 +1,39 @@
 #include "VOSystemLibrary.vh"
 #include "VOWin32APILibrary.vh"
 #include "Dlg EXIF.vh"
-CLASS EXIFDlg INHERIT DIALOGWINDOW 
-
+STATIC DEFINE EXIFDLG_CLOSEPB := 100
+STATIC DEFINE EXIFDLG_EXIFLISTVIEW := 101
+PARTIAL CLASS EXIFDlg INHERIT DIALOGWINDOW
 	EXPORT oCCClosePB AS PUSHBUTTON
 	EXPORT oDCEXIFListView AS LISTVIEW
 
-  //{{%UC%}} USER CODE STARTS HERE (do NOT remove this line)
+	// {{%UC%}} User code starts here (DO NOT remove this line)  
 
 METHOD ClosePB( ) 
 	self:EndDialog()
 return self
 
-CONSTRUCTOR(oParent,uExtra)  
+CONSTRUCTOR(oParent,uExtra)
 
-self:PreInit(oParent,uExtra)
+	SELF:PreInit(oParent,uExtra)
 
-SUPER(oParent,ResourceID{"EXIFDlg",_GetInst()},TRUE)
+	SUPER(oParent , ResourceID{"EXIFDlg" , _GetInst()} , TRUE)
 
-oCCClosePB := PushButton{SELF,ResourceID{EXIFDLG_CLOSEPB,_GetInst()}}
-oCCClosePB:HyperLabel := HyperLabel{#ClosePB,"Close",NULL_STRING,NULL_STRING}
+	SELF:oCCClosePB := PUSHBUTTON{SELF , ResourceID{ EXIFDLG_CLOSEPB  , _GetInst() } }
+	SELF:oCCClosePB:HyperLabel := HyperLabel{#ClosePB , "Close" , NULL_STRING , NULL_STRING}
 
-oDCEXIFListView := ListView{SELF,ResourceID{EXIFDLG_EXIFLISTVIEW,_GetInst()}}
-oDCEXIFListView:FullRowSelect := True
-oDCEXIFListView:GridLines := True
-oDCEXIFListView:HyperLabel := HyperLabel{#EXIFListView,NULL_STRING,NULL_STRING,NULL_STRING}
+	SELF:oDCEXIFListView := LISTVIEW{SELF , ResourceID{ EXIFDLG_EXIFLISTVIEW  , _GetInst() } }
+	SELF:oDCEXIFListView:GridLines := True
+	SELF:oDCEXIFListView:FullRowSelect := True
+	SELF:oDCEXIFListView:HyperLabel := HyperLabel{#EXIFListView , NULL_STRING , NULL_STRING , NULL_STRING}
 
-SELF:Caption := "EXIF Data"
-SELF:HyperLabel := HyperLabel{#EXIFDlg,"EXIF Data",NULL_STRING,NULL_STRING}
+	SELF:Caption := "EXIF Data"
+	SELF:HyperLabel := HyperLabel{#EXIFDlg , "EXIF Data" , NULL_STRING , NULL_STRING}
 
-self:PostInit(oParent,uExtra)
+	SELF:PostInit(oParent,uExtra)
 
-return 
+RETURN
+
 
 method PostInit(oParent,uExtra) 
 	//Put your PostInit additions here

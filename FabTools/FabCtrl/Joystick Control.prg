@@ -60,7 +60,7 @@ PROTECT METHOD __GetDevCaps( ptrDevCaps )
 		//
 		dwRet := joyGetDevCaps( SELF:Identifier, ptrDevCaps, _sizeof( _winJOYCAPS ) )
 		//
-		lOk := ( dwRet == JOYERR_NOERROR )
+		lOk := ( dwRet == (DWORD)JOYERR_NOERROR )
 	ENDIF
 	//
 RETURN lOk
@@ -184,7 +184,7 @@ CONSTRUCTOR( oOwner, xID, oPoint, oDimension, kStyle, lDataAware )
 	// Number of Joystick the driver is supporting
 	SELF:dwJoys := joyGetNumDevs()
 	// Default, used Joy1
-	SELF:dwJoyUsed := JOYSTICKID1
+	SELF:dwJoyUsed := (DWORD)JOYSTICKID1
 	// Default Range
 	SELF:XRange := Range{ 0, 65535 }
 	SELF:YRange := Range{ 0, 65535 }
@@ -203,7 +203,7 @@ ACCESS Interval
 	//
 	IF SELF:IsPlugged
 		dwRet := joyGetThreshold( SELF:Identifier, @dwTh )
-		IF ( dwRet != JOYERR_NOERROR )
+		IF ( dwRet != (DWORD)JOYERR_NOERROR )
 			dwTh := 0
 		ENDIF
 	ENDIF
@@ -221,7 +221,7 @@ ASSIGN Interval( dwThreshold )
 	IF SELF:IsPlugged
 		dwTh := dwThreshold
 		dwRet := joySetThreshold( SELF:Identifier, dwTh )
-		IF ( dwRet != JOYERR_NOERROR )
+		IF ( dwRet != (DWORD)JOYERR_NOERROR )
 			dwTh := 0
 		ENDIF
 	ENDIF
@@ -238,7 +238,7 @@ ACCESS IsButton1Down
 	//
 	IF SELF:IsPlugged
 		dwRet := joyGetPos( SELF:Identifier, @struJoyInfo )
-		IF ( dwRet == JOYERR_NOERROR )
+		IF ( dwRet == (DWORD)JOYERR_NOERROR )
 			lDown := ( _And( struJoyInfo:wButtons, JOY_BUTTON1 ) != 0 )
 		ENDIF
 	ENDIF
@@ -255,7 +255,7 @@ ACCESS IsButton2Down
 	//
 	IF SELF:IsPlugged
 		dwRet := joyGetPos( SELF:Identifier, @struJoyInfo )
-		IF ( dwRet == JOYERR_NOERROR )
+		IF ( dwRet == (DWORD)JOYERR_NOERROR )
 			lDown := ( _And( struJoyInfo:wButtons, JOY_BUTTON2 ) != 0 )
 		ENDIF
 	ENDIF
@@ -272,7 +272,7 @@ ACCESS IsButton3Down
 	//
 	IF SELF:IsPlugged
 		dwRet := joyGetPos( SELF:Identifier, @struJoyInfo )
-		IF ( dwRet == JOYERR_NOERROR )
+		IF ( dwRet == (DWORD)JOYERR_NOERROR )
 			lDown := ( _And( struJoyInfo:wButtons, JOY_BUTTON3 ) != 0 )
 		ENDIF
 	ENDIF
@@ -289,7 +289,7 @@ ACCESS IsButton4Down
 	//
 	IF SELF:IsPlugged
 		dwRet := joyGetPos( SELF:Identifier, @struJoyInfo )
-		IF ( dwRet == JOYERR_NOERROR )
+		IF ( dwRet == (DWORD)JOYERR_NOERROR )
 			lDown := ( _And( struJoyInfo:wButtons, JOY_BUTTON4 ) != 0 )
 		ENDIF
 	ENDIF
@@ -322,7 +322,7 @@ ACCESS IsPlugged
 	//
 	IF SELF:IsDriver
 		dwRet := joyGetPos( SELF:Identifier, @struJoyInfo )
-		lPlug := ( dwRet == JOYERR_NOERROR )
+		lPlug := ( dwRet == (DWORD)JOYERR_NOERROR )
 	ENDIF
 RETURN lPlug
 
@@ -373,7 +373,7 @@ METHOD Open( nJoy )
 	//
 	IF SELF:IsPlugged
 		dwRet := FabjoySetCapture( SELF:Handle(), SELF:Identifier, 0, TRUE )
-		IF ( dwRet == JOYERR_NOERROR )
+		IF ( dwRet == (DWORD)JOYERR_NOERROR )
 			SELF:lOpen := TRUE
 		ENDIF
 	ENDIF
@@ -392,7 +392,7 @@ ACCESS PosX
 	//
 	IF SELF:IsPlugged
 		dwRet := joyGetPos( SELF:Identifier, @struJoyInfo )
-		IF ( dwRet == JOYERR_NOERROR )
+		IF ( dwRet == (DWORD)JOYERR_NOERROR )
 			dwPos := struJoyInfo:wXpos
 			//
 			dwPos := Dword( FLOAT(dwPos) / 65535 ) * ( SELF:oXRng:Max - SELF:oXRng:Min - 1 ) + SELF:oXRng:Min
@@ -412,7 +412,7 @@ ACCESS PosY
 	//
 	IF SELF:IsPlugged
 		dwRet := joyGetPos( SELF:Identifier, @struJoyInfo )
-		IF ( dwRet == JOYERR_NOERROR )
+		IF ( dwRet == (DWORD)JOYERR_NOERROR )
 			dwPos := struJoyInfo:wYpos
 			//
 			dwPos := Dword( FLOAT(dwPos) / 65535 ) * ( SELF:oYRng:Max - SELF:oYRng:Min - 1 ) + SELF:oYRng:Min
@@ -432,7 +432,7 @@ ACCESS PosZ
 	//
 	IF SELF:IsPlugged
 		dwRet := joyGetPos( SELF:Identifier, @struJoyInfo )
-		IF ( dwRet == JOYERR_NOERROR )
+		IF ( dwRet == (DWORD)JOYERR_NOERROR )
 			dwPos := struJoyInfo:wZpos
 			//
 			dwPos := Dword( FLOAT(dwPos) / 65535 ) * ( SELF:oZRng:Max - SELF:oZRng:Min - 1 ) + SELF:oZRng:Min

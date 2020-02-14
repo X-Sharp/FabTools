@@ -5,5 +5,5 @@ Port to X# of most of FabTools Libraries
 - [x] FabSplitShellLib
 - [ ] FabTools - WIP
 - [ ] FabTwain - WIP
-- [ ] FabPaint - WIP
+- [ ] FabPaintLib - WIP
 - [ ] FabZip - WIP

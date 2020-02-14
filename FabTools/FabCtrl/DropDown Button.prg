@@ -11,7 +11,6 @@ CLASS FabDropDownBitmapButton INHERIT FabBitmapButton
 METHOD _DrawControl( hDC AS PTR ) AS VOID  
 	LOCAL Canvas	IS	_winRect
 	LOCAL hPen		AS	PTR
-	LOCAL hOldPen	AS	PTR
 	//
 	SUPER:_DrawControl( hDC )
 	//	
@@ -50,10 +49,10 @@ METHOD _DrawControl( hDC AS PTR ) AS VOID
 	LineTo( hDc, Canvas:Right - 14, Canvas:Bottom - 4 )
 	//
 	hPen := CreatePen( PS_SOLID, 1, GetSysColor( COLOR_3DSHADOW ) )
-	hOldPen := SelectObject( hDC, hPen )
+	SelectObject( hDC, hPen )
 	MoveToEx( hDC, Canvas:Right - 15, Canvas:Top + 4, NULL )
 	LineTo( hDc, Canvas:Right - 15, Canvas:Bottom - 4 )
-	hOldPen := SelectObject( hDC, hPen )
+	SelectObject( hDC, hPen )
 	DeleteObject( hPen )
 	//
 return	

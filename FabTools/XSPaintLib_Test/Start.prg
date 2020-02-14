@@ -9,12 +9,9 @@
 /// The main entry point for the application.
 /// </summary>
 [STAThread] ;
-FUNCTION Start() AS INT
-
-   LOCAL exitCode AS INT
+FUNCTION Start() AS VOID
     
    Application.EnableVisualStyles()
    Application.SetCompatibleTextRenderingDefault( false )
    Application.Run( MainWindow{} )
    
-   RETURN exitCode

@@ -94,7 +94,7 @@ RETURN SELF:lRunning
 
 METHOD Start()         
 //d Start the Timer, the Owner of the Timer ( A Window or a Control ) will receive the WM_TIMER in it's Dispatch() method
-	LOCAL   wNewId  as      dWORD
+	LOCAL   wNewId :=0  as      dWORD
 	//
 	IF !SELF:lRunning .and. ( SELF:Owner != NULL_OBJECT )
 		wNewId := SetTimer( SELF:Owner:Handle(), SELF:wId, SELF:wInterval, NULL_PTR )

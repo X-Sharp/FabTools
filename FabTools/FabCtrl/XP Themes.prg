@@ -66,9 +66,7 @@ RETURN hResult
 
 FUNCTION OpenThemeData( hWnd as ptr, cClassList as psz ) as ptr STRICT
 	LOCAL hResult		AS	PTR
-	LOCAL wClassList	AS	STRING
 	//
-	wClassList := Multi2Wide( Psz2String(cClassList) )
-	hResult := PCALL( ptrOpenThemeData, hWnd, String2Psz(wClassList ) )
+	hResult := PCALL( ptrOpenThemeData, hWnd, cClassList )
 RETURN hResult
 

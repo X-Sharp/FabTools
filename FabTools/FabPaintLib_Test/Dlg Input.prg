@@ -1,67 +1,77 @@
 #include "VOSystemLibrary.vh"
 #include "VOWin32APILibrary.vh"
 #include "Dlg Input.vh"
-class InputBox inherit DIALOGWINDOW 
+STATIC DEFINE INPUTBOX_VALUE1TXT := 100
+STATIC DEFINE INPUTBOX_VALUE1 := 101
+STATIC DEFINE INPUTBOX_VALUE2 := 102
+STATIC DEFINE INPUTBOX_VALUE2TXT := 103
+STATIC DEFINE INPUTBOX_VALUE3TXT := 104
+STATIC DEFINE INPUTBOX_VALUE3 := 105
+STATIC DEFINE INPUTBOX_VALUE4 := 106
+STATIC DEFINE INPUTBOX_VALUE4TXT := 107
+STATIC DEFINE INPUTBOX_OKPB := 108
+STATIC DEFINE INPUTBOX_CANCELPB := 109
+PARTIAL CLASS InputBox INHERIT DIALOGWINDOW
+	EXPORT oDCValue1Txt AS FIXEDTEXT
+	EXPORT oDCValue1 AS SINGLELINEEDIT
+	EXPORT oDCValue2 AS SINGLELINEEDIT
+	EXPORT oDCValue2Txt AS FIXEDTEXT
+	EXPORT oDCValue3Txt AS FIXEDTEXT
+	EXPORT oDCValue3 AS SINGLELINEEDIT
+	EXPORT oDCValue4 AS SINGLELINEEDIT
+	EXPORT oDCValue4Txt AS FIXEDTEXT
+	EXPORT oCCOkPB AS PUSHBUTTON
+	EXPORT oCCCancelPB AS PUSHBUTTON
 
-	export oDCValue1Txt as FIXEDTEXT
-	export oDCValue1 as SINGLELINEEDIT
-	export oDCValue2 as SINGLELINEEDIT
-	export oDCValue2Txt as FIXEDTEXT
-	export oDCValue3Txt as FIXEDTEXT
-	export oDCValue3 as SINGLELINEEDIT
-	export oDCValue4 as SINGLELINEEDIT
-	export oDCValue4Txt as FIXEDTEXT
-	export oCCOkPB as PUSHBUTTON
-	export oCCCancelPB as PUSHBUTTON
-
-  //{{%UC%}} USER CODE STARTS HERE (do NOT remove this line)
+	// {{%UC%}} User code starts here (DO NOT remove this line)  
 
 METHOD CancelPB( ) 
 	self:EndDialog( 0 )
 return self	
 
-CONSTRUCTOR(oParent,uExtra)  
+CONSTRUCTOR(oParent,uExtra)
 
-self:PreInit(oParent,uExtra)
+	SELF:PreInit(oParent,uExtra)
 
-super(oParent,ResourceID{"InputBox",_GetInst()},TRUE)
+	SUPER(oParent , ResourceID{"InputBox" , _GetInst()} , TRUE)
 
-oDCValue1Txt := FixedText{self,ResourceID{INPUTBOX_VALUE1TXT,_GetInst()}}
-oDCValue1Txt:HyperLabel := HyperLabel{#Value1Txt,"Value1",NULL_STRING,NULL_STRING}
+	SELF:oDCValue1Txt := FIXEDTEXT{SELF , ResourceID{ INPUTBOX_VALUE1TXT  , _GetInst() } }
+	SELF:oDCValue1Txt:HyperLabel := HyperLabel{#Value1Txt , "Value1" , NULL_STRING , NULL_STRING}
 
-oDCValue1 := SingleLineEdit{self,ResourceID{INPUTBOX_VALUE1,_GetInst()}}
-oDCValue1:HyperLabel := HyperLabel{#Value1,NULL_STRING,NULL_STRING,NULL_STRING}
+	SELF:oDCValue1 := SINGLELINEEDIT{SELF , ResourceID{ INPUTBOX_VALUE1  , _GetInst() } }
+	SELF:oDCValue1:HyperLabel := HyperLabel{#Value1 , NULL_STRING , NULL_STRING , NULL_STRING}
 
-oDCValue2 := SingleLineEdit{self,ResourceID{INPUTBOX_VALUE2,_GetInst()}}
-oDCValue2:HyperLabel := HyperLabel{#Value2,NULL_STRING,NULL_STRING,NULL_STRING}
+	SELF:oDCValue2 := SINGLELINEEDIT{SELF , ResourceID{ INPUTBOX_VALUE2  , _GetInst() } }
+	SELF:oDCValue2:HyperLabel := HyperLabel{#Value2 , NULL_STRING , NULL_STRING , NULL_STRING}
 
-oDCValue2Txt := FixedText{self,ResourceID{INPUTBOX_VALUE2TXT,_GetInst()}}
-oDCValue2Txt:HyperLabel := HyperLabel{#Value2Txt,"Value2",NULL_STRING,NULL_STRING}
+	SELF:oDCValue2Txt := FIXEDTEXT{SELF , ResourceID{ INPUTBOX_VALUE2TXT  , _GetInst() } }
+	SELF:oDCValue2Txt:HyperLabel := HyperLabel{#Value2Txt , "Value2" , NULL_STRING , NULL_STRING}
 
-oDCValue3Txt := FixedText{self,ResourceID{INPUTBOX_VALUE3TXT,_GetInst()}}
-oDCValue3Txt:HyperLabel := HyperLabel{#Value3Txt,"Value3",NULL_STRING,NULL_STRING}
+	SELF:oDCValue3Txt := FIXEDTEXT{SELF , ResourceID{ INPUTBOX_VALUE3TXT  , _GetInst() } }
+	SELF:oDCValue3Txt:HyperLabel := HyperLabel{#Value3Txt , "Value3" , NULL_STRING , NULL_STRING}
 
-oDCValue3 := SingleLineEdit{self,ResourceID{INPUTBOX_VALUE3,_GetInst()}}
-oDCValue3:HyperLabel := HyperLabel{#Value3,NULL_STRING,NULL_STRING,NULL_STRING}
+	SELF:oDCValue3 := SINGLELINEEDIT{SELF , ResourceID{ INPUTBOX_VALUE3  , _GetInst() } }
+	SELF:oDCValue3:HyperLabel := HyperLabel{#Value3 , NULL_STRING , NULL_STRING , NULL_STRING}
 
-oDCValue4 := SingleLineEdit{self,ResourceID{INPUTBOX_VALUE4,_GetInst()}}
-oDCValue4:HyperLabel := HyperLabel{#Value4,NULL_STRING,NULL_STRING,NULL_STRING}
+	SELF:oDCValue4 := SINGLELINEEDIT{SELF , ResourceID{ INPUTBOX_VALUE4  , _GetInst() } }
+	SELF:oDCValue4:HyperLabel := HyperLabel{#Value4 , NULL_STRING , NULL_STRING , NULL_STRING}
 
-oDCValue4Txt := FixedText{self,ResourceID{INPUTBOX_VALUE4TXT,_GetInst()}}
-oDCValue4Txt:HyperLabel := HyperLabel{#Value4Txt,"Value4",NULL_STRING,NULL_STRING}
+	SELF:oDCValue4Txt := FIXEDTEXT{SELF , ResourceID{ INPUTBOX_VALUE4TXT  , _GetInst() } }
+	SELF:oDCValue4Txt:HyperLabel := HyperLabel{#Value4Txt , "Value4" , NULL_STRING , NULL_STRING}
 
-oCCOkPB := PushButton{self,ResourceID{INPUTBOX_OKPB,_GetInst()}}
-oCCOkPB:HyperLabel := HyperLabel{#OkPB,_chr(38)+"Ok",NULL_STRING,NULL_STRING}
+	SELF:oCCOkPB := PUSHBUTTON{SELF , ResourceID{ INPUTBOX_OKPB  , _GetInst() } }
+	SELF:oCCOkPB:HyperLabel := HyperLabel{#OkPB , "&Ok" , NULL_STRING , NULL_STRING}
 
-oCCCancelPB := PushButton{self,ResourceID{INPUTBOX_CANCELPB,_GetInst()}}
-oCCCancelPB:HyperLabel := HyperLabel{#CancelPB,_chr(38)+"Cancel",NULL_STRING,NULL_STRING}
+	SELF:oCCCancelPB := PUSHBUTTON{SELF , ResourceID{ INPUTBOX_CANCELPB  , _GetInst() } }
+	SELF:oCCCancelPB:HyperLabel := HyperLabel{#CancelPB , "&Cancel" , NULL_STRING , NULL_STRING}
 
-self:Caption := "Parameters"
-self:HyperLabel := HyperLabel{#InputBox,"Parameters",NULL_STRING,NULL_STRING}
+	SELF:Caption := "Parameters"
+	SELF:HyperLabel := HyperLabel{#InputBox , "Parameters" , NULL_STRING , NULL_STRING}
 
-self:PostInit(oParent,uExtra)
+	SELF:PostInit(oParent,uExtra)
 
-return 
+RETURN
+
 
 METHOD OkPB( ) 
 	SELF:EndDialog( 1 )

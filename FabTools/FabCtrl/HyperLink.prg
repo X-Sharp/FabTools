@@ -30,7 +30,7 @@ ASSIGN AutoSize( lNewSet AS LOGIC )
 
 METHOD Dispatch( oEvent ) 
 	LOCAL oHL 		AS HyperLabel
-	LOCAL symName	AS	SYMBOL
+	LOCAL symName	:= NULL_SYMBOL AS	SYMBOL
 	//
 	IF ( oEvent:Message == WM_ERASEBKGND )
 		//

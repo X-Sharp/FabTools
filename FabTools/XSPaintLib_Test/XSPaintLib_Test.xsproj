@@ -38,7 +38,6 @@
     <Reference Include="FreeImageNET, Version=3.13.1.1, Culture=neutral, PublicKeyToken=null">
       <Name>FreeImageNET</Name>
       <AssemblyName>FreeImageNET.dll</AssemblyName>
-      <HintPath>Debug\FreeImageNET.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -90,6 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindow.Designer.prg">
+      <DependentUpon>MainWindow.prg</DependentUpon>
+    </Compile>
     <Compile Include="Start.prg">
       <SubType>Code</SubType>
     </Compile>

@@ -4,6 +4,9 @@
 #using FabPaintLib
 
 
+STATIC DEFINE TESTDLG_STC32 := 100
+STATIC DEFINE TESTDLG_PREVIEW := 101
+STATIC DEFINE TESTDLG_PICTURE := 102
 CLASS	MyFabOpenDialog		INHERIT	FabOpenDialog
 	//
 	PROTECT pDib	AS	FabPaintLib
@@ -163,31 +166,31 @@ METHOD ShowPreview( hDlg )
 return self
 END CLASS
 
-class TestDlg inherit DIALOGWINDOW 
+PARTIAL CLASS TestDlg INHERIT DIALOGWINDOW
+	PROTECT oDCPreview AS CHECKBOX
+	PROTECT oDCPicture AS FIXEDTEXT
 
-	protect oDCPreview as CHECKBOX
-	protect oDCPicture as FIXEDTEXT
+	// {{%UC%}} User code starts here (DO NOT remove this line)  
 
-  //{{%UC%}} USER CODE STARTS HERE (do NOT remove this line)
+CONSTRUCTOR(oParent,uExtra)
 
-CONSTRUCTOR(oParent,uExtra)  
+	SELF:PreInit(oParent,uExtra)
 
-self:PreInit(oParent,uExtra)
+	SUPER(oParent , ResourceID{"TestDlg" , _GetInst()} , FALSE)
 
-super(oParent,ResourceID{"TestDlg",_GetInst()},FALSE)
+	SELF:oDCPreview := CHECKBOX{SELF , ResourceID{ TESTDLG_PREVIEW  , _GetInst() } }
+	SELF:oDCPreview:HyperLabel := HyperLabel{#Preview , "Preview" , NULL_STRING , NULL_STRING}
 
-oDCPreview := CheckBox{self,ResourceID{TESTDLG_PREVIEW,_GetInst()}}
-oDCPreview:HyperLabel := HyperLabel{#Preview,"Preview",NULL_STRING,NULL_STRING}
+	SELF:oDCPicture := FIXEDTEXT{SELF , ResourceID{ TESTDLG_PICTURE  , _GetInst() } }
+	SELF:oDCPicture:HyperLabel := HyperLabel{#Picture , "Fixed Text" , NULL_STRING , NULL_STRING}
 
-oDCPicture := FixedText{self,ResourceID{TESTDLG_PICTURE,_GetInst()}}
-oDCPicture:HyperLabel := HyperLabel{#Picture,"Fixed Text",NULL_STRING,NULL_STRING}
+	SELF:Caption := "Dialog Caption"
+	SELF:HyperLabel := HyperLabel{#TestDlg , "Dialog Caption" , NULL_STRING , NULL_STRING}
 
-self:Caption := "Dialog Caption"
-self:HyperLabel := HyperLabel{#TestDlg,"Dialog Caption",NULL_STRING,NULL_STRING}
+	SELF:PostInit(oParent,uExtra)
 
-self:PostInit(oParent,uExtra)
+RETURN
 
-return 
 
 END CLASS
 

@@ -1,28 +1,29 @@
 #include "VOSystemLibrary.vh"
 #include "VOWin32APILibrary.vh"
 #include "Dlg Progress.vh"
-class Progress inherit DIALOGWINDOW 
+STATIC DEFINE PROGRESS_PROGRESSBAR1 := 100
+PARTIAL CLASS Progress INHERIT DIALOGWINDOW
+	EXPORT oDCProgressBar1 AS PROGRESSBAR
 
-	export oDCProgressBar1 as PROGRESSBAR
+	// {{%UC%}} User code starts here (DO NOT remove this line)  
 
-  //{{%UC%}} USER CODE STARTS HERE (do NOT remove this line)
+CONSTRUCTOR(oParent,uExtra)
 
-CONSTRUCTOR(oParent,uExtra)  
+	SELF:PreInit(oParent,uExtra)
 
-self:PreInit(oParent,uExtra)
+	SUPER(oParent , ResourceID{"Progress" , _GetInst()} , FALSE)
 
-super(oParent,ResourceID{"Progress",_GetInst()},FALSE)
+	SELF:oDCProgressBar1 := PROGRESSBAR{SELF , ResourceID{ PROGRESS_PROGRESSBAR1  , _GetInst() } }
+	SELF:oDCProgressBar1:HyperLabel := HyperLabel{#ProgressBar1 , NULL_STRING , NULL_STRING , NULL_STRING}
+	SELF:oDCProgressBar1:Range := Range{ , 100}
 
-oDCProgressBar1 := ProgressBar{self,ResourceID{PROGRESS_PROGRESSBAR1,_GetInst()}}
-oDCProgressBar1:HyperLabel := HyperLabel{#ProgressBar1,NULL_STRING,NULL_STRING,NULL_STRING}
-oDCProgressBar1:Range := Range{0,100}
+	SELF:Caption := "Loading..."
+	SELF:HyperLabel := HyperLabel{#Progress , "Loading..." , NULL_STRING , NULL_STRING}
 
-self:Caption := "Loading..."
-self:HyperLabel := HyperLabel{#Progress,"Loading...",NULL_STRING,NULL_STRING}
+	SELF:PostInit(oParent,uExtra)
 
-self:PostInit(oParent,uExtra)
+RETURN
 
-return 
 
 END CLASS
 

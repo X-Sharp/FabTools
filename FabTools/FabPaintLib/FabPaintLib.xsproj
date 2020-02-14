@@ -41,9 +41,13 @@
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
     <NoWin32Manifest>False</NoWin32Manifest>
     <TargetFrameworkProfile />
-    <NamedArgs>False</NamedArgs>
-    <Memvar>False</Memvar>
-    <Undeclared>False</Undeclared>
+    <NamedArgs>false</NamedArgs>
+    <Memvar>false</Memvar>
+    <Undeclared>false</Undeclared>
+    <NoStandardDefs>false</NoStandardDefs>
+    <IncludePaths />
+    <StandardDefs />
+    <InitLocals>true</InitLocals>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>
@@ -63,8 +67,9 @@
     <Reference Include="FreeImageNET, Version=3.13.1.1, Culture=neutral, PublicKeyToken=null">
       <Name>FreeImageNET</Name>
       <AssemblyName>FreeImageNET.dll</AssemblyName>
-      <HintPath>Debug\FreeImageNET.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
+      <HintPath>FreeImage\FreeImageNET.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -116,12 +121,15 @@
     <Compile Include="FabPaintLib.prg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="FreeImage\FreeImage.dll" />
+    <None Include="FreeImage\FreeImageNET.dll" />
     <None Include="Properties\CavoWED.inf" />
     <None Include="Properties\CavoWED.tpl" />
     <None Include="Properties\CavoDED.tpl" />
     <None Include="Properties\CavoFED.tpl" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FreeImage" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.targets" />

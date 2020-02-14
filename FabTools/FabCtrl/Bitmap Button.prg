@@ -1,4 +1,18 @@
+#define ILD_ROP 0x0040
+#define   BP_PUSHBUTTON 1
+#define   BP_RADIOBUTTON 2
+#define   BP_CHECKBOX 3
+#define   BP_GROUPBOX 4
+#define   BP_USERBUTTON 5
+#define   PBS_NORMAL 1
+#define   PBS_HOT 2
+#define   PBS_PRESSED 3
+#define   PBS_DISABLED 4
+#define   PBS_DEFAULTED 5
+#define	DTT_GRAYED 1
+
 Using VO
+
 
 CLASS FabBitmapButton	INHERIT	FabCustomTextCntrl
 	//
@@ -149,7 +163,7 @@ METHOD _DrawControl( hDC AS PTR ) AS VOID
 		IF ( SELF:_lPressed )
 			iState := PBS_PRESSED
 		ELSEIF ( SELF:_lHiLite )
-			iState := PBS_HOINT		
+			iState := PBS_HOT		
 		ELSEIF ( SELF:_lAsFocus )
 			iState := PBS_DEFAULTED
 		ELSEIF !IsWindowEnabled( SELF:Handle() )
@@ -270,7 +284,7 @@ METHOD _DrawText( hDC AS PTR ) AS VOID
 	LOCAL dwMode	as	long
 	LOCAL hT		AS	PTR
 	//
-	hOldFont := SelectObject( hDC, SELF:oFont:Handle)
+	hOldFont := SelectObject( hDC, SELF:oFont:Handle() )
 	// We are always in TRANSPARENT mode for Text drawing
 	liNewMode := TRANSPARENT
 	liOldMode := SetBkMode( hDC, PTR(_CAST, liNewMode) )
@@ -293,9 +307,9 @@ METHOD _DrawText( hDC AS PTR ) AS VOID
 		ELSE
 			dwMode := PBS_NORMAL
 		ENDIF
-		cText := Multi2Wide( cText )
+		//cText := Multi2Wide( cText )
 		//
-		DrawThemeText( hT, hRETURN_PUSHBUTTON, dwMode, Cast2Psz(cText),-1,;
+		DrawThemeText( hT, hDC, dwMode, Cast2Psz(cText),-1,;
 				 DT_LEFT,0, @Canvas )
 		//
 		CloseThemeData( hT )
@@ -370,16 +384,16 @@ METHOD Dispatch( oEvt )
 	//
 	oEvent := oEvt
 	DO CASE
-	CASE  ( oEvent:Message == WM_ERASEBKGND )
+	CASE  ( oEvent:Message == (DWORD)WM_ERASEBKGND )
 		//
 		SELF:EventReturnValue := 1
 		RETURN 1
 	// User Press/Release the button
-	CASE oEvent:Message == BM_CLICK
+	CASE oEvent:Message == (DWORD)BM_CLICK
 		IF IsMethodUsual( SELF:Owner, SELF:NameSym )
 			Send( SELF:Owner, SELF:NameSym)
     	ENDIF
-	CASE oEvent:Message == BM_SETSTATE
+	CASE oEvent:Message == (DWORD)BM_SETSTATE
 		SUPER:Dispatch( oEvent )
 		lDown := (oEvent:wParam == 1)
 		IF ( SELF:_lPressed != lDown )
@@ -389,37 +403,37 @@ METHOD Dispatch( oEvt )
 		ENDIF
 		RETURN 0L
 	// Get Focus
-	CASE oEvent:Message == WM_SETFOCUS
+	CASE oEvent:Message == (DWORD)WM_SETFOCUS
 		SELF:_lAsFocus := TRUE
 		SELF:Update()
 	// Lost focus
-	CASE oEvent:Message == WM_KILLFOCUS
+	CASE oEvent:Message == (DWORD)WM_KILLFOCUS
 		SELF:_lAsFocus := FALSE
 		SELF:Update()
 	// Enabling the button
-	CASE  oEvent:Message == WM_ENABLE
+	CASE  oEvent:Message == (DWORD)WM_ENABLE
 		SELF:Update()
-	CASE  oEvent:Message == WM_SETTEXT
+	CASE  oEvent:Message == (DWORD)WM_SETTEXT
 		// We want default behaviour
 		SUPER:Dispatch( oEvent )
 		SELF:Update()
 		RETURN 0
-	CASE oEvent:Message == WM_ENABLE
+	CASE oEvent:Message == (DWORD)WM_ENABLE
 		// We want default behaviour
 		SUPER:Dispatch( oEvent )
 		SELF:Update()
 		RETURN 0	
 		// Pressing Mouse Button
-	CASE ( oEvent:Message == WM_LBUTTONUP )
+	CASE ( oEvent:Message == (DWORD)WM_LBUTTONUP )
 		IF SELF:_lPressed
 			IF IsMethodUsual( SELF:Owner, SELF:NameSym )
 				Send( SELF:Owner, SELF:NameSym )
 				SELF:SetFocus()
 			ENDIF
 		ENDIF
-	CASE ( oEvent:Message == WM_GETDLGCODE )
+	CASE ( oEvent:Message == (DWORD)WM_GETDLGCODE )
 		// Return key ? ( Or Space Key )
-		IF ( oEvent:wParam == VK_RETURN ) .OR. ( oEvent:wParam == VK_SPACE )
+		IF ( oEvent:wParam == (DWORD)VK_RETURN ) .OR. ( oEvent:wParam == (DWORD)VK_SPACE )
 			IF IsMethodUsual( SELF:Owner, SELF:NameSym )
 				Send( SELF:Owner, SELF:NameSym )
 			ENDIF
@@ -496,7 +510,7 @@ METHOD Expose( oEvent )
 	LOCAL hOldBmp AS PTR
 	LOCAL iWidth AS LONG
 	LOCAL iHeight AS LONG
-	LOCAL lRet AS LOGIC
+	//LOCAL lRet AS LOGIC
 	LOCAL myDC AS PTR
 	// get a device context and create a compatible bitmap
 	// actual drawin occurs on the bitmap to avoid flicker
@@ -510,10 +524,10 @@ METHOD Expose( oEvent )
 	//
 	SELF:Draw( memDC )
 	//
-	lRet := BitBlt( myDC, clientRect:left, clientRect:top, iWidth, iHeight, memDC, 0, 0, SRCCOPY)
+	BitBlt( myDC, clientRect:left, clientRect:top, iWidth, iHeight, memDC, 0, 0, SRCCOPY)
 	SelectObject( memDC, hOldBmp )
 	DeleteObject( hBmp )
-	DeleteDC( me_OR )
+	DeleteDC( memDC )
 	ReleaseDC( SELF:Handle(), myDC )
 return self	
 
@@ -641,7 +655,7 @@ FUNCTION __FabIsWindowsXP() AS LOGIC STRICT
 	ptrVI:dwOSVersionInfoSize := _Sizeof( _winOSVERSIONINFO )
 	GetVersionEx( @ptrVI )
 	//
-	IF ( ptrVI:dwPlatformId == VER_PLATFORM_WIN32_NT )
+	IF ( ptrVI:dwPlatformId == (DWORD)VER_PLATFORM_WIN32_NT )
 		IF ( ptrVI:dwBuildNumber >= 2462 )
 			lIsXP := TRUE
 		ENDIF

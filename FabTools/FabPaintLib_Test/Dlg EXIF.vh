@@ -1,4 +1,2 @@
 // Dlg EXIF.vh
 
-#define EXIFDLG_CLOSEPB (100 )
-#define EXIFDLG_EXIFLISTVIEW (101 )
