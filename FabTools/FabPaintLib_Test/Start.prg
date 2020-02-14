@@ -1,7 +1,6 @@
-#include "VOGUIClasses.vh"
-#include "VOSystemLibrary.vh"
-#include "VOWin32APILibrary.vh"
-CLASS VulcanApp INHERIT App
+USING VO
+
+CLASS XSharpApp INHERIT App
 
 METHOD Start() 
 	LOCAL oMainWindow AS ImgViewShell
@@ -45,6 +44,7 @@ FUNCTION FabExtractFileExt( FileName AS STRING) AS STRING  STRICT
 		cResult := SubStr2( FileName, wPos )
 	ENDIF
 RETURN cResult	
+
 FUNCTION FabMakeIntResource( i AS DWORD )	AS PTR
 RETURN  PTR( _CAST, DWORD( WORD( i ) ) )
 
@@ -63,6 +63,7 @@ FUNCTION FabSetWindowStyle( hWnd AS PTR, liAdd AS LONG ) AS LONG
 	SetWindowLong( hWnd, GWL_STYLE, liStyle )
 	//
 RETURN liStyle
+
 FUNCTION FabGetStringArrayInPsz( pszMem AS PTR ) AS ARRAY
 //g String,String Manipulation
 //l Retrieve an array of strings stored in memory.
@@ -100,6 +101,7 @@ FUNCTION FabGetStringArrayInPsz( pszMem AS PTR ) AS ARRAY
 		//
 	ENDDO
 RETURN aString
+
 FUNCTION FabArray2Psz( aValue AS ARRAY ) AS PTR
 //g String,String Manipulation
 //l Convert an Array to a Psz memory

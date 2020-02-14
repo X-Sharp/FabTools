@@ -36,6 +36,15 @@
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
     <NoWin32Manifest>False</NoWin32Manifest>
     <TargetFrameworkProfile />
+    <NamedArgs>false</NamedArgs>
+    <INS>false</INS>
+    <NS>false</NS>
+    <NoStandardDefs>false</NoStandardDefs>
+    <IncludePaths />
+    <StandardDefs />
+    <MemVar>false</MemVar>
+    <Undeclared>false</Undeclared>
+    <InitLocals>true</InitLocals>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>
@@ -55,8 +64,9 @@
     <Reference Include="FreeImageNET, Version=3.13.1.1, Culture=neutral, PublicKeyToken=null">
       <Name>FreeImageNET</Name>
       <AssemblyName>FreeImageNET.dll</AssemblyName>
-      <HintPath>Debug\FreeImageNET.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
+      <HintPath>..\FabPaintLib\FreeImage\FreeImageNET.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -210,6 +220,9 @@
     </VOBinary>
     <None Include="Dlg Progress.vh">
       <DependentUpon>Dlg Progress.prg</DependentUpon>
+    </None>
+    <None Include="FreeImage.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Open Dialog.vh">
       <DependentUpon>Open Dialog.prg</DependentUpon>

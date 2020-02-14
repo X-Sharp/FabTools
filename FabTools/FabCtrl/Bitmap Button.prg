@@ -309,8 +309,7 @@ METHOD _DrawText( hDC AS PTR ) AS VOID
 		ENDIF
 		//cText := Multi2Wide( cText )
 		//
-		DrawThemeText( hT, hDC, dwMode, Cast2Psz(cText),-1,;
-				 DT_LEFT,0, @Canvas )
+		DrawThemeText( hT, hDC, 0, dwMode, Cast2Psz(cText),-1, DT_LEFT,0, @Canvas )
 		//
 		CloseThemeData( hT )
 	ELSE

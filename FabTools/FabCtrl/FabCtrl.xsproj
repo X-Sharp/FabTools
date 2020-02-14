@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.Default.props" />
   <PropertyGroup>
-    <Dialect>VO</Dialect>
+    <Dialect>Vulcan</Dialect>
     <PlatformTarget>x86</PlatformTarget>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <TransporterVersion>1.1.157.0</TransporterVersion>
@@ -11,7 +11,7 @@
     <Nologo>true</Nologo>
     <GenerateFullPaths>false</GenerateFullPaths>
     <Name>FabCtrl</Name>
-    <RootNamespace>Fab_Ctrl</RootNamespace>
+    <RootNamespace>FabCtrl</RootNamespace>
     <VO3>true</VO3>
     <UnSafe>true</UnSafe>
     <VO5>true</VO5>
@@ -20,7 +20,7 @@
     <VO9>true</VO9>
     <VO2>true</VO2>
     <VO4>true</VO4>
-    <OVF>true</OVF>
+    <OVF>false</OVF>
     <FOVF>true</FOVF>
     <VO12>false</VO12>
     <LB>true</LB>
@@ -39,8 +39,8 @@
     <NamedArgs>false</NamedArgs>
     <Memvar>false</Memvar>
     <Undeclared>false</Undeclared>
-    <INS>false</INS>
-    <NS>false</NS>
+    <INS>true</INS>
+    <NS>true</NS>
     <NoStandardDefs>false</NoStandardDefs>
     <IncludePaths />
     <StandardDefs />
@@ -49,9 +49,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>
     <DefineConstants>DEBUG</DefineConstants>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <OutputPath>$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <Optimize>false</Optimize>
+    <UseSharedCompilation>true</UseSharedCompilation>
+    <DisabledWarnings />
+    <WarningLevel>4</WarningLevel>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile />
+    <CommandLineOption />
+    <PPO>false</PPO>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>False</Prefer32Bit>
+    <RegisterForComInterop>False</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <EmitDebugInformation>false</EmitDebugInformation>

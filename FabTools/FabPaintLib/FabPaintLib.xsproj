@@ -121,8 +121,12 @@
     <Compile Include="FabPaintLib.prg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FreeImage\FreeImage.dll" />
-    <None Include="FreeImage\FreeImageNET.dll" />
+    <None Include="FreeImage\FreeImage.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="FreeImage\FreeImageNET.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\CavoWED.inf" />
     <None Include="Properties\CavoWED.tpl" />
     <None Include="Properties\CavoDED.tpl" />

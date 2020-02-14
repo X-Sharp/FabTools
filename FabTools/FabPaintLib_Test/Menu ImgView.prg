@@ -1,7 +1,5 @@
-#include "GlobalDefines.vh"
-#include "VOGUIClasses.vh"
-#include "VOSystemLibrary.vh"
-#include "VOWin32APILibrary.vh"
+USING VO
+
 DEFINE IDM_ImgViewShellMenu_File_ID := 29500
 DEFINE IDM_ImgViewShellMenu_File_Open_ID := 29501
 DEFINE IDM_ImgViewShellMenu_File_Save_As__ID := 29502
@@ -42,6 +40,8 @@ DEFINE IDM_ImgViewShellMenu_Help_Index_ID := 29543
 DEFINE IDM_ImgViewShellMenu_Help_Context_Help_ID := 29544
 DEFINE IDM_ImgViewShellMenu_Help_Using_Help_ID := 29545
 DEFINE IDM_ImgViewShellMenu_Help_About_ID := 29547
+
+
 PARTIAL CLASS ImgViewMenu INHERIT ImgViewShellMenu
 
 CONSTRUCTOR(oOwner) 

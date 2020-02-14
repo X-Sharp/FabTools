@@ -1,6 +1,5 @@
-#include "VOSystemLibrary.vh"
-#include "VOWin32APILibrary.vh"
-#using FabPaintLib
+USING VO
+using FabPaintLib
 
 CLASS	FabPrinter	INHERIT	Printer
 	// Handle of a DIB bitmap
@@ -37,8 +36,8 @@ METHOD	PrinterExpose( oPrinterExposeEvent )
 		wHeight := SELF:iHeight
 	ELSE
 		// Use DIB Size
-		wWidth := SELF:oImg:Width
-		wHeight := SELF:oImg:Height
+		wWidth := (LONG) SELF:oImg:Width
+		wHeight := (LONG) SELF:oImg:Height
 	ENDIF
 	//
 	SELF:oImg:UseGDI := SELF:UseGDI

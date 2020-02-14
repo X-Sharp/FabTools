@@ -1,7 +1,9 @@
-#include "VOSystemLibrary.vh"
-#include "VOWin32APILibrary.vh"
+USING VO
 #include "Dlg Progress.vh"
+
 STATIC DEFINE PROGRESS_PROGRESSBAR1 := 100
+
+
 PARTIAL CLASS Progress INHERIT DIALOGWINDOW
 	EXPORT oDCProgressBar1 AS PROGRESSBAR
 

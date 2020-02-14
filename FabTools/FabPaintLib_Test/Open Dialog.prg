@@ -1,7 +1,6 @@
-#include "VOSystemLibrary.vh"
-#include "VOWin32APILibrary.vh"
+USING VO
 #include "Open Dialog.vh"
-#using FabPaintLib
+using FabPaintLib
 
 
 STATIC DEFINE TESTDLG_STC32 := 100
@@ -134,14 +133,14 @@ METHOD ShowPreview( hDlg )
 	hDC := GetDC( hDlg )
 	SetRect( @pRect, SELF:ImgX -1, SELF:ImgY -1, SELF:ImgX + SELF:ImgW + 1, SELF:ImgY + SELF:ImgH + 1 )
 	IF ( SELF:pDib != NULL_OBJECT ) .AND. SELF:PreviewChecked( hDlg )
-		dwClr := COLOR_3DFACE
+		dwClr := (DWORD)COLOR_3DFACE
 	ELSE
-		dwClr := COLOR_3DSHADOW
+		dwClr := (DWORD)COLOR_3DSHADOW
 	ENDIF
 	FillRect( hDC, @pRect, PTR(_CAST, dwClr+1 ) )
 	ReleaseDC( hDlg, hDC )
 	//
-	IF ( SELF:pDib != NULL_PTR ) .AND. SELF:PreviewChecked( hDlg )
+	IF ( SELF:pDib != NULL_OBJECT ) .AND. SELF:PreviewChecked( hDlg )
 		//
 		Width := SELF:ImgW
 		Height := SELF:ImgH

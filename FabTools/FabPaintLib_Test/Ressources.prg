@@ -1,3 +1,5 @@
+USING VO
+
 CLASS ICO_IMAGE INHERIT Icon
 
 CONSTRUCTOR(kLoadoption, iWidth, iHeight) 

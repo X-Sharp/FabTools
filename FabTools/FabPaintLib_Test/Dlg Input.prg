@@ -1,6 +1,8 @@
-#include "VOSystemLibrary.vh"
-#include "VOWin32APILibrary.vh"
 #include "Dlg Input.vh"
+USING VO
+
+
+
 STATIC DEFINE INPUTBOX_VALUE1TXT := 100
 STATIC DEFINE INPUTBOX_VALUE1 := 101
 STATIC DEFINE INPUTBOX_VALUE2 := 102

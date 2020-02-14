@@ -1,7 +1,5 @@
-#include "VOGUIClasses.vh"
-#include "VOSystemLibrary.vh"
-#include "VOWin32APILibrary.vh"
-#using FabPaintLib
+using VO
+using FabPaintLib
 
 CLASS ImgViewShell INHERIT SHELLWINDOW 
 
@@ -196,8 +194,9 @@ return self
 
 METHOD HelpAboutDialog() 
 	local oOD as HelpAbout
-	
-	(oOD := HelpAbout{self}):Show()
+	//
+	oOD := HelpAbout{self}
+	oOD:Show()
 return self	
 
 CONSTRUCTOR(oParent,uExtra)  

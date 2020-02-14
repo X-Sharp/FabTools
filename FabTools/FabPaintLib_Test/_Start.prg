@@ -1,9 +1,11 @@
+USING VO
+
 [STAThread] ;
 FUNCTION Start() AS VOID
-   LOCAL oApp AS VulcanApp
+   LOCAL oApp AS XSharpApp
 
    TRY
-      oApp := VulcanApp{}
+      oApp := XSharpApp{}
       oApp:Start()
    CATCH e AS Exception
       ErrorBox{ NIL, e:ToString() }:Show()

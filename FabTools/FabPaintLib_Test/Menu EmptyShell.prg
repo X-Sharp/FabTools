@@ -1,6 +1,5 @@
-#include "GlobalDefines.vh"
-#include "VOGUIClasses.vh"
-#include "VOWin32APILibrary.vh"
+USING VO
+
 DEFINE IDM_EmptyShellMenu_File_ID := 12500
 DEFINE IDM_EmptyShellMenu_File_Open_ID := 12501
 DEFINE IDM_EmptyShellMenu_File_Paste_from_Clipboard_ID := 12502
@@ -10,6 +9,9 @@ DEFINE IDM_EmptyShellMenu_Help_ID := 12507
 DEFINE IDM_EmptyShellMenu_Help_Index_ID := 12508
 DEFINE IDM_EmptyShellMenu_Help_Using_help_ID := 12509
 DEFINE IDM_EmptyShellMenu_Help_About_ID := 12511
+
+
+
 PARTIAL CLASS EmptyShellMenu INHERIT Menu
 
 CONSTRUCTOR( oOwner )

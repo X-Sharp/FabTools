@@ -1,11 +1,23 @@
-#include "..\Fab_PaintLib\GlobalDefines.vh"
-#include "VOGUIClasses.vh"
-#include "VOSystemLibrary.vh"
-#include "VOWin32APILibrary.vh"
-#include "Wnd ImgView.vh"
-#using FabPaintLib
-#using FabPaintLib.Control
-#using FreeImageAPI
+
+using FabPaintLib
+using FabPaintLib.Control
+using FreeImageAPI
+USING VO
+
+define EXIF_MODEL_MAIN := FREE_IMAGE_MDMODEL.FIMD_EXIF_MAIN
+define EXIF_MODEL_EXIF := FREE_IMAGE_MDMODEL.FIMD_EXIF_EXIF
+define EXIF_MODEL_GPS  := FREE_IMAGE_MDMODEL.FIMD_EXIF_GPS
+define EXIF_MODEL_MAKERNOTE := FREE_IMAGE_MDMODEL.FIMD_EXIF_MAKERNOTE
+define	    COMPRESSION_PACKBITS := (0x0100 )
+define	    COMPRESSION_NONE :=  (0x0800 )
+define	    COMPRESSION_CCITTFAX3 :=  (0x1000 )
+define	    COMPRESSION_CCITTFAX4 :=  (0x2000 )
+define	    COMPRESSION_LZW :=  (0x4000 )
+define	    COMPRESSION_JPEG :=  (0x8000 )
+define	    COMPRESSION_DEFLATE :=  (0x0200 )
+define     COMPRESSION_ADOBE_DEFLATE :=  (0x0400 )
+
+
 
 CLASS StdImageWindow INHERIT ChildAppWindow
 	//	
@@ -65,7 +77,7 @@ METHOD EXIFData()
 	oDlg := EXIFDlg{ self }
 	//	
 	// First, MAIN EXIF Data
-	self:oImg:EXIFModel := EXIF_MODEL_MAIN
+	self:oImg:EXIFModel := (FREE_IMAGE_MDMODEL) EXIF_MODEL_MAIN
 	nMax := dword(self:oImg:EXIFTagCount)
 	//
 	oItem := ListViewItem{}
@@ -94,7 +106,7 @@ METHOD EXIFData()
 		//
 	ENDIF
 	// Then, EXIF EXIF Data
-	self:oImg:EXIFModel := EXIF_MODEL_EXIF
+	self:oImg:EXIFModel :=  (FREE_IMAGE_MDMODEL) EXIF_MODEL_EXIF
 	//	
 	nMax := dword(self:oImg:EXIFTagCount)
 	//
@@ -124,7 +136,7 @@ METHOD EXIFData()
 		//
 	ENDIF
 	// Then, MakerNote EXIF Data
-	self:oImg:EXIFModel := EXIF_MODEL_MAKERNOTE
+	self:oImg:EXIFModel :=  (FREE_IMAGE_MDMODEL) EXIF_MODEL_MAKERNOTE
 	//	
 	nMax := dword(self:oImg:EXIFTagCount)
 	//
@@ -163,12 +175,13 @@ METHOD EXIFData()
 return self
 
 METHOD Expose	(oExposeEvent)	
-	LOCAL nHeight 	AS INT
-	LOCAL nWidth  	AS INT
-	LOCAL oPOint	AS POINT
 	//	
 	SUPER:Expose(oExposeEvent)
 /*	
+	LOCAL nHeight 	AS INT
+	LOCAL nWidth  	AS INT
+	LOCAL oPOint	AS POINT
+	//
 	SELF:Refresh()
 	//	
 	IF ( oExposeEvent:Message == WM_PAINT .AND. oExposeEvent:Window  == SELF )
@@ -612,8 +625,8 @@ METHOD RefreshInfo()
 	LOCAL nWidth  	AS INT
 	LOCAL nBPP		AS INT
 	//
-	nHeight := SELF:oImg:Height
-	nWidth  := SELF:oImg:Width
+	nHeight := (LONG)SELF:oImg:Height
+	nWidth  := (LONG)SELF:oImg:Width
 	nBpp := SELF:oImg:BitPerPixel
 	//
 	SELF:Owner:StatusBar:SetText( NTrim(nWidth)+"x"+NTrim(nHeight)+","+NTrim(nBpp)+"bpp", #Info )
@@ -624,7 +637,8 @@ METHOD Resize(oResizeEvent)
 	SUPER:Resize(oResizeEvent)
 	//Put your changes here
 	IF ( SELF:oDCImg != NULL_OBJECT )
-		SendMessage( SELF:oDCImg:Handle(), WM_SIZE, oResizeEvent:wParam, oResizeEvent:lParam)
+		//SendMessage( SELF:oDCImg:Handle(), WM_SIZE, oResizeEvent:wParam, oResizeEvent:lParam)
+		SendMessage( self:oDCImg:Handle(), WM_SIZE, oResizeEvent:Width, oResizeEvent:height)
 	ENDIF
 	//
 RETURN NIL

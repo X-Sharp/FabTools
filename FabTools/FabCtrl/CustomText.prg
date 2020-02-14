@@ -69,7 +69,7 @@ METHOD __SetText(cNewText)
 	ENDIF
 	//
 	IF SELF:ValidateControl()
-		VOSendMessage(hWnd, WM_SETTEXT, 0, LONG(_CAST, cNewText))
+		SendMessage(hWnd, WM_SETTEXT, 0, LONG(_CAST, cNewText))
 	ENDIF
 RETURN cNewText
 

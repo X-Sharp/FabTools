@@ -1,5 +1,7 @@
 #include "GlobalDefines.vh"
-#using FabPaintLib
+USING FabCtrl
+using FabPaintLib
+using VO
 
 CLASS MultiImageWindow INHERIT StdImageWindow
 	//

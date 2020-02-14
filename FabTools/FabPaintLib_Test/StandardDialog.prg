@@ -1,5 +1,6 @@
-#include "VOSystemLibrary.vh"
-#include "VOWin32APILibrary.vh"
+USING VO
+
+
 CLASS	FabOpenDialog	INHERIT	FabStandardFileDialog
 //g Window, Window/Dialog Related Classes/Functions
 //l Replacement the VO OpenDialog
@@ -308,6 +309,7 @@ ASSIGN FileName( cNew )
 RETURN 
 
 PROTECT METHOD FillStruct()	
+	LOCAL HookDelegate AS _Delegate_FabComDlg32HookProc
 	//
 	SELF:ptrOpen := MemAlloc( _sizeof( _winOpenFileName ) )
 	IF ( SELF:ptrOpen != NULL_PTR )
@@ -317,7 +319,7 @@ PROTECT METHOD FillStruct()
 	 	IF ( SELF:RESOURCEDlg != NULL_OBJECT )
 		 	ptrOpen:hInstance     := SELF:ResourceDlg:Handle()
 		 	IF IsString( SELF:ResourceDlg:ID )
-	 		 	ptrOpen:lpTemplateName    := PSZ( _CAST, SELF:ResourceDlg:Address() )
+	 		 	ptrOpen:lpTemplateName    := String2Psz( SELF:ResourceDlg:Address() )
 	 		ELSE
 	 		 	ptrOpen:lpTemplateName    := FabMakeIntResource( SELF:ResourceDlg:ID )
 	 		ENDIF
@@ -334,7 +336,7 @@ PROTECT METHOD FillStruct()
 	 		MemCopyString( SELF:ptrFile, SELF:cDefFile, SLen( SELF:cDefFile ) )
 	 	ENDIF
 	 	ptrOpen:lpstrFile         := SELF:ptrFile
-	 	ptrOpen:nMaxFile          := MAX_PATH
+	 	ptrOpen:nMaxFile          := (DWORD)MAX_PATH
 	 	ptrOpen:lpstrFileTitle    := NULL
 	 	ptrOpen:nMaxFileTitle     := 0
 	 	IF !Empty( SELF:cInitDir )
@@ -351,7 +353,8 @@ PROTECT METHOD FillStruct()
 			ptrOpen:lpstrDefExt       := NULL
 		ENDIF
 	 	ptrOpen:lCustData         := 0
-	 	ptrOpen:lpfnHook          := @_FabComDlg32HookProc()
+		HookDelegate := _Delegate_FabComDlg32HookProc{ NULL, @_FabComDlg32HookProc() }
+	 	ptrOpen:lpfnHook          := System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate( (System.Delegate) HookDelegate )
 	 	ptrOpen:Flags             := SELF:liFlags
 		//
 		_FabSelfDlgObject := SELF
@@ -429,7 +432,7 @@ ASSIGN InitialDirectory( cNewDir )
 	IF IsString( cNewDir )
 		SELF:cInitDir := cNewDir
 	ENDIF
-RETURN	SELF:cInitDir
+RETURN	
 
 
 
@@ -471,10 +474,10 @@ METHOD	SetStyle( kStyle, lOnOff )
 	Default( @lOnOff, TRUE )
 	//
 	IF lOnOff
-		SELF:liFlags := _Or( SELF:liFlags, LONG( kStyle ) )
+		SELF:liFlags := (DWORD)_Or( SELF:liFlags, LONG( kStyle ) )
 	ELSE
-		SELF:liFlags := _Or( SELF:liFlags, LONG( kStyle ) )
-		SELF:liFlags := _Xor( SELF:liFlags, LONG( kStyle ) )
+		SELF:liFlags := (DWORD)_Or( SELF:liFlags, LONG( kStyle ) )
+		SELF:liFlags := (DWORD)_Xor( SELF:liFlags, LONG( kStyle ) )
 	ENDIF
 
 
@@ -485,6 +488,10 @@ METHOD	Show( )
 
 
 RETURN self
+
+
+DELEGATE _Delegate_FabComDlg32HookProc( hDlg AS PTR, uMsg AS DWORD, wParam AS DWORD , lParam AS LONG ) AS LOGIC
+
 END CLASS
 
 /* TEXTBLOCK !Read-Me
