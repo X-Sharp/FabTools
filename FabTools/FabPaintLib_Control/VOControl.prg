@@ -1,4 +1,5 @@
 using FabPaintLib
+using VO
 
 BEGIN NAMESPACE FabPaintLib.Control
 
@@ -278,6 +279,20 @@ BEGIN NAMESPACE FabPaintLib.Control
 							RETURN SELF:eventReturnValue := 1L
 						ENDIF
 					ENDIF
+				CASE oEvent:message == WM_SIZE
+					LOCAL pRect	IS	_winRect
+					LOCAL w AS LONG
+					LOCAL h AS LONG
+					LOCAL d AS Dimension
+					//
+					GetClientRect( SELF:Owner:Handle(), @pRect )
+					//
+					w := pRect:right - pRect:left
+					h := pRect:bottom - pRect:top
+					//
+					d := Dimension{ w, h}
+					//
+					SELF:Size := d
 			ENDCASE
 			//
 			RETURN SUPER:Dispatch( oEvent )

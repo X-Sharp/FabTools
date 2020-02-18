@@ -612,7 +612,7 @@
           </MenuItem>
           <MenuItem>
             <EventName>ZoomIn</EventName>
-            <Caption>Zoom +</Caption>
+            <Caption>Zoom Plus</Caption>
             <Description>
             </Description>
             <HelpContext>
@@ -629,7 +629,7 @@
           </MenuItem>
           <MenuItem>
             <EventName>ZoomOut</EventName>
-            <Caption>Zoom -</Caption>
+            <Caption>Zoom Min</Caption>
             <Description>
             </Description>
             <HelpContext>

@@ -1,5 +1,7 @@
 USING VO
 
+
+
 DEFINE IDM_ImgViewShellMenu_File_ID := 29500
 DEFINE IDM_ImgViewShellMenu_File_Open_ID := 29501
 DEFINE IDM_ImgViewShellMenu_File_Save_As__ID := 29502
@@ -26,7 +28,8 @@ DEFINE IDM_ImgViewShellMenu_Image_Crop_ID := 29525
 DEFINE IDM_ImgViewShellMenu_Image_Grayscale_ID := 29526
 DEFINE IDM_ImgViewShellMenu_Image_Rotate_ID := 29527
 DEFINE IDM_ImgViewShellMenu_Image_Invert_ID := 29528
-DEFINE IDM_ImgViewShellMenu_Image_Zoom___ID := 29530
+DEFINE IDM_ImgViewShellMenu_Image_Zoom_Plus_ID := 29530
+DEFINE IDM_ImgViewShellMenu_Image_Zoom_Min_ID := 29531
 DEFINE IDM_ImgViewShellMenu_Image_Contrast_ID := 29533
 DEFINE IDM_ImgViewShellMenu_Image_Lightness_ID := 29534
 DEFINE IDM_ImgViewShellMenu_Image_Intensity_ID := 29535
@@ -40,8 +43,6 @@ DEFINE IDM_ImgViewShellMenu_Help_Index_ID := 29543
 DEFINE IDM_ImgViewShellMenu_Help_Context_Help_ID := 29544
 DEFINE IDM_ImgViewShellMenu_Help_Using_Help_ID := 29545
 DEFINE IDM_ImgViewShellMenu_Help_About_ID := 29547
-
-
 PARTIAL CLASS ImgViewMenu INHERIT ImgViewShellMenu
 
 CONSTRUCTOR(oOwner) 
@@ -139,11 +140,11 @@ CONSTRUCTOR( oOwner )
 	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Invert_ID, ;
 		HyperLabel{ #ImgInvert , "&Invert" ,  ,  })
 
-	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Zoom___ID, ;
-		HyperLabel{ #ZoomIn , "Zoom +" ,  ,  })
+	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Zoom_Plus_ID, ;
+		HyperLabel{ #ZoomIn , "Zoom Plus" ,  ,  })
 
-	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Zoom___ID, ;
-		HyperLabel{ #ZoomOut , "Zoom -" ,  ,  })
+	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Zoom_Min_ID, ;
+		HyperLabel{ #ZoomOut , "Zoom Min" ,  ,  })
 
 	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Contrast_ID, ;
 		HyperLabel{ #ImgContrast , "Contrast" ,  ,  })
@@ -192,11 +193,11 @@ CONSTRUCTOR( oOwner )
 	oTB:Flat := TRUE
 	oTB:EnableBands(FALSE)
 
-	oTB:AppendItem(IDT_ZOOMIN , IDM_ImgViewShellMenu_Image_Zoom___ID)
-	oTB:AddTipText(IDT_ZOOMIN , IDM_ImgViewShellMenu_Image_Zoom___ID , "Zoom In")
+	oTB:AppendItem(IDT_ZOOMIN , IDM_ImgViewShellMenu_Image_Zoom_Plus_ID)
+	oTB:AddTipText(IDT_ZOOMIN , IDM_ImgViewShellMenu_Image_Zoom_Plus_ID , "Zoom In")
 
-	oTB:AppendItem(IDT_ZOOMOUT , IDM_ImgViewShellMenu_Image_Zoom___ID)
-	oTB:AddTipText(IDT_ZOOMOUT , IDM_ImgViewShellMenu_Image_Zoom___ID , "Zoom Out")
+	oTB:AppendItem(IDT_ZOOMOUT , IDM_ImgViewShellMenu_Image_Zoom_Min_ID)
+	oTB:AddTipText(IDT_ZOOMOUT , IDM_ImgViewShellMenu_Image_Zoom_Min_ID , "Zoom Out")
 
 
 	SELF:ToolBar := oTB
