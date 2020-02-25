@@ -49,18 +49,21 @@
     <EmitDebugInformation>true</EmitDebugInformation>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)$(Configuration)</OutputPath>
+    <OutputPath>$(Configuration)\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <OutputPath>$(SolutionDir)$(Configuration)</OutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <UseSharedCompilation>true</UseSharedCompilation>
     <DisabledWarnings>9032;9043;618;162;165;649;9025</DisabledWarnings>
-    <WarningLevel>4</WarningLevel>
     <PPO>false</PPO>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile />
+    <CommandLineOption />
+    <Prefer32Bit>True</Prefer32Bit>
+    <RegisterForComInterop>False</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'" Label="Configuration">
     <PlatformTarget>x86</PlatformTarget>
@@ -148,6 +151,21 @@
     </VOBinary>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FabCtrl\FabCtrl.xsproj">
+      <Name>FabCtrl</Name>
+      <Project>{3807f7de-0633-4a33-b011-b5748fdee3c9}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabPaintLib\FabPaintLib.xsproj">
+      <Name>FabPaintLib</Name>
+      <Project>{0272327b-fc8c-4b26-a0cb-41eb7f1d945e}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabPaintLib_Control\FabPaintLib_Control.xsproj">
+      <Name>FabPaintLib_Control</Name>
+      <Project>{e7092356-5697-44df-a3e2-3921f23d78c9}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\FabTwain\FabTwain.xsproj">
       <Name>FabTwain</Name>
       <Project>{2720b640-4614-42eb-b6a2-c5eb10558ee3}</Project>

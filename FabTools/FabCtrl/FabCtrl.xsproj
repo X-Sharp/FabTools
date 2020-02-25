@@ -140,10 +140,14 @@
     <None Include="Properties\CavoWED.tpl" />
     <None Include="Properties\CavoDED.tpl" />
     <None Include="Properties\CavoFED.tpl" />
+    <None Include="Resources\HAND2.CUR" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeResource Include="Resources\HyperLink.CURSOR_HAND.rc" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">

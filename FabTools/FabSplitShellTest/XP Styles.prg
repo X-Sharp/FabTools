@@ -1,4 +1,4 @@
-#warning The following method did not include a CLASS declaration
+//#warning The following method did not include a CLASS declaration
 CLASS AppWindow_external_class INHERIT AppWindow
 METHOD ControlNotify(oControlNotifyEvent) 
 
@@ -11,12 +11,15 @@ return self
 
 
 END CLASS
+
+
+
 FUNCTION ProcessToolTip(oOwner,oControlNotifyEvent)
 
-    LOCAL nCode     AS LONG
+    //LOCAL nCode     AS LONG
     LOCAL lParam    AS LONG
 
-    LOCAL oControl    AS Control
+    //LOCAL oControl    AS Control
 
     LOCAL strucToolInfo IS _winTOOLINFOXP
     LOCAL strucToolTip  AS _winTOOLTIPTEXT
@@ -25,9 +28,9 @@ FUNCTION ProcessToolTip(oOwner,oControlNotifyEvent)
     LOCAL oWindow       AS OBJECT
 
 
-    nCode      := oControlNotifyEvent:NotifyCode
+    //nCode      := oControlNotifyEvent:NotifyCode
     lParam     := oControlNotifyEvent:lParam
-    oControl   := oControlNotifyEvent:Control
+    //oControl   := oControlNotifyEvent:Control
 
     strucNotify          := PTR(_CAST, lParam)
     strucToolInfo.cbSize := _SizeOf(_winTOOLINFOXP)

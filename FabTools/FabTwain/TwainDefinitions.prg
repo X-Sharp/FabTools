@@ -90,8 +90,8 @@ DEFINE DAT_XFERGROUP       := 0x000a
 DEFINE DG_AUDIO            := 0x0004L
 /* data pertaining to audio */
 /****************************************************************************
- * Data Argument Types                                                      *
- ****************************************************************************/
+* Data Argument Types                                                      *
+****************************************************************************/
 /*  SDH - 03/23/95 - WATCH                                                  */
 /*  The thunker requires knowledge about size of data being passed in the   */
 /*  lpData parameter to DS_Entry (which is not readily available due to     */
@@ -237,7 +237,19 @@ DEFINE	SOURCE_OPEN := 4
 // some Source open - Negotiation state!
 DEFINE	TRANSFER_READY := 6			
 // data ready to transfer
-DEFINE	TRANSFERRING := 7			
+DEFINE	TRANSFERRING := 7		
+
+ENUM TwainState AS DWORD
+	MEMBER	NO_TWAIN_STATE 	:= 0		// internal use only
+	MEMBER	PRE_SESSION		:= 1		//ground state, nothing loaded
+	MEMBER	SOURCE_MANAGER_LOADED := 2	// DSM loaded but not open
+	MEMBER	SOURCE_MANAGER_OPEN := 3    // DSM open
+	MEMBER	SOURCE_OPEN := 4			// some Source open - Negotiation state!
+	MEMBER	SOURCE_ENABLED := 5			// acquisition started
+	MEMBER	TRANSFER_READY := 6			// data ready to transfer
+	MEMBER	TRANSFERRING := 7	
+END ENUM
+
 // transfer started
 DEFINE TWCC_BADCAP        :=  6
 /* Unknown capability                        */
@@ -344,6 +356,21 @@ DEFINE TWRC_INFONOTSUPPORTED:= 8
 DEFINE TWRC_NOTDSEVENT    :=   5
 DEFINE TWRC_SUCCESS       :=   0
 DEFINE TWRC_XFERDONE      :=   6
+
+ENUM TwainResultCode AS DWORD
+	MEMBER TWRC_SUCCESS       :=   0
+	MEMBER TWRC_FAILURE       :=   1	/* App may get TW_STATUS for info on failure */
+	MEMBER TWRC_CHECKSTATUS   :=   2	/* "tried hard"; get status                  */
+	MEMBER TWRC_CANCEL        :=   3
+	MEMBER TWRC_DSEVENT       :=   4
+	MEMBER TWRC_NOTDSEVENT    :=   5
+	MEMBER TWRC_XFERDONE      :=   6	
+	MEMBER TWRC_ENDOFLIST     :=   7	/* After MSG_GETNEXT if nothing left         */
+	MEMBER TWRC_INFONOTSUPPORTED:= 8
+	MEMBER TWRC_DATANOTAVAILABLE:= 9
+	MEMBER TWRC_CUSTOMBASE    := 0x8000	/* Return Codes: DSM_Entry and DS_Entry may return any one of these values. */
+END ENUM
+
 DEFINE TWTY_BOOL        := 0x0006    /* Means Item is a TW_BOOL   */
 DEFINE TWTY_FIX32       := 0x0007    /* Means Item is a TW_FIX32  */
 DEFINE TWTY_FRAME       := 0x0008    /* Means Item is a TW_FRAME  */
@@ -354,100 +381,137 @@ DEFINE TWTY_STR128      := 0x000b    /* Means Item is a TW_STR128 */
 DEFINE TWTY_STR255      := 0x000c    /* Means Item is a TW_STR255 */
 DEFINE TWTY_STR32       := 0x0009    /* Means Item is a TW_STR32  */
 DEFINE TWTY_STR64       := 0x000a    /* Means Item is a TW_STR64  */
-DEFINE TWTY_UINT16      := 0x0004
-// Means Item is a TW_UINT16
+DEFINE TWTY_UINT16      := 0x0004	// Means Item is a TW_UINT16
 DEFINE TWTY_UINT32      := 0x0005    /* Means Item is a TW_UINT32 */
 DEFINE TWTY_UINT8       := 0x0003    /* Means Item is a TW_UINT8  */
+
+ENUM TwainType AS DWORD
+	MEMBER TWTY_BOOL        := 0x0006    /* Means Item is a TW_BOOL   */
+	MEMBER TWTY_FIX32       := 0x0007    /* Means Item is a TW_FIX32  */
+	MEMBER TWTY_FRAME       := 0x0008    /* Means Item is a TW_FRAME  */
+	MEMBER TWTY_INT16       := 0x0001    /* Means Item is a TW_INT16  */
+	MEMBER TWTY_INT32       := 0x0002    /* Means Item is a TW_INT32  */
+	MEMBER TWTY_INT8        := 0x0000    /* Means Item is a TW_INT8   */
+	MEMBER TWTY_STR128      := 0x000b    /* Means Item is a TW_STR128 */
+	MEMBER TWTY_STR255      := 0x000c    /* Means Item is a TW_STR255 */
+	MEMBER TWTY_STR32       := 0x0009    /* Means Item is a TW_STR32  */
+	MEMBER TWTY_STR64       := 0x000a    /* Means Item is a TW_STR64  */
+	MEMBER TWTY_UINT16      := 0x0004	// Means Item is a TW_UINT16
+	MEMBER TWTY_UINT32      := 0x0005    /* Means Item is a TW_UINT32 */
+	MEMBER TWTY_UINT8       := 0x0003    /* Means Item is a TW_UINT8  */
+END ENUM
+
+
+
 DEFINE TWUN_CENTIMETERS := 1
 DEFINE TWUN_INCHES      := 0
 DEFINE TWUN_PICAS       := 2
 DEFINE TWUN_PIXELS      := 5
 DEFINE TWUN_POINTS      := 3
 DEFINE TWUN_TWIPS       := 4
+
+ENUM TwainUnity AS WORD
+	MEMBER TWUN_INCHES      := 0
+	MEMBER TWUN_CENTIMETERS := 1
+	MEMBER TWUN_PICAS       := 2
+	MEMBER TWUN_POINTS      := 3
+	MEMBER TWUN_TWIPS       := 4
+	MEMBER TWUN_PIXELS      := 5
+END ENUM 
+
 DEFINE XFER_FILE := 1
 // To do
 DEFINE XFER_MEMORY := 2
 // To do
 DEFINE XFER_NATIVE := 0
 // Default Mode
+
+ENUM TwainTransfer AS WORD
+	MEMBER XFER_NATIVE := 0
+	MEMBER XFER_FILE := 1
+	MEMBER XFER_MEMORY := 2
+END ENUM
+
 #endregion
 
-FUNCTION __FabDSM_Entry( pOrigin AS TW_IDENTITY, pDest AS TW_IDENTITY, dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR ) AS SHORT PASCAL
+//STATIC FUNCTION __FabDSM_Entry( pOrigin AS TW_IDENTITY, pDest AS TW_IDENTITY, dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR ) AS SHORT PASCAL
+//	RETURN 0
+
 /**********************************************************************
- * Function: DSM_Entry, the only entry point into the Data Source Manager.
- *
- * Parameters:
- *  pOrigin Identifies the source module of the message. This could
- *          identify an Application, a Source, or the Source Manager.
- *
- *  pDest   Identifies the destination module for the message.
- *          This could identify an application or a data source.
- *          If this is NULL, the message goes to the Source Manager.
- *
- *  DG      The Data Group.
- *          Example: DG_IMAGE.
- *
- *  DAT     The Data Attribute Type.
- *          Example: DAT_IMAGEMEMXFER.
- *
- *  MSG     The message.  Messages are interpreted by the destination module
- *          with respect to the Data Group and the Data Attribute Type.
- *          Example: MSG_GET.
- *
- *  pData   A pointer to the data structure or variable identified
- *          by the Data Attribute Type.
- *          Example: (TW_MEMREF)&ImageMemXfer
- *                   where ImageMemXfer is a TW_IMAGEMEMXFER structure.
- *
- * Returns:
- *  ReturnCode
- *         Example: TWRC_SUCCESS.
- *
- ********************************************************************/
-RETURN 0
+* Function: DSM_Entry, the only entry point into the Data Source Manager.
+*
+* Parameters:
+*  pOrigin Identifies the source module of the message. This could
+*          identify an Application, a Source, or the Source Manager.
+*
+*  pDest   Identifies the destination module for the message.
+*          This could identify an application or a data source.
+*          If this is NULL, the message goes to the Source Manager.
+*
+*  DG      The Data Group.
+*          Example: DG_IMAGE.
+*
+*  DAT     The Data Attribute Type.
+*          Example: DAT_IMAGEMEMXFER.
+*
+*  MSG     The message.  Messages are interpreted by the destination module
+*          with respect to the Data Group and the Data Attribute Type.
+*          Example: MSG_GET.
+*
+*  pData   A pointer to the data structure or variable identified
+*          by the Data Attribute Type.
+*          Example: (TW_MEMREF)&ImageMemXfer
+*                   where ImageMemXfer is a TW_IMAGEMEMXFER structure.
+*
+* Returns:
+*  ReturnCode
+*         Example: TWRC_SUCCESS.
+*
+********************************************************************/
+
 
 VOSTRUCT TW_CAPABILITY ALIGN 2
-/* DAT_CAPABILITY. Used by application to get/set capability from/in a data source. */
+	/* DAT_CAPABILITY. Used by application to get/set capability from/in a data source. */
 	MEMBER	Cap			AS	WORD	// id of capability to set or get, e.g. CAP_BRIGHTNESS
 	MEMBER	ConType		AS	WORD	// TWON_ONEVALUE, _RANGE, _ENUMERATION or _ARRAY
 	MEMBER	hContainer	AS	PTR		// Handle to container of type Dat
-
-
-
-VOSTRUCT TW_ENUMERATION ALIGN 2
+	
+	
+	
+	VOSTRUCT TW_ENUMERATION ALIGN 2
 	MEMBER	ItemType		AS	WORD
 	MEMBER	NumItems		AS	DWORD	// How many items in ItemList
 	MEMBER	CurrentIndex	AS	DWORD	// Current value is in ItemList[CurrentIndex]
 	MEMBER	DefaultIndex	AS	DWORD	// Powerup value is in ItemList[DefaultIndex]
 	MEMBER	DIM ItemList[1]	AS	BYTE	// Array of ItemType values starts here
-
-
-
-VOSTRUCT TW_EVENT ALIGN 2
+	
+	
+	
+	VOSTRUCT TW_EVENT ALIGN 2
 	MEMBER	pEvent		AS	PTR		// Windows pMSG or Mac pEvent.
 	MEMBER	TWMessage	AS	WORD	// TW msg from data source, e.g. MSG_XFERREADY
-
-
-VOSTRUCT TW_FIX32 ALIGN 2
-/* Fixed point structure type. */
+	
+	
+	VOSTRUCT TW_FIX32 ALIGN 2
+	/* Fixed point structure type. */
 	MEMBER	Whole		AS	SHORT	// maintains the sign
 	MEMBER	Frac		AS	WORD
-
-
-
-UNION TW_FIX32DWORD
+	
+	
+	
+	UNION TW_FIX32DWORD
 	MEMBER	dw		AS	DWORD
 	MEMBER	fix32	AS	TW_FIX32
 	
-
-VOSTRUCT	TW_FRAME	ALIGN 2
+	
+	VOSTRUCT	TW_FRAME	ALIGN 2
 	MEMBER	Left	IS	TW_FIX32DWORD
 	MEMBER	Top		IS	TW_FIX32DWORD
 	MEMBER	Right	IS	TW_FIX32DWORD
 	MEMBER	Bottom	IS	TW_FIX32DWORD
-
-
-VOSTRUCT TW_IDENTITY ALIGN 2
+	
+	
+	VOSTRUCT TW_IDENTITY ALIGN 2
 	MEMBER	Id				AS	DWORD			// Unique number generated by Source Manager
 	MEMBER	Version			IS	TW_VERSION		// Identifies the piece of code
 	MEMBER	ProtocolMajor	AS	WORD			// App and DS must set to TWON_PROTOCOLMAJOR
@@ -456,8 +520,8 @@ VOSTRUCT TW_IDENTITY ALIGN 2
 	MEMBER	DIM Manufacturer[34] AS BYTE		// Manufacturer name, e.g. "Hewlett-Packard"
 	MEMBER	DIM ProductFamily[34] AS BYTE		// Product family name, e.g. "ScanJet"
 	MEMBER	DIM ProductName[34]	AS	BYTE		// Product name, e.g. "ScanJet Plus"
-
-
+	
+	
 VOSTRUCT TW_IMAGEINFO ALIGN 2
 	MEMBER	   XResolution		IS	TW_FIX32DWORD	/* Resolution in the horizontal             */
 	MEMBER	   YResolution		IS	TW_FIX32DWORD    /* Resolution in the vertical               */
@@ -469,17 +533,17 @@ VOSTRUCT TW_IMAGEINFO ALIGN 2
 	MEMBER	   Planar			AS	LOGIC   /* True if Planar, False if chunky          */
 	MEMBER	   PixelType		AS	SHORT   /* How to interp data; photo interp (TWPT_) */
 	MEMBER	   Compression		AS	WORD    /* How the data is compressed (TWCP_xxxx)   */
-
-
-VOSTRUCT	TW_IMAGELAYOUT ALIGN 2
-/* DAT_IMAGELAYOUT. Provides image layout information in current units. */
+	
+	
+	VOSTRUCT	TW_IMAGELAYOUT ALIGN 2
+	/* DAT_IMAGELAYOUT. Provides image layout information in current units. */
 	MEMBER	Frame			IS	TW_FRAME	/* Frame coords within larger document */
 	MEMBER	DocumentNumber	AS	DWORD
 	MEMBER	PageNumber		AS	DWORD
 	MEMBER	FrameNumber		AS	DWORD
-
-
-VOSTRUCT TW_IMAGEMEMXFER ALIGN 2
+	
+	
+	VOSTRUCT TW_IMAGEMEMXFER ALIGN 2
 	MEMBER	Compression	AS	WORD	/* How the data is compressed                */
 	MEMBER	BytesPerRow	AS	DWORD	/* Number of bytes in a row of data          */
 	MEMBER	Columns		AS	DWORD      /* How many columns                          */
@@ -488,47 +552,47 @@ VOSTRUCT TW_IMAGEMEMXFER ALIGN 2
 	MEMBER	YOffset		AS	DWORD      /* How far from the top of the image         */
 	MEMBER	BytesWritten	AS	DWORD /* How many bytes written in Memory          */
 	MEMBER	Memory		IS	TW_MEMORY		/* Mem struct used to pass actual image data */
-
-
-VOSTRUCT TW_MEMORY ALIGN 2
+	
+	
+	VOSTRUCT TW_MEMORY ALIGN 2
 	MEMBER	Flags	AS	DWORD	/* Any combination of the TWMF_ constants.           */
 	MEMBER	Length	AS	DWORD	/* Number of bytes stored in buffer TheMem.          */
 	MEMBER	TheMem	AS	PTR		/* Pointer or handle to the allocated memory buffer. */
-
-
-VOSTRUCT	TW_ONEVALUE	ALIGN 2
+	
+	
+	VOSTRUCT	TW_ONEVALUE	ALIGN 2
 	MEMBER	ItemType	AS	WORD
 	MEMBER	Item		AS	DWORD
-
-
-
-VOSTRUCT TW_PENDINGXFERS ALIGN 2
+	
+	
+	
+	VOSTRUCT TW_PENDINGXFERS ALIGN 2
 	MEMBER	Count		AS	WORD
 	MEMBER	EOJ			AS	DWORD
-
-
+	
+	
 VOSTRUCT TW_SETUPFILEXFER ALIGN 2
-	MEMBER DIM FileName[256]	AS	BYTE
-	MEMBER Format	AS	WORD	/* Any TWFF_ constant */
-	MEMBER VRefNum	AS	SHORT	/* Used for Mac only  */
+MEMBER DIM FileName[256]	AS	BYTE
+MEMBER Format	AS	WORD	/* Any TWFF_ constant */
+MEMBER VRefNum	AS	SHORT	/* Used for Mac only  */
 
 
 VOSTRUCT TW_SETUPMEMXFER ALIGN 2
-	MEMBER	MinBufSize	AS	DWORD
-	MEMBER	MaxBufSize	AS	DWORD
-	MEMBER	Preferred	AS	DWORD
+MEMBER	MinBufSize	AS	DWORD
+MEMBER	MaxBufSize	AS	DWORD
+MEMBER	Preferred	AS	DWORD
 
 
 VOSTRUCT TW_STATUS ALIGN 2
-	MEMBER	ConditionCode	AS	WORD	// ANY TWCC_ constant
-	MEMBER	Reserved		AS	WORD	// Future expansion space
+MEMBER	ConditionCode	AS	WORD	// ANY TWCC_ constant
+MEMBER	Reserved		AS	WORD	// Future expansion space
 /* DAT_STATUS. Application gets detailed status info from a data source with this. */
 
 
 VOSTRUCT TW_USERINTERFACE ALIGN 2
-	MEMBER	ShowUI		AS	WORD	// TW_BOOL, TRUE if DS should bring up its UI
-	MEMBER	ModalUI		AS	WORD	// TW_BOOL, For Mac only - true if the DS's UI is modal
-	MEMBER	hParent		AS	PTR		// TW_HANDLE, For windows only - App window handle
+MEMBER	ShowUI		AS	WORD	// TW_BOOL, TRUE if DS should bring up its UI
+MEMBER	ModalUI		AS	WORD	// TW_BOOL, For Mac only - true if the DS's UI is modal
+MEMBER	hParent		AS	PTR		// TW_HANDLE, For windows only - App window handle
 
 
 VOSTRUCT TW_VERSION ALIGN 2
@@ -537,5 +601,6 @@ VOSTRUCT TW_VERSION ALIGN 2
 	MEMBER	Language	AS	WORD	// e.g. TWLG_SWISSFRENCH
 	MEMBER	Country		AS	WORD	// e.g. TWCY_SWITZERLAND
 	MEMBER	DIM Info[34]	AS BYTE	// e.g. "1.0b3 Beta release"
-
-
+	
+	
+	

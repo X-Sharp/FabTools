@@ -1,3 +1,5 @@
+Using FabPaintLib
+
 CLASS	FabPrinter	INHERIT	Printer
 	// Handle of a DIB bitmap
 	EXPORT	oImg		AS	FabPaintLib

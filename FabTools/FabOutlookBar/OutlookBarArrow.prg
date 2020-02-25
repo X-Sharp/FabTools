@@ -17,20 +17,20 @@ METHOD Draw( hDC AS PTR ) AS LOGIC
 	SELF:Area:GetRectWin( @rect )
 	//
 	IF SELF:_symName = #_Up
-		dwState := DFCS_SCROLLUP
+		dwState := (DWORD)DFCS_SCROLLUP
 	ELSEIF SELF:_symName = #_Down
-		dwState := DFCS_SCROLLDOWN
+		dwState := (DWORD)DFCS_SCROLLDOWN
 	ENDIF
 	//
 	IF SELF:_lPressed
-		dwState := _OR(dwState, DFCS_PUSHED)
+		dwState := _OR(dwState, (DWORD)DFCS_PUSHED)
 	ENDIF
 	//
 	IF SELF:Control:BarStyle == #FABSTYLE
-		dwState := _Or( dwState, DFCS_FLAT )
+		dwState := _Or( dwState, (DWORD)DFCS_FLAT )
 	ENDIF
 	//
-	DrawFrameControl( hDC, @rect, DFC_SCROLL, dwState )
+	DrawFrameControl( hDC, @rect, (DWORD)DFC_SCROLL, dwState )
 	//
 RETURN TRUE
 

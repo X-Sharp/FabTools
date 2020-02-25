@@ -66,7 +66,7 @@ FUNCTION FabArray2Psz2( aValue AS ARRAY, dwSize REF DWORD ) AS PTR
 			sValue := AsString( aValue[ wCpt ] )
 			FOR wCpt2 := 1 TO SLen( sValue )
 				// Copy Byte
-				BYTE( ptrDest ) := Asc( SubStr( sValue, wCpt2, 1 ) )
+				BYTE( ptrDest ) := (byte) Asc( SubStr( sValue, wCpt2, 1 ) )
 				// Move Pointer
 				ptrDest ++
 			NEXT

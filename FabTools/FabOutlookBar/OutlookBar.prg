@@ -204,7 +204,7 @@ CLASS OutlookBar INHERIT CustomControl
 		LOCAL hOldBmp AS PTR
 		LOCAL iWidth AS LONG
 		LOCAL iHeight AS LONG
-		LOCAL lRet AS LOGIC
+		//LOCAL lRet AS LOGIC
 		LOCAL myDC AS PTR
 	//
 		SELF:Recalc()
@@ -225,7 +225,7 @@ CLASS OutlookBar INHERIT CustomControl
 	SELF:DrawArrows( memDC )
 */
 	//
-		lRet := BitBlt( myDC, clientRect:left, clientRect:top, iWidth, iHeight, memDC, 0, 0, SRCCOPY)
+		BitBlt( myDC, clientRect:left, clientRect:top, iWidth, iHeight, memDC, 0, 0, SRCCOPY)
 		SelectObject( memDC, hOldBmp )
 		DeleteObject( hBmp )
 		DeleteDC( memDC )
@@ -880,7 +880,7 @@ CLASS OutlookBar INHERIT CustomControl
 		LOCAL rcLabel IS _winRect
 		LOCAL nCount AS DWORD
 		LOCAL i AS DWORD
-		LOCAL oPoint AS Point
+		//LOCAL oPoint AS Point
 		LOCAL oArea AS WRect
 		LOCAL nX AS LONGINT
 		LOCAL yStart AS LONGINT
@@ -921,7 +921,7 @@ CLASS OutlookBar INHERIT CustomControl
 			FOR i := DWORD(iFirstItem) UPTO nCount STEP 1
 			//
 				oItem := oHeader:GetItem( i )
-				oPoint := Point{nX, yStart}
+				//oPoint := Point{nX, yStart}
 				oArea := WRect{} // BoundingBox{oPoint, oDim}
 				IF ( SELF:_symStyle == #NEWSTYLE ) 
 				//    Items are on the left, for the full Width 

@@ -40,7 +40,7 @@ BEGIN NAMESPACE FabTools
         hDlg := (Ptr) xhDlg
 	    //
 	    DO CASE
-		    CASE ( oEvent:Message == WM_INITDIALOG )
+		    CASE ( oEvent:Message == (DWORD)WM_INITDIALOG )
 			    //
 			    IF !Empty( SELF:OkText )
 				    CommDlg_OpenSave_SetControlText( hdlg, IDOK, LONG( _CAST, String2Psz( SELF:OkText ) )  )

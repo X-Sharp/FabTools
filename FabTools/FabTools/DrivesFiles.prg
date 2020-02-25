@@ -366,7 +366,7 @@ FUNCTION FabExtractFileExt( FileName AS STRING) AS STRING
 	pszFile := StringAlloc( cFileName )
 	//
 	structFile.hWnd := NULL_PTR //GetAppObject():Handle()
-	structFile.wFunc := FO_DELETE
+	structFile.wFunc := (DWORD)FO_DELETE
 	structFile.pFrom := pszFile
 	structFile.pTo	:= NULL_PTR
 	structFile.fFlags := _OR( FOF_SILENT, FOF_NOCONFIRMATION )
@@ -510,34 +510,35 @@ FUNCTION FabExtractFileExt( FileName AS STRING) AS STRING
 
 
 
-	FUNCTION FabGetDiskSerialNumber( cDisk AS STRING, dwSerial REF DWORD ) AS LOGIC PASCAL
-//g Files,Files Related Classes/Functions
-//p Return the Serial Number for a particular disk
-//d Return the Serial Number for a particular disk
-//a <cDisk> is a string with the disk to read\line
-//a \tab The first left char of the string is used.\line
-//a <dwSerial> is a DWORD, passed by reference that will receive the serial number for the desired disk.
-//r A logical value indicating the success of the operation
-	LOCAL lSuccess				AS	LOGIC
-	LOCAL drive					AS DriveInfo
-	//
-	lSuccess := FALSE
-	//
-	IF !Empty( cDisk )
-		// To be sure that the string is correct
-		cDisk := Left( cDisk, 1 ) + ":\"
-		TRY
-			drive := DriveInfo{ cDisk }
-			//
-			#warning incorrect !!!
-			dwSerial := 0
-			lSuccess := TRUE
-		CATCH
-			lSuccess := FALSE
-		END TRY
-	ENDIF
-	//
-	RETURN lSuccess
+//	FUNCTION FabGetDiskSerialNumber( cDisk AS STRING, dwSerial REF DWORD ) AS LOGIC PASCAL
+////g Files,Files Related Classes/Functions
+////p Return the Serial Number for a particular disk
+////d Return the Serial Number for a particular disk
+////a <cDisk> is a string with the disk to read\line
+////a \tab The first left char of the string is used.\line
+////a <dwSerial> is a DWORD, passed by reference that will receive the serial number for the desired disk.
+////r A logical value indicating the success of the operation
+//	LOCAL lSuccess				AS	LOGIC
+//	LOCAL drive					AS DriveInfo
+//	//
+//	lSuccess := FALSE
+//	//
+//	IF !Empty( cDisk )
+//		// To be sure that the string is correct
+//		cDisk := Left( cDisk, 1 ) + ":\"
+//		TRY
+//			drive := DriveInfo{ cDisk }
+//			drive:
+//			//
+//			#warning incorrect !!!
+//			dwSerial := 0
+//			lSuccess := TRUE
+//		CATCH
+//			lSuccess := FALSE
+//		END TRY
+//	ENDIF
+//	//
+//	RETURN lSuccess
 
 
 
@@ -581,7 +582,7 @@ FUNCTION FabExtractFileExt( FileName AS STRING) AS STRING
 	//
 	LOCAL lwt AS DateTime
 	lwt := File.GetLastWriteTimeUtc( cFileName )
-	dwFatDateTime := lwt:ToBinary()
+	dwFatDateTime := (dword)lwt:ToBinary()
 	//
 	RETURN dwFatDateTime
 
@@ -696,7 +697,7 @@ FUNCTION FabExtractFileExt( FileName AS STRING) AS STRING
 	szTempPath := MemAlloc( MAX_PATH + 1 )
 	// Retrieve TEMP Path
 	nNeed := GetTempPath( MAX_PATH, szTempPath )
-	IF ( nNeed > 0 )  .AND. ( nNeed < MAX_PATH )
+	IF ( nNeed > 0 )  .AND. ( nNeed < (DWORD)MAX_PATH )
 		lResult := TRUE
 		cTempPath := Psz2String( szTempPath )
 	ENDIF

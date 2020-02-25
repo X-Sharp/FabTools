@@ -31,8 +31,8 @@ PROCEDURE	FabAllButPaint( hWindow AS PTR )
 	LOCAL struMsg	IS	_WinMsg
 	//
 	IF ( PeekMessage( @struMsg, NULL_PTR, 0, 0, PM_REMOVE ) == TRUE )
-		IF ( struMsg.Message == WM_PAINT )  .OR.	;
-			( struMsg.Message == WM_TIMER )
+		IF ( struMsg.Message == (DWORD)WM_PAINT )  .OR.	;
+			( struMsg.Message == (DWORD)WM_TIMER )
 			//
 			DispatchMessage( @struMsg )
 			//
@@ -584,7 +584,7 @@ FUNCTION FabExitWindows( dwMode AS DWORD ) AS LOGIC
 	//
 	ptrVI.dwOSVersionInfoSize := _Sizeof( _winOSVERSIONINFO )
 	GetVersionEx( @ptrVI )
-	IF ( ptrVI.dwPlatformId == VER_PLATFORM_WIN32_NT )
+	IF ( ptrVI.dwPlatformId == (DWORD)VER_PLATFORM_WIN32_NT )
 		// With NT, we MUST set the Application privilege
 		// open access privilege list.
 		IF OpenProcessToken( GetCurrentProcess(), _OR( TOKEN_ADJUST_PRIVILEGES, TOKEN_QUERY ), @hToken )
@@ -592,9 +592,9 @@ FUNCTION FabExitWindows( dwMode AS DWORD ) AS LOGIC
 			// Ask the "shutdown" LUID
 			LookupPrivilegeValue( NULL_PSZ, String2Psz( SE_SHUTDOWN_NAME ), @ptrTP.Privileges[1].Luid )
 			// Enable it
-			ptrTP.Privileges[1].Attributes := SE_PRIVILEGE_ENABLED
+			ptrTP.Privileges[1].Attributes := (DWORD)SE_PRIVILEGE_ENABLED
 			AdjustTokenPrivileges( hToken, FALSE, @ptrTP, 0, NULL_PTR, NULL_PTR )
-			lRet := ( GetLastError () == ERROR_SUCCESS )
+			lRet := ( GetLastError() == (DWORD)ERROR_SUCCESS )
 		ENDIF
 	ELSE
     	lRet := TRUE
@@ -639,8 +639,8 @@ PROCEDURE	FabFilterMessages( hWindow AS PTR, aDontFilterMsgs AS ARRAY )
 	LOCAL struMsg	IS	_WinMsg
 	//
 	IF ( PeekMessage( @struMsg, NULL_PTR, 0, 0, PM_REMOVE ) == TRUE )
-		IF ( struMsg.Message == WM_PAINT )  .OR.	;
-			( struMsg.Message == WM_TIMER )
+		IF ( struMsg.Message == (DWORD)WM_PAINT )  .OR.	;
+			( struMsg.Message == (DWORD)WM_TIMER )
 			//
 			DispatchMessage( @struMsg )
 			//
@@ -1212,7 +1212,7 @@ FUNCTION FabIsWindowsNT() AS LOGIC
 	ptrVI.dwOSVersionInfoSize := _Sizeof( _winOSVERSIONINFO )
 	GetVersionEx( @ptrVI )
 	//
-RETURN ( ptrVI.dwPlatformId == VER_PLATFORM_WIN32_NT )
+RETURN ( ptrVI.dwPlatformId == (DWORD)VER_PLATFORM_WIN32_NT )
 
 
 
@@ -1373,7 +1373,7 @@ FUNCTION FabWinExecPause( progname AS PSZ, cmdshow AS SHORTINT ) AS LOGIC
 	procAttr.nLength := _sizeOf(_WINSECURITY_ATTRIBUTES)
 	thAttr.nLength := _sizeOf(_WINSECURITY_ATTRIBUTES)
 	sInfo.cb := _sizeOf(_WINSTARTUPINFO)
-	sInfo.dwFlags := STARTF_USESHOWWINDOW
+	sInfo.dwFlags := (DWORD)STARTF_USESHOWWINDOW
 	sInfo.wShowWindow := word(cmdshow)
 	//
 	lSuccess := CreateProcess( progname, NULL_PSZ , @procAttr, @thAttr, FALSE , 0, null_ptr, null_ptr, @sInfo, @sResult )

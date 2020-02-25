@@ -74,7 +74,7 @@ BEGIN NAMESPACE FabPaintLib.Control
 					rcSrc:Left	    := 0
 					rcSrc:Top	    := 0
 					rcSrc:Right	    := (int)self:oImg:Width
-					rcSrc:Bottom    := (int)self:oImg:Height
+					rcSrc:Bottom    := (INT)SELF:oImg:Height
 					//
 					IF ( self:WantScrollBar )
 						IF ( rRealZoom == 1 )

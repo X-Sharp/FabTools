@@ -151,7 +151,7 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 			RETURN ( NULL_PTR )
 		ENDIF
 		lpPal := GlobalLock( hLogPal )
-		lpPal.palVersion := _winPALVERSION
+		lpPal.palVersion := (word)_winPALVERSION
 		lpPal.palNumEntries := WORD( wNumColors )
 		FOR i := 0 TO ( wNumColors - 1 )
 			//
@@ -555,7 +555,7 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		lFSize := DWORD( FSeek3( hFile, 0, FS_END ) )
 		FRewind( hFile )
 		FRead3( hFile, @BFHeader, _SizeOf( _WinBitmapFileHeader ) )
-		FilePos := FTell( hFile )
+		FilePos := (LONG)FTell( hFile )
 		//
 		FRead3( hFile, @BIHeader, _SizeOf( _WinBitmapInfoHeader ) )
 		IF ( BFHeader.bfType == 19778 ) //  'BM'
@@ -722,9 +722,9 @@ FUNCTION        FabWriteDIB2BMPFile( hDIB AS PTR, cFileName AS STRING ) AS    LO
 			BFHeader.bfReserved2 := 0
 			BFHeader.bfOffBits := _SizeOf( _WinBITMAPFILEHEADER)  + BInfo.biSize + FabPaletteSize( BInfo )
 			// Use of Windows Huge-Write due to VO trouble with Huge Pointers
-			_hwrite( hFile, BFHeader, LONG(_SizeOf( _WinBitmapFileHeader ) ) )
+			_hwrite( hFile, (IntPtr)BFHeader, LONG(_SizeOf( _WinBitmapFileHeader ) ) )
 			// 4. Write out DIB header and packed bits to file
-			_hwrite( hFile, BInfo, LONG( lSize ) )
+			_hwrite( hFile, (IntPtr)BInfo, LONG( lSize ) )
 			GlobalUnlock( hDIB )
 			MemFree( BFHeader )
 			lRetVal := TRUE

@@ -180,13 +180,13 @@ CLASS OutlookBarHeader INHERIT OutlookBarBase
 		LOCAL dwFace AS DWORD
 		LOCAL dwLight AS DWORD
 		LOCAL dwShadow AS DWORD
-		LOCAL lSelected AS LOGIC
+		//LOCAL lSelected AS LOGIC
 		LOCAL nX, nY	AS	LONG
 		LOCAL iImagePos	AS	LONG
 		LOCAL hImgList	AS	PTR
 		LOCAL hIcon		AS	PTR
 	//
-		lSelected := ( SELF:_symName == SELF:_oOutlookBar:ActiveHeader )
+	//	lSelected := ( SELF:_symName == SELF:_oOutlookBar:ActiveHeader )
 	//
 		rect:top := SELF:Area:Top
 		rect:left := SELF:Area:Left
