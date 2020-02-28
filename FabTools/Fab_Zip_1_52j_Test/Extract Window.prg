@@ -38,6 +38,15 @@ PARTIAL CLASS ExtractWnd INHERIT DIALOGWINDOW
 	EXPORT	oXTract		AS	FabExtractOptions
 	EXPORT	lAll		AS	LOGIC
 	
+	ACCESS DirName 
+		// Get Dir
+		RETURN SELF:oDCSLEDir:CurrentText
+		
+	ASSIGN DirName ( cDir ) 
+		SELF:oDCSLEDir:CurrentText := cDir
+		
+		
+		
 	METHOD Drop( oDragEvent) 
 		// Set the CurrentText to provide an EditChange for TreeView
 		SELF:oDCSLEDir:CurrentText  := oDragEvent:FileName( 1)+"\"
@@ -65,7 +74,7 @@ PARTIAL CLASS ExtractWnd INHERIT DIALOGWINDOW
 		
 		
 	CONSTRUCTOR(oParent,uExtra)
-	
+		
 		SELF:PreInit(oParent,uExtra)
 		
 		SUPER(oParent , ResourceID{"ExtractWnd" , _GetInst()} , TRUE)

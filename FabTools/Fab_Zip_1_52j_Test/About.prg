@@ -42,7 +42,7 @@ CONSTRUCTOR(oParent,uExtra)
 	SELF:oDCFixedText2:HyperLabel := HyperLabel{#FixedText2 , "fabrice@fabtoys.net" , NULL_STRING , NULL_STRING}
 
 	SELF:oDCFixedText3 := FIXEDTEXT{SELF , ResourceID{ HELPABOUT_FIXEDTEXT3  , _GetInst() } }
-	SELF:oDCFixedText3:HyperLabel := HyperLabel{#FixedText3 , "© 1997-2007 Fabrice Foray" , NULL_STRING , NULL_STRING}
+	SELF:oDCFixedText3:HyperLabel := HyperLabel{#FixedText3 , "© 1997-2020 Fabrice Foray" , NULL_STRING , NULL_STRING}
 
 	SELF:oCCOkPB := PUSHBUTTON{SELF , ResourceID{ HELPABOUT_OKPB  , _GetInst() } }
 	SELF:oCCOkPB:HyperLabel := HyperLabel{#OkPB , "OK" , NULL_STRING , NULL_STRING}
