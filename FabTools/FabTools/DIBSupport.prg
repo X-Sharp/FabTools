@@ -6,25 +6,25 @@ FUNCTION	FabAdd2Ptr( ptrVal AS PTR, inc AS DWORD )	AS	PTR
 //l Add an offset to a pointer
 //d Move a pointer to a new position, using a Increment value. ( Data is always byte )
 LOCAL	dwPtr	AS	DWORD
-	// Convert PTR to DWORD
+// Convert PTR to DWORD
 dwPtr := DWORD( _CAST, ptrVal )
-	// Add step
+// Add step
 dwPtr := dwPtr + inc
-	// Back to ptr
+// Back to ptr
 RETURN PTR( _CAST, dwPtr )
 
 
 
 
 FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Convert a Bitmap Handle to a DIB memory
-//l Convert a Bitmap Handle to a DIB memory
-//x <hBm> is the Handle of the Bitmap object to convert\line
-//x <hPal> is an optionnal Palette Handle.
-//r A DIB Handle. ( You MUST free it using the GlobalFree() function when you no longer need to use the DIB )
-//
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Convert a Bitmap Handle to a DIB memory
+	//l Convert a Bitmap Handle to a DIB memory
+	//x <hBm> is the Handle of the Bitmap object to convert\line
+	//x <hPal> is an optionnal Palette Handle.
+	//r A DIB Handle. ( You MUST free it using the GlobalFree() function when you no longer need to use the DIB )
+	//
 	LOCAL   hOldPal		:= NULL_PTR AS      PTR		// VO2
 	LOCAL   hDC			AS      PTR		// VO2
 	LOCAL   ptrBits		AS      PTR
@@ -50,7 +50,7 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		//MessageAlert( "Unable to lock DIB memory !", "BitmapToDib" )
 		RETURN ( 0 )
 	ENDIF
-	 //
+	//
 	hDc := GetDC( 0 )
 	//
 	IF ( hDc != NULL_PTR )
@@ -78,17 +78,17 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 	ReleaseDC( 0, hDC )
 	//
 	RETURN ( hDib )
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabBMPString2DIB( cBMP AS STRING ) AS PTR
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Convert a BMP string to a DIB
-//l Convert a BMP string to a DIB
-//x <cString> is a valid string with all BMP data
-//r A pointer to a DIB memory. ( Don't forget to free the DIB memory when you don't need it with the GlobalFree() function )
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Convert a BMP string to a DIB
+	//l Convert a BMP string to a DIB
+	//x <cString> is a valid string with all BMP data
+	//r A pointer to a DIB memory. ( Don't forget to free the DIB memory when you don't need it with the GlobalFree() function )
 	LOCAL	lFSize		AS	DWORD
 	LOCAL	hDib		:= NULL_PTR AS	PTR		// VO2
 	LOCAL	BFHeader	IS	_WinBitmapFileHeader
@@ -100,7 +100,7 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 	MemCopyString( @BFHeader, cBMP, _SizeOf( _WinBitmapFileHeader ) )
 	//
 	IF ( BFHeader.bfType == 19778 ) //  'BM'
-    	//
+		//
 		hDIB :=GlobalAlloc( GMEM_MOVEABLE + GMEM_DISCARDABLE, lFSize - _SizeOf( _WinBitmapFileHeader ) )
 		IF ( hDIB != NULL_PTR )
 			ptrData := GlobalLock( hDIB )
@@ -117,18 +117,18 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		//MessageAlert( "Wrong File Format", "ReadBitmap" )
 	ENDIF
 	RETURN ( hDIB )
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabCreateDIBPalette( hDIB AS PTR ) AS PTR
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Create a Palette memory using a DIB memory
-//l Create a Palette memory using a DIB memory
-//d This function will create a separate palette memory info from a specified DIB memory.\line
-//d When you no longer need the palette, call the DeleteObject() function to delete it.
-//r A pointer to the newly allocated palette data.
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Create a Palette memory using a DIB memory
+	//l Create a Palette memory using a DIB memory
+	//d This function will create a separate palette memory info from a specified DIB memory.\line
+	//d When you no longer need the palette, call the DeleteObject() function to delete it.
+	//r A pointer to the newly allocated palette data.
 	LOCAL	lpPal		AS	_winLOGPALETTE
 	LOCAL	hLogPal		AS	PTR
 	LOCAL	hPal		:=  NULL_PTR AS	PTR
@@ -151,7 +151,7 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 			RETURN ( NULL_PTR )
 		ENDIF
 		lpPal := GlobalLock( hLogPal )
-		lpPal.palVersion := (word)_winPALVERSION
+		lpPal.palVersion := (WORD)_winPALVERSION
 		lpPal.palNumEntries := WORD( wNumColors )
 		FOR i := 0 TO ( wNumColors - 1 )
 			//
@@ -174,17 +174,17 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 	GlobalUnlock( hDib )
 	//
 	RETURN	hPal
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabDIB2BMPString( hDIB AS PTR ) AS STRING
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Convert a DIB memory to a Bitmap string
-//l Convert a DIB memory to a Bitmap string
-//x <hDIB> is a valid pointer to a DIB
-//r A String with all BMP datas
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Convert a DIB memory to a Bitmap string
+	//l Convert a DIB memory to a Bitmap string
+	//x <hDIB> is a valid pointer to a DIB
+	//r A String with all BMP datas
 	LOCAL cHeader	AS	STRING
 	LOCAL cData		AS	STRING
 	LOCAL lSize		AS	DWORD
@@ -214,17 +214,17 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		ENDIF
 	ENDIF
 	RETURN ( cHeader + cData )
-
-
-
-
+	
+	
+	
+	
 	FUNCTION	FabDIB2String( hDIB AS PTR ) AS STRING
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Convert a DIB memory to a string
-//l Convert a DIB memory to a string
-//x <hDIB> is a valid pointer to a DIB
-//r A String with all DIB data.
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Convert a DIB memory to a string
+	//l Convert a DIB memory to a string
+	//x <hDIB> is a valid pointer to a DIB
+	//r A String with all DIB data.
 	LOCAL sBuffer	AS	STRING
 	LOCAL   lSize		AS      DWORD
 	LOCAL   ptrData	AS      PTR
@@ -242,23 +242,23 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		ENDIF
 	ENDIF
 	RETURN sBuffer
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabDIBDraw( hDC AS PTR, hDib AS PTR, wCol AS INT, wRow AS INT, hPal AS PTR, wWidth AS DWORD, wHeight AS DWORD )
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Draw a DIB bitmap into a specified Device Context
-//l Draw a DIB bitmap into a specified Device Context
-//x <hDC> is a valid Device Context. ( Created with GetDC() or CreateDC() ).\line
-//x <hDIB> is a valid pointer to a DIB memory.\line
-//x <wCol> indicate the desired X position of the Upper Left bitmap\line
-//x <wRow> indicate the desired X position of the Upper Left bitmap\line
-//x <hPal> is a pointer to memory with palette data. ( NULL_PTR if none ).\line
-//x <wWidth> indicate the desired Width of image. ( 0 if no scaling )\line
-//x <wHeight> indicate the desired Height of image. ( 0 if no scaling ) \line
-//r Alogical value indicating the succes of the operation.
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Draw a DIB bitmap into a specified Device Context
+	//l Draw a DIB bitmap into a specified Device Context
+	//x <hDC> is a valid Device Context. ( Created with GetDC() or CreateDC() ).\line
+	//x <hDIB> is a valid pointer to a DIB memory.\line
+	//x <wCol> indicate the desired X position of the Upper Left bitmap\line
+	//x <wRow> indicate the desired X position of the Upper Left bitmap\line
+	//x <hPal> is a pointer to memory with palette data. ( NULL_PTR if none ).\line
+	//x <wWidth> indicate the desired Width of image. ( 0 if no scaling )\line
+	//x <wHeight> indicate the desired Height of image. ( 0 if no scaling ) \line
+	//r Alogical value indicating the succes of the operation.
 	LOCAL lpBmp		AS	_winBitmapinfoHeader
 	LOCAL lpBits	AS	PTR
 	LOCAL hOldPal	:= NULL_PTR AS	PTR
@@ -285,24 +285,24 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 			SelectPalette( hDC, holdPal, TRUE )
 			RealizePalette( hDC )
 		ENDIF
-
+		
 		GlobalUnlock( hDib )
-
+		
 		RETURN TRUE
 	ENDIF
-
+	
 	RETURN FALSE
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabDIBHeight( ptrBInfo AS PTR ) AS DWORD
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Retrieve the Height of a DIB
-//l Retrieve the Height of a DIB
-//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
-//s
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Retrieve the Height of a DIB
+	//l Retrieve the Height of a DIB
+	//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
+	//s
 	LOCAL Bmi	AS    _WinBitmapInfoHeader
 	LOCAL Bmc	AS    _WinBitmapCoreHeader
 	LOCAL dwSize	AS    DWORD
@@ -316,18 +316,18 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 	ENDIF
 	//
 	RETURN dwSize
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabDIBitmapBits( BInfo AS _WinBitmapInfo ) AS PTR
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Return a Pointer to bits location in a DIB memory
-//l Return a Pointer to bits location in a DIB memory
-//d Bits = Start + HeaderSize + BytesColors ( Win or OS/2 are # )
-//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
-//s
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Return a Pointer to bits location in a DIB memory
+	//l Return a Pointer to bits location in a DIB memory
+	//d Bits = Start + HeaderSize + BytesColors ( Win or OS/2 are # )
+	//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
+	//s
 	LOCAL   Bits            AS      PTR
 	//
 	Bits := FabAdd2Ptr( BInfo,BInfo.bmiHeader.biSize )
@@ -335,17 +335,17 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 	Bits := FabAdd2Ptr( Bits, FabPaletteSize( BInfo ) )
 	//
 	RETURN  Bits
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabDIBitmapColors( BInfo AS _WINBitmapInfoHeader ) AS DWORD
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Count the number of used colors in a DIB memory.
-//l Count the number of used colors in a DIB memory.
-//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
-//s
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Count the number of used colors in a DIB memory.
+	//l Count the number of used colors in a DIB memory.
+	//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
+	//s
 	LOCAL   Bmi             AS      _WinBitmapInfo
 	LOCAL   BCi             AS      _WinBitmapCoreInfo
 	//
@@ -382,59 +382,59 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		ENDIF
 	ENDIF
 	RETURN 0
-
-
-
-
-
+	
+	
+	
+	
+	
 	FUNCTION	FabDIBToBitmap( hDIB AS PTR, hPalette AS PTR ) AS PTR
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Convert a DIB memory to a Bitmap Handle
-//l Convert a DIB memory to a Bitmap Handle
-//x <hDib> is a pointer to a DIB memory.\line
-//x <hPalette> is a pointer to a memory with palette information. ( NULL_PTR if none )
-//r A Bitmap Handle ( pointer type )
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Convert a DIB memory to a Bitmap Handle
+	//l Convert a DIB memory to a Bitmap Handle
+	//x <hDib> is a pointer to a DIB memory.\line
+	//x <hPalette> is a pointer to a memory with palette information. ( NULL_PTR if none )
+	//r A Bitmap Handle ( pointer type )
 	LOCAL   hBitmap   := NULL_PTR AS      PTR		// VO2
 	LOCAL   hDC       AS      PTR		// VO2
 	LOCAL   BInfo     AS      _WinBitmapInfo
 	LOCAL   Bits      AS      PTR
 	LOCAL   hOldPal   := NULL_PTR  AS		 PTR		// VO2
-   //
+	//
 	BInfo := GlobalLock( hDIB )
-   //
+	//
 	IF ( BInfo != NULL_PTR )
 		hDC := GetDC( 0 )
-      //
+		//
 		IF ( hPalette != NULL_PTR )
 			hOldPal := SelectPalette( hDC, hPalette, FALSE )
 		ENDIF
 		RealizePalette( hDC )
-      //
+		//
 		Bits := FabDIBitmapBits( BInfo )
-      //
+		//
 		hBitmap := CreateDIBitmap( hDC, BInfo, CBM_INIT, Bits, BInfo, DIB_RGB_COLORS )
-      //
+		//
 		IF ( hOldPal != NULL_PTR )
 			SelectPalette( hDC, hOldPal, FALSE )
 		ENDIF
-      //
+		//
 		ReleaseDC( 0, hDC )
 	ENDIF
 	GlobalUnlock( hDIB )
-   //
+	//
 	RETURN hBitmap
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabDIBWidth( ptrBInfo AS PTR ) AS DWORD
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Retrieve the Width of a DIB
-//l Retrieve the Width of a DIB
-//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
-//s
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Retrieve the Width of a DIB
+	//l Retrieve the Width of a DIB
+	//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
+	//s
 	LOCAL Bmi	AS    _WinBitmapInfoHeader
 	LOCAL Bmc	AS    _WinBitmapCoreHeader
 	LOCAL dwSize	AS    DWORD
@@ -448,10 +448,10 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 	ENDIF
 	//
 	RETURN dwSize
-
-
-
-
+	
+	
+	
+	
 	STATIC PROCEDURE FabInitBitmapInfoHeader( BIHeader AS _WinBitmapInfoHeader, dwWidth AS DWORD, dwHeight AS DWORD, nBPP AS DWORD )
 	// Zero init
 	MemClear( BIHeader, _SizeOf( _WinBitmapInfoHeader ) )
@@ -474,17 +474,17 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 	BIHeader.biSizeImage := FabWidthByte( dwWidth * nBPP ) * dwHeight
 	//
 	RETURN
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabIsWin30DIB( ptrBInfo AS PTR ) AS LOGIC
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Check if ptrBInfo indicate a valid Windows or OS/2 Bitmap
-//l Check for a valid Windows or OS/2 Bitmap
-//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
-//
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Check if ptrBInfo indicate a valid Windows or OS/2 Bitmap
+	//l Check for a valid Windows or OS/2 Bitmap
+	//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
+	//
 	LOCAL   Bmi       AS _WinBitmapInfo
 	LOCAL   lRetVal   AS LOGIC
 	//
@@ -499,17 +499,17 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 	ENDIF
 	//
 	RETURN lRetVal
-
-
-
-
+	
+	
+	
+	
 	FUNCTION FabPaletteSize( ptrBInfo AS PTR ) AS DWORD
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Return the number of bytes in the DIB's color Table.
-//l Return the size of a Palette in bytes
-//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
-//
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Return the number of bytes in the DIB's color Table.
+	//l Return the size of a Palette in bytes
+	//d Be aware that the DIB MUST have been GlobalLock() before calling this function.
+	//
 	LOCAL dwSize AS DWORD
 	//
 	IF FabIsWin30DIB( ptrBInfo )
@@ -520,17 +520,17 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		dwSize := FabDIBitmapColors( ptrBInfo ) * DWORD( _SizeOf( _WinRGBTriple ) )
 	ENDIF
 	RETURN ( dwSize )
-
-
-
-
+	
+	
+	
+	
 	FUNCTION	FabReadBMPFile( cFileName AS STRING ) AS PTR
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Read a .BMP file and return a Bitmap Handle
-//l Read a .BMP file and return a Bitmap Handle
-//x <cFileName> is a string with the FullPath information to a valid BMP file
-//r A Pointer to a Windows Bitmap ( You must free it using the DeleteObject() function )
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Read a .BMP file and return a Bitmap Handle
+	//l Read a .BMP file and return a Bitmap Handle
+	//x <cFileName> is a string with the FullPath information to a valid BMP file
+	//r A Pointer to a Windows Bitmap ( You must free it using the DeleteObject() function )
 	LOCAL	hBitmap 	:= NULL_PTR AS	PTR		// VO2
 	LOCAL	hFile		AS	PTR		// VO2
 	LOCAL	lFSize		AS	DWORD
@@ -599,17 +599,17 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		FClose( hFile )
 	ENDIF
 	RETURN ( hBitmap )
-
-
-
-
+	
+	
+	
+	
 	FUNCTION	FabReadBMPFile2DIB( cFileName AS STRING ) AS PTR
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Read a .BMP file to a DIB memory
-//l Read a .BMP file to a DIB memory
-//x <cFileName> is a string with the FullPath information to a valid BMP file
-//r A Pointer to a DIB memory ( You must free it using the GlobalFree() function )
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Read a .BMP file to a DIB memory
+	//l Read a .BMP file to a DIB memory
+	//x <cFileName> is a string with the FullPath information to a valid BMP file
+	//r A Pointer to a DIB memory ( You must free it using the GlobalFree() function )
 	LOCAL	hFile		AS	PTR		// VO2
 	LOCAL	lFSize		AS	DWORD
 	LOCAL	hDib		:= NULL_PTR  AS	PTR		// VO2
@@ -648,17 +648,17 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		FClose( hFile )
 	ENDIF
 	RETURN ( hDIB )
-
-
-
-
+	
+	
+	
+	
 	FUNCTION	FabString2DIB( cString AS STRING ) AS PTR
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Convert a string to a DIB
-//l Convert a string to a DIB
-//x <cString> is a valid string with all DIB data
-//r A pointer to a DIB memory. ( Don't forget to free the DIB memory when you don't need it with the GlobalFree() function )
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Convert a string to a DIB
+	//l Convert a string to a DIB
+	//x <cString> is a valid string with all DIB data
+	//r A pointer to a DIB memory. ( Don't forget to free the DIB memory when you don't need it with the GlobalFree() function )
 	LOCAL	hDIB		:= NULL_PTR  AS	PTR
 	LOCAL   lSize			AS	DWORD
 	LOCAL   ptrData		AS	PTR
@@ -680,10 +680,10 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		ENDIF
 	ENDIF
 	RETURN hDib
-
-
-
-
+	
+	
+	
+	
 STATIC FUNCTION   FabWidthByte( bits AS DWORD ) AS DWORD
 RETURN ( ( ( Bits + 31 ) / 32 ) * 4 )
 
@@ -691,13 +691,13 @@ RETURN ( ( ( Bits + 31 ) / 32 ) * 4 )
 
 
 FUNCTION        FabWriteDIB2BMPFile( hDIB AS PTR, cFileName AS STRING ) AS    LOGIC
-//g DIB,Device Independant Bitmap Classes/Functions
-//g Images,Images Classes/Functions
-//p Write the specified DIB using the BMP format
-//l Write the specified DIB using the BMP format
-//x <hDib> is a pointer to a DIB memory.\line
-//x <cFileName> is a string with the fullpath info of the desired BMP file
-//r A logical value indicating the success of the operation
+	//g DIB,Device Independant Bitmap Classes/Functions
+	//g Images,Images Classes/Functions
+	//p Write the specified DIB using the BMP format
+	//l Write the specified DIB using the BMP format
+	//x <hDib> is a pointer to a DIB memory.\line
+	//x <cFileName> is a string with the fullpath info of the desired BMP file
+	//r A logical value indicating the success of the operation
 	LOCAL   hFile		AS      PTR		// VO2
 	LOCAL   lSize		AS      DWORD
 	LOCAL   BFHeader	AS      _WinBitmapFileHeader
@@ -736,9 +736,10 @@ FUNCTION        FabWriteDIB2BMPFile( hDIB AS PTR, cFileName AS STRING ) AS    LO
 		//MessageAlert( "Error creating file", "WriteDIB2BMPFile" )
 	ENDIF
 	RETURN  lRetVal
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	

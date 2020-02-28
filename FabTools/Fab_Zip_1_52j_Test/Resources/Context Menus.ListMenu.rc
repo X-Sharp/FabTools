@@ -1,0 +1,14 @@
+#include "..\GlobalDefines.vh"
+ListMenu MENU
+Begin
+	POPUP "Dummy"
+	BEGIN
+		MENUITEM "Select All", IDM_ListMenu_Dummy_Select_All_ID
+		MENUITEM "Deselect All", IDM_ListMenu_Dummy_Deselect_All_ID
+		MENUITEM SEPARATOR
+		MENUITEM "Add", IDM_ListMenu_Dummy_Add_ID
+		MENUITEM "Extract", IDM_ListMenu_Dummy_Extract_ID
+		MENUITEM "Delete", IDM_ListMenu_Dummy_Delete_ID
+	END
+End
+ 

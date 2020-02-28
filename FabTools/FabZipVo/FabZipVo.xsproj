@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.Default.props" />
+  <PropertyGroup>
+    <ProjectGuid>4dd08a41-2945-4ddd-9821-4bf8a301fa9b</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FabZipVo</RootNamespace>
+    <AssemblyName>FabZipVo</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <Name>FabZipVo</Name>
+    <Nologo>true</Nologo>
+    <GenerateFullPaths>true</GenerateFullPaths>
+    <Dialect>VO</Dialect>
+    <na>false</na>
+    <az>false</az>
+    <nostddef>false</nostddef>
+    <ins>true</ins>
+    <unsafe>true</unsafe>
+    <vo2>true</vo2>
+    <vo3>true</vo3>
+    <vo4>true</vo4>
+    <vo6>true</vo6>
+    <vo7>true</vo7>
+    <vo9>true</vo9>
+    <vo10>true</vo10>
+    <vo13>true</vo13>
+    <vo14>true</vo14>
+    <vo15>true</vo15>
+    <vo16>true</vo16>
+    <lb>false</lb>
+    <OutputName>FabZipVo</OutputName>
+    <StartupObject />
+    <ApplicationIcon />
+    <VulcanCompatibleResources>False</VulcanCompatibleResources>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'" Label="Configuration">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <EmitDebugInformation>true</EmitDebugInformation>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'" Label="Configuration">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <EmitDebugInformation>false</EmitDebugInformation>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.targets" />
+  <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.13.6.0, Culture=neutral, PublicKeyToken=6583c7c814667745">
+      <Name>DotNetZip</Name>
+      <AssemblyName>DotNetZip.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetZip.1.13.6\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="VOGUIClasses, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VOGUIClasses</Name>
+      <AssemblyName>VOGUIClasses.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>..\..\..\..\Program Files (x86)\XSharp\Redist\VOGUIClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="VOSystemClasses, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VOSystemClasses</Name>
+      <AssemblyName>VOSystemClasses.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>..\..\..\..\Program Files (x86)\XSharp\Redist\VOSystemClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="VOWin32APILibrary, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VOWin32APILibrary</Name>
+      <AssemblyName>VOWin32APILibrary.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>..\..\..\..\Program Files (x86)\XSharp\Redist\VOWin32APILibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.Core" />
+    <Reference Include="XSharp.Rt" />
+    <Reference Include="XSharp.VO" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FabZipFileCtrl.prg" />
+    <Compile Include="Properties\AssemblyInfo.prg">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FabZip\FabZip.xsproj">
+      <Name>FabZip</Name>
+      <Project>{bf4092de-ca8d-4ebe-b4e2-8fa9660845aa}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <!-- This next bit is required unless the macro used to Import your targets is defined in an MSBuild toolset. -->
+  <ProjectExtensions>
+    <ProjectCapabilities>
+      <ProjectConfigurationsDeclaredAsItems />
+    </ProjectCapabilities>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <RunPostBuildEvent />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <RunPostBuildEvent />
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.Default.props" />
+  <PropertyGroup>
+    <Dialect>Vulcan</Dialect>
+    <PlatformTarget>x86</PlatformTarget>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>FabZip_Test</Name>
+    <ProjectGuid>{C8C7C8DE-AF0D-4F43-8A52-069356949907}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <Nologo>true</Nologo>
+    <GenerateFullPaths>false</GenerateFullPaths>
+    <RootNamespace>FabZip_Test</RootNamespace>
+    <AssemblyName>FabZip_Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <XSharpProjectversion>2.3.0.0</XSharpProjectversion>
+    <StartupObject />
+    <ApplicationIcon />
+    <VulcanCompatibleResources>False</VulcanCompatibleResources>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <EmitDebugInformation>true</EmitDebugInformation>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <OutputPath>$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <EmitDebugInformation>false</EmitDebugInformation>
+    <DefineConstants>NDEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <OutputPath>$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.13.6.0, Culture=neutral, PublicKeyToken=6583c7c814667745">
+      <Name>DotNetZip</Name>
+      <AssemblyName>DotNetZip.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetZip.1.13.6\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="XSharp.Core, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
+      <Name>XSharp.Core</Name>
+      <AssemblyName>XSharp.Core.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Assemblies\XSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.RT, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
+      <Name>XSharp.RT</Name>
+      <AssemblyName>XSharp.RT.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Assemblies\XSharp.RT.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.VO, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
+      <Name>XSharp.VO</Name>
+      <AssemblyName>XSharp.VO.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Assemblies\XSharp.VO.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Start.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Form1.prg">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.prg">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Form1.prg</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FabTools\FabTools.xsproj">
+      <Name>FabTools</Name>
+      <Project>{d2a10849-0553-4ad0-9b7f-cec2a03b79d5}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabZip\FabZip.xsproj">
+      <Name>FabZip</Name>
+      <Project>{bf4092de-ca8d-4ebe-b4e2-8fa9660845aa}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.targets" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <ProjectCapabilities>
+      <ProjectConfigurationsDeclaredAsItems />
+    </ProjectCapabilities>
+  </ProjectExtensions>
+</Project>

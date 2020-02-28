@@ -1374,7 +1374,7 @@ FUNCTION FabWinExecPause( progname AS PSZ, cmdshow AS SHORTINT ) AS LOGIC
 	thAttr.nLength := _sizeOf(_WINSECURITY_ATTRIBUTES)
 	sInfo.cb := _sizeOf(_WINSTARTUPINFO)
 	sInfo.dwFlags := (DWORD)STARTF_USESHOWWINDOW
-	sInfo.wShowWindow := word(cmdshow)
+	sInfo.wShowWindow := (WORD)cmdshow
 	//
 	lSuccess := CreateProcess( progname, NULL_PSZ , @procAttr, @thAttr, FALSE , 0, null_ptr, null_ptr, @sInfo, @sResult )
 	//

@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Designers>
+  <VOWindow Name="FabZipTest1">
+    <Window Name="FabZipTest1">
+      <Name>FabZipTest1</Name>
+      <Class>FORM:DATAWINDOW</Class>
+      <Caption>Fab Zip Test #1</Caption>
+      <Order>0</Order>
+      <Left>5</Left>
+      <Top>5</Top>
+      <Width>608</Width>
+      <Height>432</Height>
+      <BrowseIndex>0</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Fab Zip Test #1"</HyperLabel>
+        <HyperLabel>"FabZipTest1"</HyperLabel>
+        <Icon>ICON_DELZIP2</Icon>
+      </ExProperties>
+    </Window>
+    <Control Name="OkPB">
+      <Name>OkPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;Close</Caption>
+      <Order>10</Order>
+      <Left>505</Left>
+      <Top>79</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;Close"</HyperLabel>
+        <HyperLabel>"OkPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="ZipFileName">
+      <Name>ZipFileName</Name>
+      <Class>CONTROL:TEXTCONTROL:EDIT:SINGLELINEEDIT</Class>
+      <Caption>
+      </Caption>
+      <Order>1</Order>
+      <Left>21</Left>
+      <Top>31</Top>
+      <Width>210</Width>
+      <Height>20</Height>
+      <BrowseIndex>0</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1216413824</Styles>
+      <ExStyles>512</ExStyles>
+      <ExProperties>
+        <HyperLabel>"ZipFileName"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="OpenPB">
+      <Name>OpenPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>Open Zip File</Caption>
+      <Order>2</Order>
+      <Left>251</Left>
+      <Top>11</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Open Zip File"</HyperLabel>
+        <HyperLabel>"OpenPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="CreatePB">
+      <Name>CreatePB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>Create Zip File</Caption>
+      <Order>3</Order>
+      <Left>251</Left>
+      <Top>41</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Create Zip File"</HyperLabel>
+        <HyperLabel>"CreatePB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="PassChk">
+      <Name>PassChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Use Password</Caption>
+      <Order>4</Order>
+      <Left>361</Left>
+      <Top>21</Top>
+      <Width>120</Width>
+      <Height>18</Height>
+      <BrowseIndex>1</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807363</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Use Password"</HyperLabel>
+        <HyperLabel>"PassChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="AddPB">
+      <Name>AddPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;Add</Caption>
+      <Order>5</Order>
+      <Left>13</Left>
+      <Top>79</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;Add"</HyperLabel>
+        <HyperLabel>"AddPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="ExtractPB">
+      <Name>ExtractPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;Extract</Caption>
+      <Order>6</Order>
+      <Left>109</Left>
+      <Top>79</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;Extract"</HyperLabel>
+        <HyperLabel>"ExtractPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="DeletePB">
+      <Name>DeletePB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;Delete</Caption>
+      <Order>7</Order>
+      <Left>205</Left>
+      <Top>79</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;Delete"</HyperLabel>
+        <HyperLabel>"DeletePB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="ConvertPB">
+      <Name>ConvertPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;Convert</Caption>
+      <Order>8</Order>
+      <Left>307</Left>
+      <Top>79</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;Convert"</HyperLabel>
+        <HyperLabel>"ConvertPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="CommentPB">
+      <Name>CommentPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;Comment</Caption>
+      <Order>9</Order>
+      <Left>409</Left>
+      <Top>79</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;Comment"</HyperLabel>
+        <HyperLabel>"CommentPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="Zip_Control">
+      <Name>Zip_Control</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Zip Control</Caption>
+      <Order>11</Order>
+      <Left>531</Left>
+      <Top>11</Top>
+      <Width>50</Width>
+      <Height>50</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Zip Control"</HyperLabel>
+        <HyperLabel>"Zip_Control"</HyperLabel>
+        <InheritClassName>FABZIPFILECTRL</InheritClassName>
+      </ExProperties>
+    </Control>
+    <Control Name="ZipList">
+      <Name>ZipList</Name>
+      <Class>CONTROL:COMMONCONTROL:LISTVIEW</Class>
+      <Caption>
+      </Caption>
+      <Order>12</Order>
+      <Left>13</Left>
+      <Top>109</Top>
+      <Width>574</Width>
+      <Height>230</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1082130441</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>"ZipList"</HyperLabel>
+        <ContextMenu>LISTMENU</ContextMenu>
+      </ExProperties>
+    </Control>
+    <Control Name="DllMsg">
+      <Name>DllMsg</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Show CallBack Messages</Caption>
+      <Order>13</Order>
+      <Left>13</Left>
+      <Top>349</Top>
+      <Width>180</Width>
+      <Height>18</Height>
+      <BrowseIndex>2</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807363</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Show CallBack Messages"</HyperLabel>
+        <HyperLabel>"DllMsg"</HyperLabel>
+        <TooltipText>"Show Dll Messages"</TooltipText>
+      </ExProperties>
+    </Control>
+    <Control Name="FabZipMsg">
+      <Name>FabZipMsg</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Show FabZip Class Messages</Caption>
+      <Order>14</Order>
+      <Left>13</Left>
+      <Top>409</Top>
+      <Width>180</Width>
+      <Height>18</Height>
+      <BrowseIndex>3</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807363</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Show FabZip Class Messages"</HyperLabel>
+        <HyperLabel>"FabZipMsg"</HyperLabel>
+        <TooltipText>"Show Dll Messages"</TooltipText>
+      </ExProperties>
+    </Control>
+    <Control Name="ExtractBar">
+      <Name>ExtractBar</Name>
+      <Class>CONTROL:COMMONCONTROL:PROGRESSBAR</Class>
+      <Caption>
+      </Caption>
+      <Order>16</Order>
+      <Left>253</Left>
+      <Top>403</Top>
+      <Width>126</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1342177280</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>"ExtractBar"</HyperLabel>
+        <TooltipText>"Current File"</TooltipText>
+      </ExProperties>
+    </Control>
+    <Control Name="FProcess">
+      <Name>FProcess</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Name of the file in process</Caption>
+      <Order>17</Order>
+      <Left>253</Left>
+      <Top>361</Top>
+      <Width>324</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1342177280</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Name of the file in process"</HyperLabel>
+        <HyperLabel>"FProcess"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="CancelPB">
+      <Name>CancelPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;Cancel</Caption>
+      <Order>18</Order>
+      <Left>385</Left>
+      <Top>403</Top>
+      <Width>60</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1342242816</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;Cancel"</HyperLabel>
+        <HyperLabel>"CancelPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="TotalSizeBar">
+      <Name>TotalSizeBar</Name>
+      <Class>CONTROL:COMMONCONTROL:PROGRESSBAR</Class>
+      <Caption>
+      </Caption>
+      <Order>20</Order>
+      <Left>451</Left>
+      <Top>415</Top>
+      <Width>126</Width>
+      <Height>10</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1342177280</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>"TotalSizeBar"</HyperLabel>
+        <TooltipText>"Total Size"</TooltipText>
+      </ExProperties>
+    </Control>
+    <Control Name="TotalFilesBar">
+      <Name>TotalFilesBar</Name>
+      <Class>CONTROL:COMMONCONTROL:PROGRESSBAR</Class>
+      <Caption>
+      </Caption>
+      <Order>21</Order>
+      <Left>451</Left>
+      <Top>403</Top>
+      <Width>126</Width>
+      <Height>10</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1342177280</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>"TotalFilesBar"</HyperLabel>
+        <TooltipText>"Total # of Files"</TooltipText>
+      </ExProperties>
+    </Control>
+    <Control Name="ZipMessages">
+      <Name>ZipMessages</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>ZipMessages</Caption>
+      <Order>22</Order>
+      <Left>13</Left>
+      <Top>367</Top>
+      <Width>228</Width>
+      <Height>42</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"ZipMessages"</HyperLabel>
+        <HyperLabel>"ZipMessages"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="GroupBox1">
+      <Name>GroupBox1</Name>
+      <Class>CONTROL:TEXTCONTROL:GROUPBOX</Class>
+      <Caption>Zip File</Caption>
+      <Order>15</Order>
+      <Left>11</Left>
+      <Top>11</Top>
+      <Width>230</Width>
+      <Height>50</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073872903</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Zip File"</HyperLabel>
+        <HyperLabel>"GroupBox1"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="ProcessGrp">
+      <Name>ProcessGrp</Name>
+      <Class>CONTROL:TEXTCONTROL:GROUPBOX</Class>
+      <Caption>Processing</Caption>
+      <Order>19</Order>
+      <Left>247</Left>
+      <Top>341</Top>
+      <Width>338</Width>
+      <Height>86</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1342308359</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Processing"</HyperLabel>
+        <HyperLabel>"ProcessGrp"</HyperLabel>
+      </ExProperties>
+    </Control>
+  </VOWindow>
+</Designers>

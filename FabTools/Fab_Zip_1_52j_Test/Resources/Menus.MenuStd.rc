@@ -1,0 +1,15 @@
+#include "..\GlobalDefines.vh"
+MenuStd MENU
+Begin
+	POPUP "&FabZip"
+	BEGIN
+		MENUITEM "Test\tCtrl+O", IDM_MenuStd_FabZip_Test_ID
+		MENUITEM SEPARATOR
+		MENUITEM "E&xit\tAlt+F4", IDM_MenuStd_FabZip_Exit_ID
+	END
+	POPUP "&Help"
+	BEGIN
+		MENUITEM "&About...", IDM_MenuStd_Help_About_ID
+	END
+End
+ 

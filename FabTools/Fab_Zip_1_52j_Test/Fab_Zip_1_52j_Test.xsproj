@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.Default.props" />
+  <PropertyGroup>
+    <Dialect>Vulcan</Dialect>
+    <PlatformTarget>x86</PlatformTarget>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TransporterVersion>1.1.156.0</TransporterVersion>
+    <ProjectGuid>{B8945F86-E5C7-4883-8EFE-5EDA496F0187}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <Nologo>true</Nologo>
+    <GenerateFullPaths>false</GenerateFullPaths>
+    <Name>Fab_Zip_1_52j_Test</Name>
+    <RootNamespace>Fab_Zip_1_52j_Test</RootNamespace>
+    <VO3>true</VO3>
+    <UnSafe>true</UnSafe>
+    <VO5>true</VO5>
+    <VO10>true</VO10>
+    <VO11>true</VO11>
+    <VO9>true</VO9>
+    <VO2>true</VO2>
+    <VO4>true</VO4>
+    <OVF>true</OVF>
+    <FOVF>true</FOVF>
+    <VO12>false</VO12>
+    <LB>true</LB>
+    <CS>false</CS>
+    <AZ>false</AZ>
+    <VO6>true</VO6>
+    <VO7>true</VO7>
+    <VO8>true</VO8>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <XSharpProjectversion>2.3.0.0</XSharpProjectversion>
+    <StartupObject />
+    <ApplicationIcon />
+    <VulcanCompatibleResources>False</VulcanCompatibleResources>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <EmitDebugInformation>true</EmitDebugInformation>
+    <DefineConstants>DEBUG</DefineConstants>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <OutputPath>$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <Optimize>false</Optimize>
+    <UseSharedCompilation>true</UseSharedCompilation>
+    <DisabledWarnings />
+    <WarningLevel>4</WarningLevel>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile />
+    <CommandLineOption />
+    <PPO>false</PPO>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>True</Prefer32Bit>
+    <RegisterForComInterop>False</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <EmitDebugInformation>false</EmitDebugInformation>
+    <DefineConstants>NDEBUG</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <OutputPath>$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.5.2, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c">
+      <Name>Ionic.Zip</Name>
+      <AssemblyName>Ionic.Zip.dll</AssemblyName>
+      <HintPath>Debug\Ionic.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="VOGUIClasses, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VOGUIClasses</Name>
+      <AssemblyName>VOGUIClasses.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Redist\VOGUIClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="VORDDClasses, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VORDDClasses</Name>
+      <AssemblyName>VORDDClasses.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Redist\VORDDClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="VOSystemClasses, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VOSystemClasses</Name>
+      <AssemblyName>VOSystemClasses.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Redist\VOSystemClasses.dll</HintPath>
+    </Reference>
+    <Reference Include="VOWin32APILibrary, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
+      <Name>VOWin32APILibrary</Name>
+      <AssemblyName>VOWin32APILibrary.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Redist\VOWin32APILibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.Core, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
+      <Name>XSharp.Core</Name>
+      <AssemblyName>XSharp.Core.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Assemblies\XSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.RT, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
+      <Name>XSharp.RT</Name>
+      <AssemblyName>XSharp.RT.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Assemblies\XSharp.RT.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.VO, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
+      <Name>XSharp.VO</Name>
+      <AssemblyName>XSharp.VO.dll</AssemblyName>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\XSharp\Assemblies\XSharp.VO.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.prg" />
+    <Compile Include="About.prg" />
+    <Compile Include="Add Window.prg" />
+    <Compile Include="Context Menus.prg" />
+    <Compile Include="Delete Window.prg" />
+    <Compile Include="Extract Window.prg" />
+    <Compile Include="Menus.prg" />
+    <Compile Include="Resources.prg" />
+    <Compile Include="SFX Window.prg" />
+    <Compile Include="Shell.prg" />
+    <Compile Include="Start.prg" />
+    <Compile Include="Test Window.prg" />
+    <Compile Include="_Start.prg" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeResource Include="Resources\About.HelpAbout.rc">
+      <DependentUpon>About.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Add Window.AddWnd.rc">
+      <DependentUpon>Add Window.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Context Menus.ListMenu.rc">
+      <DependentUpon>Context Menus.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Delete Window.DeleteWnd.rc">
+      <DependentUpon>Delete Window.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Extract Window.ExtractWnd.rc">
+      <DependentUpon>Extract Window.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Menus.MenuStd.rc">
+      <DependentUpon>Menus.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Menus.VS_VERSION_INFO.rc">
+      <DependentUpon>Menus.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Resources.CDROM.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Resources.Close.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Resources.DelZip.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Resources.FabToolsBar1.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Resources.Floppy.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Resources.HardDisk.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Resources.ICON_ZIP.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Resources.NetWork.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Resources.Open.rc">
+      <DependentUpon>Resources.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\SFX Window.SFXWnd.rc">
+      <DependentUpon>SFX Window.prg</DependentUpon>
+    </NativeResource>
+    <NativeResource Include="Resources\Test Window.FabZipTest1.rc">
+      <DependentUpon>Test Window.prg</DependentUpon>
+    </NativeResource>
+  </ItemGroup>
+  <ItemGroup>
+    <VOBinary Include="About.HELPABOUT.vnfrm">
+      <DependentUpon>About.prg</DependentUpon>
+    </VOBinary>
+    <VOBinary Include="Add Window.AddWnd.vnfrm">
+      <DependentUpon>Add Window.prg</DependentUpon>
+    </VOBinary>
+    <VOBinary Include="Delete Window.DeleteWnd.vnfrm">
+      <DependentUpon>Delete Window.prg</DependentUpon>
+    </VOBinary>
+    <None Include="Add Window.vh">
+      <DependentUpon>Add Window.prg</DependentUpon>
+    </None>
+    <VOBinary Include="Extract Window.ExtractWnd.vnfrm">
+      <DependentUpon>Extract Window.prg</DependentUpon>
+    </VOBinary>
+    <None Include="Delete Window.vh">
+      <DependentUpon>Delete Window.prg</DependentUpon>
+    </None>
+    <VOBinary Include="SFX Window.SFXWnd.vnfrm">
+      <DependentUpon>SFX Window.prg</DependentUpon>
+    </VOBinary>
+    <None Include="Extract Window.vh">
+      <DependentUpon>Extract Window.prg</DependentUpon>
+    </None>
+    <VOBinary Include="Shell.FabShellWindow.vnfrm">
+      <DependentUpon>Shell.prg</DependentUpon>
+    </VOBinary>
+    <VOBinary Include="Test Window.FabZipTest1.vnfrm">
+      <DependentUpon>Test Window.prg</DependentUpon>
+    </VOBinary>
+    <None Include="SFX Window.vh">
+      <DependentUpon>SFX Window.prg</DependentUpon>
+    </None>
+    <None Include="GlobalDefines.vh" />
+    <None Include="Properties\CavoWED.inf" />
+    <None Include="Properties\CavoWED.tpl" />
+    <None Include="Properties\CavoDED.tpl" />
+    <None Include="Properties\CavoFED.tpl" />
+    <None Include="Test Window.vh">
+      <DependentUpon>Test Window.prg</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FabTools\FabTools.xsproj">
+      <Name>FabTools</Name>
+      <Project>{d2a10849-0553-4ad0-9b7f-cec2a03b79d5}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabZipVo\FabZipVo.xsproj">
+      <Name>FabZipVo</Name>
+      <Project>{4dd08a41-2945-4ddd-9821-4bf8a301fa9b}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabZip\FabZip.xsproj">
+      <Name>FabZip</Name>
+      <Project>{bf4092de-ca8d-4ebe-b4e2-8fa9660845aa}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.targets" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PreBuildEvent />
+    <PostBuildEvent />
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <ProjectCapabilities>
+      <ProjectConfigurationsDeclaredAsItems />
+    </ProjectCapabilities>
+  </ProjectExtensions>
+</Project>

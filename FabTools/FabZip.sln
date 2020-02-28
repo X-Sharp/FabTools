@@ -1,0 +1,54 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabZip", "FabZip\FabZip.xsproj", "{BF4092DE-CA8D-4EBE-B4E2-8FA9660845AA}"
+EndProject
+Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabZip_Test", "FabZip_Test\FabZip_Test.xsproj", "{C8C7C8DE-AF0D-4F43-8A52-069356949907}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BF4092DE-CA8D-4EBE-B4E2-8FA9660845AA} = {BF4092DE-CA8D-4EBE-B4E2-8FA9660845AA}
+	EndProjectSection
+EndProject
+Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "Fab_Zip_1_52j_Test", "Fab_Zip_1_52j_Test\Fab_Zip_1_52j_Test.xsproj", "{B8945F86-E5C7-4883-8EFE-5EDA496F0187}"
+EndProject
+Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabTools", "FabTools\FabTools.xsproj", "{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}"
+EndProject
+Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "NewZipApp", "NewZipApp\NewZipApp.xsproj", "{3B02267C-DEAA-419E-9E43-F8BFD6E3334B}"
+EndProject
+Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabZipVo", "FabZipVo\FabZipVo.xsproj", "{4DD08A41-2945-4DDD-9821-4BF8A301FA9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF4092DE-CA8D-4EBE-B4E2-8FA9660845AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF4092DE-CA8D-4EBE-B4E2-8FA9660845AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF4092DE-CA8D-4EBE-B4E2-8FA9660845AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF4092DE-CA8D-4EBE-B4E2-8FA9660845AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8C7C8DE-AF0D-4F43-8A52-069356949907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8C7C8DE-AF0D-4F43-8A52-069356949907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8C7C8DE-AF0D-4F43-8A52-069356949907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8C7C8DE-AF0D-4F43-8A52-069356949907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8945F86-E5C7-4883-8EFE-5EDA496F0187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8945F86-E5C7-4883-8EFE-5EDA496F0187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8945F86-E5C7-4883-8EFE-5EDA496F0187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8945F86-E5C7-4883-8EFE-5EDA496F0187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A10849-0553-4AD0-9B7F-CEC2A03B79D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B02267C-DEAA-419E-9E43-F8BFD6E3334B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B02267C-DEAA-419E-9E43-F8BFD6E3334B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B02267C-DEAA-419E-9E43-F8BFD6E3334B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B02267C-DEAA-419E-9E43-F8BFD6E3334B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DD08A41-2945-4DDD-9821-4BF8A301FA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DD08A41-2945-4DDD-9821-4BF8A301FA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DD08A41-2945-4DDD-9821-4BF8A301FA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DD08A41-2945-4DDD-9821-4BF8A301FA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

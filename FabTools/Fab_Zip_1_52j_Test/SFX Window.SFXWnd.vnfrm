@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Designers>
+  <VOWindow Name="SFXWnd">
+    <Window Name="SFXWnd">
+      <Name>SFXWnd</Name>
+      <Class>FORM:DIALOGWINDOW</Class>
+      <Caption>SFX Options</Caption>
+      <Order>0</Order>
+      <Left>5</Left>
+      <Top>5</Top>
+      <Width>444</Width>
+      <Height>218</Height>
+      <BrowseIndex>0</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>3234332804</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"SFX Options"</HyperLabel>
+        <HyperLabel>"SFXWnd"</HyperLabel>
+      </ExProperties>
+    </Window>
+    <Control Name="OkPB">
+      <Name>OkPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;Ok</Caption>
+      <Order>1</Order>
+      <Left>351</Left>
+      <Top>11</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807361</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;Ok"</HyperLabel>
+        <HyperLabel>"OkPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="HelpPB">
+      <Name>HelpPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&lt;&lt; Help on this</Caption>
+      <Order>2</Order>
+      <Left>351</Left>
+      <Top>71</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&lt;&lt; Help on this"</HyperLabel>
+        <HyperLabel>"HelpPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="SFXCaption">
+      <Name>SFXCaption</Name>
+      <Class>CONTROL:TEXTCONTROL:EDIT:SINGLELINEEDIT</Class>
+      <Caption>
+      </Caption>
+      <Order>3</Order>
+      <Left>111</Left>
+      <Top>11</Top>
+      <Width>230</Width>
+      <Height>20</Height>
+      <BrowseIndex>0</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1082196096</Styles>
+      <ExStyles>512</ExStyles>
+      <ExProperties>
+        <HyperLabel>"SFXCaption"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText1">
+      <Name>FixedText1</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>SFX Dialog Title :</Caption>
+      <Order>4</Order>
+      <Left>11</Left>
+      <Top>11</Top>
+      <Width>100</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"SFX Dialog Title :"</HyperLabel>
+        <HyperLabel>"FixedText1"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="SFXDefaultDir">
+      <Name>SFXDefaultDir</Name>
+      <Class>CONTROL:TEXTCONTROL:EDIT:SINGLELINEEDIT</Class>
+      <Caption>
+      </Caption>
+      <Order>5</Order>
+      <Left>111</Left>
+      <Top>41</Top>
+      <Width>230</Width>
+      <Height>20</Height>
+      <BrowseIndex>1</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1082196096</Styles>
+      <ExStyles>512</ExStyles>
+      <ExProperties>
+        <HyperLabel>"SFXDefaultDir"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText2">
+      <Name>FixedText2</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Default Extract Dir :</Caption>
+      <Order>6</Order>
+      <Left>11</Left>
+      <Top>41</Top>
+      <Width>100</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Default Extract Dir :"</HyperLabel>
+        <HyperLabel>"FixedText2"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="SFXCommandLine">
+      <Name>SFXCommandLine</Name>
+      <Class>CONTROL:TEXTCONTROL:EDIT:SINGLELINEEDIT</Class>
+      <Caption>
+      </Caption>
+      <Order>7</Order>
+      <Left>111</Left>
+      <Top>71</Top>
+      <Width>230</Width>
+      <Height>20</Height>
+      <BrowseIndex>2</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1082196096</Styles>
+      <ExStyles>512</ExStyles>
+      <ExProperties>
+        <HyperLabel>"SFXCommandLine"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText3">
+      <Name>FixedText3</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Command Line</Caption>
+      <Order>8</Order>
+      <Left>11</Left>
+      <Top>71</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Command Line"</HyperLabel>
+        <HyperLabel>"FixedText3"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="CmdChk">
+      <Name>CmdChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>User Can Deselect CommandLine</Caption>
+      <Order>9</Order>
+      <Left>111</Left>
+      <Top>101</Top>
+      <Width>230</Width>
+      <Height>18</Height>
+      <BrowseIndex>3</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807363</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"User Can Deselect CommandLine"</HyperLabel>
+        <HyperLabel>"CmdChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FilesChk">
+      <Name>FilesChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Can Select Files</Caption>
+      <Order>10</Order>
+      <Left>11</Left>
+      <Top>131</Top>
+      <Width>113</Width>
+      <Height>18</Height>
+      <BrowseIndex>4</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807395</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Can Select Files"</HyperLabel>
+        <HyperLabel>"FilesChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText4">
+      <Name>FixedText4</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Overwrite Mode</Caption>
+      <Order>11</Order>
+      <Left>141</Left>
+      <Top>161</Top>
+      <Width>90</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Overwrite Mode"</HyperLabel>
+        <HyperLabel>"FixedText4"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="OverChk">
+      <Name>OverChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Hide Overwrite Box</Caption>
+      <Order>12</Order>
+      <Left>11</Left>
+      <Top>161</Top>
+      <Width>113</Width>
+      <Height>18</Height>
+      <BrowseIndex>5</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807395</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Hide Overwrite Box"</HyperLabel>
+        <HyperLabel>"OverChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="OverCombo">
+      <Name>OverCombo</Name>
+      <Class>CONTROL:TEXTCONTROL:BASELISTBOX:COMBOBOX</Class>
+      <Caption>
+      </Caption>
+      <Order>13</Order>
+      <Left>231</Left>
+      <Top>161</Top>
+      <Width>80</Width>
+      <Height>80</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1075906819</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>"OverCombo"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="CancelPB">
+      <Name>CancelPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>Cancel</Caption>
+      <Order>14</Order>
+      <Left>351</Left>
+      <Top>41</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Cancel"</HyperLabel>
+        <HyperLabel>"CancelPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+  </VOWindow>
+</Designers>

@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Designers>
+  <VOWindow Name="HelpAbout">
+    <Window Name="HelpAbout">
+      <Name>HelpAbout</Name>
+      <Class>FORM:DIALOGWINDOW</Class>
+      <Caption>About FabZip Test</Caption>
+      <Order>0</Order>
+      <Left>5</Left>
+      <Top>5</Top>
+      <Width>299</Width>
+      <Height>165</Height>
+      <BrowseIndex>0</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>3234334848</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"About FabZip Test"</HyperLabel>
+        <HyperLabel>"HelpAbout"</HyperLabel>
+      </ExProperties>
+    </Window>
+    <Control Name="DLLInfoPB">
+      <Name>DLLInfoPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>DLL Info</Caption>
+      <Order>3</Order>
+      <Left>191</Left>
+      <Top>101</Top>
+      <Width>80</Width>
+      <Height>24</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"DLL Info"</HyperLabel>
+        <HyperLabel>"DLLInfoPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText2">
+      <Name>FixedText2</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>fabrice@fabtoys.net</Caption>
+      <Order>4</Order>
+      <Left>71</Left>
+      <Top>61</Top>
+      <Width>170</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"fabrice@fabtoys.net"</HyperLabel>
+        <HyperLabel>"FixedText2"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedIcon1">
+      <Name>FixedIcon1</Name>
+      <Class>CONTROL:FIXEDICON</Class>
+      <Caption>DELZIP</Caption>
+      <Order>1</Order>
+      <Left>17</Left>
+      <Top>19</Top>
+      <Width>40</Width>
+      <Height>40</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1082130435</Styles>
+      <ExStyles>131072</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"DELZIP"</HyperLabel>
+        <HyperLabel>"FixedIcon1"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FabZipVersion">
+      <Name>FabZipVersion</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>FabZip Library V</Caption>
+      <Order>2</Order>
+      <Left>71</Left>
+      <Top>21</Top>
+      <Width>170</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741964</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"FabZip Library V"</HyperLabel>
+        <HyperLabel>"FabZipVersion"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText3">
+      <Name>FixedText3</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>© 1997-2007 Fabrice Foray</Caption>
+      <Order>5</Order>
+      <Left>73</Left>
+      <Top>41</Top>
+      <Width>144</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741964</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"© 1997-2007 Fabrice Foray"</HyperLabel>
+        <HyperLabel>"FixedText3"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="OkPB">
+      <Name>OkPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>OK</Caption>
+      <Order>6</Order>
+      <Left>41</Left>
+      <Top>101</Top>
+      <Width>80</Width>
+      <Height>24</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807361</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"OK"</HyperLabel>
+        <HyperLabel>"OkPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+  </VOWindow>
+</Designers>

@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Designers>
+  <VOWindow Name="AddWnd">
+    <Window Name="AddWnd">
+      <Name>AddWnd</Name>
+      <Class>FORM:DIALOGWINDOW</Class>
+      <Caption>Add</Caption>
+      <Order>0</Order>
+      <Left>5</Left>
+      <Top>5</Top>
+      <Width>434</Width>
+      <Height>314</Height>
+      <BrowseIndex>0</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>3234332804</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Add"</HyperLabel>
+        <HyperLabel>"AddWnd"</HyperLabel>
+      </ExProperties>
+    </Window>
+    <Control Name="DoItPB">
+      <Name>DoItPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>Do It</Caption>
+      <Order>15</Order>
+      <Left>341</Left>
+      <Top>11</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807361</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Do It"</HyperLabel>
+        <HyperLabel>"DoItPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="Files">
+      <Name>Files</Name>
+      <Class>CONTROL:TEXTCONTROL:EDIT:SINGLELINEEDIT</Class>
+      <Caption>
+      </Caption>
+      <Order>1</Order>
+      <Left>51</Left>
+      <Top>11</Top>
+      <Width>230</Width>
+      <Height>20</Height>
+      <BrowseIndex>0</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1082196096</Styles>
+      <ExStyles>512</ExStyles>
+      <ExProperties>
+        <HyperLabel>"Files"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="SelectPB">
+      <Name>SelectPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>-&gt;</Caption>
+      <Order>2</Order>
+      <Left>281</Left>
+      <Top>11</Top>
+      <Width>27</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"-&gt;"</HyperLabel>
+        <HyperLabel>"SelectPB"</HyperLabel>
+        <TooltipText>"Select"</TooltipText>
+      </ExProperties>
+    </Control>
+    <Control Name="ActionCombo">
+      <Name>ActionCombo</Name>
+      <Class>CONTROL:TEXTCONTROL:BASELISTBOX:COMBOBOX</Class>
+      <Caption>
+      </Caption>
+      <Order>3</Order>
+      <Left>51</Left>
+      <Top>41</Top>
+      <Width>190</Width>
+      <Height>100</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1075906563</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>"ActionCombo"</HyperLabel>
+        <FillUsing>SELF:FillAction()</FillUsing>
+      </ExProperties>
+    </Control>
+    <Control Name="LevelSlider">
+      <Name>LevelSlider</Name>
+      <Class>CONTROL:SCROLLBAR:SLIDER:HORIZONTALSLIDER</Class>
+      <Caption>
+      </Caption>
+      <Order>4</Order>
+      <Left>11</Left>
+      <Top>91</Top>
+      <Width>190</Width>
+      <Height>30</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807361</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>"LevelSlider"</HyperLabel>
+        <Range>,9</Range>
+      </ExProperties>
+    </Control>
+    <Control Name="DosFormatChk">
+      <Name>DosFormatChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>FileNames in 8.3 format</Caption>
+      <Order>5</Order>
+      <Left>13</Left>
+      <Top>139</Top>
+      <Width>190</Width>
+      <Height>18</Height>
+      <BrowseIndex>1</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807363</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"FileNames in 8.3 format"</HyperLabel>
+        <HyperLabel>"DosFormatChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="SystemChk">
+      <Name>SystemChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Include System and Hidden Files</Caption>
+      <Order>6</Order>
+      <Left>13</Left>
+      <Top>163</Top>
+      <Width>190</Width>
+      <Height>18</Height>
+      <BrowseIndex>2</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807363</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Include System and Hidden Files"</HyperLabel>
+        <HyperLabel>"SystemChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="RecurseChk">
+      <Name>RecurseChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Recurse into Subdirectories</Caption>
+      <Order>7</Order>
+      <Left>229</Left>
+      <Top>139</Top>
+      <Width>180</Width>
+      <Height>18</Height>
+      <BrowseIndex>3</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807363</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Recurse into Subdirectories"</HyperLabel>
+        <HyperLabel>"RecurseChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="DirInfoChk">
+      <Name>DirInfoChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Store Dirnames with files</Caption>
+      <Order>8</Order>
+      <Left>229</Left>
+      <Top>163</Top>
+      <Width>180</Width>
+      <Height>18</Height>
+      <BrowseIndex>4</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807363</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Store Dirnames with files"</HyperLabel>
+        <HyperLabel>"DirInfoChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="SpanningChk">
+      <Name>SpanningChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Disk Spanning</Caption>
+      <Order>10</Order>
+      <Left>25</Left>
+      <Top>187</Top>
+      <Width>93</Width>
+      <Height>18</Height>
+      <BrowseIndex>5</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807363</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Disk Spanning"</HyperLabel>
+        <HyperLabel>"SpanningChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FormatChk">
+      <Name>FormatChk</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:CHECKBOX</Class>
+      <Caption>Format each Disk</Caption>
+      <Order>11</Order>
+      <Left>25</Left>
+      <Top>217</Top>
+      <Width>102</Width>
+      <Height>18</Height>
+      <BrowseIndex>6</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807395</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Format each Disk"</HyperLabel>
+        <HyperLabel>"FormatChk"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="MaxSize">
+      <Name>MaxSize</Name>
+      <Class>CONTROL:TEXTCONTROL:BASELISTBOX:COMBOBOX</Class>
+      <Caption>
+      </Caption>
+      <Order>12</Order>
+      <Left>115</Left>
+      <Top>241</Top>
+      <Width>80</Width>
+      <Height>117</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1075906562</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>"MaxSize"</HyperLabel>
+        <FillUsing>SELF:FillFloppy()</FillUsing>
+      </ExProperties>
+    </Control>
+    <Control Name="MinDisk1">
+      <Name>MinDisk1</Name>
+      <Class>CONTROL:TEXTCONTROL:EDIT:SINGLELINEEDIT</Class>
+      <Caption>
+      </Caption>
+      <Order>13</Order>
+      <Left>331</Left>
+      <Top>217</Top>
+      <Width>66</Width>
+      <Height>20</Height>
+      <BrowseIndex>7</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1082196096</Styles>
+      <ExStyles>512</ExStyles>
+      <ExProperties>
+        <HyperLabel>"MinDisk1"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="MinFreeSize">
+      <Name>MinFreeSize</Name>
+      <Class>CONTROL:TEXTCONTROL:EDIT:SINGLELINEEDIT</Class>
+      <Caption>
+      </Caption>
+      <Order>14</Order>
+      <Left>331</Left>
+      <Top>241</Top>
+      <Width>66</Width>
+      <Height>20</Height>
+      <BrowseIndex>8</BrowseIndex>
+      <BrowseSize>17</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1082196096</Styles>
+      <ExStyles>512</ExStyles>
+      <ExProperties>
+        <HyperLabel>"MinFreeSize"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="WildcardsPB">
+      <Name>WildcardsPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;With Wildcards</Caption>
+      <Order>16</Order>
+      <Left>341</Left>
+      <Top>41</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;With Wildcards"</HyperLabel>
+        <HyperLabel>"WildcardsPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="CancelPB">
+      <Name>CancelPB</Name>
+      <Class>CONTROL:TEXTCONTROL:BUTTON:PUSHBUTTON</Class>
+      <Caption>&amp;Cancel</Caption>
+      <Order>17</Order>
+      <Left>341</Left>
+      <Top>71</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073807360</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"&amp;Cancel"</HyperLabel>
+        <HyperLabel>"CancelPB"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText1">
+      <Name>FixedText1</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Files :</Caption>
+      <Order>18</Order>
+      <Left>11</Left>
+      <Top>11</Top>
+      <Width>40</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Files :"</HyperLabel>
+        <HyperLabel>"FixedText1"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText2">
+      <Name>FixedText2</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Action</Caption>
+      <Order>19</Order>
+      <Left>11</Left>
+      <Top>41</Top>
+      <Width>40</Width>
+      <Height>16</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Action"</HyperLabel>
+        <HyperLabel>"FixedText2"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText3">
+      <Name>FixedText3</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Compression Level</Caption>
+      <Order>20</Order>
+      <Left>11</Left>
+      <Top>71</Top>
+      <Width>150</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Compression Level"</HyperLabel>
+        <HyperLabel>"FixedText3"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText4">
+      <Name>FixedText4</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Min</Caption>
+      <Order>21</Order>
+      <Left>11</Left>
+      <Top>121</Top>
+      <Width>27</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741825</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Min"</HyperLabel>
+        <HyperLabel>"FixedText4"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText5">
+      <Name>FixedText5</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Max</Caption>
+      <Order>22</Order>
+      <Left>171</Left>
+      <Top>121</Top>
+      <Width>30</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741825</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Max"</HyperLabel>
+        <HyperLabel>"FixedText5"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText6">
+      <Name>FixedText6</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Archive Size kb</Caption>
+      <Order>24</Order>
+      <Left>25</Left>
+      <Top>241</Top>
+      <Width>84</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Archive Size kb"</HyperLabel>
+        <HyperLabel>"FixedText6"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText7">
+      <Name>FixedText7</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Min Free Size</Caption>
+      <Order>26</Order>
+      <Left>217</Left>
+      <Top>241</Top>
+      <Width>80</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Min Free Size"</HyperLabel>
+        <HyperLabel>"FixedText7"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FixedText8">
+      <Name>FixedText8</Name>
+      <Class>CONTROL:TEXTCONTROL:FIXEDTEXT</Class>
+      <Caption>Min Free Size on Disk1</Caption>
+      <Order>27</Order>
+      <Left>217</Left>
+      <Top>217</Top>
+      <Width>114</Width>
+      <Height>20</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073741824</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Min Free Size on Disk1"</HyperLabel>
+        <HyperLabel>"FixedText8"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="DiskSizeGrp">
+      <Name>DiskSizeGrp</Name>
+      <Class>CONTROL:TEXTCONTROL:GROUPBOX</Class>
+      <Caption>Disk Size</Caption>
+      <Order>25</Order>
+      <Left>211</Left>
+      <Top>199</Top>
+      <Width>192</Width>
+      <Height>72</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073872903</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Disk Size"</HyperLabel>
+        <HyperLabel>"DiskSizeGrp"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="FoldersGrp">
+      <Name>FoldersGrp</Name>
+      <Class>CONTROL:TEXTCONTROL:GROUPBOX</Class>
+      <Caption>Folders</Caption>
+      <Order>23</Order>
+      <Left>211</Left>
+      <Top>121</Top>
+      <Width>210</Width>
+      <Height>66</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073872903</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>,"Folders"</HyperLabel>
+        <HyperLabel>"FoldersGrp"</HyperLabel>
+      </ExProperties>
+    </Control>
+    <Control Name="DiskSpanningGrp">
+      <Name>DiskSpanningGrp</Name>
+      <Class>CONTROL:TEXTCONTROL:GROUPBOX</Class>
+      <Caption>
+      </Caption>
+      <Order>9</Order>
+      <Left>11</Left>
+      <Top>187</Top>
+      <Width>410</Width>
+      <Height>96</Height>
+      <BrowseIndex>-1</BrowseIndex>
+      <BrowseSize>0</BrowseSize>
+      <SubForm>No</SubForm>
+      <NoSave>No</NoSave>
+      <Deleted>0</Deleted>
+      <Styles>1073872903</Styles>
+      <ExStyles>0</ExStyles>
+      <ExProperties>
+        <HyperLabel>"DiskSpanningGrp"</HyperLabel>
+      </ExProperties>
+    </Control>
+  </VOWindow>
+</Designers>
