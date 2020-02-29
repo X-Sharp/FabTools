@@ -1,5 +1,6 @@
 ﻿// Array.prg
-#using System.Collections
+using System.Collections
+using System.Collections.Generic
 
 BEGIN NAMESPACE FabTools
 
@@ -7,6 +8,16 @@ BEGIN NAMESPACE FabTools
        protect lAtBottom as logic
        protect wPos as word
        
+		
+	CONSTRUCTOR ( capacity AS INT32 )
+		Super( Capacity )
+		
+	CONSTRUCTOR ( initList AS ICollection )
+		Super( initList )
+		
+	CONSTRUCTOR ( )
+		Super( )
+		
     private access wSize as int
         return Self:Count
         

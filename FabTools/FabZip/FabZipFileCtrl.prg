@@ -27,7 +27,7 @@ BEGIN NAMESPACE FabZip.WinForms
 			return SELF:oZipFile
 			
 		PRIVATE METHOD ExtractHandler( sender AS System.Object, e AS ExtractProgressEventArgs ) AS System.Void
-			local Params as Object[]
+			local zipParams as Object[]
 			local symEvent as FabZipEvent
 			local cFile as string
 			local nSize as int64
@@ -54,31 +54,31 @@ BEGIN NAMESPACE FabZip.WinForms
 						RETURN
 				ENDCASE
 				//
-				Params := <Object>{ self, symEvent, cFile, nSize }
+				zipParams := <Object>{ self, symEvent, cFile, nSize }
 				//
 				//Send( Self:Owner, "OnFabZipProgress", Self, symEvent, cFile, nSize )
-				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", Params )
+				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
 			endif
 			RETURN
 		
 		METHOD	OnFabZipDirUpdate(  )  as void
-			local Params as Object[]
+			local zipParams as Object[]
 			//
-			Params := <Object>{ SELF }
-			ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipDirUpdate", Params ) 
+			zipParams := <Object>{ SELF }
+			ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipDirUpdate", zipParams ) 
 			//
 			return
 			
 		METHOD OnFabOperationSize( nTotalFiles as Int64, nTotalSize as Int64 ) as VOID
-			local Params as Object[]
+			local zipParams as Object[]
 			//
 			if ( SELF:Parent != NULL )
 				//
-				Params := <Object>{ Self, FabZipEvent.TotalFiles, "", nTotalFiles }
-				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", Params )
+				zipParams := <Object>{ Self, FabZipEvent.TotalFiles, "", nTotalFiles }
+				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
 				//
-				Params := <Object>{ Self, FabZipEvent.TotalSize, "", nTotalSize }
-				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", Params )
+				zipParams := <Object>{ Self, FabZipEvent.TotalSize, "", nTotalSize }
+				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
 			ENDIF    
 			RETURN        
 			

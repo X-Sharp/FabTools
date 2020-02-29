@@ -39,7 +39,7 @@ CONSTRUCTOR(oParent,uExtra)
 	SELF:oCCDLLInfoPB:HyperLabel := HyperLabel{#DLLInfoPB , "DLL Info" , NULL_STRING , NULL_STRING}
 
 	SELF:oDCFixedText2 := FIXEDTEXT{SELF , ResourceID{ HELPABOUT_FIXEDTEXT2  , _GetInst() } }
-	SELF:oDCFixedText2:HyperLabel := HyperLabel{#FixedText2 , "fabrice@fabtoys.net" , NULL_STRING , NULL_STRING}
+	SELF:oDCFixedText2:HyperLabel := HyperLabel{#FixedText2 , "fabrice@xsharp.eu" , NULL_STRING , NULL_STRING}
 
 	SELF:oDCFixedText3 := FIXEDTEXT{SELF , ResourceID{ HELPABOUT_FIXEDTEXT3  , _GetInst() } }
 	SELF:oDCFixedText3:HyperLabel := HyperLabel{#FixedText3 , "© 1997-2020 Fabrice Foray" , NULL_STRING , NULL_STRING}

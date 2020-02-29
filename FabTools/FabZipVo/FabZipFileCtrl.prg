@@ -61,7 +61,7 @@ BEGIN NAMESPACE FabZip
 			RETURN
 			
 		PRIVATE METHOD SaveHandler( sender AS System.Object, e AS SaveProgressEventArgs ) AS System.Void
-			LOCAL Params AS OBJECT[]
+			LOCAL zipParams AS OBJECT[]
 			LOCAL symEvent AS SYMBOL
 			LOCAL cFile AS STRING
 			LOCAL nSize AS INT64
@@ -89,10 +89,10 @@ BEGIN NAMESPACE FabZip
 						RETURN
 				END SWITCH
 				//
-				PARAMS := <OBJECT>{ SELF, symEvent, cFile, nSize }
+				zipParams := <OBJECT>{ SELF, symEvent, cFile, nSize }
 				//
 				//Send( Self:Owner, "OnFabZipProgress", Self, symEvent, cFile, nSize )
-				ReflectionLib.InvokeMethod( SELF:Owner, "OnFabZipProgress", PARAMS )
+				ReflectionLib.InvokeMethod( SELF:Owner, "OnFabZipProgress", zipParams )
 			ENDIF
 			RETURN    
 		
@@ -100,17 +100,17 @@ BEGIN NAMESPACE FabZip
 			//
 			IF ( SELF:Owner != NULL )
 				//
-				Send( SELF:Owner, "OnFSWITCHrogress", SELF, #TotalFiles, "", nTotalFiles )
+				Send( SELF:Owner, "OnFabZipProgress", SELF, #TotalFiles, "", nTotalFiles )
 				//
 				Send( SELF:Owner, "OnFabZipProgress", SELF, #TotalSize, "", nTotalSize )
 			ENDIF    
 			RETURN
 			
 		METHOD	OnFabZipDirUpdate(  )  AS VOID
-			LOCAL Params AS OBJECT[]
+			LOCAL zipParams AS OBJECT[]
 			//
-			PARAMS := <OBJECT>{ SELF }
-			ReflectionLib.InvokeMethod( SELF:Owner, "OnFabZipDirUpdate", PARAMS ) 
+			zipParams := <OBJECT>{ SELF }
+			ReflectionLib.InvokeMethod( SELF:Owner, "OnFabZipDirUpdate", zipParams ) 
 			//
 			RETURN
 			

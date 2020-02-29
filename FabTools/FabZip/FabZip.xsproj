@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compatibility.prg" />
     <Compile Include="FabZipDirEntry.prg" />
     <Compile Include="FabZipFile.prg" />
     <Compile Include="FabZipFileCtrl.prg" />

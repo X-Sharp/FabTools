@@ -70,8 +70,11 @@ BEGIN NAMESPACE FabZip
 			/// <summary>
 				/// The List indicating all filenames inside the Zip File
 			/// </summary>
-		ACCESS Contents AS List<FabZipDirEntry> 
-			RETURN SELF:aContents
+		ACCESS Contents AS FabArray //List<FabZipDirEntry> 
+			LOCAL aTemp AS FabArray
+			//
+			aTemp := FabArray{ SELF:aContents }
+			RETURN aTemp
 			
 		ACCESS FileName AS STRING
 			RETURN SELF:cZipFile
@@ -117,6 +120,8 @@ BEGIN NAMESPACE FabZip
 			SELF:aFilesArgs := List<STRING>{} //ArrayList{}
 			//   
 			SELF:dwMaxVolumeSize := 0
+			//
+			
 			
 		
 		METHOD UpdateContents() AS VOID    
@@ -329,7 +334,9 @@ BEGIN NAMESPACE FabZip
 				oZipFile := ZipFile.Read( TmpZipName )        
 			ELSE
 				oZipFile := ZipFile{ TmpZipName }
-			ENDIF            
+			ENDIF 
+			// No Multi Thread to Compress
+			oZipFile:ParallelDeflateThreshold := -1           
 			//
 			IF ( SELF:SaveHandler != NULL )
 				oZipFile:SaveProgress += SELF:SaveHandler
@@ -340,7 +347,7 @@ BEGIN NAMESPACE FabZip
 			IF ( SELF:aFilesArgs:Count == 0 )
 				// If we have a Freshen Flag, then we must check what files are inside
 				// and outside to update them
-				FOREACH oZDir AS FabZipDirEntry IN SELF:Contents
+				FOREACH oZDir AS FabZipDirEntry IN SELF:aContents
 					// Convert FileName from Unix to DOS
 					// We can only Freshen existing file !
 					SELF:FilesArg:Add( StrTran( oZDir:FileName, "/", "\" ) )
@@ -349,9 +356,15 @@ BEGIN NAMESPACE FabZip
 			// Recurse subdir ?
 			lRecurse := SELF:AddOptions:RecurseDirs
 			// The password and Encryption must be set BEFORE !!!!
-			oZipFile:Password := SELF:cPassword
-			// TODO : Check for Encryption...
-			oZipFile:Encryption := SELF:HowToEncrypt
+			IF !Empty( SELF:cPassword )
+				oZipFile:Password := SELF:cPassword
+				// TODO : Check for Encryption...
+				oZipFile:Encryption := SELF:HowToEncrypt
+			ELSE
+				oZipFile:Password := NULL
+				oZipFile:Encryption := IOnic.Zip.EncryptionAlgorithm.None
+			ENDIF
+			
 			// Now, Add Files ...
 			FOREACH cTmp AS STRING IN SELF:aFilesArgs
 				// Try to handle Wildcards
@@ -395,8 +408,9 @@ BEGIN NAMESPACE FabZip
 				// How many segment files ?
 				SELF:nDiskNr := oZipFile:NumberOfSegmentsForMostRecentSave 
 				
-			CATCH //Err AS Exception
+			CATCH Err AS Exception
 				// Handle here trouble with Save operation
+				THROW Err
 			FINALLY
 				IF oZipFile != NULL
 					oZipFile:Dispose()
@@ -435,6 +449,8 @@ BEGIN NAMESPACE FabZip
 			//
 			SELF:lProcessing := TRUE
 			oZipFile := ZipFile.Read( SELF:cZipFile ) 
+			// No Multi Thread to Compress
+			oZipFile:ParallelDeflateThreshold := -1
 			//   
 			Max := SELF:aFilesArgs:Count
 			FOR Cpt := 1 TO Max
