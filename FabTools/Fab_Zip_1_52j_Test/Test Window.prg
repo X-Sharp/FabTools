@@ -359,7 +359,7 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		SELF:FieldPut( #FabZipMsg , uValue )
 		
 	CONSTRUCTOR(oWindow,iCtlID,oServer,uExtra)
-	
+		
 		SELF:PreInit(oWindow,iCtlID,oServer,uExtra)
 		
 		SUPER(oWindow , ResourceID{"FabZipTest1" , _GetInst()},iCtlID)
@@ -530,47 +530,52 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		return self
 		
 	METHOD	OnFabZipProgress( oCtrl as object, symEvent as symbol, cFile as string, nSize as int64 ) as logic
-		IF ( symEvent == #New )
-			// Convert Unix-style to Dos separator
-			cFile := StrTran( cFile, "/", "\" )
-			//
-			SELF:oDCFProcess:TextValue := cFile
-			SELF:oDCExtractBar:Range := Range{ 1, 100 }
-			SELF:oDCExtractBar:UnitSize := 1
-			SELF:oDCExtractBar:Position := 1
-			//
-			SELF:nCurrentSize := (int)nSize
-			SELF:nCurrentPos := 0
-			//
-			SELF:nCurrentFile := SELF:nCurrentFile + 1
-			SELF:oDCTotalFilesBar:Position := FabGetPercent( SELF:nCurrentFile, SELF:nMaxFiles )
-			//
-		ELSEIF ( symEvent == #Update )
-			// nSize gives now the bytes processed since the last call.
-			SELF:nCurrentPos := SELF:nCurrentPos + (int)nSize
-			SELF:oDCExtractBar:Position := FabGetPercent( SELF:nCurrentPos, SELF:nCurrentSize )
-			//
-			SELF:nCurrMaxSize := SELF:nCurrMaxSize + (int)nSize
-			SELF:oDCTotalSizeBar:Position := FabGetPercent( SELF:nCurrMaxSize, SELF:nMaxSize )
-			//
-		ELSEIF ( symEvent == #END )
-			SELF:oDCFProcess:TextValue := ""
-			SELF:oDCExtractBar:Range := Range{ 1, 100 }
-			SELF:oDCExtractBar:UnitSize := 1
-			SELF:oDCExtractBar:Position := 1
-		ELSEIF ( symEvent == #TotalFiles )
-			SELF:oDCTotalFilesBar:Range := Range{ 1, 100 }
-			SELF:oDCTotalFilesBar:UnitSize := 1
-			SELF:oDCTotalFilesBar:Position := 1
-			SELF:nMaxFiles := (int)nSize
-			SELF:nCurrentFile := 0
-		ELSEIF ( symEvent == #TotalSize )
-			SELF:oDCTotalSizeBar:Range := Range{ 1, 100 }
-			SELF:oDCTotalSizeBar:UnitSize := 1
-			SELF:oDCTotalSizeBar:Position := 1
-			SELF:nMaxSize := (int)nSize
-			SELF:nCurrMaxSize := 0
-		ENDIF
+		//
+		TRY
+			IF ( symEvent == #New )
+				// Convert Unix-style to Dos separator
+				cFile := StrTran( cFile, "/", "\" )
+				//
+				SELF:oDCFProcess:TextValue := cFile
+				SELF:oDCExtractBar:Range := Range{ 1, 100 }
+				SELF:oDCExtractBar:UnitSize := 1
+				SELF:oDCExtractBar:Position := 1
+				//
+				SELF:nCurrentSize := (int)nSize
+				SELF:nCurrentPos := 0
+				//
+				SELF:nCurrentFile := SELF:nCurrentFile + 1
+				SELF:oDCTotalFilesBar:Position := FabGetPercent( SELF:nCurrentFile, SELF:nMaxFiles )
+				//
+			ELSEIF ( symEvent == #Update )
+				// nSize gives now the bytes processed since the last call.
+				SELF:nCurrentPos := SELF:nCurrentPos + (int)nSize
+				SELF:oDCExtractBar:Position := FabGetPercent( SELF:nCurrentPos, SELF:nCurrentSize )
+				//
+				SELF:nCurrMaxSize := SELF:nCurrMaxSize + (int)nSize
+				SELF:oDCTotalSizeBar:Position := FabGetPercent( SELF:nCurrMaxSize, SELF:nMaxSize )
+				//
+			ELSEIF ( symEvent == #END )
+				SELF:oDCFProcess:TextValue := ""
+				SELF:oDCExtractBar:Range := Range{ 1, 100 }
+				SELF:oDCExtractBar:UnitSize := 1
+				SELF:oDCExtractBar:Position := 1
+			ELSEIF ( symEvent == #TotalFiles )
+				SELF:oDCTotalFilesBar:Range := Range{ 1, 100 }
+				SELF:oDCTotalFilesBar:UnitSize := 1
+				SELF:oDCTotalFilesBar:Position := 1
+				SELF:nMaxFiles := (int)nSize
+				SELF:nCurrentFile := 0
+			ELSEIF ( symEvent == #TotalSize )
+				SELF:oDCTotalSizeBar:Range := Range{ 1, 100 }
+				SELF:oDCTotalSizeBar:UnitSize := 1
+				SELF:oDCTotalSizeBar:Position := 1
+				SELF:nMaxSize := (int)nSize
+				SELF:nCurrMaxSize := 0
+			ENDIF
+		CATCH Err AS Exception
+			System.Diagnostics.Debug.WriteLine( Err:Message )
+		END TRY
 		// System refresh or we can't do anything ( Cancel, moving windows, .... )
 		GetAppObject():Exec( EXECWHILEEVENT )
 		//

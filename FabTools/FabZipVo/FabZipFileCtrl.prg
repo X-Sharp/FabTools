@@ -7,8 +7,11 @@ USING Ionic.Zip
 BEGIN NAMESPACE FabZip
 
 	CLASS FabZipFileCtrl INHERIT FixedText
-	
+		
 		PROTECT oZipFile AS FabZipFile
+		
+		PROTECT lStartNew AS LOGIC
+		PROTECT nDone	  AS DWORD
 		
 		CONSTRUCTOR(oOwner, xID, oPoint, oDimension, cText) 
 			// Call Super
@@ -17,6 +20,7 @@ BEGIN NAMESPACE FabZip
 			SELF:oZipFile := FabZipFile{ NULL_STRING , SELF }
 			SELF:oZipFile:ExtractHandler := EventHandler<ExtractProgressEventArgs>{SELF, @ExtractHandler() }
 			SELF:oZipFile:SaveHandler := EventHandler<SaveProgressEventArgs>{ SELF, @SaveHandler() }
+			SELF:lStartNew := FALSE
 			//
 			SELF:Hide()
 			RETURN
@@ -59,7 +63,7 @@ BEGIN NAMESPACE FabZip
 				//ReflectionLib.InvokeMethod( SELF:Owner, "OnFabZipProgress", Params )
 			ENDIF
 			RETURN
-			
+		
 		PRIVATE METHOD SaveHandler( sender AS System.Object, e AS SaveProgressEventArgs ) AS System.Void
 			LOCAL zipParams AS OBJECT[]
 			LOCAL symEvent AS SYMBOL
@@ -74,17 +78,31 @@ BEGIN NAMESPACE FabZip
 				//
 				SWITCH e:EventType
 					CASE ZipProgressEventType.Saving_BeforeWriteEntry
-						symEvent := #new
-						cFile := e:CurrentEntry:FileName
-						nSize := e:CurrentEntry:UncompressedSize
+						// We will need to send two notifications on first Update
+						SELF:lStartNew := TRUE
+						//symEvent := #new
+						//cFile := e:CurrentEntry:FileName
+						//nSize := e:CurrentEntry:UncompressedSize
 					CASE ZipProgressEventType.Saving_AfterWriteEntry
 						symEvent := #end
 						cFile := ""
 						nSize := 0
+						SELF:lStartNew := FALSE		// UnNeeded
 					CASE ZipProgressEventType.Saving_EntryBytesRead
+						IF ( SELF:lStartNew )
+							//
+							symEvent := #new
+							cFile := e:CurrentEntry:FileName
+							nSize := e:TotalBytesToTransfer
+							zipParams := <OBJECT>{ SELF, symEvent, cFile, nSize }
+							ReflectionLib.InvokeMethod( SELF:Owner, "OnFabZipProgress", zipParams )
+							SELF:lStartNew := FALSE
+							SELF:nDone := 0
+						ENDIF
 						symEvent := #Update
 						cFile := ""
-						nSize := e:BytesTransferred
+						nSize := e:BytesTransferred - SELF:nDone
+						SELF:nDone := e:BytesTransferred
 					OTHERWISE 
 						RETURN
 				END SWITCH

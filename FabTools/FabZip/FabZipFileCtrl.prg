@@ -13,14 +13,19 @@ BEGIN NAMESPACE FabZip.WinForms
 	END ENUM
 	
 	CLASS FabZipFileCtrl Inherit UserControl
-	
+		
 		Protect oZipFile as FabZipFile
+		
+		PROTECT lStartNew AS LOGIC
+		PROTECT nDone	  AS INT64
 		
 		CONSTRUCTOR()
 			Super()
 			//
 			Self:oZipFile := FabZipFile{ NULL_String , SELF }
 			Self:oZipFile:ExtractHandler := EventHandler<ExtractProgressEventArgs>{SELF, @ExtractHandler() }
+			SELF:oZipFile:SaveHandler := EventHandler<SaveProgressEventArgs>{ SELF, @SaveHandler() }
+			SELF:lStartNew := FALSE
 			RETURN
 			
 		ACCESS ZipFile as FabZipFile
@@ -60,6 +65,56 @@ BEGIN NAMESPACE FabZip.WinForms
 				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
 			endif
 			RETURN
+		
+		PRIVATE METHOD SaveHandler( sender AS System.Object, e AS SaveProgressEventArgs ) AS System.Void
+			LOCAL zipParams AS OBJECT[]
+			LOCAL symEvent AS SYMBOL
+			LOCAL cFile AS STRING
+			LOCAL nSize AS INT64
+			//
+			symEvent := NULL_SYMBOL
+			cFile := ""
+			nSize := 0
+			//
+			IF ( SELF:Parent != NULL )
+				//
+				SWITCH e:EventType
+					CASE ZipProgressEventType.Saving_BeforeWriteEntry
+						// We will need to send two notifications on first Update
+						SELF:lStartNew := TRUE
+						//symEvent := #new
+						//cFile := e:CurrentEntry:FileName
+						//nSize := e:CurrentEntry:UncompressedSize
+					CASE ZipProgressEventType.Saving_AfterWriteEntry
+						symEvent := #end
+						cFile := ""
+						nSize := 0
+						SELF:lStartNew := FALSE		// UnNeeded
+					CASE ZipProgressEventType.Saving_EntryBytesRead
+						IF ( SELF:lStartNew )
+							//
+							symEvent := #new
+							cFile := e:CurrentEntry:FileName
+							nSize := e:TotalBytesToTransfer
+							zipParams := <OBJECT>{ SELF, symEvent, cFile, nSize }
+							ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
+							SELF:lStartNew := FALSE
+							SELF:nDone := 0
+						ENDIF
+						symEvent := #Update
+						cFile := ""
+						nSize := e:BytesTransferred - SELF:nDone
+						SELF:nDone := e:BytesTransferred
+					OTHERWISE 
+						RETURN
+				END SWITCH
+				//
+				zipParams := <OBJECT>{ SELF, symEvent, cFile, nSize }
+				//
+				//Send( Self:Owner, "OnFabZipProgress", Self, symEvent, cFile, nSize )
+				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
+			ENDIF
+			RETURN    		
 		
 		METHOD	OnFabZipDirUpdate(  )  as void
 			local zipParams as Object[]
