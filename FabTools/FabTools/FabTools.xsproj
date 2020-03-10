@@ -139,6 +139,7 @@
     <Compile Include="Error.prg" />
     <Compile Include="FabOpenDialogEx.prg" />
     <Compile Include="FileBin.prg" />
+    <Compile Include="Format Dialog.prg" />
     <Compile Include="IniFile.prg" />
     <Compile Include="InputDlg.prg">
       <SubType>Form</SubType>
