@@ -17,6 +17,9 @@ Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabTwain", "FabTwain\FabTwa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B0EB998-92E0-4B69-9497-6B3A8F82AA33}"
 	ProjectSection(SolutionItems) = preProject
+		FabOutlookBar_ReadMe.md = FabOutlookBar_ReadMe.md
+		FabPaintLib_ReadMe.md = FabPaintLib_ReadMe.md
+		FabTwain_ReadMe.md = FabTwain_ReadMe.md
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
