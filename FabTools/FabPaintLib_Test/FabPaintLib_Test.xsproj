@@ -270,12 +270,12 @@
   <Import Project="$(MSBuildExtensionsPath)\XSharp\XSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <PreBuildEvent />
-    <PostBuildEvent />
+    <PostBuildEvent>xcopy $(ProjectDir)bin\$(Configuration) $(SolutionDir)bin\$(Configuration) /y /s /i</PostBuildEvent>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PreBuildEvent />
-    <PostBuildEvent />
+    <PostBuildEvent>xcopy $(ProjectDir)bin\$(Configuration) $(SolutionDir)bin\$(Configuration) /y /s /i</PostBuildEvent>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
