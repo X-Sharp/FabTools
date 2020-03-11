@@ -9,19 +9,11 @@ USING System.Runtime.InteropServices
 [assembly: AssemblyTitle("FabZipVo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("FabTools")]
 [assembly: AssemblyProduct("FabZipVo")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
-// COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(FALSE)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4dd08a41-2945-4ddd-9821-4bf8a301fa9b")]
 
 //
 // Version information for an assembly consists of the following four values:
@@ -33,5 +25,6 @@ USING System.Runtime.InteropServices
 //
 // You can specify all the values or you can default the Revision and Build Numbers
 // by using the '*' as shown below:
+[assembly: AssemblyVersionAttribute( "2.3.1" )]
+[assembly: AssemblyFileVersionAttribute( "2.3.1" )]
 
-[assembly: AssemblyVersion("1.0.*")]

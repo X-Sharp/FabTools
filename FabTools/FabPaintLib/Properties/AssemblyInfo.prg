@@ -9,16 +9,16 @@
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitleAttribute( "Fab PaintLib" )]
+[assembly: AssemblyTitleAttribute( "FabPaintLib" )]
 [assembly: AssemblyDescriptionAttribute( "" )]
 #ifdef __DEBUG__
 [assembly: AssemblyConfigurationAttribute( "Debug" )]
 #else
 [assembly: AssemblyConfigurationAttribute( "Release" )]
 #endif
-[assembly: AssemblyCompanyAttribute( "Fabrice Foray" )]
-[assembly: AssemblyProductAttribute( "Fab PaintLib" )]
-[assembly: AssemblyCopyrightAttribute( "Copyright © 2009" )]
+[assembly: AssemblyCompanyAttribute( "FabTools" )]
+[assembly: AssemblyProductAttribute( "FabPaintLib" )]
+[assembly: AssemblyCopyrightAttribute( "Copyright © 2020" )]
 [assembly: AssemblyTrademarkAttribute( "" )]
 [assembly: AssemblyCultureAttribute( "" )]
 
@@ -31,5 +31,5 @@
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersionAttribute( "1.0.*" )]
-[assembly: AssemblyFileVersionAttribute( "1.0.*" )]
+[assembly: AssemblyVersionAttribute( "2.3.1" )]
+[assembly: AssemblyFileVersionAttribute( "2.3.1" )]

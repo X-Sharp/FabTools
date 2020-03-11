@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+  <Compile Include="Properties\AssemblyInfo.prg" />
     <Compile Include="Start.prg">
       <SubType>Code</SubType>
     </Compile>

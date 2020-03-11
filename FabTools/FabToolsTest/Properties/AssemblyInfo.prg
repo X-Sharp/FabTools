@@ -9,7 +9,7 @@ USING System.Runtime.InteropServices
 [assembly: AssemblyTitle("FabToolsTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("FabTools")]
 [assembly: AssemblyProduct("FabToolsTest")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
@@ -33,5 +33,6 @@ USING System.Runtime.InteropServices
 //
 // You can specify all the values or you can default the Revision and Build Numbers
 // by using the '*' as shown below:
+[assembly: AssemblyVersionAttribute( "2.3.1" )]
+[assembly: AssemblyFileVersionAttribute( "2.3.1" )]
 
-[assembly: AssemblyVersion("1.0.*")]

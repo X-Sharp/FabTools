@@ -172,9 +172,6 @@
     <NativeResource Include="Resources\Menus.MenuStd.rc">
       <DependentUpon>Menus.prg</DependentUpon>
     </NativeResource>
-    <NativeResource Include="Resources\Menus.VS_VERSION_INFO.rc">
-      <DependentUpon>Menus.prg</DependentUpon>
-    </NativeResource>
     <NativeResource Include="Resources\Resources.CDROM.rc">
       <DependentUpon>Resources.prg</DependentUpon>
     </NativeResource>
@@ -240,6 +237,15 @@
     <VOBinary Include="Test Window.FabZipTest1.vnfrm">
       <DependentUpon>Test Window.prg</DependentUpon>
     </VOBinary>
+    <None Include="Resources\CDROM.ICO" />
+    <None Include="Resources\CLOSE.ICO" />
+    <None Include="Resources\DISKET.ICO" />
+    <None Include="Resources\FABTOOLSBAR2.BMP" />
+    <None Include="Resources\FABZIP.ICO" />
+    <None Include="Resources\FIXE.ICO" />
+    <None Include="Resources\OPEN.ICO" />
+    <None Include="Resources\RESEAU.ICO" />
+    <None Include="Resources\ZIP2.ICO" />
     <None Include="SFX Window.vh">
       <DependentUpon>SFX Window.prg</DependentUpon>
     </None>
