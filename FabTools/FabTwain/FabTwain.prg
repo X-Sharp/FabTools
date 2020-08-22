@@ -85,10 +85,26 @@ BEGIN NAMESPACE FabTwain
 		PROTECT hSMLib 			AS PTR
 		
 		
-		DECLARE	ACCESS ConditionCode, IsTwainAvailable, Owner, State, ErrorCode, ShowUI
-		DECLARE	ACCESS XResolution, YResolution, Contrast, Brightness, PixelType, PixelDepth
+		DECLARE	ACCESS ConditionCode
+		DECLARE ACCESS IsTwainAvailable
+		DECLARE ACCESS Owner
+		DECLARE ACCESS State
+		DECLARE ACCESS ErrorCode
+		DECLARE ACCESS ShowUI
+		DECLARE	ACCESS XResolution
+		DECLARE ACCESS YResolution
+		DECLARE ACCESS Contrast
+		DECLARE ACCESS Brightness
+		DECLARE ACCESS PixelType
+		DECLARE ACCESS PixelDepth
 		
-		DECLARE	ASSIGN XResolution, YResolution, Resolution, Contrast, Brightness, PixelType, PixelDepth
+		DECLARE	ASSIGN XResolution
+		DECLARE	ASSIGN YResolution
+		DECLARE	ASSIGN Resolution
+		DECLARE	ASSIGN Contrast
+		DECLARE	ASSIGN Brightness
+		DECLARE	ASSIGN PixelType
+		DECLARE	ASSIGN PixelDepth
 		
 		
 		
