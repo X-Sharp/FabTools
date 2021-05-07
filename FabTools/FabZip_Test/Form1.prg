@@ -1,5 +1,7 @@
 
 USING System.Windows.Forms
+Using Ionic.Zip
+
 
 USING FabZip
 USING FabZip.WinForms

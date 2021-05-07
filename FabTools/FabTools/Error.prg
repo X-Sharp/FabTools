@@ -22,7 +22,7 @@ METHOD _Break( )
 //s
 	//
 	IF CanBreak()
-		_Break( SELF )
+		XSharp.RT.Functions._Break( SELF )
 	ENDIF
 
 RETURN self
@@ -54,7 +54,7 @@ METHOD Raise( cbBlock )
 	LOCAL oErrorHandler	AS USUAL
 	// Inside a SEQUENCE ?
 	IF CanBreak()
-		_Break(SELF )
+		XSharp.RT.Functions._Break(SELF )
 	ELSE
 		// Do we have a specified error handler ?
 		IF IsNil( cbBlock )
