@@ -13,7 +13,7 @@ To do so :
 2. Go to the Menu
    - Tools
    - NuGet Package Manager
-   - Manage NuGet Packages for Solution...
+   - Package Manager Console
 
 From there, you should see the DotNetZip package, and on top of the Window, a Yellow band indicating that you will need to restore some packages, with a "Restore" button at the end of the Band : Press this button, and you should be fine ! :)
 
