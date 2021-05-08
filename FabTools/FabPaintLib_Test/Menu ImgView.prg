@@ -99,7 +99,7 @@ CONSTRUCTOR( oOwner )
 		HyperLabel{ #ImgViewShellMenu_Image , "&Image" ,  ,  } , SELF:Handle() , 2)
 
 	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Copy_ID, ;
-		HyperLabel{ #ImgCopy , "&Copy" ,  ,  } , GetSubMenu( SELF:Handle() , 2 ) , 0)
+		HyperLabel{ #ImgCopy , "&Copy" ,  ,  } , VOWin32APILibrary.Functions.GetSubMenu( SELF:Handle() , 2 ) , 0)
 
 	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Copy_No_Change_ID, ;
 		HyperLabel{ #ImgCopy0 , "No Change" ,  ,  })
@@ -114,7 +114,7 @@ CONSTRUCTOR( oOwner )
 		HyperLabel{ #ImgCopy32 , "32 bpp" ,  ,  })
 
 	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Resize_ID, ;
-		HyperLabel{ #ImgViewShellMenu_Image_Resize , "&Resize" ,  ,  } , GetSubMenu( SELF:Handle() , 2 ) , 1)
+		HyperLabel{ #ImgViewShellMenu_Image_Resize , "&Resize" ,  ,  } , VOWin32APILibrary.Functions.GetSubMenu( SELF:Handle() , 2 ) , 1)
 
 	SELF:RegisterItem(IDM_ImgViewShellMenu_Image_Resize_Bilinear_ID, ;
 		HyperLabel{ #ImgRBili , "Bilinear" ,  ,  })
