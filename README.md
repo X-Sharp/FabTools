@@ -13,4 +13,5 @@ Port to X# of most of FabTools Libraries
 - [View ReadMe](https://github.com/X-Sharp/FabTools/blob/master/FabTools/FabZip_ReadMe.md)
 
 
-You will find some xxx_ReadMe.md files for each lib with some explanations.
+You will find some xxx_ReadMe.md files for each lib with some explanations.  
+Eventually, for FabZipxxx libs and Tools, dont forget to read the way to Restore the DotNetZip package.
