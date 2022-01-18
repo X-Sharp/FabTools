@@ -40,7 +40,7 @@
     <MemVar>false</MemVar>
     <Undeclared>false</Undeclared>
     <InitLocals>false</InitLocals>
-    <XSharpProjectversion>2.2.0.0</XSharpProjectversion>
+    <XSharpProjectversion>2.10.0.1</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
@@ -158,9 +158,6 @@
     <Compile Include="Messages.prg" />
     <Compile Include="Misc.prg" />
     <Compile Include="Properties\AssemblyInfo.prg">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Class1.prg">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Registry.prg" />
