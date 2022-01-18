@@ -124,15 +124,14 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonFabZip:OrbImage := ((System.Drawing.Image)(resources:GetObject("ribbonFabZip.OrbImage")))
         // 
         // 
-        // 
-        SELF:ribbonFabZip:QuickAcessToolbar:AltKey := NULL
-        SELF:ribbonFabZip:QuickAcessToolbar:Image := NULL
-        SELF:ribbonFabZip:QuickAcessToolbar:Items:Add(SELF:ribbonButtonHelp)
-        SELF:ribbonFabZip:QuickAcessToolbar:Tag := NULL
-        SELF:ribbonFabZip:QuickAcessToolbar:Text := NULL
-        SELF:ribbonFabZip:QuickAcessToolbar:ToolTip := NULL
-        SELF:ribbonFabZip:QuickAcessToolbar:ToolTipImage := NULL
-        SELF:ribbonFabZip:QuickAcessToolbar:ToolTipTitle := NULL
+        SELF:ribbonFabZip:QuickAccessToolbar:AltKey := NULL
+        SELF:ribbonFabZip:QuickAccessToolbar:Image := NULL
+        SELF:ribbonFabZip:QuickAccessToolbar:Items:Add(SELF:ribbonButtonHelp)
+        SELF:ribbonFabZip:QuickAccessToolbar:Tag := NULL
+        SELF:ribbonFabZip:QuickAccessToolbar:Text := NULL
+        SELF:ribbonFabZip:QuickAccessToolbar:ToolTip := NULL
+        SELF:ribbonFabZip:QuickAccessToolbar:ToolTipImage := NULL
+        SELF:ribbonFabZip:QuickAccessToolbar:ToolTipTitle := NULL
         SELF:ribbonFabZip:Size := System.Drawing.Size{704, 138}
         SELF:ribbonFabZip:TabIndex := 0
         SELF:ribbonFabZip:Tabs:Add(SELF:ribbonTab_FabZip)

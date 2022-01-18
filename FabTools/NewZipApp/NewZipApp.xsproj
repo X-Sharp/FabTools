@@ -13,7 +13,7 @@
     <RootNamespace>NewZipApp</RootNamespace>
     <AssemblyName>NewZipApp</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <XSharpProjectversion>2.8.0.11</XSharpProjectversion>
+    <XSharpProjectversion>2.10.0.1</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
@@ -75,11 +75,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.Ribbon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="System.Windows.Forms.Ribbon, Version=2.0.0.0, Culture=neutral, PublicKeyToken=928736e248aa81f9">
       <Name>System.Windows.Forms.Ribbon</Name>
       <AssemblyName>System.Windows.Forms.Ribbon.dll</AssemblyName>
-      <HintPath>System.Windows.Forms.Ribbon.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
+      <HintPath>..\packages\RibbonWinForms.5.0.1.1\lib\net46\System.Windows.Forms.Ribbon.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="XSharp.Core, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
