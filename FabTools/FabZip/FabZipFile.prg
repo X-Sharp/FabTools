@@ -35,6 +35,7 @@ BEGIN NAMESPACE FabZip
 		PROTECT cExtractDir AS STRING
 		PROTECT oOwner AS OBJECT
 		PROTECT lProcessing AS LOGIC
+		PROTECT nSuccessCnt AS LONG
 		// Events Handler
 		// 
 		EXPORT ExtractHandler AS EventHandler<ExtractProgressEventArgs>
@@ -53,7 +54,7 @@ BEGIN NAMESPACE FabZip
 		PROTECT HowToEncrypt         AS  Ionic.Zip.EncryptionAlgorithm
 		
 		/// <summary>
-			/// the dir where the next Extract operation will be done.
+		/// the dir where the next Extract operation will be done.
 		/// </summary>
 		ACCESS ExtractDir AS STRING
 			RETURN SELF:cExtractDir
@@ -61,15 +62,15 @@ BEGIN NAMESPACE FabZip
 		ASSIGN ExtractDir( cNew AS STRING )
 			SELF:cExtractDir := cNew
 			
-			/// <summary>
-				/// The List indicating all filenames to work with, on next operation.
-			/// </summary>
+		/// <summary>
+		/// The List indicating all filenames to work with, on next operation.
+		/// </summary>
 		ACCESS FilesArg AS List<STRING>
 			RETURN SELF:aFilesArgs
 			
-			/// <summary>
-				/// The List indicating all filenames inside the Zip File
-			/// </summary>
+		/// <summary>
+		/// The List indicating all filenames inside the Zip File
+		/// </summary>
 		ACCESS Contents AS FabArray //List<FabZipDirEntry> 
 			LOCAL aTemp AS FabArray
 			//
@@ -84,6 +85,9 @@ BEGIN NAMESPACE FabZip
 			SELF:aContents:Clear()
 			SELF:aFilesArgs:Clear() // ?????
 			SELF:UpdateContents()
+
+		ACCESS FilesOperated AS LONG
+			RETURN SELF:nSuccessCnt
 			
 		CONSTRUCTOR( )
 			SELF:InitComponents()
@@ -225,8 +229,8 @@ BEGIN NAMESPACE FabZip
 			RETURN
 			
 			
-			/// <summary>
-				/// Extract Zip File
+		/// <summary>
+		/// Extract Zip File
 		/// </summary>
 		METHOD Extract( ) AS LOGIC
 			LOCAL lRet AS LOGIC
@@ -253,16 +257,22 @@ BEGIN NAMESPACE FabZip
 			oZipFile:Password := SELF:cPassword
 			SELF:cZipComment := oZipFile:Comment
 			// 
-			SELF:lProcessing := TRUE  
+			SELF:lProcessing := TRUE 
+			SELF:nSuccessCnt := 0
 			FOREACH cTmp AS STRING IN SELF:aFilesArgs
 				//
-				ZP := oZipFile[ cTmp ]
-				IF ( SELF:ExtractOptions:OverWrite )
-					FA := ExtractExistingFileAction.OverwriteSilently
-				ELSE
-					FA := ExtractExistingFileAction.DoNotOverwrite
-				ENDIF
-				ZP:Extract( SELF:ExtractDir, FA )
+				TRY
+					ZP := oZipFile[ cTmp ]
+					IF ( SELF:ExtractOptions:OverWrite )
+						FA := ExtractExistingFileAction.OverwriteSilently
+					ELSE
+						FA := ExtractExistingFileAction.DoNotOverwrite
+					ENDIF
+					ZP:Extract( SELF:ExtractDir, FA )
+					SELF:nSuccessCnt ++
+				CATCH ex AS Exception
+					THROW ex
+				END TRY
 				//
 			NEXT
 			//
@@ -401,13 +411,14 @@ BEGIN NAMESPACE FabZip
 				oZipFile:MaxOutputSegmentSize := (INT)SELF:MaxVolumeSize
 			ENDIF            
 			//
+			SELF:nSuccessCnt := 0
 			TRY
 				//
 				// This is where the real reading and adding of files is done
 				oZipFile:Save()
 				// How many segment files ?
 				SELF:nDiskNr := oZipFile:NumberOfSegmentsForMostRecentSave 
-				
+				SELF:nSuccessCnt := SELF:aFilesArgs:Count
 			CATCH Err AS Exception
 				// Handle here trouble with Save operation
 				THROW Err
@@ -453,15 +464,22 @@ BEGIN NAMESPACE FabZip
 			oZipFile:ParallelDeflateThreshold := -1
 			//   
 			Max := SELF:aFilesArgs:Count
-			FOR Cpt := 1 TO Max
-				cTmp := (STRING)SELF:aFilesArgs[ Cpt -1]
+			SELF:nSuccessCnt := 0
+			TRY
+				FOR Cpt := 1 TO Max
+					cTmp := (STRING)SELF:aFilesArgs[ Cpt -1]
+					//
+					oZipFile:RemoveEntry( cTmp )
+					//
+				NEXT
 				//
-				oZipFile:RemoveEntry( cTmp )
-				//
-			NEXT
-			//
-			oZipFile:Save()
-			oZipFile:Dispose()
+				oZipFile:Save()
+				SELF:nSuccessCnt := Max
+			CATCH ex AS Exception
+				THROW ex
+			FINALLY
+				oZipFile:Dispose()
+			END TRY
 			//
 			SELF:aFilesArgs:Clear()
 			SELF:lProcessing := FALSE
