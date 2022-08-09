@@ -65,7 +65,7 @@ BEGIN NAMESPACE FabZip
                         symEvent := #Update
                         cFile := ""
                         nSize := e:BytesTransferred - SELF:nDone
-                        SELF:nDone := e:BytesTransferred
+                        SELF:nDone := DWord(e:BytesTransferred)
                     OTHERWISE
                         RETURN
                 END SWITCH
@@ -115,7 +115,7 @@ BEGIN NAMESPACE FabZip
                         symEvent := #Update
                         cFile := ""
                         nSize := e:BytesTransferred - SELF:nDone
-                        SELF:nDone := e:BytesTransferred
+                        SELF:nDone := DWord(e:BytesTransferred)
                     OTHERWISE 
                         RETURN
                 END SWITCH

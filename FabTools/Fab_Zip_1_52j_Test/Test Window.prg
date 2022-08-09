@@ -94,9 +94,9 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		// Disk Spanning ?
 		IF oAddOpt:DiskSpan .OR. oAddOpt:DiskSpanErase
 			//
-			SELF:oDCZip_Control:ZipFile:MaxVolumeSize := oDlg:ZipMaxSize
-			SELF:oDCZip_Control:ZipFile:MinFreeVolumeSize := oDlg:ZipMinSize
-			SELF:oDCZip_Control:ZipFile:KeepFreeOnDisk1 := oDlg:ZipMinDisk1
+			SELF:oDCZip_Control:ZipFile:MaxVolumeSize := (dword)oDlg:ZipMaxSize
+			SELF:oDCZip_Control:ZipFile:MinFreeVolumeSize := (dword)oDlg:ZipMinSize
+			SELF:oDCZip_Control:ZipFile:KeepFreeOnDisk1 := (dword)oDlg:ZipMinDisk1
 		ELSE
 			SELF:oDCZip_Control:ZipFile:MaxVolumeSize := 0
 			SELF:oDCZip_Control:ZipFile:MinFreeVolumeSize := 65536
@@ -541,7 +541,7 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 				SELF:oDCExtractBar:UnitSize := 1
 				SELF:oDCExtractBar:Position := 1
 				//
-				SELF:nCurrentSize := (int)nSize
+				SELF:nCurrentSize := (dword)nSize
 				SELF:nCurrentPos := 0
 				//
 				SELF:nCurrentFile := SELF:nCurrentFile + 1
@@ -564,13 +564,13 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 				SELF:oDCTotalFilesBar:Range := Range{ 1, 100 }
 				SELF:oDCTotalFilesBar:UnitSize := 1
 				SELF:oDCTotalFilesBar:Position := 1
-				SELF:nMaxFiles := (int)nSize
+				SELF:nMaxFiles := (dword)nSize
 				SELF:nCurrentFile := 0
 			ELSEIF ( symEvent == #TotalSize )
 				SELF:oDCTotalSizeBar:Range := Range{ 1, 100 }
 				SELF:oDCTotalSizeBar:UnitSize := 1
 				SELF:oDCTotalSizeBar:Position := 1
-				SELF:nMaxSize := (int)nSize
+				SELF:nMaxSize := (dword)nSize
 				SELF:nCurrMaxSize := 0
 			ENDIF
 		CATCH Err AS Exception

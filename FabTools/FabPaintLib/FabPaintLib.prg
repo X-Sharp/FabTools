@@ -319,9 +319,9 @@ BEGIN NAMESPACE FabPaintLib
 				//
 				LOCAL nSize := GlobalSize(hDIB ) AS DWORD
 				nSize := nSize + SizeOf( _WINBITMAPFILEHEADER )
-				tempArray := BYTE[]{  nSize }
+				tempArray := BYTE[]{  (int)nSize }
 				Marshal.Copy( @pBFH, tempArray, 0, SizeOf( _WINBITMAPFILEHEADER ) )
-				Marshal.Copy( (IntPtr)pBIH, tempArray, SizeOf( _WINBITMAPFILEHEADER ), GlobalSize( hDIB ) )
+				Marshal.Copy( (IntPtr)pBIH, tempArray, SizeOf( _WINBITMAPFILEHEADER ), (int)GlobalSize( hDIB ) )
 				//
 				Memory := System.IO.MemoryStream{ tempArray }
 				Self:_CreateFromStream( Memory )
@@ -347,8 +347,8 @@ BEGIN NAMESPACE FabPaintLib
 			//d init the object. So you can copy a file to memory, with a ProgressBar, and then use this method.
 			//r A logical value indicating the success of the operation
 			// 
-			LOCAL tempArray := BYTE[]{nSize} AS BYTE[]
-			Marshal.Copy( pbImage, tempArray, 0, nSize )
+			LOCAL tempArray := BYTE[]{(int)nSize} AS BYTE[]
+			Marshal.Copy( pbImage, tempArray, 0, (int)nSize )
 			//
 			local Memory as System.IO.MemoryStream
 			Memory := System.IO.MemoryStream{ tempArray }
@@ -675,7 +675,7 @@ BEGIN NAMESPACE FabPaintLib
 					liTagCount  := FreeImage.GetMetadataCount( SELF:EXIFModel, SELF:oDibObject )
 				ENDIF
 			ENDIF
-			RETURN liTagCount	    
+			RETURN (long)liTagCount	    
 			
 		METHOD FromClipboard( dwFormat := 2 AS DWORD ) AS VOID  
 			//p Paste the DIB object from the clipboard
@@ -1223,8 +1223,8 @@ BEGIN NAMESPACE FabPaintLib
 				//                    0, 0, SELF:Width, SELF:Height,;
 				//                    Self:BitmapBits, Self:Info, DIB_RGB_COLORS, SRCCOPY )
 				SetStretchBltMode(hDC, 3)
-				StretchDIBits(hDC, 0, 0, SELF:Width, SELF:Height, ; 
-				0, 0, SELF:Width, SELF:Height,;
+				StretchDIBits(hDC, 0, 0, (int)SELF:Width, (int)SELF:Height, ; 
+				0, 0, (int)SELF:Width, (int)SELF:Height,;
 				SELF:BitmapBits, SELF:Info, DIB_RGB_COLORS, SRCCOPY )
 			ENDIF
 			// 
@@ -1243,8 +1243,8 @@ BEGIN NAMESPACE FabPaintLib
 				//                    0, 0, SELF:Width, SELF:Height,;
 				//                    Self:BitmapBits, Self:Info, DIB_RGB_COLORS, SRCCOPY )
 				SetStretchBltMode(hDC, 3)
-				StretchDIBits(hDC, XPos, YPos, XPos + SELF:Width, YPos + SELF:Height, ; 
-				0, 0, SELF:Width, SELF:Height,;
+				StretchDIBits(hDC, XPos, YPos, XPos + (int)SELF:Width, YPos + (int)SELF:Height, ; 
+				0, 0, (int)SELF:Width, (int)SELF:Height,;
 				SELF:BitmapBits, SELF:Info, 0, 0x00CC0020 )
 			ENDIF
 			// 
@@ -1264,7 +1264,7 @@ BEGIN NAMESPACE FabPaintLib
 				//                    Self:BitmapBits, Self:Info, DIB_RGB_COLORS, SRCCOPY )
 				SetStretchBltMode(hDC, 3)
 				StretchDIBits(hDC, XPos, YPos, Width, Height, ; 
-				0, 0, SELF:Width, SELF:Height,;
+				0, 0, (int)SELF:Width, (int)SELF:Height,;
 				SELF:BitmapBits, SELF:Info, 0, 0x00CC0020 )
 			ENDIF
 			// 
@@ -1575,13 +1575,13 @@ BEGIN NAMESPACE FabPaintLib
 				ENDIF
 				//
 				IF ( prcDest == NULL )
-					SetRect( @rcDest, 0, 0, FreeImage.GetWidth(oDisplayDib), FreeImage.GetHeight(oDisplayDib) )
+					SetRect( @rcDest, 0, 0, (int)FreeImage.GetWidth(oDisplayDib), (int)FreeImage.GetHeight(oDisplayDib) )
 				ELSE
 					SetRect( @rcDest, prcDest:left, prcDest:top, prcDest:right, prcDest:bottom )
 				ENDIF
 				//
 				IF ( prcSrc == NULL )
-					SetRect( @rcSrc, 0, 0, FreeImage.GetWidth(oDisplayDib), FreeImage.GetHeight(oDisplayDib) )
+					SetRect( @rcSrc, 0, 0, (int)FreeImage.GetWidth(oDisplayDib), (int)FreeImage.GetHeight(oDisplayDib) )
 				ELSE
 					SetRect( @rcSrc, prcSrc:left, prcSrc:top, prcSrc:right, prcSrc:bottom )
 				ENDIF

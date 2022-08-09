@@ -1383,7 +1383,7 @@ BEGIN NAMESPACE FabTwain
 			//
 			SELF:GetCapCurrent_Word( ICAP_BITDEPTH, DWORD(_CAST,@wDepth) )
 			//
-			RETURN wDepth
+			RETURN Word(wDepth)
 			
 			
 		ASSIGN PixelDepth( wDepth AS WORD ) AS WORD PASCAL 
