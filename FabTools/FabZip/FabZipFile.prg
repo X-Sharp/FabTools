@@ -7,7 +7,7 @@ USING System.IO
 USING FabTools
 
 BEGIN NAMESPACE FabZip
-
+	
 	CLASS FabZipFile
 		
 		// FileSpec for the Zip File
@@ -85,7 +85,7 @@ BEGIN NAMESPACE FabZip
 			SELF:aContents:Clear()
 			SELF:aFilesArgs:Clear() // ?????
 			SELF:UpdateContents()
-
+			
 		ACCESS FilesOperated AS LONG
 			RETURN SELF:nSuccessCnt
 			
@@ -127,7 +127,7 @@ BEGIN NAMESPACE FabZip
 			//
 			
 			
-		
+			
 		METHOD UpdateContents() AS VOID    
 			LOCAL oZipFile := NULL AS ZipFile
 			LOCAL oFabEntry AS FabZipDirEntry
@@ -197,7 +197,7 @@ BEGIN NAMESPACE FabZip
 				ReflectionLib.InvokeMethod( SELF:oOwner, "OnFabOperationSize", zipParams )
 			ENDIF 
 			RETURN
-		
+			
 		PROTECT METHOD ReportAddSize() AS VOID
 			LOCAL Params AS OBJECT[]
 			LOCAL nTotalSize AS INT64
@@ -281,7 +281,7 @@ BEGIN NAMESPACE FabZip
 			//
 			SELF:lProcessing := FALSE
 			RETURN TRUE
-		
+			
 		METHOD Add( ) AS LOGIC
 			LOCAL lRet AS LOGIC
 			//
@@ -449,7 +449,7 @@ BEGIN NAMESPACE FabZip
 			//     
 			SELF:cLastWrittenFile := SELF:FileName   
 			RETURN TRUE
-		
+			
 		METHOD Delete() AS LOGIC
 			LOCAL Cpt AS INT
 			LOCAL Max AS INT
@@ -493,9 +493,9 @@ BEGIN NAMESPACE FabZip
 		ASSIGN CompressionLevel( nSet AS WORD )
 			LOCAL enumType AS System.Type
 			enumType := typeof( Ionic.Zlib.CompressionLevel )
-			///
-			SELF:nCompLevel := (Ionic.Zlib.CompressionLevel)Enum.ToObject(enumType, nSet )
-			
+		///
+		SELF:nCompLevel := (Ionic.Zlib.CompressionLevel)Enum.ToObject(enumType, nSet )
+		
 		ACCESS Password AS STRING
 			RETURN SELF:cPassword
 		ASSIGN Password( cSet AS STRING )
@@ -611,7 +611,7 @@ BEGIN NAMESPACE FabZip
 			NEXT
 			RETURN 0
 			
-		
+			
 		ACCESS Encryption AS Ionic.Zip.EncryptionAlgorithm
 			RETURN SELF:HowToEncrypt
 		ASSIGN Encryption ( How AS Ionic.Zip.EncryptionAlgorithm )

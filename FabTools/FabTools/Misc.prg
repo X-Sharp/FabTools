@@ -2,75 +2,75 @@
 using System.Windows.Forms
 
 Function FabCenterWindow( oForm as Form ) as void
-Local oTemp as System.Windows.Forms.Form
-//
-oTemp := (System.Windows.Forms.Form) oForm
-oTemp:StartPosition := FormStartPosition.CenterScreen
-return
-
+	Local oTemp as System.Windows.Forms.Form
+	//
+	oTemp := (System.Windows.Forms.Form) oForm
+	oTemp:StartPosition := FormStartPosition.CenterScreen
+	return
+	
 FUNCTION FabGetPercent( Value AS int64, Maximum AS int64 ) AS int64
-LOCAL dwPercent AS int64
-//
-TRY
-	IF ( Maximum == 0 )
+	LOCAL dwPercent AS int64
+	//
+	TRY
+		IF ( Maximum == 0 )
+			dwPercent := 0
+		ELSE
+			dwPercent := ( Value * 100 ) / Maximum
+		ENDIF
+	CATCH
 		dwPercent := 0
-	ELSE
-		dwPercent := ( Value * 100 ) / Maximum
-	ENDIF
-CATCH
-	dwPercent := 0
-END TRY
-RETURN dwPercent
-
+	END TRY
+	RETURN dwPercent
+	
 FUNCTION FabLWSelectEntireRow( oListView AS VO.ListView, lSet:=TRUE AS LOGIC ) AS VOID
-oListView:FullRowSelect := lSet
-RETURN
-
+	oListView:FullRowSelect := lSet
+	RETURN
+	
 STATIC FUNCTION _FabCheckDbServerErrorHandler(oError)
-// My ErrorHandler, don't retry, just ignore and try the default action
-RETURN FALSE
-
-
+	// My ErrorHandler, don't retry, just ignore and try the default action
+	RETURN FALSE
+	
+	
 PROCEDURE	FabAllButPaint( hWindow AS PTR )
-LOCAL struMsg	IS	_WinMsg
-//
-IF ( PeekMessage( @struMsg, NULL_PTR, 0, 0, PM_REMOVE ) == TRUE )
-	IF ( struMsg.Message == (DWORD)WM_PAINT )  .OR.	;
-		( struMsg.Message == (DWORD)WM_TIMER )
-		//
-		DispatchMessage( @struMsg )
-		//
-	ELSEIF ( ( struMsg.hWnd == hWindow )  .OR. IsChild( hWindow, struMsg.hWnd ) )
-		//
-		TranslateMessage( @struMsg )
-		DispatchMessage( @struMsg )
-		//
+	LOCAL struMsg	IS	_WinMsg
+	//
+	IF ( PeekMessage( @struMsg, NULL_PTR, 0, 0, PM_REMOVE ) == TRUE )
+		IF ( struMsg.Message == (DWORD)WM_PAINT )  .OR.	;
+				( struMsg.Message == (DWORD)WM_TIMER )
+			//
+			DispatchMessage( @struMsg )
+			//
+		ELSEIF ( ( struMsg.hWnd == hWindow )  .OR. IsChild( hWindow, struMsg.hWnd ) )
+			//
+			TranslateMessage( @struMsg )
+			DispatchMessage( @struMsg )
+			//
+		ENDIF
 	ENDIF
-ENDIF
-//
-
-RETURN
-
+	//
+	
+	RETURN
+	
 FUNCTION FabArrayFill(a AS ARRAY, dwEl AS DWORD, u AS USUAL )
-//g Array,Array Tools
-//l Fill an array
-//p Fill an array with a value.
-//a <a> is the array to fill\line
-//a <dwEl> is the number of element to fill\line
-//a <u> is the value to set
-//r The Value used to set the array
-LOCAL Cpt AS    WORD
-//
-FOR Cpt := 1 UPTO dwEl
-	a[ Cpt ] := u
-NEXT
-RETURN u
-
-
-
-
+	//g Array,Array Tools
+	//l Fill an array
+	//p Fill an array with a value.
+	//a <a> is the array to fill\line
+	//a <dwEl> is the number of element to fill\line
+	//a <u> is the value to set
+	//r The Value used to set the array
+	LOCAL Cpt AS    WORD
+	//
+	FOR Cpt := 1 UPTO dwEl
+		a[ Cpt ] := u
+	NEXT
+	RETURN u
+	
+	
+	
+	
 FUNCTION Fabatoi( cString AS STRING ) AS USUAL
-
+	
 	//
 	LOCAL cTrans	AS	STRING
 	LOCAL wPos		AS	DWORD
@@ -97,7 +97,7 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	
 	
 	
-	FUNCTION FabBuildDbFile( symClass AS SYMBOL, lCheckIndexes := TRUE AS LOGIC, cPath := "" AS STRING, cName := "" AS STRING ) AS LOGIC
+FUNCTION FabBuildDbFile( symClass AS SYMBOL, lCheckIndexes := TRUE AS LOGIC, cPath := "" AS STRING, cName := "" AS STRING ) AS LOGIC
 	//g Files,Files Related Classes/Functions
 	//l  Create a DBF file from a class that was created using the DBServer editor.
 	//p  Create a DBF file from a class that was created using the DBServer editor.
@@ -214,7 +214,7 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 			// Try to Recreate the File
 			aRdds := oDB:RDDS
 			lSuccess := DBCREATE(  oFileSpec:FullPath, aStruct, ;
-			aRdds[ ALen( aRdds ) ], TRUE, oDB:Alias )
+				aRdds[ ALen( aRdds ) ], TRUE, oDB:Alias )
 			// Created ?
 			IF lSuccess
 				// Close the current WorkArea
@@ -266,12 +266,12 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 							aOrderInfo := aOrders[ wCpt2 ]
 							IF !Empty( aOrderInfo[ DBC_FOREXP ] )
 								oDB:SetOrderCondition( aOrderInfo[ DBC_FOREXP ], ,TRUE, , ,0,0,0,0,FALSE, ;
-								!aOrderInfo[ DBC_ASCENDING ],FALSE,FALSE,FALSE,FALSE )
+									!aOrderInfo[ DBC_ASCENDING ],FALSE,FALSE,FALSE,FALSE )
 							ELSE
 								oDB:SetOrderCondition( )
 							ENDIF
 							lSuccess := lSuccess  .AND. oDB:CreateOrder( aOrderInfo[ DBC_TAGNAME ], oFileSpec, ;
-							aOrderInfo[ DBC_KEYEXP ], , !aOrderInfo[ DBC_DUPLICATE ] )
+								aOrderInfo[ DBC_KEYEXP ], , !aOrderInfo[ DBC_DUPLICATE ] )
 						NEXT
 					ENDIF
 				NEXT
@@ -286,7 +286,7 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	
 	
 	
-	FUNCTION FabBuildFillUsingArray( aFirst AS ARRAY, aSecond AS ARRAY ) AS ARRAY
+FUNCTION FabBuildFillUsingArray( aFirst AS ARRAY, aSecond AS ARRAY ) AS ARRAY
 	//l Merge two arrays
 	//p Merge to arrays to build a FillUsing() array
 	//g Array,Array Tools
@@ -304,7 +304,7 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	
 	
 	
-	PROCEDURE FabCenterWindow( oWindow AS OBJECT  )
+PROCEDURE FabCenterWindow( oWindow AS OBJECT  )
 	/*
 	Center a Window, in the desktop
 	*/
@@ -332,7 +332,7 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	
 	RETURN
 	
-	FUNCTION FabColor2RGB( oColor AS Color ) AS DWORD
+FUNCTION FabColor2RGB( oColor AS Color ) AS DWORD
 	//l  Convert Color object to Windows RGB color
 	//p  Convert Color object to Windows RGB color
 	RETURN DWORD( oColor:Red ) + ( DWORD( oColor:Green ) << 8 ) + ( DWORD( oColor:Blue ) << 16 )
@@ -340,7 +340,7 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	
 	
 	
-	FUNCTION FabCreateFontIndirect( pLogFont AS _winLogFont ) AS Font
+FUNCTION FabCreateFontIndirect( pLogFont AS _winLogFont ) AS Font
 	//l Create a Font
 	//p Create a Font using a _WinLogFont structure.
 	//a <pLogFont> is a windows structure with Font info.
@@ -352,30 +352,30 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	//
 	iFam := _AND( pLogFont.lfPitchAndFamily, 0B11110000 )
 	DO CASE
-		CASE iFam == FF_ROMAN
-			iFamily := FONTFAMILY_ROMAN
-		CASE iFam == FF_SWISS
-			iFamily := FONTFAMILY_SWISS
-		CASE iFam == FF_MODERN
-			iFamily := FONTFAMILY_MODERN
-		CASE iFam == FF_SCRIPT
-			iFamily := FONTFAMILY_SCRIPT
-		CASE iFam == FF_DECORATIVE
-			iFamily := FONTFAMILY_DECORAT
-		OTHERWISE
-			iFamily := FONTFAMILY_ANY
+	CASE iFam == FF_ROMAN
+		iFamily := FONTFAMILY_ROMAN
+	CASE iFam == FF_SWISS
+		iFamily := FONTFAMILY_SWISS
+	CASE iFam == FF_MODERN
+		iFamily := FONTFAMILY_MODERN
+	CASE iFam == FF_SCRIPT
+		iFamily := FONTFAMILY_SCRIPT
+	CASE iFam == FF_DECORATIVE
+		iFamily := FONTFAMILY_DECORAT
+	OTHERWISE
+		iFamily := FONTFAMILY_ANY
 	ENDCASE
 	oDim  := Dimension{ pLogFont.lfWidth, pLogFont.lfHeight }
 	oFont := Font{ iFamily, oDim, Psz2String( @pLogFont.lfFaceName[1] ) }
 	//
 	pLogFont.lfPitchAndFamily := _AND( pLogFont.lfPitchAndFamily, 0B11)
 	DO CASE
-		CASE pLogFont.lfPitchAndFamily == FIXED_PITCH
-			oFont : PitchFixed := TRUE
-		CASE pLogFont.lfPitchAndFamily == VARIABLE_PITCH
-			oFont : PitchVariable := TRUE
-		OTHERWISE
-			oFont:Normal := TRUE
+	CASE pLogFont.lfPitchAndFamily == FIXED_PITCH
+		oFont : PitchFixed := TRUE
+	CASE pLogFont.lfPitchAndFamily == VARIABLE_PITCH
+		oFont : PitchVariable := TRUE
+	OTHERWISE
+		oFont:Normal := TRUE
 	ENDCASE
 	//
 	IF pLogFont.lfItalic != 0
@@ -388,32 +388,32 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 		oFont:Strikethru := TRUE
 	ENDIF
 	DO CASE
-		CASE pLogFont.lfWeight == FW_THIN
-			oFont:Light := TRUE
-		CASE pLogFont.lfWeight == FW_EXTRALIGHT
-			oFont:Light := TRUE
-		CASE pLogFont.lfWeight == FW_LIGHT
-			oFont:Light := TRUE
-		CASE pLogFont.lfWeight == FW_NORMAL
-			oFont:Normal := TRUE
-		CASE pLogFont.lfWeight == FW_MEDIUM
-			oFont:Normal := TRUE
-		CASE pLogFont.lfWeight == FW_SEMIBOLD
-			oFont:Normal := TRUE
-		CASE pLogFont.lfWeight == FW_BOLD
-			oFont:Bold := TRUE
-		CASE pLogFont.lfWeight == FW_ULTRABOLD
-			oFont:Bold := TRUE
-		CASE pLogFont.lfWeight == FW_HEAVY
-			oFont:Bold := TRUE
-		OTHERWISE
-			oFont:Normal := TRUE
+	CASE pLogFont.lfWeight == FW_THIN
+		oFont:Light := TRUE
+	CASE pLogFont.lfWeight == FW_EXTRALIGHT
+		oFont:Light := TRUE
+	CASE pLogFont.lfWeight == FW_LIGHT
+		oFont:Light := TRUE
+	CASE pLogFont.lfWeight == FW_NORMAL
+		oFont:Normal := TRUE
+	CASE pLogFont.lfWeight == FW_MEDIUM
+		oFont:Normal := TRUE
+	CASE pLogFont.lfWeight == FW_SEMIBOLD
+		oFont:Normal := TRUE
+	CASE pLogFont.lfWeight == FW_BOLD
+		oFont:Bold := TRUE
+	CASE pLogFont.lfWeight == FW_ULTRABOLD
+		oFont:Bold := TRUE
+	CASE pLogFont.lfWeight == FW_HEAVY
+		oFont:Bold := TRUE
+	OTHERWISE
+		oFont:Normal := TRUE
 	ENDCASE
 	//
 	RETURN oFont
 	
 	
-	FUNCTION FabCreateInstance( aObject AS ARRAY ) AS OBJECT
+FUNCTION FabCreateInstance( aObject AS ARRAY ) AS OBJECT
 	//l Enhanced CreateInstance() Function
 	//p Enhanced CreateInstance() Function.
 	//a <aObject> is an Array with CreateInstance() parameters in an array
@@ -425,36 +425,36 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	wParam := ( ALen( aObject ) - 1 )
 	//
 	DO CASE
-		CASE ( wParam == 1 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ] )
-		CASE ( wParam == 2 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ] )
-		CASE ( wParam == 3 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ] )
-		CASE ( wParam == 4 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3],  aObject[ 4 ], aObject[ 5 ] )
-		CASE ( wParam == 5 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ] )
-		CASE ( wParam == 6 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ] )
-		CASE ( wParam == 7 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ], aObject[ 8 ] )
-		CASE ( wParam == 8 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ], aObject[ 8 ], aObject[ 9 ] )
-		CASE ( wParam == 9 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ], aObject[ 8 ], aObject[ 9 ], aObject[ 10 ] )
-		CASE ( wParam == 10 )
-			oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ], aObject[ 8 ], aObject[ 9 ], aObject[ 10 ], aObject[ 11 ] )
-		OTHERWISE
-			// At least one parameter : The Symbol of the Class
-			oObject := CreateInstance( aObject[ 1 ] )
+	CASE ( wParam == 1 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ] )
+	CASE ( wParam == 2 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ] )
+	CASE ( wParam == 3 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ] )
+	CASE ( wParam == 4 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3],  aObject[ 4 ], aObject[ 5 ] )
+	CASE ( wParam == 5 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ] )
+	CASE ( wParam == 6 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ] )
+	CASE ( wParam == 7 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ], aObject[ 8 ] )
+	CASE ( wParam == 8 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ], aObject[ 8 ], aObject[ 9 ] )
+	CASE ( wParam == 9 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ], aObject[ 8 ], aObject[ 9 ], aObject[ 10 ] )
+	CASE ( wParam == 10 )
+		oObject := CreateInstance( aObject[ 1 ], aObject[ 2 ],aObject[ 3 ], aObject[ 4 ], aObject[ 5 ], aObject[ 6 ], aObject[ 7 ], aObject[ 8 ], aObject[ 9 ], aObject[ 10 ], aObject[ 11 ] )
+	OTHERWISE
+		// At least one parameter : The Symbol of the Class
+		oObject := CreateInstance( aObject[ 1 ] )
 	ENDCASE
 	//
 	RETURN oObject
 	
 	
 	
-	FUNCTION FabCursorArrow() AS PTR
+FUNCTION FabCursorArrow() AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Set The Mouse cursor as Arrow
 	//p Set The Mouse cursor as Arrow
@@ -467,7 +467,7 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	
 	
 	
-	FUNCTION FabCursorWait() AS PTR
+FUNCTION FabCursorWait() AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Set The Mouse cursor as WaitState
 	//p Set The Mouse cursor as WaitState
@@ -475,74 +475,74 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	/*
 	Set the cursor as WaitCursor
 	*/
-RETURN   SetCursor( LoadCursor( 0, PSZ( IDC_WAIT ) ) )
-
-
-
-
+	RETURN   SetCursor( LoadCursor( 0, PSZ( IDC_WAIT ) ) )
+	
+	
+	
+	
 FUNCTION FabDisableWindows( aWindows AS ARRAY, aExcept AS ARRAY ) AS ARRAY
-//g Window,Window/Dialog Related Classes/Functions
-//l Disable a set of Window
-//p Disable a set of Window
-//a <aWindows> is an array of Windows Handle to disable
-//a <aExcept> is an array of Windows Handle not to disable
-//d FabDisableWindows() will get all Windows Handle in the <aWindows> array, check if Windows are visible.
-//d  If so, and if they are not in the <aExcept> array, they will be disabled.
-//r An array with Handles of Windows that have been disabled by this function.
-LOCAL dwCpt		AS	DWORD
-LOCAL dwCount	AS	DWORD
-LOCAL aDone		AS	ARRAY
-//
-aDone := {}
-dwCount := ALen( aWindows )
-FOR dwCpt := 1 TO dwCount
+	//g Window,Window/Dialog Related Classes/Functions
+	//l Disable a set of Window
+	//p Disable a set of Window
+	//a <aWindows> is an array of Windows Handle to disable
+	//a <aExcept> is an array of Windows Handle not to disable
+	//d FabDisableWindows() will get all Windows Handle in the <aWindows> array, check if Windows are visible.
+	//d  If so, and if they are not in the <aExcept> array, they will be disabled.
+	//r An array with Handles of Windows that have been disabled by this function.
+	LOCAL dwCpt		AS	DWORD
+	LOCAL dwCount	AS	DWORD
+	LOCAL aDone		AS	ARRAY
 	//
-	IF IsWindow( aWindows[ dwCpt ] )  .AND.	;
-		IsWindowVisible( aWindows[ dwCpt ] )  .AND.	;
-		IsWindowEnabled( aWindows[ dwCpt ] )
+	aDone := {}
+	dwCount := ALen( aWindows )
+	FOR dwCpt := 1 TO dwCount
 		//
-		IF ( AScan( aExcept, { |hWnd| hWnd == aWindows[ dwCpt ] } ) == 0 )
-			EnableWindow( aWindows[ dwCpt ], FALSE )
-			AAdd( aDone, aWindows[ dwCpt ] )
+		IF IsWindow( aWindows[ dwCpt ] )  .AND.	;
+				IsWindowVisible( aWindows[ dwCpt ] )  .AND.	;
+				IsWindowEnabled( aWindows[ dwCpt ] )
+			//
+			IF ( AScan( aExcept, { |hWnd| hWnd == aWindows[ dwCpt ] } ) == 0 )
+				EnableWindow( aWindows[ dwCpt ], FALSE )
+				AAdd( aDone, aWindows[ dwCpt ] )
+			ENDIF
 		ENDIF
-	ENDIF
-NEXT
-//
-RETURN aDone
-
-
-
+	NEXT
+	//
+	RETURN aDone
+	
+	
+	
 PROCEDURE FabEnableWindows( aWindows AS ARRAY, aExcept AS ARRAY )
-//g Window,Window/Dialog Related Classes/Functions
-//l Enable a set of Window
-//p Enable a set of Window
-//a <aWindows> is an array of Windows Handle to Enable
-//a <aExcept> is an array of Windows Handle not to Enable
-//d FabEnableWindows() will get all Windows Handle in the <aWindows> array and if they are not in the <aExcept> array, they will be enabled.
-LOCAL dwCpt		AS	DWORD
-LOCAL dwCount	AS	DWORD
-//
-dwCount := ALen( aWindows )
-FOR dwCpt := 1 TO dwCount
+	//g Window,Window/Dialog Related Classes/Functions
+	//l Enable a set of Window
+	//p Enable a set of Window
+	//a <aWindows> is an array of Windows Handle to Enable
+	//a <aExcept> is an array of Windows Handle not to Enable
+	//d FabEnableWindows() will get all Windows Handle in the <aWindows> array and if they are not in the <aExcept> array, they will be enabled.
+	LOCAL dwCpt		AS	DWORD
+	LOCAL dwCount	AS	DWORD
 	//
-	IF IsWindow( aWindows[ dwCpt ] )
+	dwCount := ALen( aWindows )
+	FOR dwCpt := 1 TO dwCount
 		//
-		IF ( AScan( aExcept, { |hWnd| hWnd == aWindows[ dwCpt ] } ) == 0 )
-			EnableWindow( aWindows[ dwCpt ], TRUE )
+		IF IsWindow( aWindows[ dwCpt ] )
+			//
+			IF ( AScan( aExcept, { |hWnd| hWnd == aWindows[ dwCpt ] } ) == 0 )
+				EnableWindow( aWindows[ dwCpt ], TRUE )
+			ENDIF
 		ENDIF
-	ENDIF
-NEXT
-
-
-RETURN
-
+	NEXT
+	
+	
+	RETURN
+	
 STATIC FUNCTION FabExecErr( ObjError )
-BREAK ObjError
-
-
-
-
-
+	BREAK ObjError
+	
+	
+	
+	
+	
 FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	//l Execute a CodeBlock stored in a String
 	//p Execute a CodeBlock stored in a String
@@ -572,7 +572,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabExitWindows( dwMode AS DWORD ) AS LOGIC
+FUNCTION FabExitWindows( dwMode AS DWORD ) AS LOGIC
 	//g System,System Functions
 	//l Replacement for the ExitWindowsEx() function
 	//p Replacement for the ExitWindowsEx() function
@@ -617,7 +617,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	PROCEDURE	FabFilterMessages( hWindow AS PTR, aDontFilterMsgs AS ARRAY )
+PROCEDURE	FabFilterMessages( hWindow AS PTR, aDontFilterMsgs AS ARRAY )
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Filter Messages in application Queue
 	//p Filter Messages in application Queue
@@ -644,7 +644,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	//
 	IF ( PeekMessage( @struMsg, NULL_PTR, 0, 0, PM_REMOVE ) == TRUE )
 		IF ( struMsg.Message == (DWORD)WM_PAINT )  .OR.	;
-			( struMsg.Message == (DWORD)WM_TIMER )
+				( struMsg.Message == (DWORD)WM_TIMER )
 			//
 			DispatchMessage( @struMsg )
 			//
@@ -664,7 +664,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	RETURN
 	
-	FUNCTION FabFormatCString( Format AS STRING, Args AS ARRAY ) AS STRING
+FUNCTION FabFormatCString( Format AS STRING, Args AS ARRAY ) AS STRING
 	//p Format a string using C langage format style
 	//l Format a string using C langage format style
 	//d This function wil produce a string using the same format string as the wsprintf() function. ( Look in the Win32SDK.HLP file for more info. )
@@ -704,39 +704,39 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 				wPos ++
 				cChar := SubStr3( Format, wPos, 1 )
 				DO CASE
-					CASE cChar == "a"
-						// BEL
-						// Eat it
-						cChar := ""
-					CASE cChar == "b"
-						// BackSpace
-						cChar := CHR( 8 )
-					CASE cChar == "f"
-						// Form Feed
-						cChar := CHR( 12 )
-					CASE cChar == "n"
-						// New Line
-						cChar := CRLF
-					CASE cChar == "r"
-						// Carriage Return
-						cChar := CHR( ASC_CR )
-					CASE cChar == "t"
-						// Horz Tab.
-						cChar := CHR( 9 )
-					CASE cChar == "v"
-						// Vert. Tab
-						cChar := CHR( 11 )
-					CASE cChar == "\"
-						// Don't touch
-					CASE cChar == "'"
-						// Don't touch
-					CASE cChar == '"'
-						// Don't touch
-					CASE cChar == "?"
-						// Don't touch
-					OTHERWISE
-						// Don't know how to interpret, Don't touch whole escape command
-						cChar := "\" + cChar
+				CASE cChar == "a"
+					// BEL
+					// Eat it
+					cChar := ""
+				CASE cChar == "b"
+					// BackSpace
+					cChar := CHR( 8 )
+				CASE cChar == "f"
+					// Form Feed
+					cChar := CHR( 12 )
+				CASE cChar == "n"
+					// New Line
+					cChar := CRLF
+				CASE cChar == "r"
+					// Carriage Return
+					cChar := CHR( ASC_CR )
+				CASE cChar == "t"
+					// Horz Tab.
+					cChar := CHR( 9 )
+				CASE cChar == "v"
+					// Vert. Tab
+					cChar := CHR( 11 )
+				CASE cChar == "\"
+					// Don't touch
+				CASE cChar == "'"
+					// Don't touch
+				CASE cChar == '"'
+					// Don't touch
+				CASE cChar == "?"
+					// Don't touch
+				OTHERWISE
+					// Don't know how to interpret, Don't touch whole escape command
+					cChar := "\" + cChar
 				ENDCASE
 			ENDIF
 			cResult := cResult + cChar
@@ -813,52 +813,52 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 		wPos ++
 		//
 		DO CASE
-			CASE ( cChar == "c" )
-				// Single Char
-				cAdd := SubStr( AsString( Args[ nArg ] ), 1, 1 )
-			CASE ( cChar == "s" )
-				// String
-				cAdd := AsString( Args[ nArg ] )
-			CASE ( cChar == "d" )  .or. ( cChar == "i" )
-				// Decimal, signed
-				IF lLong
-					cAdd := AsString( LONG( _CAST, Args[ nArg ] ) )
-				ELSE
-					cAdd := AsString( SHORT( _CAST, Args[ nArg ] ) )
-				ENDIF
-				cAdd := AllTrim( cAdd )
-			CASE ( cChar == "u" )
-				// Decimal, unsigned
-				IF lLong
-					cAdd := AsString( DWORD( _CAST,Args[ nArg ] ) )
-				ELSE
-					cAdd := AsString( WORD( _CAST,Args[ nArg ] ) )
-				ENDIF
-				cAdd := AllTrim( cAdd )
-			CASE ( cChar == "o" )
-				// Octal, non implemented
-			CASE ( cChar == "b" )
-				// Binary, non implemented
-			CASE ( cChar == "x" )  .or. ( cChar == "X" )
-				// Hex
-				IF lLong
-					cAdd := Lower( AsHexString( DWORD( _CAST,Args[ nArg ] ) )  )
-				ELSE
-					cAdd := Lower( AsHexString( WORD( _CAST,Args[ nArg ] ) )  )
-				ENDIF
-				WHILE ( SubStr3( cAdd, 1, 1 ) == "0" )
-					cAdd := SubStr2( cadd, 2 )
-				ENDDO
-				IF ( SLen( cadd ) == 0 )
-					cAdd := "0"
-				ENDIF
-				IF lHex
-					cAdd := "0x" + cAdd
-				ENDIF
-				IF ( cChar == "X" )
-					// Hex, uppercase
-					cAdd := Upper( cAdd )
-				ENDIF
+		CASE ( cChar == "c" )
+			// Single Char
+			cAdd := SubStr( AsString( Args[ nArg ] ), 1, 1 )
+		CASE ( cChar == "s" )
+			// String
+			cAdd := AsString( Args[ nArg ] )
+		CASE ( cChar == "d" )  .or. ( cChar == "i" )
+			// Decimal, signed
+			IF lLong
+				cAdd := AsString( LONG( _CAST, Args[ nArg ] ) )
+			ELSE
+				cAdd := AsString( SHORT( _CAST, Args[ nArg ] ) )
+			ENDIF
+			cAdd := AllTrim( cAdd )
+		CASE ( cChar == "u" )
+			// Decimal, unsigned
+			IF lLong
+				cAdd := AsString( DWORD( _CAST,Args[ nArg ] ) )
+			ELSE
+				cAdd := AsString( WORD( _CAST,Args[ nArg ] ) )
+			ENDIF
+			cAdd := AllTrim( cAdd )
+		CASE ( cChar == "o" )
+			// Octal, non implemented
+		CASE ( cChar == "b" )
+			// Binary, non implemented
+		CASE ( cChar == "x" )  .or. ( cChar == "X" )
+			// Hex
+			IF lLong
+				cAdd := Lower( AsHexString( DWORD( _CAST,Args[ nArg ] ) )  )
+			ELSE
+				cAdd := Lower( AsHexString( WORD( _CAST,Args[ nArg ] ) )  )
+			ENDIF
+			WHILE ( SubStr3( cAdd, 1, 1 ) == "0" )
+				cAdd := SubStr2( cadd, 2 )
+			ENDDO
+			IF ( SLen( cadd ) == 0 )
+				cAdd := "0"
+			ENDIF
+			IF lHex
+				cAdd := "0x" + cAdd
+			ENDIF
+			IF ( cChar == "X" )
+				// Hex, uppercase
+				cAdd := Upper( cAdd )
+			ENDIF
 		ENDCASE
 		//
 		liLen := SLen( cAdd )
@@ -888,7 +888,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabFormatMessage( dwErrorCode AS DWORD ) AS STRING
+FUNCTION FabFormatMessage( dwErrorCode AS DWORD ) AS STRING
 	//l GetString message using GetLastError() code
 	//p GetString message using GetLastError() code
 	//
@@ -898,12 +898,12 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	lpMsgBuf := NULL_PSZ
 	//
 	FormatMessage( _or( FORMAT_MESSAGE_ALLOCATE_BUFFER, FORMAT_MESSAGE_FROM_SYSTEM, FORMAT_MESSAGE_IGNORE_INSERTS),	;
-	NULL_ptr,	;
-	dwErrorCode,	;
-	MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),	; // Default language
-	@lpMsgBuf,	;
-	0,	;
-	NULL )
+		NULL_ptr,	;
+		dwErrorCode,	;
+		VOWin32APILibrary.Functions.MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),	; // Default language
+		@lpMsgBuf,	;
+		0,	;
+		NULL )
 	// Copy to VO String
 	sRet := Psz2String( lpMsgBuf )
 	// Free the buffer.
@@ -913,7 +913,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetCmdExe() AS STRING
+FUNCTION FabGetCmdExe() AS STRING
 	//g Files, Files Related Classes/Functions
 	//l Get the Executable fullpath from Command Line
 	//p Get the Executable fullpath from Command Line
@@ -941,7 +941,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetCmdParams() AS STRING
+FUNCTION FabGetCmdParams() AS STRING
 	//g Files, Files Related Classes/Functions
 	//l Get the Parameters from Command Line
 	//p Get the Parameters from Command Line
@@ -973,7 +973,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetFirstTabCtrl( oInWindow AS OBJECT ) AS PTR
+FUNCTION FabGetFirstTabCtrl( oInWindow AS OBJECT ) AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Get the First Control Handle in Tab Order
 	//p Get the First Control Handle in Tab Order
@@ -987,7 +987,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetLastTabCtrl( oInWindow AS OBJECT ) AS PTR
+FUNCTION FabGetLastTabCtrl( oInWindow AS OBJECT ) AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Get the Last Control Handle in Tab Order
 	//p Get the Last Control Handle in Tab Order
@@ -1004,7 +1004,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetMenuID( oMenu, symEventName, hMenuHandle )
+FUNCTION FabGetMenuID( oMenu, symEventName, hMenuHandle )
 	//l Retrieve an Item ID using it's Symbol EventName
 	//p Retrieve an Item ID using it's Symbol EventName
 	//a <oMenu> is the Menu object to search into\line
@@ -1054,7 +1054,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetNextTabCtrl( oInWindow AS OBJECT, hCtrl AS PTR ) AS PTR
+FUNCTION FabGetNextTabCtrl( oInWindow AS OBJECT, hCtrl AS PTR ) AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Get the Next Control Handle in Tab Order
 	//p Get the Next Control Handle in Tab Order
@@ -1076,7 +1076,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetPercent( Value AS DWORD, Maximum AS DWORD ) AS DWORD
+FUNCTION FabGetPercent( Value AS DWORD, Maximum AS DWORD ) AS DWORD
 	//l Calculate a percentage
 	//p Calculate a percentage
 	LOCAL dwPercent AS DWORD
@@ -1096,7 +1096,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetPrevTabCtrl( oInWindow AS OBJECT, hCtrl AS PTR ) AS PTR
+FUNCTION FabGetPrevTabCtrl( oInWindow AS OBJECT, hCtrl AS PTR ) AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Get the Previous Control Handle in Tab Order
 	//p Get the Previous Control Handle in Tab Order
@@ -1118,7 +1118,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetSubMenuFromPos( oMenu AS VO.Menu , nPos AS INT ) AS VO.MENU
+FUNCTION FabGetSubMenuFromPos( oMenu AS VO.Menu , nPos AS INT ) AS VO.MENU
 	LOCAL wItemID AS DWORD
 	LOCAL hMenuHandle AS PTR
 	LOCAL oRetMenu := NULL_OBJECT AS VO.Menu
@@ -1142,7 +1142,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabGetTime24() AS STRING
+FUNCTION FabGetTime24() AS STRING
 	//l Retrieve the current time, in 24h format
 	//p Retrieve the current time, in 24h format
 	//r The Current Time in 24h Format
@@ -1175,41 +1175,41 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
 	
 	
 	
-	FUNCTION FabIsNullPtr( ptrPointer AS PTR ) AS LOGIC
+FUNCTION FabIsNullPtr( ptrPointer AS PTR ) AS LOGIC
 	RETURN ( ptrPointer == NULL_PTR )
 	
 	
 	
 	
-	FUNCTION FabIsTime24( sString AS STRING )	AS	LOGIC
+FUNCTION FabIsTime24( sString AS STRING )	AS	LOGIC
 	//l Check a Time String
 	//p Check a Time String in 24h format
 	//r A logical value indicating if the Time String is correct
 	/*
 	Check if a time string is correct. ( In 24h Format )
 	*/
-LOCAL	lRetVal 			AS	LOGIC
-LOCAL	sHour, sMin, sSec 	AS STRING
-//
-lRetVal := FALSE
-sString := AllTrim( sString )
-sHour := SubStr( sString, 1, 2 )
-sMin := SubStr( sString, 4, 2 )
-sSec := SubStr( sString, 7, 2 )
-//
-IF ( Val( sHour ) >= 0 )  .and. ( Val( sHour ) <= 23 )
-	IF( Val( sMin ) >= 0 )  .and. ( Val( sMin ) <= 59 )
-		IF( Val( sSec ) >= 0 )  .and. ( Val( sSec ) <= 59 )
-			lRetVal := TRUE
+	LOCAL	lRetVal 			AS	LOGIC
+	LOCAL	sHour, sMin, sSec 	AS STRING
+	//
+	lRetVal := FALSE
+	sString := AllTrim( sString )
+	sHour := SubStr( sString, 1, 2 )
+	sMin := SubStr( sString, 4, 2 )
+	sSec := SubStr( sString, 7, 2 )
+	//
+	IF ( Val( sHour ) >= 0 )  .and. ( Val( sHour ) <= 23 )
+		IF( Val( sMin ) >= 0 )  .and. ( Val( sMin ) <= 59 )
+			IF( Val( sSec ) >= 0 )  .and. ( Val( sSec ) <= 59 )
+				lRetVal := TRUE
+			ENDIF
 		ENDIF
 	ENDIF
-ENDIF
-//
-RETURN lRetVal
-
-
-
-
+	//
+	RETURN lRetVal
+	
+	
+	
+	
 FUNCTION FabIsWindowsNT() AS LOGIC
 	LOCAL ptrVI		IS	_winOSVERSIONINFO
 	//
@@ -1221,7 +1221,7 @@ FUNCTION FabIsWindowsNT() AS LOGIC
 	
 	
 	
-	FUNCTION Fabitoa( nVal AS LONG, nBase AS WORD ) AS STRING
+FUNCTION Fabitoa( nVal AS LONG, nBase AS WORD ) AS STRING
 	LOCAL nVal2		AS	LONG
 	LOCAL nDigit	AS	LONG
 	LOCAL cResult	AS	STRING
@@ -1256,13 +1256,13 @@ FUNCTION FabIsWindowsNT() AS LOGIC
 	
 	
 	
-	FUNCTION FabMakeIntResource( i AS DWORD )	AS PTR
+FUNCTION FabMakeIntResource( i AS DWORD )	AS PTR
 	RETURN  PTR( _CAST, DWORD( WORD( i ) ) )
 	
 	
 	
 	
-	FUNCTION FabRGB2Color( dwColor AS DWORD ) AS Color
+FUNCTION FabRGB2Color( dwColor AS DWORD ) AS Color
 	//l Convert a RGB value to a Color Object
 	//p Convert a RGB value to a Color Object
 	LOCAL oColor	AS	 Color
@@ -1278,7 +1278,7 @@ FUNCTION FabIsWindowsNT() AS LOGIC
 	
 	
 	
-	FUNCTION FabSetWindowStyle( hWnd AS PTR, liAdd AS LONG ) AS LONG
+FUNCTION FabSetWindowStyle( hWnd AS PTR, liAdd AS LONG ) AS LONG
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Set Window style
 	//p Set Window style
@@ -1297,7 +1297,7 @@ FUNCTION FabIsWindowsNT() AS LOGIC
 	
 	
 	
-	FUNCTION FabShiftLeft( Value AS LONG, Count AS LONG ) AS LONG
+FUNCTION FabShiftLeft( Value AS LONG, Count AS LONG ) AS LONG
 	//l Bit Shift Left
 	//p Bit Shift Left
 	//a <Value> is the value to shift left\line
@@ -1307,61 +1307,61 @@ FUNCTION FabIsWindowsNT() AS LOGIC
 	ShiftLeft a Value, a Count number of times
 	*/
 	
-LOCAL Cpt       AS LONG
-//
-FOR Cpt := 1 TO Count
-	Value := ( Value << 1 )
-NEXT
-//
-RETURN Value
-
-
-
-
+	LOCAL Cpt       AS LONG
+	//
+	FOR Cpt := 1 TO Count
+		Value := ( Value << 1 )
+	NEXT
+	//
+	RETURN Value
+	
+	
+	
+	
 FUNCTION FabShiftRight( Value AS LONG, Count AS LONG ) AS LONG
-//l Bit Shift Right
-//p Bit Shift Right
-//a <Value> is the value to shift Right
-//a <Count> indicate the number of bit to shift
-//r The Result of the Shift Right
-/*
-ShiftRight a Value, a Count number of times
-*/
-LOCAL Cpt       AS LONG
-//
-FOR Cpt := 1 TO Count
-	Value := ( Value >> 1 )
-NEXT
-//
-RETURN Value
-
-
-
-
+	//l Bit Shift Right
+	//p Bit Shift Right
+	//a <Value> is the value to shift Right
+	//a <Count> indicate the number of bit to shift
+	//r The Result of the Shift Right
+	/*
+	ShiftRight a Value, a Count number of times
+	*/
+	LOCAL Cpt       AS LONG
+	//
+	FOR Cpt := 1 TO Count
+		Value := ( Value >> 1 )
+	NEXT
+	//
+	RETURN Value
+	
+	
+	
+	
 FUNCTION FabValueIsSet( nInValue AS DWORD, nVal1 := 0xFFFFFFFF AS DWORD, nVal2 := 0xFFFFFFFF AS DWORD, nVal3 := 0xFFFFFFFF AS DWORD, nVal4 := 0xFFFFFFFF AS DWORD, nVal5 := 0xFFFFFFFF AS DWORD )	AS	LOGIC
-/*
-Check if One or Up to Five value are existing in a Value
-*/
-LOCAL nRes1	AS	DWORD
-LOCAL nRes2	AS	DWORD
-LOCAL nRes3	AS	DWORD
-LOCAL nRes4	AS	DWORD
-LOCAL nRes5	AS	DWORD
-LOCAL lRes	AS	LOGIC
-//
-nRes1 := _And( nInValue, nVal1 )
-nRes2 := _And( nInValue, nVal2 )
-nRes3 := _And( nInValue, nVal3 )
-nRes4 := _And( nInValue, nVal4 )
-nRes5 := _And( nInValue, nVal5 )
-//
-lRes := ( nRes1 != 0 )  .and. ( nRes2 != 0 )  .and. ( nRes3 != 0 )  .and. ( nRes4 != 0 )  .and. ( nRes5 != 0 )
-//
-RETURN lRes
-
-
-
-
+	/*
+	Check if One or Up to Five value are existing in a Value
+	*/
+	LOCAL nRes1	AS	DWORD
+	LOCAL nRes2	AS	DWORD
+	LOCAL nRes3	AS	DWORD
+	LOCAL nRes4	AS	DWORD
+	LOCAL nRes5	AS	DWORD
+	LOCAL lRes	AS	LOGIC
+	//
+	nRes1 := _And( nInValue, nVal1 )
+	nRes2 := _And( nInValue, nVal2 )
+	nRes3 := _And( nInValue, nVal3 )
+	nRes4 := _And( nInValue, nVal4 )
+	nRes5 := _And( nInValue, nVal5 )
+	//
+	lRes := ( nRes1 != 0 )  .and. ( nRes2 != 0 )  .and. ( nRes3 != 0 )  .and. ( nRes4 != 0 )  .and. ( nRes5 != 0 )
+	//
+	RETURN lRes
+	
+	
+	
+	
 FUNCTION FabWinExecPause( progname AS PSZ, cmdshow AS SHORTINT ) AS LOGIC
 	//l Run and Wait for a child process to end.
 	//d Run and Wait for a child process to end.

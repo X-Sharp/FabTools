@@ -40,7 +40,7 @@
     <MemVar>false</MemVar>
     <Undeclared>false</Undeclared>
     <InitLocals>false</InitLocals>
-    <XSharpProjectversion>2.2.2.0</XSharpProjectversion>
+    <XSharpProjectversion>2.13.0.5</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>

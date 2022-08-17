@@ -13,12 +13,13 @@
     <RootNamespace>FabZip</RootNamespace>
     <AssemblyName>FabZip</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <XSharpProjectversion>2.8.0.11</XSharpProjectversion>
+    <XSharpProjectversion>2.13.0.5</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
     <NoWin32Manifest>False</NoWin32Manifest>
     <TargetFrameworkProfile />
+    <NS>True</NS>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>

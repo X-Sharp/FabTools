@@ -29,3 +29,5 @@
 // by using the '*' as shown below:
 [assembly: AssemblyVersionAttribute( "2.3.1" )]
 [assembly: AssemblyFileVersionAttribute( "2.3.1" )]
+
+[assembly: ImplicitNamespace("FabZip")]

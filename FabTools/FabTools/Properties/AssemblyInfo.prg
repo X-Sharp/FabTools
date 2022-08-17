@@ -28,3 +28,4 @@ USING System.Runtime.InteropServices
 [assembly: AssemblyVersionAttribute( "2.3.1" )]
 [assembly: AssemblyFileVersionAttribute( "2.3.1" )]
 
+[assembly: ImplicitNamespace("FabTools")]

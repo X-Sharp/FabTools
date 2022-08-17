@@ -34,8 +34,8 @@
     <Comments>
     </Comments>
     <INS>true</INS>
-    <NS>false</NS>
-    <XSharpProjectversion>2.3.0.0</XSharpProjectversion>
+    <NS>True</NS>
+    <XSharpProjectversion>2.13.0.5</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>

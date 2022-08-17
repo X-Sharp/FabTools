@@ -11,7 +11,7 @@
     <Nologo>true</Nologo>
     <GenerateFullPaths>false</GenerateFullPaths>
     <Name>FabPaintLib_Control</Name>
-    <RootNamespace>FabPaintLib_Control</RootNamespace>
+    <RootNamespace>FabPaintLib.Control</RootNamespace>
     <VO3>true</VO3>
     <UnSafe>true</UnSafe>
     <VO5>false</VO5>
@@ -33,8 +33,8 @@
     <Comments>
     </Comments>
     <INS>true</INS>
-    <NS>false</NS>
-    <XSharpProjectversion>2.3.0.0</XSharpProjectversion>
+    <NS>True</NS>
+    <XSharpProjectversion>2.13.0.5</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>

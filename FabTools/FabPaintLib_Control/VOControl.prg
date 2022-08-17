@@ -80,8 +80,8 @@ BEGIN NAMESPACE FabPaintLib.Control
 						IF ( rRealZoom == 1 )
 							rcDst:left	    := - SELF:liHorzPos
 							rcDst:top	    := - SELF:liVertPos
-							rcDst:right	    := SELF:oImg:Width - SELF:liHorzPos
-							rcDst:Bottom    := self:oImg:Height - self:liVertPos
+							rcDst:right	    := (long)SELF:oImg:Width - SELF:liHorzPos
+							rcDst:Bottom    := (long)self:oImg:Height - self:liVertPos
 							//
 							//				SELF:oImg:StretchExDC( hMemDC, @rcDst, @rcSrc )
 							// Same As

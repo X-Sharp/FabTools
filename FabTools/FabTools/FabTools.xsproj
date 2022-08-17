@@ -33,14 +33,14 @@
     <CS>false</CS>
     <NamedArgs>false</NamedArgs>
     <OVF>false</OVF>
-    <NS>false</NS>
+    <NS>True</NS>
     <NoStandardDefs>false</NoStandardDefs>
     <IncludePaths />
     <StandardDefs />
     <MemVar>false</MemVar>
     <Undeclared>false</Undeclared>
     <InitLocals>false</InitLocals>
-    <XSharpProjectversion>2.10.0.1</XSharpProjectversion>
+    <XSharpProjectversion>2.13.0.5</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>

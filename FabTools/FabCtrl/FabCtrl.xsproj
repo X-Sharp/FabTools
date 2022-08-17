@@ -30,7 +30,7 @@
     <VO7>true</VO7>
     <VO8>true</VO8>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <XSharpProjectversion>2.3.0.0</XSharpProjectversion>
+    <XSharpProjectversion>2.13.0.5</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
