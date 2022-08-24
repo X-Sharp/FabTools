@@ -30,7 +30,7 @@
     <VO7>true</VO7>
     <VO8>true</VO8>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <XSharpProjectversion>2.8.0.11</XSharpProjectversion>
+    <XSharpProjectversion>2.13.1.0</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
@@ -78,13 +78,6 @@
     <RegisterForComInterop>False</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetZip, Version=1.13.6.0, Culture=neutral, PublicKeyToken=6583c7c814667745">
-      <Name>DotNetZip</Name>
-      <AssemblyName>DotNetZip.dll</AssemblyName>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetZip.1.13.6\lib\net40\DotNetZip.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
@@ -238,7 +231,6 @@
     <VOBinary Include="Test Window.FabZipTest1.vnfrm">
       <DependentUpon>Test Window.prg</DependentUpon>
     </VOBinary>
-    <None Include="packages.config" />
     <None Include="Resources\CDROM.ICO" />
     <None Include="Resources\CLOSE.ICO" />
     <None Include="Resources\DISKET.ICO" />
@@ -280,6 +272,11 @@
       <Project>{bf4092de-ca8d-4ebe-b4e2-8fa9660845aa}</Project>
       <Private>True</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DotNetZip">
+      <Version>1.13.6</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(XSharpMsBuildDir)\XSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
