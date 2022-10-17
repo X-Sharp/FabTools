@@ -636,25 +636,28 @@ FUNCTION FabExtractFileExt( FileName AS STRING) AS STRING
 	// Function to obtain temporary files
 	LOCAL	szTempPath	AS	PSZ
 	LOCAL	szTempFile	AS	PSZ
+	LOCAL	szPrefix    AS  PSZ
 	LOCAL	lResult		AS	LOGIC
 	//
 	lResult := FALSE
-	szTempPath := MemAlloc( MAX_PATH )
+	szPrefix := StringAlloc( cPrefix )
 	szTempFile := MemAlloc( MAX_PATH )
 	// Retrieve TEMP Path
 	IF Empty( cTempPath )
+		szTempPath := MemAlloc( MAX_PATH )
 		GetTempPath( MAX_PATH, szTempPath )
 	ELSE
-		FabPszCopy( szTempPath, String2Psz( cTempPath ) )
+		szTempPath := StringAlloc( cTempPath)
 	ENDIF
 	//
-	IF ( GetTempFileName( szTempPath, String2Psz( cPrefix ), 0, szTempFile) != 0 )
+	IF ( GetTempFileName( szTempPath, szPrefix, 0, szTempFile) != 0 )
 	    //
 		cTempFile := Psz2String( szTempFile )
 		lResult := TRUE
 		//
 	ENDIF
 	//
+	MemFree( szPrefix )
 	MemFree( szTempPath )
 	MemFree( szTempFile )
 	//
