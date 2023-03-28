@@ -226,26 +226,23 @@ BEGIN NAMESPACE FabPaintLib.Control
 			
 			return 
 		
-		access BackgroundColor as Color  
-			local oColor as Color
+		access BackgroundColor as VO.Color  
+			local oColor as VO.Color
 			local RGB IS _WinRGBQUAD
 			//
 			oColor := NULL_OBJECT
 			if self:oImg:GetBackgroundColor( @RGB )
 				//
-				oColor := Color{ RGB:rgbRed, RGB:rgbGreen, RGB:rgbBlue }
+				oColor := VO.Color{ RGB:rgbRed, RGB:rgbGreen, RGB:rgbBlue }
 			endif 
 			return oColor
 			
 			
-		Assign BackgroundColor( oColor as Color )   
-			local RGB IS _WinRGBQUAD
+		Assign BackgroundColor( oColor as VO.Color )   
 			//
-			RGB:rgbGreen := oColor:Green
-			RGB:rgbRed := oColor:Red
-			RGB:rgbBlue := oColor:Blue
+			var winColor := System.Drawing.Color.FromARGB( oColor:Red, oColor:Green, oColor:Blue )
 			//
-			self:oImg:SetBackgroundColor( oColor )
+			self:oImg:SetBackgroundColor( winColor )
 			
 			
 		METHOD Destroy() CLIPPER

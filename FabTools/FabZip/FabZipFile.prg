@@ -321,9 +321,9 @@ BEGIN NAMESPACE FabZip
 				ENDIF
 				NewName := ""
 				IF Empty( SELF:cTempDir )
-					FabGetTempFile( NewName, "zip" )
+					FabGetTempFile( Ref NewName, "zip" )
 				ELSE
-					FabGetTempFile( NewName, "zip", SELF:cTempDir )
+					FabGetTempFile( Ref NewName, "zip", SELF:cTempDir )
 				ENDIF
 				// The temporary Zip FileName
 				TmpZipName := NewName
