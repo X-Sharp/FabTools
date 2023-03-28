@@ -13,7 +13,6 @@
     <RootNamespace>FabZip</RootNamespace>
     <AssemblyName>FabZip</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <XSharpProjectversion>2.13.1.0</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
@@ -25,7 +24,7 @@
     <EmitDebugInformation>true</EmitDebugInformation>
     <DefineConstants>
     </DefineConstants>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <Optimize>false</Optimize>

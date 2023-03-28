@@ -1084,10 +1084,11 @@ BEGIN NAMESPACE FabPaintLib
 			LOCAL lOk AS LOGIC
 			LOCAL oRGB AS RGBQUAD
 			//
+			lOk := FALSE
 			oRGB := RGBQUAD{ oColor }
 			//
 			IF SELF:IsValid
-				FreeImage.SetBackgroundColor( SELF:oDibObject, REF oRGB )
+				lOk := FreeImage.SetBackgroundColor( SELF:oDibObject, REF oRGB )
 				//DIBSetBackgroundColor( self:pDibObject, pRGB )
 			ENDIF
 			RETURN lOk	
