@@ -91,10 +91,10 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 	PROTECT hKey 		AS PTR
 	//
 	PROTECT m_ReadOnly AS LOGIC
-	
-	
+
+
 	DECLARE	ACCESS KeyInfo					//AS FabRegKeyInfo
-	
+
 	//Protected
 	DECLARE	METHOD _CloseKey				//( hKey AS PTR ) AS LONG
 	DECLARE	METHOD _CopyValues				//( SrcKey AS PTR, DestKey AS PTR )
@@ -102,29 +102,29 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 	DECLARE	METHOD _ExportEntryToString		//( cSection AS STRING, cEntry AS STRING )
 	DECLARE	METHOD _ExportSectionToFile		//( cSection AS STRING, oFile AS FabFileBin )
 	DECLARE	METHOD _GetKeyInfo				//( hKey AS PTR ) AS FabRegKeyInfo
-	DECLARE	METHOD _OpenKey					//( cSection AS STRING ) AS PTR 
-	
-	
-	
-	
-	
-	
-	
-	PROTECT METHOD _CloseKey( hkResult AS PTR ) AS LONG PASCAL 
+	DECLARE	METHOD _OpenKey					//( cSection AS STRING ) AS PTR
+
+
+
+
+
+
+
+	PROTECT METHOD _CloseKey( hkResult AS PTR ) AS LONG PASCAL
 		//
 		RETURN	RegCloseKey( hkResult )
-		
-		
-		
-	
-	PROTECT METHOD _CopyValues( SrcKey AS PTR, DestKey AS PTR ) PASCAL 
+
+
+
+
+	PROTECT METHOD _CopyValues( SrcKey AS PTR, DestKey AS PTR ) PASCAL
 		// Copy values from Source to Dest open reg keys.
-		
-		
-		
+
+
+
 		RETURN SELF
-	
-	PROTECT METHOD _CreateKey( cSection AS STRING ) AS PTR PASCAL 
+
+	PROTECT METHOD _CreateKey( cSection AS STRING ) AS PTR PASCAL
 		LOCAL sKeySection		AS STRING
 		LOCAL phkResult			AS PTR
 		LOCAL lpdwDisposition	AS DWORD
@@ -140,14 +140,14 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		0,                                  ;
 		@phkResult,                         ;
 		@lpdwDisposition )
-		
+
 		//
 		RETURN phkResult
-		
-		
-		
-	
-	PROTECT METHOD _ExportEntryToString( cSection AS STRING, cEntry AS STRING ) 
+
+
+
+
+	PROTECT METHOD _ExportEntryToString( cSection AS STRING, cEntry AS STRING )
 		LOCAL cResult	AS	STRING
 		LOCAL ptrData	AS	BYTE PTR
 		LOCAL dwType	AS	DWORD
@@ -218,11 +218,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN cResult
-		
-		
-		
-	
-	PROTECT METHOD _ExportSectionToFile( cSection AS STRING, oFile AS FabFileBin ) 
+
+
+
+
+	PROTECT METHOD _ExportSectionToFile( cSection AS STRING, oFile AS FabFileBin )
 		LOCAL cKey		AS	STRING
 		LOCAL cValue	AS	STRING
 		LOCAL aEntries	AS	ARRAY
@@ -241,12 +241,12 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 			NEXT
 			oFile:WriteLine( "" )
 		ENDIF
-		
-		
-		
+
+
+
 		RETURN SELF
-	
-	PROTECT METHOD _GetKeyInfo( hKey AS PTR ) AS FabRegKeyInfo PASCAL 
+
+	PROTECT METHOD _GetKeyInfo( hKey AS PTR ) AS FabRegKeyInfo PASCAL
 		LOCAL oKeyInfo		:= NULL_OBJECT AS	FabRegKeyInfo
 		LOCAL NumSubKeys	AS	DWORD
 		LOCAL MaxSubKeyLen	AS	DWORD
@@ -271,11 +271,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN oKeyInfo
-		
-		
-		
-	
-	PROTECT METHOD _OpenKey( cSection AS STRING ) AS PTR PASCAL 
+
+
+
+
+	PROTECT METHOD _OpenKey( cSection AS STRING ) AS PTR PASCAL
 		LOCAL sKeySection	AS STRING
 		LOCAL phkResult		AS PTR
 		//
@@ -288,11 +288,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		@phkResult )
 		//
 		RETURN phkResult
-		
-		
-		
-	
-	PROTECT METHOD BuildSubKey( cSection ) 
+
+
+
+
+	PROTECT METHOD BuildSubKey( cSection )
 		LOCAL sRet	AS STRING
 		//
 		IF Empty( cSection )
@@ -301,11 +301,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 			sRet := SELF:sSubKey + "\" + cSection
 		ENDIF
 		RETURN sRet
-		
-		
-		
-	
-	METHOD CloneSelf( ) 
+
+
+
+
+	METHOD CloneSelf( )
 		//p Create a clone of the current object, initialized with the same property values
 		//r A new FabRegistry object
 		LOCAL oReg	AS	FabRegistry
@@ -319,11 +319,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		oReg:Type := SELF:Type
 		//
 		RETURN oReg
-		
-		
-		
-		
-	METHOD CopyEntries( SrcSection, DestSection ) 
+
+
+
+
+	METHOD CopyEntries( SrcSection, DestSection )
 		//p Copy all entries from one section to another.
 		//d CopyEntries() will copy all entries from one section to another whatever types they are.
 		//a <SrcSection> is a string indicating the root of registry tree to copy.\line
@@ -372,12 +372,12 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-		
-	METHOD CopyEntry( SrcSection, DestSection, cEntry ) 
+
+
+
+
+
+	METHOD CopyEntry( SrcSection, DestSection, cEntry )
 		//p Copy one Entry value from one section to another.
 		//d CopyEntry() will copy one entry entries from one section to another whatever types it is.
 		//a <SrcSection> is a string indicating the root of registry tree to copy.\line
@@ -431,11 +431,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-	METHOD CopySection( SrcSection, DestSection ) 
+
+
+
+
+	METHOD CopySection( SrcSection, DestSection )
 		//p Copy all value/sections from one section to another
 		//d CopySection() will copy all entries & sections from one section to another whatever types they are, including entries stored
 		//d  under the source section.
@@ -446,7 +446,7 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		//a  starting at the SubKey property.\line
 		//a \tab If you want a destination in another HKEY, or with another Root, you can pass a FabRegistry object.\line
 		//r A logical value indicating the success of the operation.
-		
+
 		LOCAL lSuccess 	AS 	LOGIC
 		LOCAL aSections	AS	ARRAY
 		LOCAL wCpt		AS	DWORD
@@ -456,7 +456,7 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		//
 		DEFAULT( @SrcSection, "" )
 		DEFAULT( @DestSection, "" )
-		lSuccess := FALSE	
+		lSuccess := FALSE
 		//
 		IF IsString( DestSection )
 			// Make a copy of the current FabRegistry object
@@ -487,7 +487,7 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 						// Error !
 						EXIT
 					ENDIF
-					// Now try to copy any existing SubKeys				
+					// Now try to copy any existing SubKeys
 					lSuccess := SELF:CopySections( FabConcatDir( SrcSection, aSections[ wCpt ] ), oDest2 )
 					IF !lSuccess
 						// Error !
@@ -498,11 +498,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-	METHOD CopySections( SrcSection, DestSection ) 
+
+
+
+
+	METHOD CopySections( SrcSection, DestSection )
 		//p Copy Sub-sections and their Values from one section to another
 		//d CopySections() will copy all entries & sections from one section to another whatever types they are, without including entries stored
 		//d  under the source section. This will only copy Sub Sections and their values.
@@ -551,7 +551,7 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 						// Error !
 						EXIT
 					ENDIF
-					// Now try to copy any existing SubKeys				
+					// Now try to copy any existing SubKeys
 					lSuccess := SELF:CopySections( FabConcatDir( SrcSection, aSections[ wCpt ] ), oDest2 )
 					IF !lSuccess
 						// Error !
@@ -562,13 +562,13 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-		
-		
-	METHOD CreateSubKeyObject( cSubKey ) 
+
+
+
+
+
+
+	METHOD CreateSubKeyObject( cSubKey )
 		LOCAL oReg	AS	FabRegistry
 		// Create an empty FabRegistry Object
 		oReg := SELF:CloneSelf()
@@ -576,11 +576,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		oReg:SubKey := SELF:BuildSubKey( cSubKey )
 		//
 		RETURN oReg
-		
-		
-		
-		
-	METHOD DeleteEntries( cSection ) 
+
+
+
+
+	METHOD DeleteEntries( cSection )
 		//p Delete all Entries in a specified section
 		//r A logical value indicating the success of the operation.
 		LOCAL aName	AS ARRAY
@@ -598,11 +598,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		NEXT wCount
 		//
 		RETURN ( SELF:LastError == ERROR_SUCCESS )
-		
-		
-		
-		
-	METHOD DeleteEntry( cSection, cEntry ) 
+
+
+
+
+	METHOD DeleteEntry( cSection, cEntry )
 		//p Remove an Entry in Section
 		//r A logical value indicating the success of the operation.
 		LOCAL phkResult 	AS PTR
@@ -620,21 +620,21 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN ( SELF:LastError == ERROR_SUCCESS )
-		
-		
-		
-		
-	PROTECT METHOD DeleteOneSection( cSection ) 
+
+
+
+
+	PROTECT METHOD DeleteOneSection( cSection )
 		//
 		cSection := SELF:BuildSubKey( cSection )
 		//
 		SELF:liLastError := RegDeleteKey( SELF:hKey, String2Psz( cSection ) )
-		
-		
-		
+
+
+
 		RETURN SELF
-	
-	METHOD DeleteSection( cSection ) 
+
+	METHOD DeleteSection( cSection )
 		//d Remove a Section and all it's associated entries and all its descendents.
 		//r Return a logical value indicating the succes of the operation
 		LOCAL aSections	AS ARRAY
@@ -669,11 +669,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		*/
 		//
 		RETURN ( SELF:LastError == ERROR_SUCCESS )
-		
-		
-		
-		
-	METHOD EntryExist( cSection, cEntry ) 
+
+
+
+
+	METHOD EntryExist( cSection, cEntry )
 		//p Check if a particular Entry exist, in a particular Section
 		//r TRUE if the entry exist, FALSE unless.
 		LOCAL phkResult		AS PTR
@@ -696,11 +696,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 			//
 		ENDIF
 		RETURN lExist
-		
-		
-		
-		
-	METHOD ExportToFile( SrcSection, cFile ) 
+
+
+
+
+	METHOD ExportToFile( SrcSection, cFile )
 		//p Export a Key, it's SubKeys and values to a REG File
 		//d Export a Key, it's SubKeys and values to a REG File that can be imported using the RegEdit application.
 		//a <SrcSection> is a string indicating where the export starts.
@@ -764,20 +764,20 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-	ACCESS	FileName	
+
+
+
+
+	ACCESS	FileName
 		//r Return the Full SubKey.
 		//d This Access return a value that you can handle as a FileName
 		// For compatibility with IniFile
 		RETURN	SELF:SubKey
-		
-		
-		
-		
-	METHOD GetData( cSection, cEntry, ptrBuffer, dwBufferLen ) 
+
+
+
+
+	METHOD GetData( cSection, cEntry, ptrBuffer, dwBufferLen )
 		//p Retrieve Data in a particular SubKey, without regarding it's type.
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -812,12 +812,12 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lpdwDataLen
-		
-		
-		
-		
-		
-	METHOD GetDataSize( cSection, cEntry ) 
+
+
+
+
+
+	METHOD GetDataSize( cSection, cEntry )
 		//p Get the size of the data stored in a particular SubKey
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -845,11 +845,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lpdwDataLen
-		
-		
-		
-		
-	METHOD GetDataType( cSection, cEntry ) 
+
+
+
+
+	METHOD GetDataType( cSection, cEntry )
 		//p Get the type of the data stored in a particular key
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -880,11 +880,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lpdwType
-		
-		
-		
-		
-	METHOD GetEntries( cSection ) 
+
+
+
+
+	METHOD GetEntries( cSection )
 		//d Retrieve all Entries in the specified Section.
 		//r An Array filled with the names of all entries in the section.
 		LOCAL liError		AS LONG
@@ -915,7 +915,7 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 					dwNameLen := oKeyInfo:MaxValueNameLen + 1
 					//
 					liError := RegEnumValue( phkResult, ;
-					dwIndex, 			;	
+					dwIndex, 			;
 					pszName,        	;
 					@dwNameLen,			;
 					NULL_PTR,       	;
@@ -939,11 +939,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		SELF:liLastError := liError
 		//
 		RETURN aName
-		
-		
-		
-		
-	METHOD GetInt( cSection, cEntry, nDefault ) 
+
+
+
+
+	METHOD GetInt( cSection, cEntry, nDefault )
 		//d Read a LongInt value, in the Entry of a specified Section
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -967,7 +967,7 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 					IF ( dwType == (DWORD)REG_DWORD_BIG_ENDIAN )
 						dwData := LoWord( DWORD( dwData ) ) + HiWord( DWORD( dwData ) )
 					ENDIF
-				ELSE 
+				ELSE
 					IF !SELF:ReadOnly
 						// May be the Key doesn't exist
 						SELF:WriteInt( cSection, cEntry, nDefault )
@@ -986,11 +986,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN LONG( _CAST, dwData )
-		
-		
-		
-		
-	METHOD GetSection( cSection ) 
+
+
+
+
+	METHOD GetSection( cSection )
 		//p Retrieve all Entries and there values in a specified Section
 		//r An Multi-dimensionnal Array with Entries Name and values.
 		//d This method return an array with all entries. For Each entry, we have an array with :\line
@@ -1043,11 +1043,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN aData
-		
-		
-		
-		
-	METHOD GetSections( cSection ) 
+
+
+
+
+	METHOD GetSections( cSection )
 		//p Read all Sections Name
 		//r An Array with all Sections Name in the specified SubKey
 		LOCAL liError		AS LONG
@@ -1086,7 +1086,7 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 					NULL_PTR )
 					//
 					IF ( liError == ERROR_SUCCESS )
-						//				
+						//
 						AAdd( aName, Psz2String( pszName ) )
 					ENDIF
 				NEXT
@@ -1097,11 +1097,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		SELF:liLastError := liError
 		RETURN aName
-		
-		
-		
-		
-	METHOD GetString( cSection, cEntry, sDefault ) 
+
+
+
+
+	METHOD GetString( cSection, cEntry, sDefault )
 		//d Read a String value, in the Entry of a specified Section
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -1151,12 +1151,12 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN Trim( sRet )
-		
-		
-		
-		
-		
-	METHOD GetStringArray( cSection, cEntry, aDefault ) 
+
+
+
+
+
+	METHOD GetStringArray( cSection, cEntry, aDefault )
 		//d Read an array of Strings, in the Entry of a specified Section
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -1200,11 +1200,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN aRet
-		
-		
-		
-		
-	CONSTRUCTOR( sFullPath, HKey ) 
+
+
+
+
+	CONSTRUCTOR( sFullPath, HKey )
 		//p Intialize the FabRegistry Object
 		//a <sFullPath> is the FileName to use as SubKey or the real Registry Key to use
 		//e Local oReg	as	FabRegistry
@@ -1218,8 +1218,8 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		DEFAULT( @HKey, HKEY_LOCAL_MACHINE )
 		SELF:UseKey			:= HKey
 		//
-		
-	ACCESS	 KEY_ACCESS AS DWORD PASCAL 
+
+	ACCESS	 KEY_ACCESS AS DWORD PASCAL
 		LOCAL dwRet AS DWORD
 		//
 		IF SELF:ReadOnly
@@ -1228,9 +1228,9 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 			dwRet := SELF:KEY_ALL_ACCESS
 		ENDIF
 		RETURN		 dwRet
-		
-		
-	ACCESS	 KEY_ALL_ACCESS AS DWORD PASCAL 
+
+
+	ACCESS	 KEY_ALL_ACCESS AS DWORD PASCAL
 		RETURN 	_AND( _OR( 	STANDARD_RIGHTS_ALL,;
 		KEY_QUERY_VALUE,	;
 		KEY_SET_VALUE,		;
@@ -1238,18 +1238,23 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		KEY_ENUMERATE_SUB_KEYS,;
 		KEY_NOTIFY,			;
 		KEY_CREATE_LINK ), _NOT( SYNCHRONIZE ) )
-		
-		
-		
-	ACCESS	 KEY_READ_ACCESS AS DWORD PASCAL 
-		RETURN 	_AND( _OR( 	STANDARD_RIGHTS_ALL,;
+
+
+
+    ACCESS	 KEY_READ_ACCESS AS DWORD PASCAL
+		// Correction : No more using STANDARD_RIGHTS_ALL as it need Admin Rights
+		RETURN 	_AND( _OR( 	STANDARD_RIGHTS_READ,;
 		KEY_QUERY_VALUE,	;
 		KEY_ENUMERATE_SUB_KEYS,;
 		KEY_NOTIFY ), _NOT( SYNCHRONIZE ) )
-		
-		
-		
-	METHOD KeyExist( cSection ) 
+
+
+/// <summary>
+/// Check if a particular SubKey exist
+/// </summary>
+/// <param name="cSection"></param>
+/// <returns>TRUE if the key exist, FALSE unless</returns>
+	METHOD KeyExist( cSection )
 		//p Check if a particular SubKey exist
 		//r TRUE if the key exist, FALSE unless.
 		LOCAL phkResult		AS PTR
@@ -1267,11 +1272,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 			//
 		ENDIF
 		RETURN lExist
-		
-		
-		
-		
-	ACCESS KeyInfo AS FabRegKeyInfo PASCAL 
+
+
+
+
+	ACCESS KeyInfo AS FabRegKeyInfo PASCAL
 		LOCAL phkResult		AS PTR
 		LOCAL oKeyInfo		:= NULL_OBJECT AS	FabRegKeyInfo
 		//
@@ -1286,9 +1291,9 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN oKeyInfo
-		
-		
-	ACCESS KeyLevel 
+
+
+	ACCESS KeyLevel
 		//r The level of the current SubKey. This indicates how many levels the SubKey is under the Root ( the current HKEY )
 		//e // If the current SubKey if "SOFTWARE\My Test"
 		//e ? Self:KeyLevel
@@ -1305,24 +1310,24 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		nCount := nCount + 1
 		//
 		RETURN nCount
-		
-		
-		
-		
-	ACCESS LastError( ) 
+
+
+
+
+	ACCESS LastError( )
 		//r The last error code
 		RETURN SELF:liLastError
-		
-		
-		
-		
-	ASSIGN LastError( liError ) 
+
+
+
+
+	ASSIGN LastError( liError )
 		SELF:liLastError := liError
-		
-		
-		
-		
-	METHOD MoveDownTo( cSubKey ) 
+
+
+
+
+	METHOD MoveDownTo( cSubKey )
 		//p Move to a new relative SubKey
 		//a <cSubKey> is a string indicating the new relative subkey to point to.
 		//d MoveDownTo() change the currently selected SubKey.
@@ -1343,11 +1348,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		// Return the Current SubKey
 		RETURN SELF:SubKey
-		
-		
-		
-		
-	METHOD MoveEntries( SrcSection, DestSection ) 
+
+
+
+
+	METHOD MoveEntries( SrcSection, DestSection )
 		//p Move all entries from one section to another.
 		//d MoveEntries() will move all entries from one section to another whatever types they are. After the operation,
 		//d  all entries are deleted.
@@ -1366,11 +1371,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-	METHOD MoveEntry( SrcSection, DestSection, cEntry ) 
+
+
+
+
+	METHOD MoveEntry( SrcSection, DestSection, cEntry )
 		//p Move one Entry value from one section to another.
 		//d MoveEntry() will move one entry entries from one section to another whatever types it is. After the operation,
 		//d  the source entry is deleted.
@@ -1389,12 +1394,12 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 			lSuccess := SELF:DeleteEntry( SrcSection, cEntry )
 		ENDIF
 		RETURN lSuccess
-		
-		
-		
-		
-		
-	METHOD MoveSection( SrcSection, DestSection ) 
+
+
+
+
+
+	METHOD MoveSection( SrcSection, DestSection )
 		//p Move all value/sections from one section to another
 		//d MoveSection() will move all entries & sections from one section to another whatever types they are, including entries stored
 		//d  under the source section. After the operation, the source section is deleted.
@@ -1413,13 +1418,13 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-		
-		
-	METHOD MoveSections( SrcSection, DestSection ) 
+
+
+
+
+
+
+	METHOD MoveSections( SrcSection, DestSection )
 		//p Move Sub-sections and their Values from one section to another
 		//d MoveSections() will move all entries & sections from one section to another whatever types they are, without including entries stored
 		//d  under the source section. This will only move Sub Sections and their values. After the operation, all Sub Sections are deleted.
@@ -1440,12 +1445,12 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		FOR wCpt := 1 TO ALen( aSections )
 			SELF:DeleteSection( FabConcatDir( SrcSection, aSections[ wCpt ] ) )
 		NEXT
-		
-		
-		
+
+
+
 		RETURN SELF
-		
-	METHOD MoveUpTo( nLevelUp ) 
+
+	METHOD MoveUpTo( nLevelUp )
 		//p Move Up the current SubKey specification
 		//d Move Up the current SubKey specification
 		//a <nLevelUp> is a DWORD value , indicating how many level must be removed.\line
@@ -1467,11 +1472,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		// Return the Current SubKey
 		RETURN SELF:SubKey
-		
-		
-		
-		
-	METHOD PutData( cSection, cEntry, ptrBuffer, dwBufferLen, dwDataType ) 
+
+
+
+
+	METHOD PutData( cSection, cEntry, ptrBuffer, dwBufferLen, dwDataType )
 		//p Write Data in a particular SubKey, without regarding it's type.
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -1498,17 +1503,17 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN SELF
-		
-	ACCESS ReadOnly AS LOGIC PASCAL 
+
+	ACCESS ReadOnly AS LOGIC PASCAL
 		RETURN		 SELF:m_ReadOnly
-		
-		
-	ASSIGN	 ReadOnly( lSet AS LOGIC ) AS LOGIC PASCAL 
+
+
+	ASSIGN	 ReadOnly( lSet AS LOGIC ) AS LOGIC PASCAL
 		SELF:m_ReadOnly := lSet
-		
-		
-		
-	METHOD ReplaceKey( cFromFile, cBackupFile ) 
+
+
+
+	METHOD ReplaceKey( cFromFile, cBackupFile )
 		LOCAL lSuccess			AS LOGIC
 		LOCAL lNoBackup			:= FALSE AS LOGIC
 		LOCAL cTmpFile			AS STRING
@@ -1544,12 +1549,12 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		lSuccess := ( SELF:liLastError == ERROR_SUCCESS )
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-		
-	METHOD RestoreKey( cFile ) 
+
+
+
+
+
+	METHOD RestoreKey( cFile )
 		LOCAL liError			AS LONG
 		LOCAL phkResult			AS DWORD
 		LOCAL lSuccess			AS LOGIC
@@ -1575,11 +1580,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		lSuccess := ( SELF:liLastError == ERROR_SUCCESS )
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-	METHOD SaveKey( cFile ) 
+
+
+
+
+	METHOD SaveKey( cFile )
 		LOCAL liError			AS LONG
 		LOCAL phkResult			AS DWORD
 		LOCAL lSuccess			AS LOGIC
@@ -1609,29 +1614,29 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		lSuccess := ( SELF:liLastError == ERROR_SUCCESS )
 		//
 		RETURN lSuccess
-		
-		
-		
-		
-	METHOD SetInt( cSection, cEntry, nInt ) 
+
+
+
+
+	METHOD SetInt( cSection, cEntry, NINT )
 		//d Same as WriteInt() Method
 		RETURN SELF:WriteInt( cSection, cEntry, nInt )
-		
-		
-		
-		
-	METHOD SetString( cSection, cEntry, cString ) 
+
+
+
+
+	METHOD SetString( cSection, cEntry, cString )
 		//d Same as WriteString() Method
 		RETURN SELF:WriteString( cSection, cEntry, cString )
-		
-		
-	ACCESS	SubKey	
+
+
+	ACCESS	SubKey
 		//r The Current SubKey used.
 		//e ? oReg:SubKey	--> "SOFTWARE\ComputerAssociates\CA-Visual Objects Applications"
 		RETURN	SELF:sSubKey
-		
-		
-	ASSIGN	SubKey( cNew )	
+
+
+	ASSIGN	SubKey( cNew )
 		//p Change the SubKey used by the FabRegistry Object
 		IF IsString( cNew )
 			cNew := AllTrim( cNew )
@@ -1640,26 +1645,26 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 			ENDIF
 			SELF:sSubKey := cNew
 		ENDIF
-		
-		
-	ACCESS	Type	
+
+
+	ACCESS	Type
 		//r The Current Class value for this FabRegistry Object
 		RETURN	SELF:sClass
-		
-	ASSIGN	TYPE( cNew )	
+
+	ASSIGN	TYPE( cNew )
 		//p Set the Current Class value for this FabRegistry Object
 		IF IsString( cNew )
 			SELF:sClass := cNew
 		ENDIF
-		
-		
-	ACCESS UseKey( ) 
+
+
+	ACCESS UseKey( )
 		//r The Current Registry Key used
 		//e ? oReg:UseKey 	--> HKEY_LOCAL_MACHINE
 		RETURN SELF:hKey
-		
-		
-	ASSIGN UseKey( hKey ) 
+
+
+	ASSIGN UseKey( hKey )
 		//p Change the current Registry Key used
 		//a <hKey> is the Registry Key value to use.\line
 		//a \tab Valid Values are :\line
@@ -1676,9 +1681,9 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 			SELF:hKey := hKey
 		ENDIF
 		//
-		
-		
-	ACCESS UseKeyString 
+
+
+	ACCESS UseKeyString
 		//d Valid Values are :\line
 		//d \tab HKEY_CLASSES_ROOT \line
 		//d \tab HKEY_CURRENT_USER \line
@@ -1699,9 +1704,9 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		ENDIF
 		//
 		RETURN cResult
-		
-		
-	METHOD WriteInt( cSection, cEntry, nInt ) 
+
+
+	METHOD WriteInt( cSection, cEntry, NINT )
 		//d Write a LongInt value, in the Entry of a specified Section
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -1715,11 +1720,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		SELF:PutData( cSection, cEntry, @dwValue, _SizeOf( DWORD ), REG_DWORD )
 		//
 		RETURN SELF
-		
-		
-		
-		
-	METHOD WriteString( cSection, cEntry, cString ) 
+
+
+
+
+	METHOD WriteString( cSection, cEntry, cString )
 		//d Write a String value, in the Entry of a specified Section
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -1729,7 +1734,7 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		DEFAULT( @cString, " " )
 		//
 		IF ( SLen( cString ) > (DWORD)FAB_MAXSTRING )
-			cString := Left( cString, FAB_MAXSTRING )		
+			cString := Left( cString, FAB_MAXSTRING )
 		ENDIF
 		//
 		pszString := StringAlloc( cString )
@@ -1739,11 +1744,11 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		MemFree( pszString )
 		//
 		RETURN SELF
-		
-		
-		
-		
-	METHOD WriteStringArray( cSection, cEntry, aStrings ) 
+
+
+
+
+	METHOD WriteStringArray( cSection, cEntry, aStrings )
 		//d Write an array of Strings value, in the Entry of a specified Section
 		//a <cSection> is the Section Name\line
 		//a <cEntry> is the Entry Name\line
@@ -1762,10 +1767,10 @@ CLASS FabRegistry	INHERIT	FabConfigFile
 		MemFree( pszMemory )
 		//
 		RETURN SELF
-		
-		
-		
-		
+
+
+
+
 END CLASS
 
 
@@ -1774,12 +1779,12 @@ CLASS FabRegKeyInfo
 	//l Registry Key Informations
 	//p Report Registry Key Informations
 	//d Returned by the KeyInfo access
-	
+
 	// Internal Time/Date storage
 	PROTECT wLastTime	AS	WORD
 	PROTECT wLastDate	AS	WORD
-	
-	
+
+
 	//number of subkeys
 	PROTECT	dwSubKeys			AS	DWORD
 	//longest subkey name length
@@ -1790,9 +1795,9 @@ CLASS FabRegKeyInfo
 	PROTECT	dwMaxValueNameLen	AS	DWORD
 	//longest value data length
 	PROTECT	dwMaxValueLen		AS	DWORD
-	
+
 	//s
-	
+
 	//number of subkeys
 	DECLARE	ACCESS SubKeys			//AS	DWORD
 	//longest subkey name length
@@ -1803,11 +1808,11 @@ CLASS FabRegKeyInfo
 	DECLARE	ACCESS MaxValueNameLen	//AS	DWORD
 	//longest value data length
 	DECLARE	ACCESS MaxValueLen		//AS	DWORD
-	
-	
-	
-	
-	PROTECT METHOD _SetDateTime( pftLastWriteTime AS _winFileTime ) PASCAL 
+
+
+
+
+	PROTECT METHOD _SetDateTime( pftLastWriteTime AS _winFileTime ) PASCAL
 		LOCAL lpLocalTime 	IS _WinFileTime
 		LOCAL wDate			:= 0 AS	WORD
 		LOCAL wTime			:= 0 AS	WORD
@@ -1824,12 +1829,12 @@ CLASS FabRegKeyInfo
 		// Save data
 		SELF:wLastTime := wTime
 		SELF:wLastDate := wDate
-		
-		
-		
+
+
+
 		RETURN SELF
-	
-	CONSTRUCTOR( NumSubKeys, MaxSubKeyLen, NumValues, MaxValueLen, MaxDataLen, pftLastWriteTime  ) 
+
+	CONSTRUCTOR( NumSubKeys, MaxSubKeyLen, NumValues, MaxValueLen, MaxDataLen, pftLastWriteTime  )
 		//
 		SELF:dwSubKeys := NumSubKeys
 		SELF:dwMaxSubKeyLen := MaxSubKeyLen
@@ -1837,33 +1842,33 @@ CLASS FabRegKeyInfo
 		SELF:dwMaxValueNameLen := MaxValueLen
 		SELF:dwMaxValueLen := MaxDataLen
 		SELF:_SetDateTime( pftLastWriteTime )
-		
-	ACCESS LastWriteDate AS DATE PASCAL 
+
+	ACCESS LastWriteDate AS DATE PASCAL
 		//r Last Write Date
 		RETURN FabPackedWord2Date( SELF:wLastDate )
-		
-	ACCESS LastWriteTime AS STRING PASCAL 
+
+	ACCESS LastWriteTime AS STRING PASCAL
 		//r Last Write Time String in 24h format
 		RETURN FabPackedWord2Time( SELF:wLastTime )
-		
-	ACCESS MaxSubKeyLen AS DWORD PASCAL 
+
+	ACCESS MaxSubKeyLen AS DWORD PASCAL
 		//r longest subkey name length
 		RETURN SELF:dwMaxSubKeyLen
-		
-	ACCESS MaxValueLen AS DWORD PASCAL 
+
+	ACCESS MaxValueLen AS DWORD PASCAL
 		//r longest value data length
 		RETURN SELF:dwMaxValueLen
-		
-	ACCESS MaxValueNameLen AS DWORD PASCAL 
+
+	ACCESS MaxValueNameLen AS DWORD PASCAL
 		//r longest value name length
 		RETURN SELF:dwMaxValueNameLen
-		
-	ACCESS SubKeys AS DWORD PASCAL 
+
+	ACCESS SubKeys AS DWORD PASCAL
 		//r number of subkeys
 		RETURN SELF:dwSubKeys
-		
-	ACCESS Values AS DWORD PASCAL 
+
+	ACCESS Values AS DWORD PASCAL
 		//r number of value entries
 		RETURN SELF:dwValues
-		
+
 END CLASS
