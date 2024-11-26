@@ -1428,7 +1428,7 @@ BEGIN NAMESPACE FabPaintLib
 			//j FUNCTION:DIBStretchDraw
 			//
 			IF SELF:IsValid
-				SELF:Show( hWnd, x, y, x+w, y+h )
+				SELF:Show( hWnd, x, y, w, h )
 			ENDIF
 			//
 			RETURN
@@ -1443,7 +1443,7 @@ BEGIN NAMESPACE FabPaintLib
 			//j FUNCTION:DIBStretchDrawDC
 			//
 			IF SELF:IsValid
-				SELF:ShowDC( hDC, x, y, x+w, y+h )
+				SELF:ShowDC( hDC, x, y, w, h )
 			ENDIF
 			//
 			RETURN
