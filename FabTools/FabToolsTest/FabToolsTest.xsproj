@@ -8,17 +8,19 @@
     <RootNamespace>FabToolsTest</RootNamespace>
     <AssemblyName>FabToolsTest</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <Name>FabTools</Name>
+    <Name>FabToolsTest</Name>
     <Nologo>true</Nologo>
     <GenerateFullPaths>true</GenerateFullPaths>
     <Dialect>VO</Dialect>
     <OutputName>FabTools</OutputName>
-    <XSharpProjectversion>2.13.2.2</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
     <NoWin32Manifest>False</NoWin32Manifest>
     <TargetFrameworkProfile />
+    <Vo15>true</Vo15>
+    <NamedArgs>false</NamedArgs>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'" Label="Configuration">
     <PlatformTarget>x86</PlatformTarget>

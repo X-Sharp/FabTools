@@ -42,7 +42,8 @@
     <VO16>true</VO16>
     <NoStandardDefs>false</NoStandardDefs>
     <IncludePaths />
-    <XSharpProjectversion>2.2.2.0</XSharpProjectversion>
+    <NamedArgs>false</NamedArgs>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'" Label="Configuration">
     <PlatformTarget>x86</PlatformTarget>
@@ -171,6 +172,11 @@
     <ProjectReference Include="..\FabPaintLib_Control\FabPaintLib_Control.xsproj">
       <Name>FabPaintLib_Control</Name>
       <Project>{e7092356-5697-44df-a3e2-3921f23d78c9}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabTools\FabTools.xsproj">
+      <Name>FabTools</Name>
+      <Project>{d2a10849-0553-4ad0-9b7f-cec2a03b79d5}</Project>
       <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\FabTwain\FabTwain.xsproj">

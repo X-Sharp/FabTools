@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35507.96 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{AA6C8D78-22FF-423A-9C7C-5F2393824E04}") = "FabToolsTest", "FabToolsTest\FabToolsTest.xsproj", "{210DBE32-B8B3-4A5F-946F-3D15A9691BB5}"
 EndProject

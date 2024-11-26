@@ -3,9 +3,9 @@ USING VO
 
 CLASS CURSOR_HAND INHERIT Pointer
 
-	CONSTRUCTOR() 
+	CONSTRUCTOR()
 		super(ResourceID{"CURSOR_HAND", _GetInst()})
-		return 
+		return
 END CLASS
 
 CLASS FabHyperLink INHERIT FabCustomTextCntrl
@@ -13,22 +13,22 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 	PROTECT oPointer		AS	Pointer
 	PROTECT lTransparent	AS	LOGIC
 	PROTECT lAutoSize		AS	LOGIC
-	
-	ACCESS Action AS STRING  
+
+	ACCESS Action AS STRING
 		RETURN SELF:cAction
-		
-	ASSIGN Action( cNewAction AS STRING )   
+
+	ASSIGN Action( cNewAction AS STRING )
 		SELF:cAction := cNewAction
 		RETURN //SELF:cAction
-		
-		
-	ACCESS AutoSize AS LOGIC  
+
+
+	ACCESS AutoSize AS LOGIC
 		RETURN SELF:lAutoSize
-		
-	ASSIGN AutoSize( lNewSet AS LOGIC )   
+
+	ASSIGN AutoSize( lNewSet AS LOGIC )
 		SELF:lAutoSize := lNewSet
-		
-	METHOD Dispatch( oEvent ) 
+
+	METHOD Dispatch( oEvent )
 		LOCAL oHL 		AS HyperLabel
 		LOCAL symName	:= NULL_SYMBOL AS	SYMBOL
 		//
@@ -62,14 +62,14 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 				ENDIF
 				ShellExecute( SELF:Owner:Handle(), NULL_PSZ, String2Psz( SELF:cCaption ), NULL_PSZ, NULL_PSZ, SW_SHOWNOACTIVATE )
 			ENDIF
-			
+
 		ENDIF
 		//
 		RETURN SUPER:Dispatch( oEvent )
-		
-		
-		
-	METHOD Draw( hDC AS PTR ) AS VOID  
+
+
+
+	METHOD Draw( hDC AS PTR ) AS VOID
 		LOCAL liOldMode	AS	LONG
 		LOCAL liNewMode	AS	LONG
 		LOCAL dwOldClr	AS	DWORD
@@ -100,7 +100,7 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 			DeleteObject( hBrush )
 		ENDIF
 		// We are always in TRANSPARENT mode for Text drawing
-		liNewMode := TRANSPARENT
+		liNewMode := IIF(TRANSPARENT,1,0)
 		liOldMode := SetBkMode( hDC, PTR(_CAST, liNewMode) )
 		//
 		TextOut( hDC, Canvas:Left, Canvas:Top,Cast2Psz( cText ), long(SLen( cText ) ))
@@ -108,11 +108,11 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 		SelectObject( hDC, hOldFont )
 		SetBkMode( hDC, PTR(_CAST, liOldMode))
 		//
-		
-		
+
+
 		return
-		
-	CONSTRUCTOR( oOwner, xId, oPoint, oDimension, cRegclass, kStyle, lDataAware ) 
+
+	CONSTRUCTOR( oOwner, xId, oPoint, oDimension, cRegclass, kStyle, lDataAware )
 		LOCAL oFont		AS	Font
 		//
 		SUPER( oOwner, xId, oPoint, oDimension, cRegclass, kStyle, lDataAware )
@@ -130,15 +130,15 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 		//
 		InvalidateRect( SELF:Handle(), NULL_PTR, TRUE )
 		//
-		return 
-		
-	ACCESS @@Transparent AS LOGIC  
+		return
+
+	ACCESS @@Transparent AS LOGIC
 		RETURN SELF:lTransparent
-		
-	ASSIGN @@Transparent( lNewSet AS LOGIC )   
+
+	ASSIGN @@Transparent( lNewSet AS LOGIC )
 		SELF:lTransparent := lNewSet
 		SELF:Update()
 		RETURN //SELF:lTransparent
-		
+
 END CLASS
 
