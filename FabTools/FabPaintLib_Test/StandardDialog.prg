@@ -5,7 +5,7 @@ CLASS	FabOpenDialog	INHERIT	FabStandardFileDialog
 	//g Window, Window/Dialog Related Classes/Functions
 	//l Replacement the VO OpenDialog
 	//p Class that allow to change the Caption of controls on the OpenDialog box, and to add a User-Defined Dialog resource
-	
+
 	EXPORT	ListboxText		AS	STRING
 	//s
 	// Text for the Open Button
@@ -22,16 +22,16 @@ CLASS	FabOpenDialog	INHERIT	FabStandardFileDialog
 	EXPORT ComboFiltersText	AS	STRING
 	// Text for the Read-Only Checkbox
 	EXPORT CheckText		AS	STRING
-	
-	
-	
-	
-	
-	CONSTRUCTOR( oOwner, cFileName )  
+
+
+
+
+
+	CONSTRUCTOR( oOwner, cFileName )
 		SUPER( oOwner, cFileName )
 		RETURN
-		
-	PROTECT METHOD InitDlg( oEvent, hDlg )	
+
+	PROTECT METHOD InitDlg( oEvent, hDlg )
 		//
 		SUPER:InitDlg( oEvent, hDlg )
 		//
@@ -73,10 +73,10 @@ CLASS	FabOpenDialog	INHERIT	FabStandardFileDialog
 		ENDCASE
 		//
 		RETURN	0
-		
-		
-		
-	METHOD Show()	
+
+
+
+	METHOD Show()
 		LOCAL lSuccess	AS	LOGIC
 		// Fill structure
 		IF SELF:FillStruct()
@@ -89,16 +89,16 @@ CLASS	FabOpenDialog	INHERIT	FabStandardFileDialog
 			SELF:FreeStruct()
 		ENDIF
 		RETURN lSuccess
-		
-		
-		
+
+
+
 END CLASS
 
 CLASS	FabSaveDialog	INHERIT	FabStandardFileDialog
 	//g Window, Window/Dialog Related Classes/Functions
 	//l Replacement the VO SaveDialog
 	//p Class that allow to change the Caption of controls on the SaveDialog box, and to add a User-Defined Dialog resource
-	
+
 	// Text for the File Listview
 	EXPORT ListboxText		AS	STRING
 	//s
@@ -114,21 +114,21 @@ CLASS	FabSaveDialog	INHERIT	FabStandardFileDialog
 	EXPORT	 EditText			AS	STRING
 	// Text for the Combobox with Filters
 	EXPORT	 ComboFiltersText	AS	STRING
-	
-	
-	
-	CONSTRUCTOR( oOwner, cFileName )	
+
+
+
+	CONSTRUCTOR( oOwner, cFileName )
 		//
 		SUPER( oOwner, cFileName )
 		//
 		SELF:SetStyle( OFN_HIDEREADONLY, TRUE  )
-		
-		
-		
-		
-		RETURN 
-		
-	PROTECT METHOD InitDlg( oEvent, hDlg )	
+
+
+
+
+		RETURN
+
+	PROTECT METHOD InitDlg( oEvent, hDlg )
 		//
 		SUPER:InitDlg( oEvent, hDlg )
 		//
@@ -166,10 +166,10 @@ CLASS	FabSaveDialog	INHERIT	FabStandardFileDialog
 		ENDCASE
 		//
 		RETURN	0
-		
-		
-		
-	METHOD Show()	
+
+
+
+	METHOD Show()
 		LOCAL lSuccess	AS	LOGIC
 		// Fill structure
 		IF SELF:FillStruct()
@@ -182,9 +182,9 @@ CLASS	FabSaveDialog	INHERIT	FabStandardFileDialog
 			SELF:FreeStruct()
 		ENDIF
 		RETURN lSuccess
-		
-		
-		
+
+
+
 END CLASS
 
 CLASS	FabStandardFileDialog
@@ -210,8 +210,8 @@ CLASS	FabStandardFileDialog
 	PROTECT	hWndOwner	AS	PTR
 	// Default selected File
 	PROTECT 	cDefFile		AS	STRING
-	
-	
+
+
 	//s
 	// Resource to Add
 	EXPORT		ResourceDlg	AS	ResourceID
@@ -219,23 +219,23 @@ CLASS	FabStandardFileDialog
 	EXPORT		Caption		AS	STRING
 	// Default Extension
 	EXPORT		DefExt		AS	STRING
-	
-	
-	
-	METHOD Dispatch( oEvent, hDlg )		
-		
-		
-		
-		
+
+
+
+	METHOD Dispatch( oEvent, hDlg )
+
+
+
+
 		RETURN self
-		
-	PROTECT METHOD EndInitDlg( oEvent, hDlg )	
-		
-		
-		
+
+	PROTECT METHOD EndInitDlg( oEvent, hDlg )
+
+
+
 		RETURN self
-		
-	METHOD FabDispatch( oEvent, hDlg )	
+
+	METHOD FabDispatch( oEvent, hDlg )
 		LOCAL NMHDR		AS	_winNMHDR
 		LOCAL lRet		AS	LOGIC
 		LOCAL uRet		AS	USUAL
@@ -286,9 +286,9 @@ CLASS	FabStandardFileDialog
 			ENDIF
 		ENDIF
 		RETURN lRet
-		
-		
-	ACCESS FileName			
+
+
+	ACCESS FileName
 		LOCAL uFile	AS	USUAL
 		//
 		IF !Empty( SELF:aFile )
@@ -301,14 +301,14 @@ CLASS	FabStandardFileDialog
 		ENDIF
 		//
 		RETURN uFile
-		
-		
-		
-	ASSIGN FileName( cNew ) 
+
+
+
+	ASSIGN FileName( cNew )
 		SELF:cDefFile := cNEw
-		RETURN 
-		
-	PROTECT METHOD FillStruct()	
+		RETURN
+
+	PROTECT METHOD FillStruct()
 		LOCAL HookDelegate AS _Delegate_FabComDlg32HookProc
 		//
 		SELF:ptrOpen := MemAlloc( _sizeof( _winOpenFileName ) )
@@ -319,52 +319,52 @@ CLASS	FabStandardFileDialog
 			IF ( SELF:RESOURCEDlg != NULL_OBJECT )
 				ptrOpen:hInstance     := SELF:ResourceDlg:Handle()
 				IF IsString( SELF:ResourceDlg:ID )
-					ptrOpen:lpTemplateName    := String2Psz( SELF:ResourceDlg:Address() )
+					ptrOpen.lpTemplateName    := PTR(_cast, SELF:ResourceDlg:Address() )
 				ELSE
-					ptrOpen:lpTemplateName    := FabMakeIntResource( SELF:ResourceDlg:ID )
+					ptrOpen.lpTemplateName    := FabMakeIntResource( SELF:ResourceDlg:ID )
 				ENDIF
 				SELF:SetStyle( OFN_ENABLETEMPLATE )
 			ENDIF
 			//
-			ptrOpen:lpstrFilter       := FabArray2Psz( SELF:aFilters )
-			ptrOpen:nFilterIndex      := SELF:nFilterIndex
-			ptrOpen:lpstrCustomFilter := NULL
-			ptrOpen:nMaxCustFilter    := 0
+			ptrOpen.lpstrFilter       := FabArray2Psz( SELF:aFilters )
+			ptrOpen.nFilterIndex      := SELF:nFilterIndex
+			ptrOpen.lpstrCustomFilter := NULL
+			ptrOpen.nMaxCustFilter    := 0
 			//
 			SELF:ptrFile := MemAlloc( MAX_PATH + 1 )
 			IF !Empty( cDefFile )
 				MemCopyString( SELF:ptrFile, SELF:cDefFile, SLen( SELF:cDefFile ) )
 			ENDIF
-			ptrOpen:lpstrFile         := SELF:ptrFile
-			ptrOpen:nMaxFile          := (DWORD)MAX_PATH
-			ptrOpen:lpstrFileTitle    := NULL
-			ptrOpen:nMaxFileTitle     := 0
+			ptrOpen.lpstrFile         := SELF:ptrFile
+			ptrOpen.nMaxFile          := (DWORD)MAX_PATH
+			ptrOpen.lpstrFileTitle    := NULL
+			ptrOpen.nMaxFileTitle     := 0
 			IF !Empty( SELF:cInitDir )
-				ptrOpen:lpstrInitialDir   := StringAlloc( SELF:cInitDir )
+				ptrOpen.lpstrInitialDir   := StringAlloc( SELF:cInitDir )
 			ENDIF
 			IF !Empty( SELF:Caption )
-				ptrOpen:lpstrTitle	  := StringAlloc( SELF:Caption )
+				ptrOpen.lpstrTitle	  := StringAlloc( SELF:Caption )
 			ENDIF
-			ptrOpen:nFileOffset       := 0
-			ptrOpen:nFileExtension    := 0
+			ptrOpen.nFileOffset       := 0
+			ptrOpen.nFileExtension    := 0
 			IF !Empty( SELF:DefExt )
-				ptrOpen:lpstrDefExt       := StringAlloc( SELF:DefExt )
+				ptrOpen.lpstrDefExt       := StringAlloc( SELF:DefExt )
 			ELSE
-				ptrOpen:lpstrDefExt       := NULL
+				ptrOpen.lpstrDefExt       := NULL
 			ENDIF
-			ptrOpen:lCustData         := 0
+			ptrOpen.lCustData         := 0
 			HookDelegate := _Delegate_FabComDlg32HookProc{ NULL, @_FabComDlg32HookProc() }
-			ptrOpen:lpfnHook          := System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate( (System.Delegate) HookDelegate )
-			ptrOpen:Flags             := SELF:liFlags
+			ptrOpen.lpfnHook          := System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate( (System.Delegate) HookDelegate )
+			ptrOpen.Flags             := SELF:liFlags
 			//
 			_FabSelfDlgObject := SELF
 			//
 		ENDIF
 		RETURN ( SELF:ptrOpen != NUll_PTR )
-		
-		
-		
-	PROTECT METHOD	FreeStruct()		
+
+
+
+	PROTECT METHOD	FreeStruct()
 		// Remove reference to the dialog
 		_FabSelfDlgObject := NIL
 		// Convert ptr to Array of File(s)
@@ -384,17 +384,17 @@ CLASS	FabStandardFileDialog
 		MemFree( SELF:ptrOpen )
 		SELF:ptrOpen := NULL_PTR
 		//
-		
-		
+
+
 		RETURN self
-		
-	METHOD help()						
-		
-		
-		
+
+	METHOD help()
+
+
+
 		RETURN self
-		
-	CONSTRUCTOR( oOwner, cFileName )	
+
+	CONSTRUCTOR( oOwner, cFileName )
 		//
 		Default( @cFileName, "*.*" )
 		SELF:cDefFile := cFileName
@@ -407,36 +407,36 @@ CLASS	FabStandardFileDialog
 		//
 		SELF:liFlags := _Or( OFN_SHOWHELP, OFN_EXPLORER, OFN_ENABLEHOOK )
 		//
-		
-		
-		
-		RETURN 
-		
-	PROTECT METHOD InitDlg( oEvent, hDlg )	
+
+
+
+		RETURN
+
+	PROTECT METHOD InitDlg( oEvent, hDlg )
 		FabSetWindowStyle( hDlg, WS_CHILD )
 		FabSetWindowStyle( hDlg, WS_VISIBLE )
 		FabSetWindowStyle( hDlg, WS_CLIPSIBLINGS )
 		FabSetWindowStyle( hDlg, DS_3DLOOK )
 		FabSetWindowStyle( hDlg, DS_CONTROL )
-		
-		
-		
+
+
+
 		RETURN self
-		
-	ACCESS InitialDirectory 
+
+	ACCESS InitialDirectory
 		RETURN	SELF:cInitDir
-		
-		
-		
-	ASSIGN InitialDirectory( cNewDir ) 
+
+
+
+	ASSIGN InitialDirectory( cNewDir )
 		IF IsString( cNewDir )
 			SELF:cInitDir := cNewDir
 		ENDIF
-		RETURN	
-		
-		
-		
-	METHOD SetFilter( acFilter, acDesc, nIndex )		
+		RETURN
+
+
+
+	METHOD SetFilter( acFilter, acDesc, nIndex )
 		LOCAL aFilters	AS	ARRAY
 		LOCAL aDesc		AS	ARRAY
 		LOCAL wCpt		AS	WORD
@@ -462,14 +462,14 @@ CLASS	FabStandardFileDialog
 		//
 		SELF:nFilterIndex := nIndex
 		//
-		
-		
-		
-		
-		
+
+
+
+
+
 		RETURN self
-		
-	METHOD	SetStyle( kStyle, lOnOff ) 
+
+	METHOD	SetStyle( kStyle, lOnOff )
 		//
 		Default( @lOnOff, TRUE )
 		//
@@ -479,19 +479,19 @@ CLASS	FabStandardFileDialog
 			SELF:liFlags := (DWORD)_Or( SELF:liFlags, LONG( kStyle ) )
 			SELF:liFlags := (DWORD)_Xor( SELF:liFlags, LONG( kStyle ) )
 		ENDIF
-		
-		
+
+
 		RETURN self
-		
-	METHOD	Show( )	
+
+	METHOD	Show( )
 		// Deferred
-		
-		
+
+
 		RETURN self
-		
-		
+
+
 	DELEGATE _Delegate_FabComDlg32HookProc( hDlg AS PTR, uMsg AS DWORD, wParam AS DWORD , lParam AS LONG ) AS LOGIC
-	
+
 END CLASS
 
 /* TEXTBLOCK !Read-Me
@@ -529,10 +529,9 @@ STATIC FUNCTION _FabComDlg32HookProc( hDlg AS PTR, uMsg AS DWORD, wParam AS DWOR
 	lRet := Send( oDlg, #FabDispatch, oEvent, hDlg )
 	//
 	RETURN lRet
-	
-	
-	
+
+
+
 STATIC GLOBAL _FabSelfDlgObject
-	
-	
-	
+
+

@@ -9,7 +9,7 @@
     <ProjectGuid>{B8945F86-E5C7-4883-8EFE-5EDA496F0187}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <Nologo>true</Nologo>
-    <GenerateFullPaths>false</GenerateFullPaths>
+    <GenerateFullPaths>true</GenerateFullPaths>
     <Name>Fab_Zip_1_52j_Test</Name>
     <RootNamespace>Fab_Zip_1_52j_Test</RootNamespace>
     <VO3>true</VO3>
@@ -36,6 +36,9 @@
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
     <NoWin32Manifest>False</NoWin32Manifest>
     <TargetFrameworkProfile />
+    <Vo15>true</Vo15>
+    <NamedArgs>false</NamedArgs>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>

@@ -4,7 +4,7 @@ USING System.Linq
 USING System.Text
 USING VO
 
-STATIC FUNCTION FabDSM_Entry( pOrigin AS TW_IDENTITY, pDest AS TW_IDENTITY, dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR ) AS SHORT PASCAL 
+STATIC FUNCTION FabDSM_Entry( pOrigin AS TW_IDENTITY, pDest AS TW_IDENTITY, dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR ) AS SHORT PASCAL
 RETURN 0
 
 STATIC GLOBAL ptrDSM_Entry	AS	FabDSM_Entry PTR
@@ -13,7 +13,7 @@ STATIC GLOBAL hSMLib := NULL_PTR	AS PTR
 
 
 BEGIN NAMESPACE FabTwain
-	
+
 	CLASS FabTwain
 		//p Link to Twain with Objects
 		//d This classUsingide most needed services for TwaiUsingport in your application.
@@ -55,7 +55,7 @@ BEGIN NAMESPACE FabTwain
 		//e // Now the hDIB is a pointer to the Image
 		//e // that you can Show or Save ( See FabPaint Library for more info )
 		//j METHOD:FabTwain:ModalAcquire
-		
+
 		// enable TRACE output
 		PROTECT	lTrace			AS	LOGIC
 		// current state
@@ -83,8 +83,8 @@ BEGIN NAMESPACE FabTwain
 		//PROTECT ptrDSM_Entry	AS	FabTwain.__FabDSM_Entry PTR
 		// Ptr to TWAIN library loaded with LoadLibrary
 		PROTECT hSMLib 			AS PTR
-		
-		
+
+
 		DECLARE	ACCESS ConditionCode
 		DECLARE ACCESS IsTwainAvailable
 		DECLARE ACCESS Owner
@@ -97,7 +97,7 @@ BEGIN NAMESPACE FabTwain
 		DECLARE ACCESS Brightness
 		DECLARE ACCESS PixelType
 		DECLARE ACCESS PixelDepth
-		
+
 		DECLARE	ASSIGN XResolution
 		DECLARE	ASSIGN YResolution
 		DECLARE	ASSIGN Resolution
@@ -105,12 +105,12 @@ BEGIN NAMESPACE FabTwain
 		DECLARE	ASSIGN Brightness
 		DECLARE	ASSIGN PixelType
 		DECLARE	ASSIGN PixelDepth
-		
-		
-		
-		
-		
-		PROTECT METHOD __CompareType( nTypeA AS WORD, nTypeB AS WORD ) AS LOGIC PASCAL 
+
+
+
+
+
+		PROTECT METHOD __CompareType( nTypeA AS WORD, nTypeB AS WORD ) AS LOGIC PASCAL
 			// Check of Types are equal of at least that TypeA value can fit in TypeB Value
 			LOCAL lMatch	AS	LOGIC
 			// Same Type or Same Size ?
@@ -118,15 +118,15 @@ BEGIN NAMESPACE FabTwain
 			( nTypeA <= TWTY_UINT32)  .AND. ( nTypeB <= TWTY_UINT32 )  .AND. ( SELF:__GetSizeOf(nTypeA) == SELF:__GetSizeOf(nTypeB) ) )
 			//
 			RETURN lMatch
-			
-		
-		PROTECT METHOD __DefaultApp() AS VOID PASCAL 
+
+
+		PROTECT METHOD __DefaultApp() AS VOID PASCAL
 			// Initialize a Default Application ID
 			// Replace with your Own values if you want an automatic Application ID
 			SELF:RegisterApp( 1,0,TWLG_USA,TWCY_USA, "1.0", "Fabrice Foray", "FabTwain", "Fab Twain" )
 			RETURN
-		
-		PROTECT METHOD __DS( dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR) AS LOGIC PASCAL 
+
+		PROTECT METHOD __DS( dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR) AS LOGIC PASCAL
 			// Call the current source with a triplet. See Twain spec for more info
 			LOCAL lOk		AS	LOGIC
 			LOCAL cTrace	AS	STRING
@@ -221,9 +221,9 @@ BEGIN NAMESPACE FabTwain
 			ENDIF
 			//
 			RETURN lOk
-			
-		
-		PROTECT METHOD __DS_Call( dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR ) AS SHORT PASCAL 
+
+
+		PROTECT METHOD __DS_Call( dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR ) AS SHORT PASCAL
 			//the real DS Call
 			LOCAL siResult	AS	SHORT
 			//
@@ -231,9 +231,9 @@ BEGIN NAMESPACE FabTwain
 			// Data Source Call
 			siResult := PCALL( ptrDSM_Entry, SELF:pAppID, SELF:pSourceId, dg, dat, msg, pd )
 			RETURN siResult
-			
-		
-		PROTECT METHOD __Fix32ToReal8( dwFix32 AS DWORD ) AS REAL8 PASCAL 
+
+
+		PROTECT METHOD __Fix32ToReal8( dwFix32 AS DWORD ) AS REAL8 PASCAL
 			// Convert a Fix32 value to a Real8 ( Extract for Twain Spec )
 			LOCAL pFix 		AS TW_FIX32
 			LOCAL liValue 	AS LONG
@@ -243,9 +243,9 @@ BEGIN NAMESPACE FabTwain
 			liValue := _OR( LONG( _CAST, pFix.Whole ) << 16, pFix.Frac )
 			rValue := REAL8( liValue ) / 65536.0
 			RETURN rValue
-			
-		
-		PROTECT METHOD __FlushMessageQueue() AS VOID PASCAL 
+
+
+		PROTECT METHOD __FlushMessageQueue() AS VOID PASCAL
 			// Remove all pending messages for the Twain DataSource UI
 			LOCAL msg	IS	_winMSG
 			//
@@ -256,8 +256,8 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDDO
 			RETURN
-		
-		PROTECT METHOD	__GetSizeOf( nType AS WORD ) AS WORD PASCAL	
+
+		PROTECT METHOD	__GetSizeOf( nType AS WORD ) AS WORD PASCAL
 			// Return the Size in bytes of a TWTY_xxx type
 			LOCAL aSize	AS	ARRAY
 			//
@@ -278,9 +278,9 @@ BEGIN NAMESPACE FabTwain
 			255 + 1 }
 			//
 			RETURN aSize[ nType ]
-			
-		
-		PROTECT METHOD __LoadSourceManager() AS LOGIC PASCAL 
+
+
+		PROTECT METHOD __LoadSourceManager() AS LOGIC PASCAL
 			// Load the Source Manager DLL
 			LOCAL DIM ptrWinDir[ MAX_PATH ] AS BYTE
 			LOCAL cDir	AS	STRING
@@ -314,7 +314,7 @@ BEGIN NAMESPACE FabTwain
 					FreeLibrary( hSMLib )
 					hSMLib := NULL_PTR
 				ENDIF
-			ELSE			
+			ELSE
 				ptrDSM_Entry := NULL_PTR
 			ENDIF
 			//
@@ -322,10 +322,10 @@ BEGIN NAMESPACE FabTwain
 				SELF:__Trace( "LoadSourceManager() Failed." )
 			ENDIF
 			RETURN ( SELF:State >= (DWORD)SOURCE_MANAGER_LOADED )
-			
-			
-		
-		PROTECT METHOD __SM( dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR) AS LOGIC PASCAL 
+
+
+
+		PROTECT METHOD __SM( dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR) AS LOGIC PASCAL
 			// Call the Source Manager with a triplet. See the Twain Spec for more info
 			LOCAL lOk	AS	LOGIC
 			//
@@ -354,10 +354,10 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDIF
 			RETURN lOk
-			
-			
-		
-		PROTECT METHOD __SM_Call( dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR ) AS SHORT PASCAL 
+
+
+
+		PROTECT METHOD __SM_Call( dg AS DWORD, dat AS WORD, msg AS WORD, pd AS PTR ) AS SHORT PASCAL
 			// The real call to SourceManager is made here
 			LOCAL siResult	AS	SHORT
 			//
@@ -365,9 +365,9 @@ BEGIN NAMESPACE FabTwain
 			// Source Manager Call
 			siResult := PCALL( ptrDSM_Entry, SELF:pAppID, NULL_PTR, dg, dat, msg, pd )
 			RETURN siResult
-			
-		
-		PROTECT METHOD __ToFix32( r AS REAL8 ) AS DWORD PASCAL 
+
+
+		PROTECT METHOD __ToFix32( r AS REAL8 ) AS DWORD PASCAL
 			// Convert a Real8 to a Fix32
 			LOCAL fix 		IS TW_FIX32
 			LOCAL dw		AS	DWORD
@@ -382,9 +382,9 @@ BEGIN NAMESPACE FabTwain
 			//
 			dw := MAKEWPARAM( WORD(fix.Whole), fix.Frac )
 			RETURN dw
-			
-		
-		METHOD __Trace( cStringTrace AS STRING ) AS VOID PASCAL 
+
+
+		METHOD __Trace( cStringTrace AS STRING ) AS VOID PASCAL
 			// Debugging method
 			//
 			IF SELF:lTrace
@@ -394,10 +394,10 @@ BEGIN NAMESPACE FabTwain
 				_DebOut32( String2Psz( cStringTrace ) )
 			ENDIF
 			//
-			
+
 			RETURN
-			
-		PROTECT METHOD __UnloadSourceManager() AS LOGIC PASCAL 
+
+		PROTECT METHOD __UnloadSourceManager() AS LOGIC PASCAL
 			// Unload the Source Manager DLL
 			//
 			SELF:siError := (SHORT)TwainResultCode.TWRC_SUCCESS
@@ -411,31 +411,31 @@ BEGIN NAMESPACE FabTwain
 				SELF:State := (DWORD)TwainState.PRE_SESSION
 			ENDIF
 			RETURN ( SELF:State == (DWORD)TwainState.PRE_SESSION )
-			
-		
-		ACCESS AutoFeed AS LOGIC PASCAL 
+
+
+		ACCESS AutoFeed AS LOGIC PASCAL
 			//p AutoFeed Support
 			//d Get the current AutoFeed Support
 			LOCAL wAutoFeed	AS	WORD
 			//
 			SELF:GetCapCurrent( CAP_AUTOFEED, TWTY_BOOL, @wAutoFeed )
 			RETURN ( wAutoFeed == 1 )
-			
-			
-		ASSIGN AutoFeed( lAutoFeed AS LOGIC ) AS LOGIC PASCAL 
+
+
+		ASSIGN AutoFeed( lAutoFeed AS LOGIC ) AS LOGIC PASCAL
 			//p AutoFeed Support
 			//d Get the current AutoFeed Support
 			//
 			SELF:SetCapOneValue( CAP_AUTOFEED, TWTY_BOOL, DWORD(_CAST,lAutoFeed  ) )
-			//	
-			
-			
-		DESTRUCTOR() 
+			//
+
+
+		DESTRUCTOR()
 			//
 			SELF:Destroy()
 			//
-			
-		METHOD BeginAcquire() AS LOGIC PASCAL 
+
+		METHOD BeginAcquire() AS LOGIC PASCAL
 			//p Start an Acquisition
 			//d This method will start an acquisition.
 			//d If Twain in no in the right state, BeginAcquire() will do all state change to go into State > 5
@@ -469,9 +469,9 @@ BEGIN NAMESPACE FabTwain
 			ENDIF
 			//
 			RETURN lBeginOk
-			
-			
-		ACCESS Brightness AS REAL8 PASCAL 
+
+
+		ACCESS Brightness AS REAL8 PASCAL
 			//p Brightness
 			//d Get the current brightness value
 			LOCAL dwBrightness	AS	DWORD
@@ -480,22 +480,22 @@ BEGIN NAMESPACE FabTwain
 			SELF:GetCapCurrent( ICAP_BRIGHTNESS, TWTY_FIX32, @dwBrightness )
 			rBrightness := SELF:__Fix32ToReal8( dwBrightness )
 			RETURN rBrightness
-			
-			
-		ASSIGN Brightness( rBrightness AS REAL8 ) AS REAL8 PASCAL 
+
+
+		ASSIGN Brightness( rBrightness AS REAL8 ) AS REAL8 PASCAL
 			//p Brightness
 			//d Set the current brightness value
 			//
 			SELF:SetCapFix32(ICAP_BRIGHTNESS, rBrightness )
-			
-			
-		METHOD CancelXfers() AS LOGIC PASCAL 
+
+
+		METHOD CancelXfers() AS LOGIC PASCAL
 			//p Abort Transfer
 			//d If Twain is in TRANSFER_READY state, try to reset any Pending transfer.
 			//d This method is currently not used by FabTwain, as it has only means we using File/Memory transfer.
 			//r A logical value indicating the success of the operation.
 			// If transferring, cancel it
-			SELF:EndXfer()	
+			SELF:EndXfer()
 			//
 			IF ( SELF:dwCurState == (DWORD)TwainState.TRANSFER_READY )
 				SELF:__DS( DG_CONTROL, DAT_PENDINGXFERS, MSG_RESET, SELF:pPending )
@@ -504,9 +504,9 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDIF
 			RETURN ( SELF:dwCurState < (DWORD) TwainState.TRANSFER_READY)
-			
-			
-		METHOD CloseSource() AS LOGIC PASCAL 
+
+
+		METHOD CloseSource() AS LOGIC PASCAL
 			//p Close the DataSource
 			//d Try to Close the DataSource. This should move the FabTwain state to 3 (SOURCE_MANAGER_OPEN)
 			//r A logical value indicating the success of the operation.
@@ -523,15 +523,15 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDIF
 			RETURN ( SELF:dwCurState < (DWORD)TwainState.SOURCE_OPEN )
-			
-			
-		METHOD CloseSourceManager( )  AS LOGIC PASCAL 
+
+
+		METHOD CloseSourceManager( )  AS LOGIC PASCAL
 			//p Close the Source Manager
 			//d Try to close the Source Manager ( And go to state 2 )
 			//r A logical value indicating the success of the operation
 			LOCAL hWnd32	AS	DWORD
 			// close source if open
-			SELF:CloseSource()	
+			SELF:CloseSource()
 			//
 			IF ( SELF:State >= (DWORD)TwainState.SOURCE_MANAGER_OPEN )
 				//
@@ -542,10 +542,10 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDIF
 			RETURN ( SELF:State < (DWORD)TwainState.SOURCE_MANAGER_OPEN )
-			
-			
-			
-		ACCESS ConditionCode AS SHORT PASCAL 
+
+
+
+		ACCESS ConditionCode AS SHORT PASCAL
 			//p Get the current status of Source or Source Manager
 			//d If the Source is open, we get the state of the source
 			//d If the Source Manager is open, we get the state of the manager
@@ -593,9 +593,9 @@ BEGIN NAMESPACE FabTwain
 			ENDIF
 			//
 			RETURN siRet
-			
-			
-		PROTECT	ACCESS	ConditionString AS STRING PASCAL 
+
+
+		PROTECT	ACCESS	ConditionString AS STRING PASCAL
 			// For Debug purpose
 			// Get the Condition Code String
 			LOCAL aCcName	AS	ARRAY
@@ -617,9 +617,9 @@ BEGIN NAMESPACE FabTwain
 			ENDIF
 			//
 			RETURN cResult
-			
-		
-		ACCESS Contrast AS REAL8 PASCAL 
+
+
+		ACCESS Contrast AS REAL8 PASCAL
 			//p Contrast
 			//d Get the current contrast value
 			LOCAL dwContrast	AS	DWORD
@@ -628,16 +628,16 @@ BEGIN NAMESPACE FabTwain
 			SELF:GetCapCurrent( ICAP_CONTRAST, TWTY_FIX32, @dwContrast )
 			rContrast := SELF:__Fix32ToReal8( dwContrast )
 			RETURN rContrast
-			
-			
-		ASSIGN Contrast( rContrast AS REAL8 ) AS REAL8 PASCAL 
+
+
+		ASSIGN Contrast( rContrast AS REAL8 ) AS REAL8 PASCAL
 			//p Contrast
 			//d Set the current contrast value
 			//
 			SELF:SetCapFix32(ICAP_CONTRAST, rContrast )
-			
-			
-		METHOD Convert_DPI2PPM( rDPI AS REAL8 ) AS REAL8 PASCAL 
+
+
+		METHOD Convert_DPI2PPM( rDPI AS REAL8 ) AS REAL8 PASCAL
 			//p Convert a DPI value to a PPM
 			//d Convert a Dot per Inch value to a Point Per Meter
 			LOCAL rPPM	AS	REAL8
@@ -645,9 +645,9 @@ BEGIN NAMESPACE FabTwain
 			rPPM := (( rDPI / 0.0254 ) + 0.5 )
 			//
 			RETURN rPPM
-			
-			
-		METHOD Convert_PPM2DPI( rPPM AS REAL8 ) AS REAL8 PASCAL 
+
+
+		METHOD Convert_PPM2DPI( rPPM AS REAL8 ) AS REAL8 PASCAL
 			//p Converts Point Per Meter to Dots Per Inch
 			//r The PPM value converted in DPI
 			LOCAL rDPI	AS	REAL8
@@ -655,9 +655,9 @@ BEGIN NAMESPACE FabTwain
 			rDPI := 0.0254 * rPPM
 			//
 			RETURN rDPI
-			
-			
-		ACCESS CurrentUnits AS WORD PASCAL 
+
+
+		ACCESS CurrentUnits AS WORD PASCAL
 			//p Current Unit
 			//d Get the current unit of measure the Source is using
 			//d Values can be :
@@ -675,9 +675,9 @@ BEGIN NAMESPACE FabTwain
 			SELF:GetCapCurrent_Word( ICAP_UNITS, DWORD( _CAST,@wUnits) )
 			//
 			RETURN wUnits
-			
-			
-		ASSIGN CurrentUnits( wUnits AS WORD ) AS WORD PASCAL 
+
+
+		ASSIGN CurrentUnits( wUnits AS WORD ) AS WORD PASCAL
 			//p Current Unit
 			//d Set the current unit of measure the Source is using
 			//d Values can be :
@@ -694,9 +694,9 @@ BEGIN NAMESPACE FabTwain
 			wUnits := TwainUnity.TWUN_INCHES
 			// Now read from Twain
 			SELF:GetCapCurrent_Word( ICAP_UNITS, DWORD( _CAST,@wUnits) )
-			
-			
-		ACCESS DefaultSource AS STRING PASCAL 
+
+
+		ACCESS DefaultSource AS STRING PASCAL
 			//p Retrieve the name of the Default Source
 			//r A String with the name of the default source
 			LOCAL dwState	AS	DWORD
@@ -720,9 +720,9 @@ BEGIN NAMESPACE FabTwain
 			SELF:DropToState( dwState )
 			//
 			RETURN cSource
-			
-			
-		METHOD Destroy() AS VOID PASCAL 
+
+
+		METHOD Destroy() AS VOID PASCAL
 			//p Destroy the FabTwain object
 			//d After this call all internal memory are freed, and the SourceManager has been unloaded.
 			//d Don't try to use again the FabTwain object, or you will ... crash ...
@@ -750,9 +750,9 @@ BEGIN NAMESPACE FabTwain
 			//				UnRegisterAxit( SELF )
 			//			ENDIF
 			//
-			RETURN	
-			
-		METHOD DisableSource() AS LOGIC PASCAL 
+			RETURN
+
+		METHOD DisableSource() AS LOGIC PASCAL
 			//p Disable DataSource interface
 			//d Cause the Source's user interface to be taken down
 			//r A logical value indicating the succes of the operation
@@ -768,9 +768,9 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDIF
 			RETURN ( SELF:dwCurState < (DWORD)TwainState.SOURCE_ENABLED )
-			
-			
-		METHOD DropToState( nNewState AS DWORD ) AS LOGIC PASCAL 
+
+
+		METHOD DropToState( nNewState AS DWORD ) AS LOGIC PASCAL
 			//p Change the state
 			//a <nNewState> is a DWORD indicating the desired state to match
 			//d This method will move down the FabTwain object state to the desired one, by achieving all necessary step.
@@ -781,7 +781,7 @@ BEGIN NAMESPACE FabTwain
 			//
 			WHILE ( SELF:dwCurState > nNewState )
 				SWITCH SELF:dwCurState
-					CASE (DWORD)TwainState.TRANSFERRING 
+					CASE (DWORD)TwainState.TRANSFERRING
 						lOk := SELF:EndXfer()
 					CASE (DWORD)TwainState.TRANSFER_READY
 						lOk := SELF:CancelXfers()
@@ -802,9 +802,9 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDDO
 			RETURN lOk
-			
-			
-		METHOD EnableSource() AS LOGIC PASCAL 
+
+
+		METHOD EnableSource() AS LOGIC PASCAL
 			//p Activate the Data Source User Interface
 			//r A Logical value indicating the success of the operation
 			//
@@ -829,9 +829,9 @@ BEGIN NAMESPACE FabTwain
 			// and indicates how it is working.
 			//
 			RETURN (SELF:dwCurState == (DWORD)TwainState.SOURCE_ENABLED )
-			
-			
-		METHOD EndXfer() AS LOGIC PASCAL 
+
+
+		METHOD EndXfer() AS LOGIC PASCAL
 			//p End a Transfer
 			//d Indicate to the Data Source that the transfer can terminate.
 			//r A Logical value indicating the success of the operation
@@ -845,9 +845,9 @@ BEGIN NAMESPACE FabTwain
 				SELF:__Trace("**WARNING** EndXfer in wrong state.")
 			ENDIF
 			RETURN ( SELF:dwCurState < (DWORD)TwainState.TRANSFERRING )
-			
-			
-		METHOD EnumSources() AS ARRAY PASCAL 
+
+
+		METHOD EnumSources() AS ARRAY PASCAL
 			//p Retrieve the list of available sources
 			//r An array with all avaible source names
 			LOCAL dwState	AS	DWORD
@@ -879,16 +879,16 @@ BEGIN NAMESPACE FabTwain
 			SELF:DropToState( dwState )
 			//
 			RETURN aSources
-			
-			
-		ACCESS ErrorCode AS SHORT PASCAL 
+
+
+		ACCESS ErrorCode AS SHORT PASCAL
 			//p Last Error Code
 			//d Return the last error code of the Source Manager or the Data Source
 			//r The last Error Code in numerical format
 			RETURN SELF:siError
-			
-			
-		ACCESS ErrorString AS STRING PASCAL 
+
+
+		ACCESS ErrorString AS STRING PASCAL
 			//p Last Error String
 			//d Return the last error string of the Source Manager or the Data Source
 			//r The string indicating the last error
@@ -907,26 +907,26 @@ BEGIN NAMESPACE FabTwain
 			ENDIF
 			//
 			RETURN cResult
-			
-			
-		ACCESS FeederEnabled AS LOGIC PASCAL 
+
+
+		ACCESS FeederEnabled AS LOGIC PASCAL
 			//p FeederEnabled Support
 			//d Get the current FeederEnabled Support
 			LOCAL wFeederEnabled	AS	WORD
 			//
 			SELF:GetCapCurrent( CAP_FEEDERENABLED, TWTY_BOOL, @wFeederEnabled )
 			RETURN ( wFeederEnabled == 1 )
-			
-			
-		ASSIGN FeederEnabled( lFeederEnabled AS LOGIC ) AS LOGIC PASCAL 
+
+
+		ASSIGN FeederEnabled( lFeederEnabled AS LOGIC ) AS LOGIC PASCAL
 			//p FeederEnabled Support
 			//d Get the current FeederEnabled Support
 			//
 			SELF:SetCapOneValue( CAP_FEEDERENABLED, TWTY_BOOL, DWORD(_CAST,lFeederEnabled  ) )
-			//	
-			
-			
-		METHOD GetCapCurrent( Cap AS WORD, ItemType AS WORD, pRetValue AS PTR ) AS LOGIC PASCAL 
+			//
+
+
+		METHOD GetCapCurrent( Cap AS WORD, ItemType AS WORD, pRetValue AS PTR ) AS LOGIC PASCAL
 			//p Get a Capability
 			//a <Cap>		The Capability to set
 			//a <ItemType>	The Type as a TWTY_xxx define
@@ -990,45 +990,45 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDIF
 			RETURN lOk
-			
-			
-		METHOD GetCapCurrent_DWord( Cap AS WORD, ptrDWord AS DWORD ) AS LOGIC PASCAL 
+
+
+		METHOD GetCapCurrent_DWord( Cap AS WORD, ptrDWord AS DWORD ) AS LOGIC PASCAL
 			//p Get a DWORD capability
 			//d This function is used to get info from the Twain Data Source.
 			//r The corresponding DWORD
 			//j ACCESS:FabTwain:PixelType
 			//j METHOD:FabTwain:GetCapCurrent
 			RETURN SELF:GetCapCurrent( Cap, TWTY_UINT32, ptrDWord )
-			
-			
-		METHOD GetCapCurrent_Long( Cap AS WORD, ptrLong AS DWORD ) AS LOGIC PASCAL 
+
+
+		METHOD GetCapCurrent_Long( Cap AS WORD, ptrLong AS DWORD ) AS LOGIC PASCAL
 			//p Get a LONG capability
 			//d This function is used to get info from the Twain Data Source.
 			//r The corresponding LONG
 			//j ACCESS:FabTwain:PixelType
 			//j METHOD:FabTwain:GetCapCurrent
 			RETURN SELF:GetCapCurrent( Cap, TWTY_INT32, ptrLong )
-			
-			
-		METHOD GetCapCurrent_Short( Cap AS WORD, ptrShort AS DWORD ) AS LOGIC PASCAL 
+
+
+		METHOD GetCapCurrent_Short( Cap AS WORD, ptrShort AS DWORD ) AS LOGIC PASCAL
 			//p Get a SHORT capability
 			//d This function is used to get info from the Twain Data Source.
 			//r The corresponding SHORT
 			//j ACCESS:FabTwain:PixelType
 			//j METHOD:FabTwain:GetCapCurrent
 			RETURN SELF:GetCapCurrent( Cap, TWTY_INT16, ptrShort )
-			
-			
-		METHOD GetCapCurrent_Word( Cap AS WORD, ptrWord AS DWORD ) AS LOGIC PASCAL 
+
+
+		METHOD GetCapCurrent_Word( Cap AS WORD, ptrWord AS DWORD ) AS LOGIC PASCAL
 			//p Get a LONG capability
 			//d This function is used to get info from the Twain Data Source.
 			//r The corresponding LONG
 			//j ACCESS:FabTwain:PixelType
 			//j METHOD:FabTwain:GetCapCurrent
 			RETURN SELF:GetCapCurrent( Cap, TWTY_UINT16, ptrWORD )
-			
-			
-		METHOD GetImageLayout( left AS REAL8 PTR, top AS REAL8 PTR, width AS REAL8 PTR, height AS REAL8 PTR) AS LOGIC PASCAL 
+
+
+		METHOD GetImageLayout( left AS REAL8 PTR, top AS REAL8 PTR, width AS REAL8 PTR, height AS REAL8 PTR) AS LOGIC PASCAL
 			//p Get the physical position of Image for next transfer
 			//r A Logical value indicating the success of the operation
 			LOCAL layout 	IS	TW_IMAGELAYOUT
@@ -1047,9 +1047,9 @@ BEGIN NAMESPACE FabTwain
 				REAL8( height ) := 0
 			ENDIF
 			RETURN lOk
-			
-			
-		CONSTRUCTOR( oOwner ) 
+
+
+		CONSTRUCTOR( oOwner )
 			//p Initialize the FabTwain Object
 			//a <oOwner> is the Owner of the FabTwain object
 			//a This object can be a Window or a Control, and provide some event handler to catch FabTwain Events.
@@ -1082,8 +1082,8 @@ BEGIN NAMESPACE FabTwain
 			IF IsObject( oOwner )
 				SELF:Owner := oOwner
 			ENDIF
-			
-		ACCESS IsTwainAvailable AS LOGIC PASCAL 
+
+		ACCESS IsTwainAvailable AS LOGIC PASCAL
 			//r A logical Value indicating if a TWAIN Source Manager is available.
 			LOCAL lOk	AS	LOGIC
 			//
@@ -1093,9 +1093,9 @@ BEGIN NAMESPACE FabTwain
 				lOk := TRUE
 			ENDIF
 			RETURN lOk
-			
-			
-		METHOD ModalAcquire() AS VOID PASCAL 
+
+
+		METHOD ModalAcquire() AS VOID PASCAL
 			//p Acquire Image
 			//d This method will start a Modal Acquire operation.
 			//d The Data Source UI MUST be Visible ( See ShowUI )
@@ -1117,10 +1117,11 @@ BEGIN NAMESPACE FabTwain
 			ELSE
 				// BeginAcquire DropToState on errors
 				// Self:DropToState( dwState )
+                NOP
 			ENDIF
 			RETURN
-			
-		METHOD ModalEventLoop() AS VOID PASCAL 
+
+		METHOD ModalEventLoop() AS VOID PASCAL
 			// Extract messages from the Message Stack, and Query the DataSource to check if the message
 			// is for the User Interface or for our App.
 			LOCAL msg	IS	_winMSG
@@ -1132,8 +1133,8 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDDO
 			RETURN
-			
-		METHOD NativeXfer() AS LOGIC PASCAL 
+
+		METHOD NativeXfer() AS LOGIC PASCAL
 			// The real acquisition of the Image
 			// We come here, from TwainDispatch() that called XFerReady() where we have checked the Twain Transfer Mode
 			// then to this method where we get Image from DS then callback OnTwainDibAcquire()
@@ -1168,9 +1169,9 @@ BEGIN NAMESPACE FabTwain
 			ENDIF
 			//
 			RETURN (hNative != NULL )
-			
-			
-		METHOD OnTwainDibAcquire( hDIB AS PTR ) AS VOID PASCAL  
+
+
+		METHOD OnTwainDibAcquire( hDIB AS PTR ) AS VOID PASCAL
 			//p Acquire notification
 			//a <hDIB> is a global handler to image in DIB format
 			//d This method will call the Owner OnTwainDibAcquire() if present for further processing.
@@ -1183,9 +1184,9 @@ BEGIN NAMESPACE FabTwain
 			ELSE
 				GlobalFree( hDIB )
 			ENDIF
-			RETURN	
-			
-		METHOD OnTwainError( dwError AS DWORD ) AS VOID PASCAL 
+			RETURN
+
+		METHOD OnTwainError( dwError AS DWORD ) AS VOID PASCAL
 			//p Twain Error notifications
 			//d Called when an unexpected TWAIN malfunction occurs.
 			//d !! Warning !!! The error code here are not related to the ErrorCode and ErrorString access.
@@ -1209,10 +1210,10 @@ BEGIN NAMESPACE FabTwain
 				//
 				Send( SELF:oOwner, #OnTwainError, dwError )
 			ENDIF
-			
+
 			RETURN
-			
-		METHOD OnTwainSourceOpen() AS LOGIC PASCAL 
+
+		METHOD OnTwainSourceOpen() AS LOGIC PASCAL
 			//p Source Open CallBack
 			//d This method is called by BeginAcquire() after source has been successfully opened.
 			//d Use this call-back to negotiate any special capabilities for the session.
@@ -1237,9 +1238,9 @@ BEGIN NAMESPACE FabTwain
 				lOk := TRUE
 			ENDIF
 			RETURN lOk
-			
-			
-		METHOD OnTwainStateChange( dwNew AS DWORD ) AS VOID PASCAL  
+
+
+		METHOD OnTwainStateChange( dwNew AS DWORD ) AS VOID PASCAL
 			//p Change State notification
 			//a <dwNew> is the new state of Twain
 			//d This method will call the Owner OnTwainStateChange() if present for further processing.
@@ -1250,16 +1251,16 @@ BEGIN NAMESPACE FabTwain
 				Send( SELF:oOwner, #OnTwainStateChange, dwNew )
 			ENDIF
 			RETURN
-			
-		METHOD OpenDefaultSource() AS LOGIC PASCAL 
+
+		METHOD OpenDefaultSource() AS LOGIC PASCAL
 			//p Open the Default Data Source
 			//d The Data Source is the "real" device driver.
 			//r	A Logical value indicating the success of the operation
 			//
 			RETURN SELF:OpenSource( "" )
-			
-			
-		METHOD OpenSource( cSource AS STRING ) AS LOGIC PASCAL 
+
+
+		METHOD OpenSource( cSource AS STRING ) AS LOGIC PASCAL
 			//p Open the Default Data Source
 			//d The Data Source is the "real" device driver.
 			//r	A Logical value indicating the success of the operation
@@ -1305,9 +1306,9 @@ BEGIN NAMESPACE FabTwain
 			ENDIF
 			//
 			RETURN ( SELF:dwCurState == (DWORD)TwainState.SOURCE_OPEN)
-			
-			
-		METHOD OpenSourceManager() AS LOGIC PASCAL 
+
+
+		METHOD OpenSourceManager() AS LOGIC PASCAL
 			//p Open the Twain Source Manager
 			//d The source manager is the Twain "heart", that will interface with Data Sources.
 			//r A Logical value indicating the success of the operation
@@ -1322,15 +1323,15 @@ BEGIN NAMESPACE FabTwain
 				ENDIF
 			ENDIF
 			RETURN ( SELF:dwCurState >= (DWORD)TwainState.SOURCE_MANAGER_OPEN)
-			
-			
-		ACCESS Owner AS OBJECT PASCAL 
+
+
+		ACCESS Owner AS OBJECT PASCAL
 			//p Owner of the FabTwain object
 			//r The current owner of the FabTwain object
 			RETURN SELF:oOwner
-			
-			
-		ASSIGN Owner( oOwner AS OBJECT ) AS OBJECT PASCAL 
+
+
+		ASSIGN Owner( oOwner AS OBJECT ) AS OBJECT PASCAL
 			//p Set the Owner of the FabTwain object
 			//d This object is used by Twain as Owner of Twain dialog,
 			//d and used by FabTwain as destination of all notifications
@@ -1341,15 +1342,15 @@ BEGIN NAMESPACE FabTwain
 				SELF:pDefWnd := SELF:oOwner:Handle()
 			ENDIF
 			//
-			
-			
-		ACCESS PendingCount AS SHORT PASCAL 
+
+
+		ACCESS PendingCount AS SHORT PASCAL
 			//p Transfer pending Count
 			//r The current transfer pending count value
 			RETURN SHORT( SELF:pPending.Count )
-			
-			
-		ACCESS PhysicalHeight AS REAL8 PASCAL 
+
+
+		ACCESS PhysicalHeight AS REAL8 PASCAL
 			//p Physical Height
 			//d Get the current maximum Physical Height the source can acquire ( in current units )
 			//j ACCESS:FabTwain:CurrentUnits
@@ -1360,9 +1361,9 @@ BEGIN NAMESPACE FabTwain
 			SELF:GetCapCurrent( ICAP_PHYSICALHEIGHT, TWTY_FIX32, @dwPH )
 			rPH := SELF:__Fix32ToReal8( dwPH )
 			RETURN rPH
-			
-			
-		ACCESS PhysicalWidth AS REAL8 PASCAL 
+
+
+		ACCESS PhysicalWidth AS REAL8 PASCAL
 			//p Physical Width
 			//d Get the current maximum Physical Width the source can acquire ( in current units )
 			//j ACCESS:FabTwain:CurrentUnits
@@ -1373,8 +1374,8 @@ BEGIN NAMESPACE FabTwain
 			SELF:GetCapCurrent( ICAP_PHYSICALWIDTH, TWTY_FIX32, @dwPW )
 			rPW := SELF:__Fix32ToReal8( dwPW )
 			RETURN rPW
-			
-		ACCESS PixelDepth AS WORD PASCAL 
+
+		ACCESS PixelDepth AS WORD PASCAL
 			//p Current Pixel Depth ( in bits )
 			//d Get the current pixel depth. This value depends on the current PixelType.
 			//d Bit depth is per color channel e.g. 24-bit RGB has bit depth 8.
@@ -1384,9 +1385,9 @@ BEGIN NAMESPACE FabTwain
 			SELF:GetCapCurrent_Word( ICAP_BITDEPTH, DWORD(_CAST,@wDepth) )
 			//
 			RETURN Word(wDepth)
-			
-			
-		ASSIGN PixelDepth( wDepth AS WORD ) AS WORD PASCAL 
+
+
+		ASSIGN PixelDepth( wDepth AS WORD ) AS WORD PASCAL
 			//p Current Pixel Depth ( in bits )
 			//d Set the current pixel depth. This value depends on the current PixelType.
 			//d Bit depth is per color channel e.g. 24-bit RGB has bit depth 8.
@@ -1396,9 +1397,9 @@ BEGIN NAMESPACE FabTwain
 			SELF:SetCapOneValue( ICAP_BITDEPTH, TWTY_UINT16, DWORD(wDepth) )
 			SELF:GetCapCurrent_Word( ICAP_BITDEPTH, DWORD(_CAST,@wPDepth) )
 			//
-			
-			
-		ACCESS PixelType AS WORD PASCAL 
+
+
+		ACCESS PixelType AS WORD PASCAL
 			//p Pixel Type
 			//d Get the current Pixel Type
 			//d Values can be
@@ -1417,9 +1418,9 @@ BEGIN NAMESPACE FabTwain
 			SELF:GetCapCurrent_Word( ICAP_PIXELTYPE, DWORD(_CAST,@wPType) )
 			//
 			RETURN wPType
-			
-			
-		ASSIGN PixelType( wType AS WORD ) AS WORD PASCAL 
+
+
+		ASSIGN PixelType( wType AS WORD ) AS WORD PASCAL
 			//p Pixel Type
 			//d Set the current Pixel Type
 			//d Values can be
@@ -1438,10 +1439,10 @@ BEGIN NAMESPACE FabTwain
 			SELF:SetCapOneValue( ICAP_PIXELTYPE, TWTY_UINT16, DWORD(wType) )
 			SELF:GetCapCurrent_Word( ICAP_PIXELTYPE, DWORD(_CAST,@wPType) )
 			//
-			
-			
+
+
 		METHOD RegisterApp( nMajorNum AS WORD, nMinorNum AS WORD, nLanguage AS WORD, nCountry AS WORD, ;
-			cVersion AS STRING, cMfact AS STRING, cFamily AS STRING, cProduct AS STRING ) AS VOID PASCAL 
+			cVersion AS STRING, cMfact AS STRING, cFamily AS STRING, cProduct AS STRING ) AS VOID PASCAL
 			//p Identify the Application for the Source Manager
 			//d Set the indentification of the Application for the Source Manager.
 			//d You MUST call this method before Opening the Source Manager.
@@ -1474,8 +1475,8 @@ BEGIN NAMESPACE FabTwain
 			ENDIF
 			//
 			RETURN
-			
-		ASSIGN Resolution( rRes AS REAL8 ) AS REAL8 PASCAL 
+
+		ASSIGN Resolution( rRes AS REAL8 ) AS REAL8 PASCAL
 			//p X and Y Resolution
 			//d Set the current X and Y Resolution in Pixel per unit
 			//j ACCESS:FabTwain:CurrentUnits
@@ -1485,8 +1486,8 @@ BEGIN NAMESPACE FabTwain
 			SELF:XResolution := rRes
 			SELF:YResolution := rRes
 			//
-			
-		METHOD SaveNative( hDIB AS PTR, cFileName AS STRING ) AS LOGIC PASCAL 
+
+		METHOD SaveNative( hDIB AS PTR, cFileName AS STRING ) AS LOGIC PASCAL
 			//p Write the specified DIB using the BMP format
 			//a <hDib> is a pointer to a native image.
 			//a <cFileName> is a string with the fullpath info of the desired BMP file.
@@ -1527,7 +1528,7 @@ BEGIN NAMESPACE FabTwain
 				ELSE
 					dwClr := BInfo.biClrUsed
 				ENDIF
-				dwSize := dwClr * DWORD( _SIZEOF( _WinRGBQuad ) )		
+				dwSize := dwClr * DWORD( _SIZEOF( _WinRGBQuad ) )
 				//
 				lSize := LONG( GlobalSize( hDib ) )
 				//
@@ -1558,9 +1559,9 @@ BEGIN NAMESPACE FabTwain
 				SELF:OnTwainError( TWERR_CREATEFILE )
 			ENDIF
 			RETURN  lRetVal
-			
-			
-		METHOD SelectSource() AS LOGIC PASCAL 
+
+
+		METHOD SelectSource() AS LOGIC PASCAL
 			//p Call the Twain Source Selection Dialog
 			//r A logical value indicating the success of the operation
 			LOCAL NewSourceId	IS	TW_IDENTITY
@@ -1580,17 +1581,17 @@ BEGIN NAMESPACE FabTwain
 			//
 			SELF:DropToState( nStartState )
 			RETURN lOk
-			
-			
-		METHOD SetCapFix32( Cap AS WORD , rValue AS REAL8 ) AS LOGIC PASCAL 
+
+
+		METHOD SetCapFix32( Cap AS WORD , rValue AS REAL8 ) AS LOGIC PASCAL
 			//p Set a Capability as Fix32 value
 			//a <Cap> is the Capability to set
 			//a <rValue> is a Real8 value to convert in Fix32
 			//r A Logical value indicating the success of the operation
 			RETURN SELF:SetCapOneValue_Fix32( Cap, SELF:__ToFix32( rValue ) )
-			
-			
-		METHOD SetCapOneValue( Cap AS WORD, ItemType AS WORD, ItemVal AS DWORD )  AS LOGIC PASCAL 
+
+
+		METHOD SetCapOneValue( Cap AS WORD, ItemType AS WORD, ItemVal AS DWORD )  AS LOGIC PASCAL
 			//p Set a Capability
 			//a <Cap>		The Capability to set
 			//a <ItemType>	The Type as a TWTY_xxx define
@@ -1628,15 +1629,15 @@ BEGIN NAMESPACE FabTwain
 			// And don't forget to free the TW_ONEVALUE structure !!
 			GlobalFree( pcap.hContainer)
 			RETURN lOk
-			
-			
-		METHOD SetCapOneValue_Fix32( Cap AS WORD, dwFix AS DWORD ) AS LOGIC PASCAL 
+
+
+		METHOD SetCapOneValue_Fix32( Cap AS WORD, dwFix AS DWORD ) AS LOGIC PASCAL
 			//p Set Capability in TW_FIX32 type
 			//s
 			RETURN SELF:SetCapOneValue( Cap, TWTY_FIX32, dwFix )
-			
-			
-		METHOD SetImageLayout( left AS REAL8, top AS REAL8, width AS REAL8, height AS REAL8) AS LOGIC PASCAL 
+
+
+		METHOD SetImageLayout( left AS REAL8, top AS REAL8, width AS REAL8, height AS REAL8) AS LOGIC PASCAL
 			//p Set the physical position of Image for next transfer
 			//r A Logical value indicating the success of the operation
 			LOCAL layout 	IS	TW_IMAGELAYOUT
@@ -1658,27 +1659,27 @@ BEGIN NAMESPACE FabTwain
 			layout.FrameNumber := 0
 			lOk := SELF:__DS(DG_IMAGE, DAT_IMAGELAYOUT, MSG_SET, @layout )
 			RETURN lOK
-			
-			
-		ACCESS ShowUI AS LOGIC PASCAL 
+
+
+		ACCESS ShowUI AS LOGIC PASCAL
 			//p Change the visibility of the DataSource UI
 			//r The current visibility
 			RETURN SELF:lShowUI
-			
-			
-		ASSIGN ShowUI( lSet AS LOGIC ) AS LOGIC PASCAL 
+
+
+		ASSIGN ShowUI( lSet AS LOGIC ) AS LOGIC PASCAL
 			//p Change the visibility of the DataSource UI
 			//r The current visibility
 			SELF:lShowUI := lSet
-			
-			
-		ACCESS SourceName AS STRING PASCAL 
+
+
+		ACCESS SourceName AS STRING PASCAL
 			//p Retrieve the name of the Source that is used
 			//r A String with the name of the source, Empty for the Default Source
 			RETURN SELF:cSourceName
-			
-			
-		ASSIGN SourceName( cUseSource AS STRING ) AS STRING PASCAL 
+
+
+		ASSIGN SourceName( cUseSource AS STRING ) AS STRING PASCAL
 			//p Set the name of the Source that is used
 			//d The ASSIGN try to locate the desired source; if is not available, the assignment is not done
 			//d  and the default source will be used.
@@ -1689,17 +1690,17 @@ BEGIN NAMESPACE FabTwain
 			IF ( AScanExact( aSources, cUseSource ) != 0 )
 				SELF:cSourceName := cUseSource
 			ELSE
-				SELF:cSourceName := ""		
+				SELF:cSourceName := ""
 			ENDIF
-			
-			
-		ACCESS State AS DWORD PASCAL 
+
+
+		ACCESS State AS DWORD PASCAL
 			//p Current State of the Twain
 			//r The current state of the FabTwain object.
 			RETURN SELF:dwCurState
-			
-			
-		PROTECT ASSIGN State( nNew AS DWORD ) AS VOID PASCAL 
+
+
+		PROTECT ASSIGN State( nNew AS DWORD ) AS VOID PASCAL
 			// Set the new FabTwain state ( And trace ... )
 			LOCAL aState AS ARRAY
 			//
@@ -1717,8 +1718,8 @@ BEGIN NAMESPACE FabTwain
 			SELF:dwCurState := nNew
 			SELF:OnTwainStateChange( nNew )
 			RETURN
-		
-		METHOD TwainDispatch( lpmsg AS _WINMsg ) AS LOGIC PASCAL 
+
+		METHOD TwainDispatch( lpmsg AS _winMSG ) AS LOGIC PASCAL
 			//p Check for DataSource UI Message
 			//d This method will ask the DataSource to check if the message is
 			//d for the DataSource User Interface, or for the application
@@ -1749,12 +1750,13 @@ BEGIN NAMESPACE FabTwain
 						SELF:CloseSource()
 					CASE ( pEvent.TWMessage == MSG_NULL )
 						// no message returned from DS
+                        NOP
 				ENDCASE
 			ENDIF
 			RETURN lTwainMsg
-			
-			
-		ACCESS XferCount AS SHORT PASCAL 
+
+
+		ACCESS XferCount AS SHORT PASCAL
 			//p Number if Images to receive
 			//d Get the number of images the application wants to receive
 			//r The number of images to receive
@@ -1767,9 +1769,9 @@ BEGIN NAMESPACE FabTwain
 			ENDIF
 			//
 			RETURN siXFers
-			
-			
-		ASSIGN XferCount( siXfers AS SHORT ) AS SHORT PASCAL 
+
+
+		ASSIGN XferCount( siXFers AS SHORT ) AS SHORT PASCAL
 			//p Number if Images to receive
 			//d Set the number of images the application wants to receive
 			//r The number of images to receive
@@ -1780,9 +1782,9 @@ BEGIN NAMESPACE FabTwain
 				siXfers := 0
 			ENDIF
 			//
-			
-			
-		ACCESS XferMode AS WORD PASCAL 
+
+
+		ACCESS XferMode AS WORD PASCAL
 			//p Retrive the current Transfer Mode
 			//d Available Values are :
 			//d XFER_NATIVE		Dib Transfer Mode
@@ -1792,17 +1794,17 @@ BEGIN NAMESPACE FabTwain
 			//d Currently, FabTwain only support the Native Mode
 			//r A WORD value indicating the current Transfer Mode
 			RETURN SELF:wXferMode
-			
-			
-		ASSIGN XferMode( wSet AS WORD ) AS WORD PASCAL 
+
+
+		ASSIGN XferMode( wSet AS WORD ) AS WORD PASCAL
 			//p Set the Transfer Mode
 			//d In FabTwain, only the XFER_NATIVE mode is currently supported
 			//r The new transfer mode
 			//s
 			SELF:wXferMode := (WORD)TwainTransfer.XFER_NATIVE
-			
-			
-		METHOD XferReady( lpmsg AS _WINMsg ) AS VOID PASCAL 
+
+
+		METHOD XferReady( lpmsg AS _winMSG ) AS VOID PASCAL
 			// The TwainDispatch() has been notified by Twain that the Transfer is ready,
 			// then we came here, where we check the Transfer Mode, and start the transfer
 			System.Diagnostics.Debug.Assert( SELF:dwCurState == (DWORD)TwainState.TRANSFER_READY)
@@ -1814,9 +1816,11 @@ BEGIN NAMESPACE FabTwain
 					CASE ( SELF:XferMode == XFER_FILE )
 						// To Do
 						// Start File Transfer
+                        NOP
 					CASE ( SELF:XferMode == XFER_MEMORY )
 						// To Do
 						// Start Memory Transfer
+                        NOP
 					OTHERWISE
 						// ??
 						SELF:__Trace( "corrupted transfer mode !")
@@ -1834,8 +1838,8 @@ BEGIN NAMESPACE FabTwain
 				//
 			ENDDO
 			RETURN
-			
-		ACCESS XResolution AS REAL8 PASCAL 
+
+		ACCESS XResolution AS REAL8 PASCAL
 			//p X Resulution
 			//d Get the current X Resolution in Pixel per unit
 			//j ACCESS:FabTwain:CurrentUnits
@@ -1846,9 +1850,9 @@ BEGIN NAMESPACE FabTwain
 			SELF:GetCapCurrent( ICAP_XRESOLUTION, TWTY_FIX32, @dwXRes )
 			rXRes := SELF:__Fix32ToReal8( dwXRes )
 			RETURN rXRes
-			
-			
-		ASSIGN XResolution( rXRes AS REAL8 ) AS REAL8 PASCAL 
+
+
+		ASSIGN XResolution( rXRes AS REAL8 ) AS REAL8 PASCAL
 			//p X Resolution
 			//d Set the current X Resolution in Pixel per unit
 			//j ACCESS:FabTwain:CurrentUnits
@@ -1859,10 +1863,10 @@ BEGIN NAMESPACE FabTwain
 			//
 			SELF:GetCapCurrent( ICAP_XRESOLUTION, TWTY_FIX32, @dwXRes )
 			rXRes := SELF:__Fix32ToReal8( dwXRes )
-			
-			
-			
-		ACCESS YResolution AS REAL8 PASCAL 
+
+
+
+		ACCESS YResolution AS REAL8 PASCAL
 			//p Y Resulution
 			//d Get the current Y Resolution in Pixel per unit
 			//j ACCESS:FabTwain:CurrentUnits
@@ -1873,11 +1877,11 @@ BEGIN NAMESPACE FabTwain
 			SELF:GetCapCurrent( ICAP_YRESOLUTION, TWTY_FIX32, @dwXRes )
 			rXRes := SELF:__Fix32ToReal8( dwXRes )
 			RETURN rXRes
-			
-			
-			
-			
-		ASSIGN YResolution( rYRes AS REAL8 ) AS REAL8 PASCAL 
+
+
+
+
+		ASSIGN YResolution( rYRes AS REAL8 ) AS REAL8 PASCAL
 			//p Y Resolution
 			//d Set the current Y Resolution in Pixel per unit
 			//j ACCESS:FabTwain:CurrentUnits
@@ -1888,10 +1892,10 @@ BEGIN NAMESPACE FabTwain
 			//
 			SELF:GetCapCurrent( ICAP_YRESOLUTION, TWTY_FIX32, @dwYRes )
 			rYRes := SELF:__Fix32ToReal8( dwYRes )
-			
-			
-			
+
+
+
 	END CLASS
-	
-	
+
+
 END NAMESPACE

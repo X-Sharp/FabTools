@@ -12,7 +12,7 @@ BEGIN Namespace FabPaintLib
 		//d This class encUSINGate MultiPages services of the FabPaint Library
 		//
 		INTERNAL oMultiObject AS  FIMULTIBITMAP
-		
+
 		EXPORT pMultiObject	AS	PTR
 		// Owner to notify any changes
 		// Object, so same version for VO-GUI or ClassMate.
@@ -22,8 +22,8 @@ BEGIN Namespace FabPaintLib
 		//
 		protect aLockPages as array
 		//
-		
-		METHOD __NotifyOwner( symEvent AS SYMBOL ) AS VOID  
+
+		METHOD __NotifyOwner( symEvent AS SYMBOL ) AS VOID
 			//
 			IF ( SELF:oOwner != NULL_OBJECT )
 				IF IsMethod( SELF:oOwner, #OnFabPaintLibMulti ) .AND. !SELF:lSuspendNotification
@@ -32,8 +32,8 @@ BEGIN Namespace FabPaintLib
 			ENDIF
 			//
 			return
-			
-		METHOD AddPage( oImage AS FabPaintLibBase ) AS VOID  
+
+		METHOD AddPage( oImage AS FabPaintLibBase ) AS VOID
 			//p Add a new Page
 			//p WARNING : Page number is zero-based
 			//
@@ -42,8 +42,8 @@ BEGIN Namespace FabPaintLib
 				FreeImage.AppendPage( Self:oMultiObject, oImage:oDibObject )
 			ENDIF
 			RETURN
-			
-		DESTRUCTOR() 
+
+		DESTRUCTOR()
 			//
 			SELF:Destroy()
 			//
@@ -51,14 +51,14 @@ BEGIN Namespace FabPaintLib
 			//	UnRegisterAxit( SELF )
 			//ENDIF
 			//
-			RETURN 
-			
-		METHOD CloneImage( nPage as LONGINT ) as FabPaintLib  
+			RETURN
+
+		METHOD CloneImage( nPage AS LONGINT ) AS FabPaintLib
 			//r The new FabPaintLib object
 			//p Get a page as an Image.
-			//p The Image is a copy of the page. 
+			//p The Image is a copy of the page.
 			//p WARNING : Page number is zero-based
-			
+
 			LOCAL oCopy	AS	FIBitmap
 			LOCAL oImg  as  FIBitmap
 			LOCAL oNew	AS	FabPaintLib
@@ -70,13 +70,12 @@ BEGIN Namespace FabPaintLib
 					oCopy := FreeImage.Clone( oImg )
 					// Release the page
 					FreeImage.unlockPage( self:oMultiObject, oImg, false )
-			else
-				endif
+				ENDIF
 				oNew := FabPaintLib{ oCopy }
 			ENDIF
 			RETURN oNew
-			
-		METHOD Create( cFile as STRING ) as LOGIC  
+
+		METHOD Create( cFile AS STRING ) AS LOGIC
 			//p Initialize an new Multi Page File
 			//a <cFile> Name of the file to read.
 			//d This method will read the indicated file, and initialize the object.
@@ -99,11 +98,11 @@ BEGIN Namespace FabPaintLib
 			self:__NotifyOwner( #CreateFromFile )
 			//
 			RETURN self:IsValid
-			
-		METHOD CreateFromFile( cFile AS STRING ) AS LOGIC  
+
+		METHOD CreateFromFile( cFile AS STRING ) AS LOGIC
 			RETURN Self:Create( cFile )
-			
-		METHOD DeletePage( nPos AS INT ) AS VOID  
+
+		METHOD DeletePage( nPos AS INT ) AS VOID
 			//p Delete a Page
 			//p WARNING : Page number is zero-based
 			//
@@ -112,8 +111,8 @@ BEGIN Namespace FabPaintLib
 				FreeImage.DeletePage( Self:oMultiObject, nPos )
 			ENDIF
 			return
-			
-		METHOD Destroy() AS VOID  
+
+		METHOD Destroy() AS VOID
 			//p Delete the underlying DIB Object
 			//d this Method will close the MultiPage Object, and apply any modifications done
 			//d like delete, add, insert pages
@@ -128,8 +127,8 @@ BEGIN Namespace FabPaintLib
 						// The array shrinks when we unlock a page, so works like a stack
 						oImage := self:aLockPages[ 1 ]
 						self:UnlockPage( oImage, false )
-					enddo 
-				endif 
+					ENDDO
+				ENDIF
 				//
 				FreeImage.CloseMultiBitmap( Self:oMultiObject, FREE_IMAGE_SAVE_FLAGS.Default )
 				SELF:oMultiObject := FIMULTIBITMAP.Zero
@@ -139,26 +138,26 @@ BEGIN Namespace FabPaintLib
 			ENDIF
 			//
 			return
-			
+
 		CONSTRUCTOR( cFile as String )
-			// 
+			//
 			Self:CreateFromFile( cFile )
 			//
 			self:aLockPages := {}
 			RETURN
-			
+
 		CONSTRUCTOR( cFile as String, oOwn as Object )
-			// 
+			//
 			if ( oOwner != null )
 				self:oOwner := oOwn
-			endif        
+			ENDIF
 			//
 			Self:CreateFromFile( cFile )
 			//
 			self:aLockPages := {}
 			RETURN
-			
-		CONSTRUCTOR( cFile as FIMULTIBITMAP, oOwn as Object ) 
+
+		CONSTRUCTOR( cFile AS FIMULTIBITMAP, oOwn AS OBJECT )
 			//p Initialize a FabMultiPage object
 			//a <cFile> Name of the file to use to initialize the object
 			//a If Empty, the FabMultiPage object is uninitialized
@@ -168,15 +167,15 @@ BEGIN Namespace FabPaintLib
 			//
 			if ( oOwner != null )
 				self:oOwner := oOwn
-			endif        
+			ENDIF
 			// This might be an already created C++ Object ( See Copy )
 			SELF:oMultiObject := cFile
 			SELF:__NotifyOwner( #InitPTR )
 			//
 			self:aLockPages := {}
-			return 
-			
-		METHOD InsertPage( oImage AS FabPaintLibBase, nPos AS INT ) AS VOID  
+			RETURN
+
+		METHOD InsertPage( oImage AS FabPaintLibBase, nPos AS INT ) AS VOID
 			//p Insert a new Page
 			//p WARNING : Page number is zero-based
 			//
@@ -185,17 +184,17 @@ BEGIN Namespace FabPaintLib
 				FreeImage.InsertPage( Self:oMultiObject, nPos, oImage:oDibObject )
 			ENDIF
 			return
-			
-		ACCESS IsValid AS LOGIC  
+
+		ACCESS IsValid AS LOGIC
 			//r A logical value indicating if the object is linked to an image.
 			RETURN ( SELF:oMultiObject != FIMULTIBITMAP.Zero )
-			
-			
-		METHOD LockPage( nPage as LONGINT ) as FabPaintLib  
+
+
+		METHOD lockPage( nPage AS LONGINT ) AS FabPaintLib
 			//r The new FabPaintLib object
 			//p Get a page as an Image.
 			//p The Image is the original image of the page.
-			//p YOU MUST UNLOCK THE IMAGE 
+			//p YOU MUST UNLOCK THE IMAGE
 			//p WARNING : Page number is zero-based
 			LOCAL oCopy	as	FIBitmap
 			LOCAL oNew	as	FabPaintLib
@@ -207,28 +206,28 @@ BEGIN Namespace FabPaintLib
 				// Track objects
 				AAdd( self:aLockPages, oNew )
 			ENDIF
-			RETURN oNew 
-			
-			
-		ACCESS PageCount AS LONGINT  
+			RETURN oNew
+
+
+		ACCESS PageCount AS LONGINT
 			LOCAL nPages AS LONGINT
 			//
 			IF SELF:IsValid
 				nPages := FreeImage.GetPageCount( SELF:oMultiObject )
 			ENDIF
 			RETURN nPages
-			
-		METHOD UnlockPage( oImage as FabPaintLibBase, lApplyChanges as logic ) as void  
+
+		METHOD unlockPage( oImage AS FabPaintLibBase, lApplyChanges AS LOGIC ) AS VOID
 			//r The new FabPaintLib object
 			//p Get a page as an Image.
 			//p The Image is the original image of the page.
-			//p YOU MUST UNLOCK THE IMAGE 
+			//p YOU MUST UNLOCK THE IMAGE
 			//p WARNING : Page number is zero-based
 			local nFoundAt as dword
 			//
 			IF self:IsValid .and. oImage:IsValid
 				// Known Page ?
-				nFoundAt := AScanExact( self:aLockPages, oImage ) 
+				nFoundAt := AScanExact( SELF:aLockPages, oImage )
 				//
 				if ( nFoundAt != 0 )
 					//
@@ -236,11 +235,11 @@ BEGIN Namespace FabPaintLib
 					//
 					ADel( self:aLockPages, nFoundAt )
 					ASize( self:aLockPages, ALen( self:aLockPages)-1)
-				endif 
-				//			 
+				ENDIF
+				//
 			ENDIF
-			RETURN 
-			
+			RETURN
+
 	END CLASS
-	
+
 END NAMESPACE

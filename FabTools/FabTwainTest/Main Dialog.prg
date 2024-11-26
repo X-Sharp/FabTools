@@ -2,38 +2,38 @@ USING FabPaintLib.Control
 Using FabPaintLib
 
 #region DEFINES
-STATIC DEFINE MAINDIALOG_CLOSEPB := 104 
-STATIC DEFINE MAINDIALOG_CURRENTTXT := 114 
-STATIC DEFINE MAINDIALOG_DELPB := 107 
-STATIC DEFINE MAINDIALOG_FITCHK := 108 
-STATIC DEFINE MAINDIALOG_FIXEDTEXT1 := 115 
-STATIC DEFINE MAINDIALOG_FIXEDTEXT2 := 122 
-STATIC DEFINE MAINDIALOG_FORMATPAGE := 128 
-STATIC DEFINE MAINDIALOG_GROUPBOX1 := 113 
-STATIC DEFINE MAINDIALOG_HIDEERROR := 110 
-STATIC DEFINE MAINDIALOG_HIDEUI := 109 
-STATIC DEFINE MAINDIALOG_IMGBOX := 116 
-STATIC DEFINE MAINDIALOG_NEXTPB := 105 
-STATIC DEFINE MAINDIALOG_PIXTYPE := 111 
-STATIC DEFINE MAINDIALOG_PREVPB := 106 
-STATIC DEFINE MAINDIALOG_PRINTBOX := 123 
-STATIC DEFINE MAINDIALOG_PRINTFIT := 103 
-STATIC DEFINE MAINDIALOG_PRINTGDI := 127 
-STATIC DEFINE MAINDIALOG_PRINTPB := 102 
-STATIC DEFINE MAINDIALOG_PRINTQTY := 120 
-STATIC DEFINE MAINDIALOG_PRINTQTYSPINNER := 121 
-STATIC DEFINE MAINDIALOG_RESOLUTION := 119 
-STATIC DEFINE MAINDIALOG_RESOLUTIONSPINNER := 118 
-STATIC DEFINE MAINDIALOG_SAVEPB := 101 
-STATIC DEFINE MAINDIALOG_SCANPB := 100 
-STATIC DEFINE MAINDIALOG_TWAINIMG := 112 
-STATIC DEFINE MAINDIALOG_VIEWBOX := 117 
-STATIC DEFINE MAINDIALOG_ZOOMLESS := 124 
-STATIC DEFINE MAINDIALOG_ZOOMMORE := 126 
-STATIC DEFINE MAINDIALOG_ZOOMNORMAL := 125 
+STATIC DEFINE MAINDIALOG_CLOSEPB := 104
+STATIC DEFINE MAINDIALOG_CURRENTTXT := 114
+STATIC DEFINE MAINDIALOG_DELPB := 107
+STATIC DEFINE MAINDIALOG_FITCHK := 108
+STATIC DEFINE MAINDIALOG_FIXEDTEXT1 := 115
+STATIC DEFINE MAINDIALOG_FIXEDTEXT2 := 122
+STATIC DEFINE MAINDIALOG_FORMATPAGE := 128
+STATIC DEFINE MAINDIALOG_GROUPBOX1 := 113
+STATIC DEFINE MAINDIALOG_HIDEERROR := 110
+STATIC DEFINE MAINDIALOG_HIDEUI := 109
+STATIC DEFINE MAINDIALOG_IMGBOX := 116
+STATIC DEFINE MAINDIALOG_NEXTPB := 105
+STATIC DEFINE MAINDIALOG_PIXTYPE := 111
+STATIC DEFINE MAINDIALOG_PREVPB := 106
+STATIC DEFINE MAINDIALOG_PRINTBOX := 123
+STATIC DEFINE MAINDIALOG_PRINTFIT := 103
+STATIC DEFINE MAINDIALOG_PRINTGDI := 127
+STATIC DEFINE MAINDIALOG_PRINTPB := 102
+STATIC DEFINE MAINDIALOG_PRINTQTY := 120
+STATIC DEFINE MAINDIALOG_PRINTQTYSPINNER := 121
+STATIC DEFINE MAINDIALOG_RESOLUTION := 119
+STATIC DEFINE MAINDIALOG_RESOLUTIONSPINNER := 118
+STATIC DEFINE MAINDIALOG_SAVEPB := 101
+STATIC DEFINE MAINDIALOG_SCANPB := 100
+STATIC DEFINE MAINDIALOG_TWAINIMG := 112
+STATIC DEFINE MAINDIALOG_VIEWBOX := 117
+STATIC DEFINE MAINDIALOG_ZOOMLESS := 124
+STATIC DEFINE MAINDIALOG_ZOOMMORE := 126
+STATIC DEFINE MAINDIALOG_ZOOMNORMAL := 125
 #endregion
 
-class MainDialog inherit DIALOGWINDOW 
+CLASS MainDialog INHERIT DIALOGWINDOW
 
 	protect oCCScanPB as PUSHBUTTON
 	protect oCCSavePB as PUSHBUTTON
@@ -69,7 +69,7 @@ class MainDialog inherit DIALOGWINDOW
 	PROTECT oPrinter		AS	PrintingDevice
 
 
-METHOD _ResizeControl() 
+METHOD _ResizeControl()
 	LOCAL oBB	AS	BoundingBox
 	LOCAL oSize	AS	Dimension
 	//
@@ -85,7 +85,7 @@ METHOD _ResizeControl()
 	//
 return self
 
-METHOD ButtonClick(oControlEvent) 
+METHOD ButtonClick(oControlEvent)
 	LOCAL oControl AS Control
 	oControl := IIf(oControlEvent == NULL_OBJECT, NULL_OBJECT, oControlEvent:Control)
 	SUPER:ButtonClick(oControlEvent)
@@ -109,43 +109,43 @@ METHOD ButtonClick(oControlEvent)
 	RETURN NIL
 
 
-METHOD ClosePB( ) 
+METHOD ClosePB( )
 	SELF:EndDialog()
 return self
 
-METHOD DelPB( ) 
+METHOD DelPB( )
 	//
 	SELF:ImageDel()
 	//
 return self
 
-METHOD	FillFormatPage( )	
+METHOD	FillFormatPage( )
 RETURN { {"None", 0 }, { "A4", 1 }, { "A5", 2 }, { "A5 Landscape", 3 }, { "B5", 4 }, {"Legal", 5}, {"Letter",6}, { "Executive",7} }
 
 
-METHOD	FillPixelType( )	
+METHOD	FillPixelType( )
 RETURN { {"None", -1 }, { "B/W", TWPT_BW }, { "Gray", TWPT_GRAY }, { "RGB", TWPT_RGB }, {"Palette", TWPT_PALETTE} }
 
 
-METHOD HelpAbout( ) 
+METHOD HelpAbout( )
 	LOCAL oDlg	AS	AboutDlg
 	//
 	oDlg := AboutDlg{ SELF }
 	oDlg:Show()
 	//
-return self	
+RETURN SELF
 
-METHOD ImageAdd( oImg ) 
-	//	
+METHOD ImageAdd( oImg )
+	//
 	AAdd( SELF:aImg, oImg )
 	//
 	SELF:nImg := ALen( SELF:aImg )
 	//
 	SELF:ImageUpdate()
-	//	
-return self	
+	//
+RETURN SELF
 
-METHOD ImageDel() 
+METHOD ImageDel()
 	LOCAL oImg	AS	FabPaintLib
 	//
 	IF ( SELF:nImg > 0 )
@@ -161,11 +161,11 @@ METHOD ImageDel()
 		ENDIF
 		//
 		SELF:ImageUpdate()
-	ENDIF		
+	ENDIF
 	//
 return self
 
-METHOD ImageNext() 
+METHOD ImageNext()
 	//
 	IF ( SELF:nImg < ALen( SELF:aImg ) )
 		SELF:nImg := SELF:nImg + 1
@@ -175,7 +175,7 @@ METHOD ImageNext()
 	//
 return self
 
-METHOD ImagePrev() 
+METHOD ImagePrev()
 	//
 	IF ( SELF:nImg > 1 )
 		SELF:nImg := SELF:nImg - 1
@@ -183,9 +183,9 @@ METHOD ImagePrev()
 	//
 	SELF:ImageUpdate()
 	//
-return self	
+RETURN SELF
 
-METHOD ImageUpdate() 
+METHOD ImageUpdate()
 	LOCAL oImg	AS	FabPaintLib
 	//
 	SELF:oDCCurrentTxt:TextValue := NTrim( SELF:nImg ) + " / " + NTrim( ALen(SELF:aImg) )
@@ -198,7 +198,7 @@ METHOD ImageUpdate()
 	//
 return self
 
-CONSTRUCTOR(oParent,uExtra)  
+CONSTRUCTOR(oParent,uExtra)
 
 self:PreInit(oParent,uExtra)
 
@@ -290,14 +290,14 @@ self:PostInit(oParent,uExtra)
 return self
 
 
-METHOD InitTwain() 
+METHOD InitTwain()
 	//
 	SELF:oTwain := FabTwain{ SELF }
 	// Identify our Application for the Source Manager
 	SELF:oTwain:RegisterApp( 1,0,TWLG_FRN,TWCY_FRANCE, "1.0", "Fabrice Foray", "FabTwain", "Fab Twain Test" )
 return self
 
-METHOD MenuCommand(oMenuCommandEvent) 
+METHOD MenuCommand(oMenuCommandEvent)
 	LOCAL	nZoomIn		AS	SHORT
 	LOCAL	nZoomOut	AS	SHORT
 	//
@@ -319,13 +319,13 @@ METHOD MenuCommand(oMenuCommandEvent)
 RETURN NIL
 
 
-METHOD NextPB( ) 
+METHOD NextPB( )
 	//
 	SELF:ImageNext()
 	//
 return self
 
-METHOD OnTwainDibAcquire( hDIB ) 
+METHOD OnTwainDibAcquire( hDIB )
 	LOCAL oImg	AS	FabPaintLib
 	//
 	oImg := FabPaintLib{}
@@ -337,7 +337,7 @@ METHOD OnTwainDibAcquire( hDIB )
 	//
 return self
 
-METHOD OnTwainError( dwError ) 
+METHOD OnTwainError( dwError )
 	LOCAL oDlg		AS	ErrorBox
 	LOCAL cError	AS	STRING
 	//
@@ -368,9 +368,9 @@ METHOD OnTwainError( dwError )
 		//
 	ENDIF
 	//
-return self	
+RETURN SELF
 
-METHOD OnTwainSourceOpen() 
+METHOD OnTwainSourceOpen()
 	LOCAL l,t,w,h	AS	REAL8
 	LOCAL u 		AS WORD
 	LOCAL PType		AS WORD
@@ -418,17 +418,18 @@ METHOD OnTwainSourceOpen()
 			h := 26.67
 		OTHERWISE
 			h := SELF:oTwain:PhysicalHeight
-			w := SELF:oTwain:PhysicalWidth	
+			w := SELF:oTwain:PhysicalWidth
 	ENDCASE
 	IF ( u == TWUN_INCHES )
 		w := w / 2.54
 		h := h / 2.54
 	ELSEIF ( u == TWUN_CENTIMETERS )
 		// Nothing to do
+        NOP
 	ELSE
 		// Back to default
 		h := SELF:oTwain:PhysicalHeight
-		w := SELF:oTwain:PhysicalWidth	
+		w := SELF:oTwain:PhysicalWidth
 	ENDIF
 	//
 	SELF:oTwain:SetImageLayout( l, t, w, h )
@@ -439,13 +440,13 @@ METHOD OnTwainSourceOpen()
 	//
 return self
 
-METHOD OnTwainStateChange( dwNew ) 
+METHOD OnTwainStateChange( dwNew )
 	//
 	SELF:oStatusBar:SetText( "Twain State Change : " + NTrim( dwNew ), #TwainArea )
 	//
 return self
 
-METHOD PostInit(oWindow,iCtlID,oServer,uExtra) 
+METHOD PostInit(oWindow,iCtlID,oServer,uExtra)
 	//Put your PostInit additions here
 	SELF:oPrinter := PrintingDevice{}
 	SELF:InitTwain()
@@ -482,19 +483,19 @@ METHOD PostInit(oWindow,iCtlID,oServer,uExtra)
 	RETURN NIL
 
 
-METHOD PrevPB( ) 
+METHOD PrevPB( )
 	//
 	SELF:ImagePrev()
 	//
 return self
 
-METHOD PrinterSetup()	
+METHOD PrinterSetup()
 	//
 	SELF:oPrinter:SetUp()
 	//
 return self
 
-METHOD	PrintPB	
+METHOD	PrintPB
 	LOCAL oPrn		AS	FabPrinter
 	LOCAL oImg		AS	FabPaintLib
 	LOCAL oCpyImg	AS	FabPaintLib
@@ -511,21 +512,21 @@ METHOD	PrintPB
 	oPrn:oImg := oCpyImg
 	oPrn:FitToWindow := SELF:oDCPrintFit:Checked
 	oPrn:UseGDI := SELF:oDCPrintGDI:Checked
-	oPrn:Qty := Val( SELF:oDCPrintQty:TextValue )	
+	oPrn:Qty := Val( SELF:oDCPrintQty:TextValue )
 	oPrn:Start()
 	oPrn:Destroy()
 	//
 
   return self
 
-METHOD Resize(oResizeEvent) 
+METHOD Resize(oResizeEvent)
 	SUPER:Resize(oResizeEvent)
 	//Put your changes here
 	SELF:_ResizeControl()
 RETURN NIL
 
 
-METHOD SavePB( ) 
+METHOD SavePB( )
 	LOCAL oDlg 	AS 	SaveAsDialog
 	LOCAL aExt  AS 	ARRAY
 	LOCAL aDesc	AS 	ARRAY
@@ -543,7 +544,7 @@ METHOD SavePB( )
 			  "*.tif",;
 			  "*.png",;
               "*.dib"}
-			
+
 	aDesc := {"All Pictures",;
               "All files",;
 			  "BMP - OS/2 or Windows Bitmap",;
@@ -551,7 +552,7 @@ METHOD SavePB( )
 			  "TIF - Tagged Image File Format",;
 			  "PNG - Portable Network Graphics",;
 			  "DIB - OS/2 or Windows DIB"}
-	//			
+	//
 	oDlg := SaveAsDialog{SELF, aExt[3]}
 	oDlg:SetFilter(aExt, aDesc, 3)
 	oDlg:Show()
@@ -571,22 +572,22 @@ METHOD SavePB( )
 			oImg:SaveAs( oDlg:FileName )
 		ENDIF
 	ENDIF
-	
+
 return self
 
-METHOD ScanPB( ) 
+METHOD ScanPB( )
 	//
 	SELF:oTwain:ModalAcquire()
 	//
  return self
 
-METHOD SelectSource() 
+METHOD SelectSource()
 	//
 	SELF:oTwain:SelectSource()
 	//
 return self
 
-METHOD StatusMessage(oHL, ntype) 
+METHOD StatusMessage(oHL, ntype)
 	LOCAL message AS STRING
 	//
 	IF ( SELF:oStatusBar == NULL_OBJECT )
@@ -606,7 +607,7 @@ METHOD StatusMessage(oHL, ntype)
 	//
 return self
 
-METHOD	Zoom( lAllowZoom )	
+METHOD	Zoom( lAllowZoom )
 	//
 	IF ( lAllowZoom )
 		SELF:oCCZoomLess:Enable()
@@ -621,7 +622,7 @@ METHOD	Zoom( lAllowZoom )
 	//
 return self
 
-METHOD ZoomLess( ) 
+METHOD ZoomLess( )
 	//
 	IF ( SELF:oDCTwainImg:Zoom == 1 )
 		SELF:oDCTwainImg:Zoom := -2
@@ -631,7 +632,7 @@ METHOD ZoomLess( )
 	//
 return self
 
-METHOD ZoomMore( ) 
+METHOD ZoomMore( )
 	//
 	IF ( SELF:oDCTwainImg:Zoom == -2 )
 		SELF:oDCTwainImg:Zoom := 1
@@ -641,7 +642,7 @@ METHOD ZoomMore( )
 	//
 return self
 
-METHOD ZoomNormal( ) 
+METHOD ZoomNormal( )
 	//
 	SELF:oDCTwainImg:Zoom := 1
 	//

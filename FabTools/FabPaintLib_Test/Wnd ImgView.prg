@@ -240,6 +240,7 @@ CLASS StdImageWindow INHERIT ChildAppWindow
 		//
 		IF ( oFCE:GotFocus )
 			//SELF:RefreshInfo()
+            NOP
 		ENDIF
 		//
 		return self
@@ -531,7 +532,7 @@ CLASS StdImageWindow INHERIT ChildAppWindow
 		IF ( SELF:oImg:IsValid )
 			//
 			oDlg := InputBox{ SELF }
-			oDlg:oDCValue1Txt:Caption := "Angle °"
+			oDlg:oDCValue1Txt:Caption := "Angle ï¿½"
 			oDlg:oDCValue2Txt:Hide()
 			oDlg:oDCValue2:Hide()
 			oDlg:oDCValue3Txt:Hide()

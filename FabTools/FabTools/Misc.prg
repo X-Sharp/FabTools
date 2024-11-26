@@ -543,7 +543,7 @@ STATIC FUNCTION FabExecErr( ObjError )
 	
 	
 	
-FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur  ) AS LOGIC
+FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur REF USUAL  ) AS LOGIC
 	//l Execute a CodeBlock stored in a String
 	//p Execute a CodeBlock stored in a String
 	//a <cChaine> is the String with the CodeBlock to execute\line
@@ -728,12 +728,16 @@ FUNCTION FabFormatCString( Format AS STRING, Args AS ARRAY ) AS STRING
 					cChar := CHR( 11 )
 				CASE cChar == "\"
 					// Don't touch
+                    NOP
 				CASE cChar == "'"
 					// Don't touch
+                    NOP
 				CASE cChar == '"'
 					// Don't touch
+                    NOP
 				CASE cChar == "?"
 					// Don't touch
+                    NOP
 				OTHERWISE
 					// Don't know how to interpret, Don't touch whole escape command
 					cChar := "\" + cChar
@@ -837,8 +841,10 @@ FUNCTION FabFormatCString( Format AS STRING, Args AS ARRAY ) AS STRING
 			cAdd := AllTrim( cAdd )
 		CASE ( cChar == "o" )
 			// Octal, non implemented
+            NOP
 		CASE ( cChar == "b" )
 			// Binary, non implemented
+            NOP
 		CASE ( cChar == "x" )  .or. ( cChar == "X" )
 			// Hex
 			IF lLong

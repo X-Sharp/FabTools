@@ -9,7 +9,7 @@
     <ProjectGuid>{3807F7DE-0633-4A33-B011-B5748FDEE3C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <Nologo>true</Nologo>
-    <GenerateFullPaths>false</GenerateFullPaths>
+    <GenerateFullPaths>true</GenerateFullPaths>
     <Name>FabCtrl</Name>
     <RootNamespace>FabCtrl</RootNamespace>
     <VO3>true</VO3>
@@ -44,6 +44,8 @@
     <IncludePaths />
     <StandardDefs />
     <InitLocals>true</InitLocals>
+    <Vo15>true</Vo15>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>

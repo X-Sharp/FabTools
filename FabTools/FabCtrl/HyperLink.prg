@@ -100,7 +100,7 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 			DeleteObject( hBrush )
 		ENDIF
 		// We are always in TRANSPARENT mode for Text drawing
-		liNewMode := TRANSPARENT
+		liNewMode := 1 // winGDI.TRANSPARENT
 		liOldMode := SetBkMode( hDC, PTR(_CAST, liNewMode) )
 		//
 		TextOut( hDC, Canvas:Left, Canvas:Top,Cast2Psz( cText ), long(SLen( cText ) ))

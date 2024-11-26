@@ -9,7 +9,7 @@
     <ProjectGuid>{B79E2352-598D-472D-BB21-EB5CBBF4C3E7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <Nologo>true</Nologo>
-    <GenerateFullPaths>false</GenerateFullPaths>
+    <GenerateFullPaths>true</GenerateFullPaths>
     <Name>FabPaintLib_Test</Name>
     <RootNamespace>Fab_PaintLib_Test</RootNamespace>
     <VO3>true</VO3>
@@ -45,6 +45,8 @@
     <MemVar>false</MemVar>
     <Undeclared>false</Undeclared>
     <InitLocals>true</InitLocals>
+    <Vo15>true</Vo15>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>

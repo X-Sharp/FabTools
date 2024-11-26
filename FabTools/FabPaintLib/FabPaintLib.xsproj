@@ -9,7 +9,7 @@
     <ProjectGuid>{0272327B-FC8C-4B26-A0CB-41EB7F1D945E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <Nologo>true</Nologo>
-    <GenerateFullPaths>false</GenerateFullPaths>
+    <GenerateFullPaths>true</GenerateFullPaths>
     <Name>FabPaintLib</Name>
     <RootNamespace>FabPaintLib</RootNamespace>
     <VO3>true</VO3>
@@ -48,6 +48,8 @@
     <IncludePaths />
     <StandardDefs />
     <InitLocals>true</InitLocals>
+    <Vo15>true</Vo15>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>

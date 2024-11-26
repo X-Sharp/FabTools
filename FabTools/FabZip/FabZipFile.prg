@@ -146,7 +146,7 @@ BEGIN NAMESPACE FabZip
 				NEXT
 				//
 			CATCH //Err AS Exception
-				
+				NOP
 			FINALLY
 				IF oZipFile != NULL
 					oZipFile:Dispose()
@@ -183,7 +183,7 @@ BEGIN NAMESPACE FabZip
 				NEXT
 				//
 			CATCH //Err AS Exception
-				
+				NOP
 			FINALLY
 				IF oZipFile != NULL
 					oZipFile:Dispose()

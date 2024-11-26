@@ -6,6 +6,6 @@ USING System.Text
 
 FUNCTION Start() AS VOID STRICT
     ? "Hello World! Today is ",ToDay()
-    ? FabIsDiskWriteable("d:\temp")
+    //? FabIsDiskWriteable("d:\temp")
     WAIT
 	RETURN	

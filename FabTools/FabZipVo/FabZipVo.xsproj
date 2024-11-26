@@ -37,6 +37,8 @@
     <TargetFrameworkProfile />
     <XSharpProjectversion>2.13.1.0</XSharpProjectversion>
     <NS>True</NS>
+    <NamedArgs>false</NamedArgs>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'" Label="Configuration">
     <PlatformTarget>x86</PlatformTarget>
@@ -73,21 +75,18 @@
       <AssemblyName>VOGUIClasses.dll</AssemblyName>
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
-      <HintPath>..\..\..\..\Program Files (x86)\XSharp\Redist\VOGUIClasses.dll</HintPath>
     </Reference>
     <Reference Include="VOSystemClasses, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
       <Name>VOSystemClasses</Name>
       <AssemblyName>VOSystemClasses.dll</AssemblyName>
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
-      <HintPath>..\..\..\..\Program Files (x86)\XSharp\Redist\VOSystemClasses.dll</HintPath>
     </Reference>
     <Reference Include="VOWin32APILibrary, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
       <Name>VOWin32APILibrary</Name>
       <AssemblyName>VOWin32APILibrary.dll</AssemblyName>
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
-      <HintPath>..\..\..\..\Program Files (x86)\XSharp\Redist\VOWin32APILibrary.dll</HintPath>
     </Reference>
     <Reference Include="XSharp.Core" />
     <Reference Include="XSharp.Rt" />

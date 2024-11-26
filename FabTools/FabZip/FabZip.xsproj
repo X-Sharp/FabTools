@@ -9,7 +9,7 @@
     <ProjectGuid>{BF4092DE-CA8D-4EBE-B4E2-8FA9660845AA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <Nologo>true</Nologo>
-    <GenerateFullPaths>false</GenerateFullPaths>
+    <GenerateFullPaths>true</GenerateFullPaths>
     <RootNamespace>FabZip</RootNamespace>
     <AssemblyName>FabZip</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -19,6 +19,9 @@
     <NoWin32Manifest>False</NoWin32Manifest>
     <TargetFrameworkProfile />
     <NS>True</NS>
+    <Vo15>true</Vo15>
+    <NamedArgs>false</NamedArgs>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>
