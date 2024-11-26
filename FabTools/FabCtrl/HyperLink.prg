@@ -3,9 +3,9 @@ USING VO
 
 CLASS CURSOR_HAND INHERIT Pointer
 
-	CONSTRUCTOR() 
-		super(ResourceID{"CURSOR_HAND", _GetInst()})
-		return 
+	CONSTRUCTOR()
+		SUPER(ResourceID{"CURSOR_HAND", _GetInst()})
+		RETURN
 END CLASS
 
 CLASS FabHyperLink INHERIT FabCustomTextCntrl
@@ -13,22 +13,22 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 	PROTECT oPointer		AS	Pointer
 	PROTECT lTransparent	AS	LOGIC
 	PROTECT lAutoSize		AS	LOGIC
-	
-	ACCESS Action AS STRING  
+
+	ACCESS Action AS STRING
 		RETURN SELF:cAction
-		
-	ASSIGN Action( cNewAction AS STRING )   
+
+	ASSIGN Action( cNewAction AS STRING )
 		SELF:cAction := cNewAction
 		RETURN //SELF:cAction
-		
-		
-	ACCESS AutoSize AS LOGIC  
+
+
+	ACCESS AutoSize AS LOGIC
 		RETURN SELF:lAutoSize
-		
-	ASSIGN AutoSize( lNewSet AS LOGIC )   
+
+	ASSIGN AutoSize( lNewSet AS LOGIC )
 		SELF:lAutoSize := lNewSet
-		
-	METHOD Dispatch( oEvent ) 
+
+	METHOD Dispatch( oEvent )
 		LOCAL oHL 		AS HyperLabel
 		LOCAL symName	:= NULL_SYMBOL AS	SYMBOL
 		//
@@ -37,7 +37,7 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 			RETURN 1
 		ELSEIF ( oEvent:Message == WM_SETCURSOR )
 			//
-			IF ( LoWord( oEvent:lParam ) == HTClient ) .and. ( oEvent:wParam == DWORD( _CAST, SELF:Handle() ) )
+			IF ( LoWord( oEvent:lParam ) == HTClient ) .AND. ( oEvent:wParam == DWORD( _CAST, SELF:Handle() ) )
 				SetCursor( SELF:oPointer:Handle() )
 				SELF:EventReturnValue := 1
 				RETURN 1
@@ -62,14 +62,14 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 				ENDIF
 				ShellExecute( SELF:Owner:Handle(), NULL_PSZ, String2Psz( SELF:cCaption ), NULL_PSZ, NULL_PSZ, SW_SHOWNOACTIVATE )
 			ENDIF
-			
+
 		ENDIF
 		//
 		RETURN SUPER:Dispatch( oEvent )
-		
-		
-		
-	METHOD Draw( hDC AS PTR ) AS VOID  
+
+
+
+	METHOD Draw( hDC AS PTR ) AS VOID
 		LOCAL liOldMode	AS	LONG
 		LOCAL liNewMode	AS	LONG
 		LOCAL dwOldClr	AS	DWORD
@@ -84,7 +84,7 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 		cText := SELF:Caption
 		// Fit the Text Size ?
 		IF SELF:lAutoSize
-			GetTextExtentPoint32(hDC, Cast2Psz(cText), long(SLen(cText)), @pNewSize )
+			GetTextExtentPoint32(hDC, Cast2Psz(cText), LONG(SLen(cText)), @pNewSize )
 			SetWindowPos( SELF:Handle(0), NULL_PTR, 0, 0, pNewSize:cx, pNewSize:cy, SWP_NOZORDER + SWP_NOACTIVATE + SWP_NOMOVE)
 		ENDIF
 		//
@@ -103,16 +103,16 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 		liNewMode := 1 // winGDI.TRANSPARENT
 		liOldMode := SetBkMode( hDC, PTR(_CAST, liNewMode) )
 		//
-		TextOut( hDC, Canvas:Left, Canvas:Top,Cast2Psz( cText ), long(SLen( cText ) ))
+		TextOut( hDC, Canvas:Left, Canvas:Top,Cast2Psz( cText ), LONG(SLen( cText ) ))
 		//
 		SelectObject( hDC, hOldFont )
 		SetBkMode( hDC, PTR(_CAST, liOldMode))
 		//
-		
-		
-		return
-		
-	CONSTRUCTOR( oOwner, xId, oPoint, oDimension, cRegclass, kStyle, lDataAware ) 
+
+
+		RETURN
+
+	CONSTRUCTOR( oOwner, xId, oPoint, oDimension, cRegclass, kStyle, lDataAware )
 		LOCAL oFont		AS	Font
 		//
 		SUPER( oOwner, xId, oPoint, oDimension, cRegclass, kStyle, lDataAware )
@@ -124,21 +124,21 @@ CLASS FabHyperLink INHERIT FabCustomTextCntrl
 		oFont:UnderLine := TRUE
 		SELF:Font := oFont
 		SELF:TextColor := Color{ 0, 0, 255 }
-		SELF:oPointer := Cursor_Hand{}
+		SELF:oPointer := CURSOR_HAND{}
 		SELF:lAutoSize := TRUE
 		SELF:lTransparent := FALSE
 		//
 		InvalidateRect( SELF:Handle(), NULL_PTR, TRUE )
 		//
-		return 
-		
-	ACCESS @@Transparent AS LOGIC  
+		RETURN
+
+	ACCESS @@Transparent AS LOGIC
 		RETURN SELF:lTransparent
-		
-	ASSIGN @@Transparent( lNewSet AS LOGIC )   
+
+	ASSIGN @@Transparent( lNewSet AS LOGIC )
 		SELF:lTransparent := lNewSet
 		SELF:Update()
 		RETURN //SELF:lTransparent
-		
+
 END CLASS
 
