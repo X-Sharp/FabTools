@@ -1,10 +1,9 @@
 USING System.Windows.Forms
 USING FabZip
-USING FabZip.WinForms
 
 PUBLIC CLASS MainWindow	;
 	INHERIT System.Windows.Forms.Form
-    
+
     PRIVATE ribbonSeparator1 AS System.Windows.Forms.RibbonSeparator
     PRIVATE ribbonOrbOptionButton1 AS System.Windows.Forms.RibbonOrbOptionButton
     PRIVATE ribbonSeparator2 AS System.Windows.Forms.RibbonSeparator
@@ -34,19 +33,19 @@ PUBLIC CLASS MainWindow	;
     PRIVATE colAttributes AS System.Windows.Forms.ColumnHeader
     PRIVATE colPath AS System.Windows.Forms.ColumnHeader
     PRIVATE ZipList AS System.Windows.Forms.ListView
-    PRIVATE ZipCtrl AS FabZip.WinForms.FabZipFileCtrl
+    PRIVATE ZipCtrl AS FabZip.FabZipFileCtrl
     PRIVATE components	:=	NULL AS System.ComponentModel.IContainer
     PRIVATE statusStrip1 AS System.Windows.Forms.StatusStrip
     PRIVATE toolStripStatusLabel1 AS System.Windows.Forms.ToolStripStatusLabel
     PRIVATE toolStripProgressBar1 AS System.Windows.Forms.ToolStripProgressBar
     PRIVATE ribbonPanel_MultiPart AS System.Windows.Forms.RibbonPanel
-    // 
+    //
     PROTECTED ZipFileName AS STRING
     CONSTRUCTOR()
       SUPER()
       SELF:InitializeComponent()
       RETURN
-    
+
    /// <summary>
    /// Clean up any resources being used.
    /// </summary>
@@ -57,7 +56,7 @@ PUBLIC CLASS MainWindow	;
       ENDIF
       SUPER:Dispose( disposing )
       RETURN
-    
+
    /// <summary>
    /// Required method for Designer support - do not modify
    /// the contents of this method with the code editor.
@@ -83,7 +82,7 @@ PUBLIC CLASS MainWindow	;
 		SELF:ribbonPanel_MultiPart	:=	System.Windows.Forms.RibbonPanel{}
 		SELF:ribbonSeparator1	:=	System.Windows.Forms.RibbonSeparator{}
 		SELF:ribbonOrbOptionButton1	:=	System.Windows.Forms.RibbonOrbOptionButton{}
-		SELF:ZipCtrl	:=	FabZip.WinForms.FabZipFileCtrl{}
+		SELF:ZipCtrl	:=	FabZip.FabZipFileCtrl{}
 		SELF:panel1	:=	System.Windows.Forms.Panel{}
 		SELF:ZipList	:=	System.Windows.Forms.ListView{}
 		SELF:colCrypted	:=	System.Windows.Forms.ColumnHeader{}
@@ -101,17 +100,17 @@ PUBLIC CLASS MainWindow	;
 		SELF:panel1:SuspendLayout()
 		SELF:statusStrip1:SuspendLayout()
 		SELF:SuspendLayout()
-		//	
+		//
 		//	ribbonFabZip
-		//	
+		//
 		SELF:ribbonFabZip:Font	:=	System.Drawing.Font{"Segoe UI", 9}
 		SELF:ribbonFabZip:Location	:=	System.Drawing.Point{0, 0}
 		SELF:ribbonFabZip:Margin	:=	System.Windows.Forms.Padding{4}
 		SELF:ribbonFabZip:Minimized	:=	false
 		SELF:ribbonFabZip:Name	:=	"ribbonFabZip"
-		//	
-		//	
-		//	
+		//
+		//
+		//
 		SELF:ribbonFabZip:OrbDropDown:BorderRoundness	:=	8
 		SELF:ribbonFabZip:OrbDropDown:Location	:=	System.Drawing.Point{0, 0}
 		SELF:ribbonFabZip:OrbDropDown:MenuItems:Add(SELF:ribbonOrbMenuItemNew)
@@ -125,9 +124,9 @@ PUBLIC CLASS MainWindow	;
 		SELF:ribbonFabZip:OrbDropDown:TabIndex	:=	0
 		SELF:ribbonFabZip:OrbImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonFabZip.OrbImage")))
 		SELF:ribbonFabZip:OrbStyle	:=	System.Windows.Forms.RibbonOrbStyle.Office_2013
-		//	
-		//	
-		//	
+		//
+		//
+		//
 		SELF:ribbonFabZip:QuickAccessToolbar:Items:Add(SELF:ribbonButtonHelp)
 		SELF:ribbonFabZip:RibbonTabFont	:=	System.Drawing.Font{"Trebuchet MS", 9}
 		SELF:ribbonFabZip:Size	:=	System.Drawing.Size{939, 170}
@@ -135,9 +134,9 @@ PUBLIC CLASS MainWindow	;
 		SELF:ribbonFabZip:Tabs:Add(SELF:ribbonTab_FabZip)
 		SELF:ribbonFabZip:TabSpacing	:=	4
 		SELF:ribbonFabZip:Text	:=	"ribbon1"
-		//	
+		//
 		//	ribbonOrbMenuItemNew
-		//	
+		//
 		SELF:ribbonOrbMenuItemNew:DropDownArrowDirection	:=	System.Windows.Forms.RibbonArrowDirection.Left
 		SELF:ribbonOrbMenuItemNew:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemNew.Image")))
 		SELF:ribbonOrbMenuItemNew:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemNew.LargeImage")))
@@ -145,9 +144,9 @@ PUBLIC CLASS MainWindow	;
 		SELF:ribbonOrbMenuItemNew:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemNew.SmallImage")))
 		SELF:ribbonOrbMenuItemNew:Text	:=	"New"
 		SELF:ribbonOrbMenuItemNew:Click	+=	System.EventHandler{ SELF, @ribbonOrbMenuItemNew_Click() }
-		//	
+		//
 		//	ribbonOrbMenuItemOpen
-		//	
+		//
 		SELF:ribbonOrbMenuItemOpen:DropDownArrowDirection	:=	System.Windows.Forms.RibbonArrowDirection.Left
 		SELF:ribbonOrbMenuItemOpen:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemOpen.Image")))
 		SELF:ribbonOrbMenuItemOpen:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemOpen.LargeImage")))
@@ -155,63 +154,63 @@ PUBLIC CLASS MainWindow	;
 		SELF:ribbonOrbMenuItemOpen:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemOpen.SmallImage")))
 		SELF:ribbonOrbMenuItemOpen:Text	:=	"Open"
 		SELF:ribbonOrbMenuItemOpen:Click	+=	System.EventHandler{ SELF, @ribbonOrbMenuItemOpen_Click() }
-		//	
+		//
 		//	ribbonOrbMenuItemSave
-		//	
+		//
 		SELF:ribbonOrbMenuItemSave:DropDownArrowDirection	:=	System.Windows.Forms.RibbonArrowDirection.Left
 		SELF:ribbonOrbMenuItemSave:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemSave.Image")))
 		SELF:ribbonOrbMenuItemSave:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemSave.LargeImage")))
 		SELF:ribbonOrbMenuItemSave:Name	:=	"ribbonOrbMenuItemSave"
 		SELF:ribbonOrbMenuItemSave:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemSave.SmallImage")))
 		SELF:ribbonOrbMenuItemSave:Text	:=	"Save"
-		//	
+		//
 		//	ribbonSeparator2
-		//	
+		//
 		SELF:ribbonSeparator2:Name	:=	"ribbonSeparator2"
-		//	
+		//
 		//	ribbonOrbMenuItemSFX
-		//	
+		//
 		SELF:ribbonOrbMenuItemSFX:DropDownArrowDirection	:=	System.Windows.Forms.RibbonArrowDirection.Left
 		SELF:ribbonOrbMenuItemSFX:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemSFX.Image")))
 		SELF:ribbonOrbMenuItemSFX:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemSFX.LargeImage")))
 		SELF:ribbonOrbMenuItemSFX:Name	:=	"ribbonOrbMenuItemSFX"
 		SELF:ribbonOrbMenuItemSFX:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbMenuItemSFX.SmallImage")))
 		SELF:ribbonOrbMenuItemSFX:Text	:=	"Save as SFX"
-		//	
+		//
 		//	ribbonOrbButton_Close
-		//	
+		//
 		SELF:ribbonOrbButton_Close:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbButton_Close.Image")))
 		SELF:ribbonOrbButton_Close:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbButton_Close.LargeImage")))
 		SELF:ribbonOrbButton_Close:Name	:=	"ribbonOrbButton_Close"
 		SELF:ribbonOrbButton_Close:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbButton_Close.SmallImage")))
 		SELF:ribbonOrbButton_Close:Text	:=	"Close FabZip"
 		SELF:ribbonOrbButton_Close:Click	+=	System.EventHandler{ SELF, @ribbonOrbButton_Close_Click() }
-		//	
+		//
 		//	ribbonButtonHelp
-		//	
+		//
 		SELF:ribbonButtonHelp:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonHelp.Image")))
 		SELF:ribbonButtonHelp:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonHelp.LargeImage")))
 		SELF:ribbonButtonHelp:MaxSizeMode	:=	System.Windows.Forms.RibbonElementSizeMode.Compact
 		SELF:ribbonButtonHelp:Name	:=	"ribbonButtonHelp"
 		SELF:ribbonButtonHelp:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonHelp.SmallImage")))
 		SELF:ribbonButtonHelp:Text	:=	"About..."
-		//	
+		//
 		//	ribbonTab_FabZip
-		//	
+		//
 		SELF:ribbonTab_FabZip:Name	:=	"ribbonTab_FabZip"
 		SELF:ribbonTab_FabZip:Panels:Add(SELF:ribbonPanel_Operation)
 		SELF:ribbonTab_FabZip:Panels:Add(SELF:ribbonPanel_MultiPart)
 		SELF:ribbonTab_FabZip:Text	:=	"FabZip"
-		//	
+		//
 		//	ribbonPanel_Operation
-		//	
+		//
 		SELF:ribbonPanel_Operation:Items:Add(SELF:ribbonButtonAdd)
 		SELF:ribbonPanel_Operation:Items:Add(SELF:ribbonButtonExtract)
 		SELF:ribbonPanel_Operation:Name	:=	"ribbonPanel_Operation"
 		SELF:ribbonPanel_Operation:Text	:=	"Zip Operation"
-		//	
+		//
 		//	ribbonButtonAdd
-		//	
+		//
 		SELF:ribbonButtonAdd:DropDownItems:Add(SELF:ribbonButtonAdd_File)
 		SELF:ribbonButtonAdd:DropDownItems:Add(SELF:ribbonButtonAdd_Folder)
 		SELF:ribbonButtonAdd:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonAdd.Image")))
@@ -220,27 +219,27 @@ PUBLIC CLASS MainWindow	;
 		SELF:ribbonButtonAdd:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonAdd.SmallImage")))
 		SELF:ribbonButtonAdd:Style	:=	System.Windows.Forms.RibbonButtonStyle.DropDown
 		SELF:ribbonButtonAdd:Text	:=	"Add"
-		//	
+		//
 		//	ribbonButtonAdd_File
-		//	
+		//
 		SELF:ribbonButtonAdd_File:DropDownArrowDirection	:=	System.Windows.Forms.RibbonArrowDirection.Left
 		SELF:ribbonButtonAdd_File:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonAdd_File.Image")))
 		SELF:ribbonButtonAdd_File:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonAdd_File.LargeImage")))
 		SELF:ribbonButtonAdd_File:Name	:=	"ribbonButtonAdd_File"
 		SELF:ribbonButtonAdd_File:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonAdd_File.SmallImage")))
 		SELF:ribbonButtonAdd_File:Text	:=	"File"
-		//	
+		//
 		//	ribbonButtonAdd_Folder
-		//	
+		//
 		SELF:ribbonButtonAdd_Folder:DropDownArrowDirection	:=	System.Windows.Forms.RibbonArrowDirection.Left
 		SELF:ribbonButtonAdd_Folder:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonAdd_Folder.Image")))
 		SELF:ribbonButtonAdd_Folder:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonAdd_Folder.LargeImage")))
 		SELF:ribbonButtonAdd_Folder:Name	:=	"ribbonButtonAdd_Folder"
 		SELF:ribbonButtonAdd_Folder:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonAdd_Folder.SmallImage")))
 		SELF:ribbonButtonAdd_Folder:Text	:=	"Folder"
-		//	
+		//
 		//	ribbonButtonExtract
-		//	
+		//
 		SELF:ribbonButtonExtract:DropDownItems:Add(SELF:ribbonButtonExtract_Selected)
 		SELF:ribbonButtonExtract:DropDownItems:Add(SELF:ribbonButtonExtract_All)
 		SELF:ribbonButtonExtract:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonExtract.Image")))
@@ -249,9 +248,9 @@ PUBLIC CLASS MainWindow	;
 		SELF:ribbonButtonExtract:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonExtract.SmallImage")))
 		SELF:ribbonButtonExtract:Style	:=	System.Windows.Forms.RibbonButtonStyle.DropDown
 		SELF:ribbonButtonExtract:Text	:=	"Extract"
-		//	
+		//
 		//	ribbonButtonExtract_Selected
-		//	
+		//
 		SELF:ribbonButtonExtract_Selected:DropDownArrowDirection	:=	System.Windows.Forms.RibbonArrowDirection.Left
 		SELF:ribbonButtonExtract_Selected:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonExtract_Selected.Image")))
 		SELF:ribbonButtonExtract_Selected:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonExtract_Selected.LargeImage")))
@@ -259,43 +258,43 @@ PUBLIC CLASS MainWindow	;
 		SELF:ribbonButtonExtract_Selected:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonExtract_Selected.SmallImage")))
 		SELF:ribbonButtonExtract_Selected:Text	:=	"Selected"
 		SELF:ribbonButtonExtract_Selected:Click	+=	System.EventHandler{ SELF, @ribbonButtonExtract_Selected_Click() }
-		//	
+		//
 		//	ribbonButtonExtract_All
-		//	
+		//
 		SELF:ribbonButtonExtract_All:DropDownArrowDirection	:=	System.Windows.Forms.RibbonArrowDirection.Left
 		SELF:ribbonButtonExtract_All:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonExtract_All.Image")))
 		SELF:ribbonButtonExtract_All:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonExtract_All.LargeImage")))
 		SELF:ribbonButtonExtract_All:Name	:=	"ribbonButtonExtract_All"
 		SELF:ribbonButtonExtract_All:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonButtonExtract_All.SmallImage")))
 		SELF:ribbonButtonExtract_All:Text	:=	"All"
-		//	
+		//
 		//	ribbonPanel_MultiPart
-		//	
+		//
 		SELF:ribbonPanel_MultiPart:Name	:=	"ribbonPanel_MultiPart"
 		SELF:ribbonPanel_MultiPart:Text	:=	"MultiPart"
-		//	
+		//
 		//	ribbonSeparator1
-		//	
+		//
 		SELF:ribbonSeparator1:Name	:=	"ribbonSeparator1"
-		//	
+		//
 		//	ribbonOrbOptionButton1
-		//	
+		//
 		SELF:ribbonOrbOptionButton1:Image	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbOptionButton1.Image")))
 		SELF:ribbonOrbOptionButton1:LargeImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbOptionButton1.LargeImage")))
 		SELF:ribbonOrbOptionButton1:Name	:=	"ribbonOrbOptionButton1"
 		SELF:ribbonOrbOptionButton1:SmallImage	:=	((System.Drawing.Image)(resources:GetObject("ribbonOrbOptionButton1.SmallImage")))
 		SELF:ribbonOrbOptionButton1:Text	:=	"ribbonOrbOptionButton1"
-		//	
+		//
 		//	ZipCtrl
-		//	
+		//
 		SELF:ZipCtrl:Location	:=	System.Drawing.Point{456, 364}
 		SELF:ZipCtrl:Margin	:=	System.Windows.Forms.Padding{4}
 		SELF:ZipCtrl:Name	:=	"ZipCtrl"
 		SELF:ZipCtrl:Size	:=	System.Drawing.Size{108, 82}
 		SELF:ZipCtrl:TabIndex	:=	1
-		//	
+		//
 		//	panel1
-		//	
+		//
 		SELF:panel1:Controls:Add(SELF:ZipList)
 		SELF:panel1:Dock	:=	System.Windows.Forms.DockStyle.Fill
 		SELF:panel1:Location	:=	System.Drawing.Point{0, 170}
@@ -303,9 +302,9 @@ PUBLIC CLASS MainWindow	;
 		SELF:panel1:Name	:=	"panel1"
 		SELF:panel1:Size	:=	System.Drawing.Size{939, 381}
 		SELF:panel1:TabIndex	:=	2
-		//	
+		//
 		//	ZipList
-		//	
+		//
 		SELF:ZipList:Columns:AddRange(<System.Windows.Forms.ColumnHeader>{ SELF:colCrypted, SELF:colName, SELF:colDate, SELF:colTime, SELF:colSize, SELF:colRatio, SELF:colPacked, SELF:colAttributes, SELF:colPath })
 		SELF:ZipList:Dock	:=	System.Windows.Forms.DockStyle.Fill
 		SELF:ZipList:FullRowSelect	:=	true
@@ -317,55 +316,55 @@ PUBLIC CLASS MainWindow	;
 		SELF:ZipList:TabIndex	:=	0
 		SELF:ZipList:UseCompatibleStateImageBehavior	:=	false
 		SELF:ZipList:View	:=	System.Windows.Forms.View.Details
-		//	
+		//
 		//	colCrypted
-		//	
+		//
 		SELF:colCrypted:Text	:=	"Crypted"
 		SELF:colCrypted:Width	:=	10
-		//	
+		//
 		//	colName
-		//	
+		//
 		SELF:colName:Text	:=	"File Name"
 		SELF:colName:Width	:=	150
-		//	
+		//
 		//	colDate
-		//	
+		//
 		SELF:colDate:Text	:=	"Date"
 		SELF:colDate:Width	:=	70
-		//	
+		//
 		//	colTime
-		//	
+		//
 		SELF:colTime:Text	:=	"Time"
 		SELF:colTime:Width	:=	68
-		//	
+		//
 		//	colSize
-		//	
+		//
 		SELF:colSize:Text	:=	"Size"
 		SELF:colSize:TextAlign	:=	System.Windows.Forms.HorizontalAlignment.Right
-		//	
+		//
 		//	colRatio
-		//	
+		//
 		SELF:colRatio:Text	:=	"Ratio"
 		SELF:colRatio:TextAlign	:=	System.Windows.Forms.HorizontalAlignment.Right
 		SELF:colRatio:Width	:=	40
-		//	
+		//
 		//	colPacked
-		//	
+		//
 		SELF:colPacked:Text	:=	"Packed"
 		SELF:colPacked:TextAlign	:=	System.Windows.Forms.HorizontalAlignment.Right
-		//	
+		//
 		//	colAttributes
-		//	
+		//
 		SELF:colAttributes:Text	:=	"Attributes"
 		SELF:colAttributes:Width	:=	30
-		//	
+		//
 		//	colPath
-		//	
+		//
 		SELF:colPath:Text	:=	"Path"
 		SELF:colPath:Width	:=	200
-		//	
+		//
 		//	statusStrip1
-		//	
+		//
 		SELF:statusStrip1:ImageScalingSize	:=	System.Drawing.Size{20, 20}
 		SELF:statusStrip1:Items:AddRange(<System.Windows.Forms.ToolStripItem>{ SELF:toolStripStatusLabel1, SELF:toolStripProgressBar1 })
 		SELF:statusStrip1:Location	:=	System.Drawing.Point{0, 526}
@@ -374,23 +373,23 @@ PUBLIC CLASS MainWindow	;
 		SELF:statusStrip1:Size	:=	System.Drawing.Size{939, 25}
 		SELF:statusStrip1:TabIndex	:=	4
 		SELF:statusStrip1:Text	:=	"statusStrip1"
-		//	
+		//
 		//	toolStripStatusLabel1
-		//	
+		//
 		SELF:toolStripStatusLabel1:AutoSize	:=	false
 		SELF:toolStripStatusLabel1:Name	:=	"toolStripStatusLabel1"
 		SELF:toolStripStatusLabel1:Size	:=	System.Drawing.Size{200, 19}
 		SELF:toolStripStatusLabel1:TextAlign	:=	System.Drawing.ContentAlignment.MiddleLeft
-		//	
+		//
 		//	toolStripProgressBar1
-		//	
+		//
 		SELF:toolStripProgressBar1:AutoSize	:=	false
 		SELF:toolStripProgressBar1:MarqueeAnimationSpeed	:=	10
 		SELF:toolStripProgressBar1:Name	:=	"toolStripProgressBar1"
 		SELF:toolStripProgressBar1:Size	:=	System.Drawing.Size{267, 17}
-		//	
+		//
 		//	MainWindow
-		//	
+		//
 		SELF:AutoScaleDimensions	:=	System.Drawing.SizeF{8, 16}
 		SELF:AutoScaleMode	:=	System.Windows.Forms.AutoScaleMode.Font
 		SELF:ClientSize	:=	System.Drawing.Size{939, 551}
@@ -407,7 +406,7 @@ PUBLIC CLASS MainWindow	;
 		SELF:statusStrip1:PerformLayout()
 		SELF:ResumeLayout(false)
 		SELF:PerformLayout()
-    
+
     PRIVATE METHOD ribbonOrbButton_Close_Click( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         SELF:Close()
         RETURN
@@ -415,7 +414,7 @@ PUBLIC CLASS MainWindow	;
 	    LOCAL oOD	AS	OpenFileDialog
 	    //
 	    oOD := OpenFileDialog{ }
-	    oOD:Filter := "Archives|*.Zip|Archives and Exe Files|*.Zip;*.Exe|All Files|*.*" 
+	    oOD:Filter := "Archives|*.Zip|Archives and Exe Files|*.Zip;*.Exe|All Files|*.*"
 	    oOD:FilterIndex := 1
 	    oOD:Title := "Choose a Zip File"
 	    IF ( oOD:ShowDialog() != DialogResult.OK )
@@ -436,9 +435,9 @@ PUBLIC CLASS MainWindow	;
 		    SELF:toolStripProgressBar1:Style := System.Windows.Forms.ProgressBarStyle.Blocks
 		    // This is automatically done when setting the name
 		    //	SELF:oDCZip_Control:FileZip:UpdateContents()
-	    ENDIF	    
+	    ENDIF
         RETURN
-        
+
     PRIVATE METHOD ribbonOrbMenuItemNew_Click( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         RETURN
 
@@ -449,7 +448,7 @@ PUBLIC CLASS MainWindow	;
     //	LOCAL oFS			AS	FileSpec
 	    // We come here due to FabZipFile creation, we are in the Init() of the Window
 	    IF ( SELF:ZipList == NULL_OBJECT )
-		    RETURN 
+		    RETURN
 	    ENDIF
 	    //
 	    oCtrl := (FabZipFileCtrl)Ctrl
@@ -482,21 +481,21 @@ PUBLIC CLASS MainWindow	;
 		    ENDIF
 		    // Files Attributes
 		    oItem:SubItems:Add( oZDir:Attributes )
-		    // File¨Path
+		    // Fileï¿½Path
     		oItem:SubItems:Add( FabExtractFilePath( cTmp ) )
     		// Set the real name of the file in the Tag
     		oItem:Tag := oZDir:FileName
 		    // Add the line
 		    SELF:ZipList:Items:Add( oItem )
 	    NEXT
-    RETURN	
-	
-	
-	
-	
-	
-	
-	
+    RETURN
+
+
+
+
+
+
+
 
     VIRTUAL METHOD OnFabZipProgress( oCtrl AS OBJECT, symEvent AS FabZipEvent, cFile AS STRING, nSize AS INT64 ) AS VOID
 	    IF ( symEvent == FabZipEvent.NewEntry )
@@ -543,15 +542,15 @@ PUBLIC CLASS MainWindow	;
 		    //SELF:nCurrMaxSize := 0
 	    ENDIF
 	    //
-    RETURN	
-	
-	
-	
-	
-	
-	
-	
-        
+    RETURN
+
+
+
+
+
+
+
+
     PRIVATE METHOD ribbonButtonExtract_Selected_Click( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         // Extract Selected
         LOCAL ToExtract AS ListView.SelectedListViewItemCollection
@@ -564,7 +563,7 @@ PUBLIC CLASS MainWindow	;
         ToExtract := SELF:ZipList:SelectedItems
         //
         IF ( ToExtract:Count == 0 )
-            RETURN 
+            RETURN
         ENDIF
         //
         oDlg := ExtractWindow{}
@@ -589,4 +588,4 @@ PUBLIC CLASS MainWindow	;
         //
         RETURN
 
-END CLASS 
+END CLASS

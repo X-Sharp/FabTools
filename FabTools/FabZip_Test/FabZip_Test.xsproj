@@ -13,7 +13,6 @@
     <RootNamespace>FabZip_Test</RootNamespace>
     <AssemblyName>FabZip_Test</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <XSharpProjectversion>2.13.1.0</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
@@ -27,7 +26,7 @@
     <EmitDebugInformation>true</EmitDebugInformation>
     <DefineConstants>
     </DefineConstants>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <Optimize>false</Optimize>
@@ -40,8 +39,9 @@
     <CommandLineOption />
     <PPO>false</PPO>
     <PlatformTarget>x86</PlatformTarget>
-    <Prefer32Bit>True</Prefer32Bit>
+    <Prefer32Bit>False</Prefer32Bit>
     <RegisterForComInterop>False</RegisterForComInterop>
+    <WarningsAsErrors />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <EmitDebugInformation>false</EmitDebugInformation>
@@ -120,6 +120,11 @@
     <ProjectReference Include="..\FabTools\FabTools.xsproj">
       <Name>FabTools</Name>
       <Project>{d2a10849-0553-4ad0-9b7f-cec2a03b79d5}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\FabZipCtrl_WinForms\FabZipWinForms.xsproj">
+      <Name>FabZipWinForms</Name>
+      <Project>{89c08339-5411-45df-ac74-cc5c3193dff7}</Project>
       <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\FabZip\FabZip.xsproj">

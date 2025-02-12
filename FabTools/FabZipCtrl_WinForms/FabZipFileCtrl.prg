@@ -2,7 +2,7 @@
 #using System.Windows.Forms
 #using Ionic.Zip
 
-BEGIN NAMESPACE FabZip.WinForms
+BEGIN NAMESPACE FabZip
 	
 	ENUM FabZipEvent
 		MEMBER NewEntry
