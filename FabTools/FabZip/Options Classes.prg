@@ -1,7 +1,7 @@
 ﻿// Options_Classes.prg
 
 BEGIN NAMESPACE FabZip
-
+	
 	CLASS	FabAddOptions
 		//l Options Available when adding files.
 		//p Define a set of Options available when using the FabZipFile:Add() Method

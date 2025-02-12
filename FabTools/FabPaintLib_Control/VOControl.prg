@@ -34,6 +34,7 @@ BEGIN NAMESPACE FabPaintLib.Control
 		PROTECT lTrackSelection	AS	LOGIC
 		PROTECT oPointer		AS	Pointer
 		PROTECT lForceRedraw	AS	LOGIC
+
 		
 		
 		METHOD __DrawBackgroundDC( hMemDC AS PTR ) AS VOID  
@@ -42,18 +43,22 @@ BEGIN NAMESPACE FabPaintLib.Control
 			// Should Be :
 			LOCAL pRect	IS	_winRect
 			LOCAL dwClr	AS	DWORD
+			LOCAL hBrush AS PTR
 			//
 			GetClientRect( SELF:Handle(), @pRect )
 			//	SetRect( @pRect, SELF:ImgX -1, SELF:ImgY -1, SELF:ImgX + SELF:ImgW + 1, SELF:ImgY + SELF:ImgH + 1 )
 			IF SELF:IsValid
-				dwClr := (DWORD)COLOR_3DFACE
+				dwClr := GetSysColor( COLOR_BTNFACE ) // RGB(255,0,0)
 			ELSE
-				dwClr := (DWORD)COLOR_3DSHADOW
+				dwClr := GetSysColor( COLOR_3DSHADOW )
 			ENDIF
 			//
-			FillRect( hMemDC, @pRect, PTR(_CAST, dwClr+1 ) )
+			hBrush := CreateSolidBrush( dwClr )
+			FillRect( hMemDC, @pRect, hBrush )
+			DeleteObject(hBrush)
 			//
 			return
+					
 			
 		METHOD __DrawControl( hMemDC as ptr ) as void  
 			LOCAL rRealZoom	AS	REAL8
@@ -61,8 +66,6 @@ BEGIN NAMESPACE FabPaintLib.Control
 			LOCAL rcSrc		is	_winRect
 			local rgbColor is _WinRGBQUAD
 			LOCAL dwClr	as	DWORD
-			//
-			//self:__DrawBackgroundDC( hMemDC )
 			//
 			IF SELF:IsValid
 				IF SELF:lFit
@@ -80,8 +83,8 @@ BEGIN NAMESPACE FabPaintLib.Control
 						IF ( rRealZoom == 1 )
 							rcDst:left	    := - SELF:liHorzPos
 							rcDst:top	    := - SELF:liVertPos
-							rcDst:right	    := SELF:oImg:Width - SELF:liHorzPos
-							rcDst:Bottom    := self:oImg:Height - self:liVertPos
+							rcDst:right	    := (long)SELF:oImg:Width - SELF:liHorzPos
+							rcDst:Bottom    := (long)self:oImg:Height - self:liVertPos
 							//
 							//				SELF:oImg:StretchExDC( hMemDC, @rcDst, @rcSrc )
 							// Same As
@@ -223,30 +226,23 @@ BEGIN NAMESPACE FabPaintLib.Control
 			
 			return 
 		
-		access BackgroundColor as Color  
-			local oColor as Color
+		access BackgroundColor as VO.Color  
+			local oColor as VO.Color
 			local RGB IS _WinRGBQUAD
 			//
 			oColor := NULL_OBJECT
 			if self:oImg:GetBackgroundColor( @RGB )
 				//
-				oColor := Color{ RGB:rgbRed, RGB:rgbGreen, RGB:rgbBlue }
+				oColor := VO.Color{ RGB:rgbRed, RGB:rgbGreen, RGB:rgbBlue }
 			endif 
 			return oColor
 			
 			
-		Assign BackgroundColor( oColor as Color )   
-			local RGB IS _WinRGBQUAD
+		Assign BackgroundColor( oColor as VO.Color )   
 			//
-			RGB:rgbGreen := oColor:Green
-			RGB:rgbRed := oColor:Red
-			RGB:rgbBlue := oColor:Blue
+			var winColor := System.Drawing.Color.FromARGB( oColor:Red, oColor:Green, oColor:Blue )
 			//
-			if self:oImg:GetBackgroundColor( @RGB )
-				//
-				return 
-			endif 
-			return 
+			self:oImg:SetBackgroundColor( winColor )
 			
 			
 		METHOD Destroy() CLIPPER
@@ -297,30 +293,6 @@ BEGIN NAMESPACE FabPaintLib.Control
 			//
 			RETURN SUPER:Dispatch( oEvent )
 			
-		METHOD DrawBackground() 
-			//	LOCAL pRect	AS	_winRect
-			// Error !!!!!!!!!!!!!!!!!
-			// Should Be :
-			LOCAL pRect	IS	_winRect
-			
-			LOCAL hDC	AS	PTR
-			LOCAL dwClr	AS	DWORD
-			LOCAL struPS IS _WinPaintStruct
-			// Set our DC
-			hDC := BeginPaint(SELF:handle(), @struPS)
-			//
-			GetClientRect( SELF:Handle(), @pRect )
-			//	SetRect( @pRect, SELF:ImgX -1, SELF:ImgY -1, SELF:ImgX + SELF:ImgW + 1, SELF:ImgY + SELF:ImgH + 1 )
-			IF SELF:IsValid
-				dwClr := (DWORD)COLOR_3DFACE
-			ELSE
-				dwClr := (DWORD)COLOR_3DSHADOW
-			ENDIF
-			FillRect( hDC, @pRect, PTR(_CAST, dwClr+1 ) )
-			//
-			EndPaint(SELF:handle(), @struPS)
-			return self
-			
 		METHOD Expose( oEvent ) 
 			LOCAL clientRect is _winRect
 			LOCAL memDC as ptr
@@ -333,15 +305,18 @@ BEGIN NAMESPACE FabPaintLib.Control
 			// actual drawin occurs on the bitmap to avoid flicker
 			myDC := GetDC( self:Handle() )
 			GetClientRect( self:Handle(), @clientRect )
-			iWidth := clientRect:Right - clientRect:Left
-			iHeight := clientRect:Bottom - clientRect:Top
+			iWidth := clientRect:Right - clientRect:Left + 1
+			iHeight := clientRect:Bottom - clientRect:Top + 1
+			//
 			memDC := CreateCompatibleDC( myDC )
 			hBmp := CreateCompatibleBitmap( myDC, iWidth, iHeight)
 			hOldBmp := SelectObject( memDC, hBmp )
 			//
+			self:__DrawBackgroundDC( memDC )
 			self:__DrawControl( memDC )
 			//self:__DrawControl( myDC )
 			//
+			//BitBlt( myDC, clientRect:Left, clientRect:Top, iWidth, iHeight, memDC, 0, 0, SRCCOPY)
 			BitBlt( myDC, clientRect:Left, clientRect:Top, iWidth, iHeight, memDC, 0, 0, SRCCOPY)
 			SelectObject( memDC, hOldBmp )
 			DeleteObject( hBmp )

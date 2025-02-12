@@ -100,7 +100,7 @@ BEGIN NAMESPACE FabTools
             Super:SuspendLayout()
             self:lblPrompt:Anchor := (System.Windows.Forms.AnchorStyles.Left | (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Top))
             self:lblPrompt:BackColor := System.Drawing.SystemColors.Control
-            self:lblPrompt:Font := System.Drawing.Font{"Microsoft Sans Serif", 8.25, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0}
+            self:lblPrompt:Font := System.Drawing.Font{"Microsoft Sans Serif", Real4(8.25), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0}
             self:lblPrompt:Location := System.Drawing.Point{12, 9}
             self:lblPrompt:Name := "lblPrompt"
             self:lblPrompt:Size := System.Drawing.Size{0x12e, 0x47}

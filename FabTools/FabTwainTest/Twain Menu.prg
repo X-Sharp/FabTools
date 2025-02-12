@@ -31,7 +31,7 @@ CONSTRUCTOR(oOwner)
 		HyperLabel{#Dummy_Zoom_In,	;
 			"Zoom In",	;
 			,	;
-			,},GetSubMenu(self:Handle( ),0),0)
+			,},VOWin32APILibrary.Functions.GetSubMenu(SELF:Handle( ),0),0)
 	self:RegisterItem(IDM_TwainContext_Dummy_Zoom_In__1_f2_1_ID,	;
 		HyperLabel{#Dummy_Zoom_In__1_f2_1,	;
 			"1 / 1",	;
@@ -61,7 +61,7 @@ CONSTRUCTOR(oOwner)
 		HyperLabel{#Dummy_Zoom_Out,	;
 			"Zoom Out",	;
 			,	;
-			,},GetSubMenu(self:Handle( ),0),1)
+			,},VOWin32APILibrary.Functions.GetSubMenu(self:Handle( ),0),1)
 	self:RegisterItem(IDM_TwainContext_Dummy_Zoom_Out__1_f2_1_ID,	;
 		HyperLabel{#Dummy_Zoom_Out__1_f2_1,	;
 			"1 / 1",	;

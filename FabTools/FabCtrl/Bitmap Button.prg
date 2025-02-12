@@ -158,7 +158,7 @@ CLASS FabBitmapButton	INHERIT	FabCustomTextCntrl
 		GetClientRect( SELF:Handle(), @Canvas )
 		//
 		IF FabXPThemesLoaded() .AND. SELF:UseXPTheme
-			hT := OpenThemeData( SELF:Handle(), String2Psz("BUTTON") )
+			hT := FabCtrl.Functions.OpenThemeData( SELF:Handle(), String2Psz("BUTTON") )
 			//
 			IF ( SELF:_lPressed )
 				iState := PBS_PRESSED
@@ -171,9 +171,9 @@ CLASS FabBitmapButton	INHERIT	FabCustomTextCntrl
 			ELSE
 				iState := PBS_NORMAL
 			ENDIF
-			DrawThemeBackground( hT, hDC, BP_PUSHBUTTON, iState, @Canvas, NULL_PTR )
+			FabCtrl.Functions.DrawThemeBackground( hT, hDC, BP_PUSHBUTTON, iState, @Canvas, NULL_PTR )
 			//
-			CloseThemeData( hT )
+			FabCtrl.Functions.CloseThemeData( hT )
 		ELSE
 			IF ( SELF:_lAsFocus )
 				InflateRect( @Canvas, -1, -1 )
@@ -294,7 +294,7 @@ CLASS FabBitmapButton	INHERIT	FabCustomTextCntrl
 		cText := SELF:Caption
 		//
 		IF FabXPThemesLoaded() .AND. SELF:UseXPTheme
-			hT := OpenThemeData( SELF:Handle(), String2Psz("BUTTON") )
+			hT := FabCtrl.Functions.OpenThemeData( SELF:Handle(), String2Psz("BUTTON") )
 			//
 			IF ( SELF:_lPressed )
 				dwMode := PBS_PRESSED
@@ -309,9 +309,9 @@ CLASS FabBitmapButton	INHERIT	FabCustomTextCntrl
 			ENDIF
 			//cText := Multi2Wide( cText )
 			//
-			DrawThemeText( hT, hDC, 0, dwMode, Cast2Psz(cText),-1, DT_LEFT,0, @Canvas )
+			FabCtrl.Functions.DrawThemeText( hT, hDC, 0, dwMode, Cast2Psz(cText),-1, DT_LEFT,0, @Canvas )
 			//
-			CloseThemeData( hT )
+			FabCtrl.Functions.CloseThemeData( hT )
 		ELSE
 			//
 			dwMode := DST_PREFIXTEXT

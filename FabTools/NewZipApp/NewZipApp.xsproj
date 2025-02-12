@@ -13,6 +13,7 @@
     <RootNamespace>NewZipApp</RootNamespace>
     <AssemblyName>NewZipApp</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <XSharpProjectversion>2.13.1.0</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
@@ -63,19 +64,6 @@
     <RegisterForComInterop>False</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetZip, Version=1.13.6.0, Culture=neutral, PublicKeyToken=6583c7c814667745">
-      <Name>DotNetZip</Name>
-      <AssemblyName>DotNetZip.dll</AssemblyName>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetZip.1.13.6\lib\net40\DotNetZip.dll</HintPath>
-    </Reference>
-    <Reference Include="Ionic.Zip, Version=1.9.5.2, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c">
-      <Name>Ionic.Zip</Name>
-      <AssemblyName>Ionic.Zip.dll</AssemblyName>
-      <HintPath>Debug\Ionic.Zip.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -83,12 +71,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.Ribbon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <Name>System.Windows.Forms.Ribbon</Name>
-      <AssemblyName>System.Windows.Forms.Ribbon.dll</AssemblyName>
-      <HintPath>System.Windows.Forms.Ribbon.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="XSharp.Core, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ed555a0467764586">
       <Name>XSharp.Core</Name>
@@ -141,7 +123,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
     </None>
@@ -155,16 +136,19 @@
       <Project>{d2a10849-0553-4ad0-9b7f-cec2a03b79d5}</Project>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\FabZipCtrl_WinForms\FabZipWinForms.xsproj">
-      <Name>FabZipWinForms</Name>
-      <Project>{89c08339-5411-45df-ac74-cc5c3193dff7}</Project>
-      <Private>True</Private>
-    </ProjectReference>
     <ProjectReference Include="..\FabZip\FabZip.xsproj">
       <Name>FabZip</Name>
       <Project>{bf4092de-ca8d-4ebe-b4e2-8fa9660845aa}</Project>
       <Private>True</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DotNetZip">
+      <Version>1.13.6</Version>
+    </PackageReference>
+    <PackageReference Include="RibbonWinForms">
+      <Version>5.0.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(XSharpMsBuildDir)\XSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">

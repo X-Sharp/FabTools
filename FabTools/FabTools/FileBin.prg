@@ -477,7 +477,7 @@ CLASS FabFileBin
 		//
 		sString := self:ReadStr( 1 )
 		//
-		RETURN	Asc( sString )
+		RETURN	Byte(Asc( sString ))
 		
 		
 		

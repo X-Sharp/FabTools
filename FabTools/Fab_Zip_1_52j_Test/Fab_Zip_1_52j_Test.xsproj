@@ -9,7 +9,7 @@
     <ProjectGuid>{B8945F86-E5C7-4883-8EFE-5EDA496F0187}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <Nologo>true</Nologo>
-    <GenerateFullPaths>false</GenerateFullPaths>
+    <GenerateFullPaths>true</GenerateFullPaths>
     <Name>Fab_Zip_1_52j_Test</Name>
     <RootNamespace>Fab_Zip_1_52j_Test</RootNamespace>
     <VO3>true</VO3>
@@ -30,6 +30,7 @@
     <VO7>true</VO7>
     <VO8>true</VO8>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <XSharpProjectversion>2.13.1.0</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
@@ -80,12 +81,6 @@
     <RegisterForComInterop>False</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip, Version=1.9.5.2, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c">
-      <Name>Ionic.Zip</Name>
-      <AssemblyName>Ionic.Zip.dll</AssemblyName>
-      <HintPath>Debug\Ionic.Zip.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System">
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
@@ -280,6 +275,11 @@
       <Project>{bf4092de-ca8d-4ebe-b4e2-8fa9660845aa}</Project>
       <Private>True</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DotNetZip">
+      <Version>1.13.6</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(XSharpMsBuildDir)\XSharp.targets" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">

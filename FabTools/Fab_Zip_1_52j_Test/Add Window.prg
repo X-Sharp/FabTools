@@ -58,7 +58,7 @@ PARTIAL CLASS AddWnd INHERIT DIALOGWINDOW
 	PROTECT oDCFixedText7 AS FIXEDTEXT
 	PROTECT oDCFixedText8 AS FIXEDTEXT
 
-	// {{%UC%}} User code starts here (DO NOT remove this line)  
+	// {{%UC%}} User code starts here (DO NOT remove this line)
   	EXPORT	aSelected	AS	ARRAY
   	EXPORT	symMode		AS	SYMBOL
   	EXPORT	Level		AS	LONG
@@ -67,9 +67,9 @@ PARTIAL CLASS AddWnd INHERIT DIALOGWINDOW
 	EXPORT	ZipMaxSize		AS	LONG
 	EXPORT	ZipMinDisk1	AS	LONG
 	EXPORT	ZipMinSize		AS	LONG
-	
 
-METHOD ButtonClick(oControlEvent) 
+
+METHOD ButtonClick(oControlEvent)
 	LOCAL oControl AS Control
 	oControl := IIf(oControlEvent == NULL_OBJECT, NULL_OBJECT, oControlEvent:Control)
 	SUPER:ButtonClick(oControlEvent)
@@ -93,18 +93,18 @@ METHOD ButtonClick(oControlEvent)
 	//
 	RETURN NIL
 
-METHOD CancelPB( ) 
+METHOD CancelPB( )
 	SELF:EndDialog( 0 )
 return self
 
-METHOD DisableSpanning() 
+METHOD DisableSpanning()
 	SELF:oDCFormatChk:Disable()
 	SELF:oDCMaxSize:Disable()
 	SELF:oDCMinDisk1:Disable()
 	SELF:oDCMinFreeSize:Disable()
 return self
 
-METHOD DoItPB( ) 
+METHOD DoItPB( )
 	//
 	IF Empty( SELF:aSelected )
 		SELF:EndDialog( 0 )
@@ -120,6 +120,7 @@ METHOD DoItPB( )
 			SELF:oAddOptions:Update := TRUE
 		OTHERWISE
 			// Nothing to do, we are in Add mode by default
+            NOP
 	ENDCASE
 	//
 	SELF:oAddOptions:DirNames := SELF:oDCDirInfoChk:Checked
@@ -143,10 +144,10 @@ METHOD DoItPB( )
 	ENDIF
 	//
 	SELF:EndDialog( 1 )
-	
+
  return self
 
-METHOD EnableSpanning() 
+METHOD EnableSpanning()
 	//
 	SELF:oDCFormatChk:Enable()
 	SELF:oDCMaxSize:Enable()
@@ -158,13 +159,13 @@ METHOD EnableSpanning()
 	SELF:oDCMinFreeSize:Value := 65536
 return self
 
-METHOD	FillAction( )	
+METHOD	FillAction( )
 RETURN	( { {"Add & Replace Files", #Add}, ;
 			{"Move Files", #Move}, ;
 			{"Update & Add Files",#Update}, ;
 			{"Freshen Existing Files",#Freshen} } )
 
-METHOD	FillFloppy( )	
+METHOD	FillFloppy( )
 RETURN	( { { "Automatic", 0 } ,	;
 			{ "720", 720 },			;
 			{ "1440", 1440 },		;
@@ -271,7 +272,7 @@ CONSTRUCTOR(oParent,uExtra)
 RETURN
 
 
-METHOD ListBoxSelect(oControlEvent) 
+METHOD ListBoxSelect(oControlEvent)
 	LOCAL oControl AS Control
 	//
 	oControl := IIf(oControlEvent == NULL_OBJECT, NULL_OBJECT, oControlEvent:Control)
@@ -287,7 +288,7 @@ METHOD ListBoxSelect(oControlEvent)
 	ENDIF
 	RETURN NIL
 
-METHOD PostInit(oParent,uExtra) 
+METHOD PostInit(oParent,uExtra)
 	//Put your PostInit additions here
 	SELF:oDCActionCombo:CurrentItemNo := 1
 	SELF:oDCLevelSlider:Value := 9
@@ -304,7 +305,7 @@ METHOD PostInit(oParent,uExtra)
 	//
 	RETURN NIL
 
-METHOD SelectPB( ) 
+METHOD SelectPB( )
 	LOCAL oDlg	AS	OpenDialog
 	LOCAL uFiles	AS	USUAL
 	LOCAL cTotal	AS	STRING
@@ -325,7 +326,7 @@ METHOD SelectPB( )
 		aFiles := {}
 		FOR nCpt := 1 TO ALen( uFiles )
 			AAdd( aFiles, FileSpec{ uFiles[ nCpt ] } )
-			//			
+			//
 			cTotal := cTotal + "," + aFiles[ nCpt ]:FileName + aFiles[ nCpt ]:Extension
 			//
 		NEXT
@@ -334,7 +335,7 @@ METHOD SelectPB( )
 	ELSE
 		aFiles := {}
 		AAdd( aFiles, FileSpec{ uFiles } )
-		//		
+		//
 		SELF:oDCFiles:TextValue := aFiles[ 1 ]:FileName + aFiles[ 1 ]:Extension
 	ENDIF
 	//
@@ -343,7 +344,7 @@ METHOD SelectPB( )
 
 return self
 
-METHOD WildcardsPB( ) 
+METHOD WildcardsPB( )
 	LOCAL oWildFile	AS	FileSpec
 	//
 	oWildFile := FileSpec{ }
@@ -354,6 +355,6 @@ METHOD WildcardsPB( )
 	SELF:aSelected := { oWildFile }
 	//
 	SELF:DoItPB()
-return self	
+RETURN SELF
 END CLASS
 

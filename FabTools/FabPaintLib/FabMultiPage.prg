@@ -70,9 +70,7 @@ BEGIN Namespace FabPaintLib
 					oCopy := FreeImage.Clone( oImg )
 					// Release the page
 					FreeImage.unlockPage( self:oMultiObject, oImg, false )
-                ELSE
-                    NOP
-				endif
+				ENDIF
 				oNew := FabPaintLib{ oCopy }
 			ENDIF
 			RETURN oNew

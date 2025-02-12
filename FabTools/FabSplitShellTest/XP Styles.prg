@@ -1,6 +1,7 @@
 //#warning The following method did not include a CLASS declaration
 CLASS AppWindow_external_class INHERIT AppWindow
-METHOD ControlNotify(oControlNotifyEvent) 
+
+METHOD ControlNotify(oControlNotifyEvent)
 
     IF oControlNotifyEvent:NotifyCode == TTN_NEEDTEXT
         ProcessToolTip(SELF,oControlNotifyEvent)
@@ -79,7 +80,7 @@ FUNCTION ProcessToolTip(oOwner,oControlNotifyEvent)
 
         IF (oWindow != NULL_OBJECT)
             cTipText := oWindow:ToolTipText
-            IF Empty(cTipText)  .and. oWindow:UseHLForToolTip
+            IF Empty(cTipText) .AND. oWindow:UseHLForToolTip
                 cTipText := oWindow:Hyperlabel:Description
             ENDIF
         ENDIF
@@ -88,7 +89,9 @@ FUNCTION ProcessToolTip(oOwner,oControlNotifyEvent)
     IF Empty(cTipText)
         strucToolTip.lpszText := NULL_PSZ
     ELSE
-        strucToolTip.lpszText := Cast2Psz(cTipText)
+        LOCAL toCopy AS STRING
+        toCopy := SubStr3( cTipText, 1, Min(79,SLen(cTipText) ) )
+        MemCopyString( strucToolTip.szText, toCopy, 80 )
     ENDIF
     RETURN NIL
 

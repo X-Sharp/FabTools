@@ -5,15 +5,14 @@
     <ProjectGuid>210dbe32-b8b3-4a5f-946f-3d15a9691bb5</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FabTools</RootNamespace>
-    <AssemblyName>FabTools</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>FabToolsTest</RootNamespace>
+    <AssemblyName>FabToolsTest</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Name>FabToolsTest</Name>
     <Nologo>true</Nologo>
     <GenerateFullPaths>true</GenerateFullPaths>
     <Dialect>VO</Dialect>
     <OutputName>FabTools</OutputName>
-    <XSharpProjectversion>2.2.0.0</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
@@ -32,7 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <UseSharedCompilation>true</UseSharedCompilation>
     <DisabledWarnings />

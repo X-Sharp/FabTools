@@ -5,7 +5,7 @@
     <ProjectGuid>4dd08a41-2945-4ddd-9821-4bf8a301fa9b</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FabZip</RootNamespace>
+    <RootNamespace>FabZipVo</RootNamespace>
     <AssemblyName>FabZipVo</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <Name>FabZipVo</Name>
@@ -35,11 +35,13 @@
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
     <NoWin32Manifest>False</NoWin32Manifest>
     <TargetFrameworkProfile />
+    <XSharpProjectversion>2.13.1.0</XSharpProjectversion>
+    <NS>True</NS>
     <NamedArgs>false</NamedArgs>
     <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'" Label="Configuration">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <EmitDebugInformation>true</EmitDebugInformation>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -47,6 +49,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'" Label="Configuration">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -60,13 +63,6 @@
   </PropertyGroup>
   <Import Project="$(XSharpMsBuildDir)\XSharp.targets" />
   <ItemGroup>
-    <Reference Include="DotNetZip, Version=1.13.6.0, Culture=neutral, PublicKeyToken=6583c7c814667745">
-      <Name>DotNetZip</Name>
-      <AssemblyName>DotNetZip.dll</AssemblyName>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetZip.1.13.6\lib\net40\DotNetZip.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -79,21 +75,18 @@
       <AssemblyName>VOGUIClasses.dll</AssemblyName>
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
-      <HintPath>..\..\..\..\Program Files (x86)\XSharp\Redist\VOGUIClasses.dll</HintPath>
     </Reference>
     <Reference Include="VOSystemClasses, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
       <Name>VOSystemClasses</Name>
       <AssemblyName>VOSystemClasses.dll</AssemblyName>
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
-      <HintPath>..\..\..\..\Program Files (x86)\XSharp\Redist\VOSystemClasses.dll</HintPath>
     </Reference>
     <Reference Include="VOWin32APILibrary, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a967d8055360a7b9">
       <Name>VOWin32APILibrary</Name>
       <AssemblyName>VOWin32APILibrary.dll</AssemblyName>
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
-      <HintPath>..\..\..\..\Program Files (x86)\XSharp\Redist\VOWin32APILibrary.dll</HintPath>
     </Reference>
     <Reference Include="XSharp.Core" />
     <Reference Include="XSharp.Rt" />
@@ -116,7 +109,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <PackageReference Include="DotNetZip">
+      <Version>1.13.6</Version>
+    </PackageReference>
   </ItemGroup>
   <!-- This next bit is required unless the macro used to Import your targets is defined in an MSBuild toolset. -->
   <ProjectExtensions>

@@ -9,7 +9,7 @@
     <ProjectGuid>{B79E2352-598D-472D-BB21-EB5CBBF4C3E7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <Nologo>true</Nologo>
-    <GenerateFullPaths>false</GenerateFullPaths>
+    <GenerateFullPaths>true</GenerateFullPaths>
     <Name>FabPaintLib_Test</Name>
     <RootNamespace>Fab_PaintLib_Test</RootNamespace>
     <VO3>true</VO3>
@@ -30,7 +30,6 @@
     <VO7>true</VO7>
     <VO8>true</VO8>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <XSharpProjectversion>2.3.0.0</XSharpProjectversion>
     <StartupObject />
     <ApplicationIcon />
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
@@ -51,12 +50,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>
     <DefineConstants>DEBUG</DefineConstants>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <Optimize>false</Optimize>
     <UseSharedCompilation>true</UseSharedCompilation>
-    <DisabledWarnings />
+    <DisabledWarnings>9076</DisabledWarnings>
     <WarningLevel>4</WarningLevel>
     <SignAssembly>false</SignAssembly>
     <DelaySign>false</DelaySign>
@@ -64,7 +63,7 @@
     <CommandLineOption />
     <PPO>false</PPO>
     <PlatformTarget>x86</PlatformTarget>
-    <Prefer32Bit>True</Prefer32Bit>
+    <Prefer32Bit>False</Prefer32Bit>
     <RegisterForComInterop>False</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
@@ -98,7 +97,7 @@
       <Private>False</Private>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
       <AssemblyName>System.Drawing.dll</AssemblyName>
     </Reference>

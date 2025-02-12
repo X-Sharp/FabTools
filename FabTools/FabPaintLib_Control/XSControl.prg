@@ -48,10 +48,9 @@ BEGIN NAMESPACE FabPaintLib.Control
 			local tmpRect as System.Drawing.Rectangle
 			Local img as System.Drawing.Image 
 			//
-			if ((self:oImg == null) .OR. ( Self:oImg:IsValid != True ) )
-				//
-				Super:OnPaintBackground(e)
-			else
+			Super:OnPaintBackground(e)
+			//
+			if ((self:oImg != null) .AND. ( Self:oImg:IsValid == True ) )
 				// Retrieve the underlying System.Drawing.Bitmap object
 				img := Self:oImg:Image
 				//
