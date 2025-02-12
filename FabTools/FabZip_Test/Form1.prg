@@ -2,7 +2,6 @@
 USING System.Windows.Forms
 
 USING FabZip
-USING FabZip.WinForms
 
 CLASS Form1 INHERIT System.Windows.Forms.Form
     PRIVATE buttonOpen AS System.Windows.Forms.Button
@@ -14,7 +13,7 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
     PRIVATE buttonExtract AS System.Windows.Forms.Button
     PRIVATE buttonAdd AS System.Windows.Forms.Button
     PRIVATE buttonCreate AS System.Windows.Forms.Button
-    PRIVATE ZipCtrl1 AS FabZip.WinForms.FabZipFileCtrl
+    PRIVATE ZipCtrl1 AS FabZip.FabZipFileCtrl
     PRIVATE groupBox1 AS System.Windows.Forms.GroupBox
     PRIVATE txtPassword AS System.Windows.Forms.TextBox
     PRIVATE checkAES AS System.Windows.Forms.CheckBox
@@ -24,7 +23,7 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         SELF:InitializeComponent()
         //
         RETURN
-        
+
         /// <summary>
             /// Clean up any resources being used.
             /// </summary>
@@ -35,7 +34,7 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         ENDIF
         SUPER:Dispose( disposing )
         RETURN
-        
+
         /// <summary>
             /// Required method for Designer support - do not modify
             /// the contents of this method with the code editor.
@@ -50,15 +49,15 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         SELF:buttonAdd := System.Windows.Forms.Button{}
         SELF:buttonCreate := System.Windows.Forms.Button{}
         SELF:progressShow := System.Windows.Forms.ProgressBar{}
-        SELF:ZipCtrl1 := FabZip.WinForms.FabZipFileCtrl{}
+        SELF:ZipCtrl1 := FabZip.FabZipFileCtrl{}
         SELF:groupBox1 := System.Windows.Forms.GroupBox{}
         SELF:txtPassword := System.Windows.Forms.TextBox{}
         SELF:checkAES := System.Windows.Forms.CheckBox{}
         SELF:groupBox1:SuspendLayout()
         SELF:SuspendLayout()
-        // 
+        //
         // buttonOpen
-        // 
+        //
         SELF:buttonOpen:Location := System.Drawing.Point{12, 12}
         SELF:buttonOpen:Name := "buttonOpen"
         SELF:buttonOpen:Size := System.Drawing.Size{75, 23}
@@ -66,9 +65,9 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         SELF:buttonOpen:Text := "Open"
         SELF:buttonOpen:UseVisualStyleBackColor := TRUE
         SELF:buttonOpen:Click += System.EventHandler{ SELF, @buttonOpen_Click() }
-        // 
+        //
         // listZipFile
-        // 
+        //
         SELF:listZipFile:Columns:AddRange(<System.Windows.Forms.ColumnHeader>{ SELF:columnFileName, SELF:columnTime, SELF:columnDate })
         SELF:listZipFile:FullRowSelect := TRUE
         SELF:listZipFile:Location := System.Drawing.Point{143, 12}
@@ -78,22 +77,22 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         SELF:listZipFile:UseCompatibleStateImageBehavior := FALSE
         SELF:listZipFile:View := System.Windows.Forms.View.Details
         SELF:listZipFile:SelectedIndexChanged += System.EventHandler{ SELF, @listZipFile_SelectedIndexChanged() }
-        // 
+        //
         // columnFileName
-        // 
+        //
         SELF:columnFileName:Text := "File Name"
         SELF:columnFileName:Width := 120
-        // 
+        //
         // columnTime
-        // 
+        //
         SELF:columnTime:Text := "Time"
-        // 
+        //
         // columnDate
-        // 
+        //
         SELF:columnDate:Text := "Date"
-        // 
+        //
         // buttonExtract
-        // 
+        //
         SELF:buttonExtract:Enabled := FALSE
         SELF:buttonExtract:Location := System.Drawing.Point{12, 116}
         SELF:buttonExtract:Name := "buttonExtract"
@@ -102,9 +101,9 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         SELF:buttonExtract:Text := "Extract"
         SELF:buttonExtract:UseVisualStyleBackColor := TRUE
         SELF:buttonExtract:Click += System.EventHandler{ SELF, @buttonExtract_Click() }
-        // 
+        //
         // buttonAdd
-        // 
+        //
         SELF:buttonAdd:Location := System.Drawing.Point{12, 87}
         SELF:buttonAdd:Name := "buttonAdd"
         SELF:buttonAdd:Size := System.Drawing.Size{75, 23}
@@ -112,9 +111,9 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         SELF:buttonAdd:Text := "Add"
         SELF:buttonAdd:UseVisualStyleBackColor := TRUE
         SELF:buttonAdd:Click += System.EventHandler{ SELF, @buttonAdd_Click() }
-        // 
+        //
         // buttonCreate
-        // 
+        //
         SELF:buttonCreate:Location := System.Drawing.Point{12, 41}
         SELF:buttonCreate:Name := "buttonCreate"
         SELF:buttonCreate:Size := System.Drawing.Size{75, 23}
@@ -122,23 +121,23 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         SELF:buttonCreate:Text := "Create"
         SELF:buttonCreate:UseVisualStyleBackColor := TRUE
         SELF:buttonCreate:Click += System.EventHandler{ SELF, @buttonCreate_Click() }
-        // 
+        //
         // progressShow
-        // 
+        //
         SELF:progressShow:Location := System.Drawing.Point{143, 254}
         SELF:progressShow:Name := "progressShow"
         SELF:progressShow:Size := System.Drawing.Size{307, 23}
         SELF:progressShow:TabIndex := 5
-        // 
+        //
         // ZipCtrl1
-        // 
+        //
         SELF:ZipCtrl1:Location := System.Drawing.Point{12, 219}
         SELF:ZipCtrl1:Name := "ZipCtrl1"
         SELF:ZipCtrl1:Size := System.Drawing.Size{49, 48}
         SELF:ZipCtrl1:TabIndex := 6
-        // 
+        //
         // groupBox1
-        // 
+        //
         SELF:groupBox1:Controls:Add(SELF:txtPassword)
         SELF:groupBox1:Controls:Add(SELF:checkAES)
         SELF:groupBox1:Location := System.Drawing.Point{12, 148}
@@ -147,16 +146,16 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         SELF:groupBox1:TabIndex := 7
         SELF:groupBox1:TabStop := FALSE
         SELF:groupBox1:Text := "Password"
-        // 
+        //
         // txtPassword
-        // 
+        //
         SELF:txtPassword:Location := System.Drawing.Point{6, 22}
         SELF:txtPassword:Name := "txtPassword"
         SELF:txtPassword:Size := System.Drawing.Size{113, 20}
         SELF:txtPassword:TabIndex := 1
-        // 
+        //
         // checkAES
-        // 
+        //
         SELF:checkAES:AutoSize := TRUE
         SELF:checkAES:Location := System.Drawing.Point{6, 48}
         SELF:checkAES:Name := "checkAES"
@@ -164,9 +163,9 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         SELF:checkAES:TabIndex := 0
         SELF:checkAES:Text := "Use AES"
         SELF:checkAES:UseVisualStyleBackColor := TRUE
-        // 
+        //
         // Form1
-        // 
+        //
         SELF:AutoScaleDimensions := System.Drawing.SizeF{((Single) 6), ((Single) 13)}
         SELF:AutoScaleMode := System.Windows.Forms.AutoScaleMode.Font
         SELF:ClientSize := System.Drawing.Size{462, 279}
@@ -188,7 +187,7 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         LOCAL cFile AS STRING
         //
         oDlg := OpenFileDialog{ }
-        oDlg:Filter := "Archives|*.Zip|Archives and Exe Files|*.Zip;*.Exe|All Files|*.*" 
+        oDlg:Filter := "Archives|*.Zip|Archives and Exe Files|*.Zip;*.Exe|All Files|*.*"
         oDlg:FilterIndex := 1
         oDlg:CheckFileExists := TRUE
         IF ( oDlg:ShowDialog() == DialogResult.ok )
@@ -198,9 +197,9 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
             SELF:Text := "DotNetZip Test App - " + cFile
             //
             SELF:UpdateList()
-        ENDIF 
+        ENDIF
         RETURN
-    
+
     PRIVATE METHOD UpdateList() AS System.Void
         LOCAL Cpt AS INT
         LOCAL Max AS INT
@@ -218,10 +217,10 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
             oLVI:SubItems:Add( DToc(oTmp:FileDate ))
             //
             SELF:listZipFile:Items:Add( oLVI )
-            
+
         NEXT
         RETURN
-    
+
     PRIVATE METHOD buttonExtract_Click( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         LOCAL oLVI AS ListViewItem
         LOCAL oFolderDlg AS System.Windows.Forms.FolderBrowserDialog
@@ -235,25 +234,25 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         IF ( oFolderDlg:ShowDialog()== DialogResult.OK )
             cExtractHere := oFolderDlg:SelectedPath
             //
-            FOR i := 1 TO SELF:listZipFile:SelectedItems:Count  
+            FOR i := 1 TO SELF:listZipFile:SelectedItems:Count
                 oLVI := SELF:listZipFile:SelectedItems[ i-1]
                 //
                 SELF:ZipCtrl1:ZipFile:FilesArg:Add( oLVI:Text )
             NEXT
             SELF:ZipCtrl1:ZipFile:ExtractDir := cExtractHere
             SELF:ZipCtrl1:ZipFile:ExtractOptions:Overwrite := TRUE
-            SELF:progressShow:Value := 0        
+            SELF:progressShow:Value := 0
             // DotNetZIp will retrieve the right Encryption used if any
             // BUT, in that case YOU must give the "right" password (at least)
             IF ( SELF:txtPassword:Text:Length > 0 )
                 SELF:ZipCtrl1:ZipFile:Password := SELF:txtPassword:Text
-                
-            ENDIF    
+
+            ENDIF
             SELF:ZipCtrl1:ZipFile:Extract()
             //
         ENDIF
-        RETURN  
-    
+        RETURN
+
     PRIVATE METHOD buttonAdd_Click( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         LOCAL oDlg AS OpenFileDialog
         LOCAL cFile AS STRING
@@ -284,14 +283,14 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
             ENDIF
             SELF:ZipCtrl1:ZipFile:Add()
             //
-            SELF:UpdateList()           
-        ENDIF     
+            SELF:UpdateList()
+        ENDIF
         RETURN
-    
+
     PRIVATE METHOD listZipFile_SelectedIndexChanged( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         SELF:buttonExtract:Enabled := TRUE
         RETURN
-    
+
     PRIVATE METHOD buttonCreate_Click( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         LOCAL oDlg AS SaveFileDialog
         LOCAL cFile AS STRING
@@ -305,8 +304,8 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
             SELF:Text := "DotNetZip Test App - " + cFile
             //
             SELF:UpdateList()
-        ENDIF 
-        
+        ENDIF
+
         RETURN
         /*
         VIRTUAL METHOD ExtractProgress( sender AS System.Object, e AS ExtractProgressEventArgs ) AS System.Void
@@ -316,13 +315,13 @@ CLASS Form1 INHERIT System.Windows.Forms.Form
         VIRTUAL METHOD AddProgress( sender AS System.Object, e AS SaveProgressEventArgs ) AS System.Void
         Self:progressShow:Value := ( e:EntriesSaved*100 / e:EntriesTotal )
         //
-        Return    
+        Return
         */
         // Console.WriteLine("{0} ({1}/{2})", e.NameOfLatestEntry, e.EntriesExtractd, e.EntriesTotal);
-    
+
     METHOD OnFabZipProgress( sender AS System.Object, symEvent AS FabZipEvent, cFile AS STRING, nSize AS INT64 ) AS VOID
         // Put your progress code here
-        RETURN 
-        
-        
+        RETURN
+
+
 END CLASS

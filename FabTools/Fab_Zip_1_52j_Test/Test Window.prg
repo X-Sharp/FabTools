@@ -1,4 +1,5 @@
-using FabZip
+USING FabZip
+
 using VO
 
 
@@ -47,8 +48,8 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 	PROTECT oDCTotalSizeBar AS PROGRESSBAR
 	PROTECT oDCTotalFilesBar AS PROGRESSBAR
 	PROTECT oDCZipMessages AS FIXEDTEXT
-	
-	// {{%UC%}} User code starts here (DO NOT remove this line)  
+
+	// {{%UC%}} User code starts here (DO NOT remove this line)
 	PROTECT	lNeedCancel		AS	LOGIC
 	PROTECT nCurrentSize	AS	DWORD
 	PROTECT nCurrentPos		AS	DWORD
@@ -56,8 +57,8 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 	PROTECT nCurrentFile	AS	DWORD
 	PROTECT nMaxSize		AS	DWORD
 	PROTECT nCurrMaxSize	AS	DWORD
-	
-	METHOD AddPB( ) 
+
+	METHOD AddPB( )
 		LOCAL	oDlg	AS	AddWnd
 		LOCAL	oAddOpt	AS	FabAddOptions
 		LOCAL	wCpt	AS	WORD
@@ -90,7 +91,7 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		// Set AddOptions
 		SELF:oDCZip_Control:ZipFile:AddOptions := oAddOpt
 		// Compression Level
-		SELF:oDCZip_Control:ZipFile:CompressionLevel := (word)oDlg:Level	
+		SELF:oDCZip_Control:ZipFile:CompressionLevel := (WORD)oDlg:Level
 		// Disk Spanning ?
 		IF oAddOpt:DiskSpan .OR. oAddOpt:DiskSpanErase
 			//
@@ -122,8 +123,8 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 			ENDIF
 		ENDIF
 		return self
-		
-	METHOD ButtonClick(oControlEvent) 
+
+	METHOD ButtonClick(oControlEvent)
 		LOCAL oControl  AS Control
 		LOCAL cPass		AS	STRING
 		//
@@ -155,13 +156,13 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 			ENDIF
 		ENDIF
 		RETURN NIL
-		
-	METHOD CancelPB( ) 
+
+	METHOD CancelPB( )
 		// Set Cancel to TRUE for the next message processing
 		self:lNeedCancel := true
 		return self
-		
-	METHOD ClearAll( ) 
+
+	METHOD ClearAll( )
 		LOCAL	wCpt	AS	WORD
 		LOCAL	oItem	AS	ListViewItem
 		//
@@ -175,13 +176,13 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 			//
 		NEXT
 		//
-		return self		
-		
-	METHOD CommentPB( ) 
+		RETURN SELF
+
+	METHOD CommentPB( )
 		FabMessageInfo( SELF:oDCZip_Control:ZipFile:ZipComment )
-		return self	
-		
-	METHOD ConvertPB( ) 
+		RETURN SELF
+
+	METHOD ConvertPB( )
 		LOCAL oFS	AS	FileSpec
 		LOCAL oDlg	AS	SFXWnd
 		LOCAL oOpt	AS	FabSFXOptions
@@ -210,10 +211,10 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		ELSEIF Upper( oFS:Extension ) == ".EXE"
 			SELF:oCCConvertPB:Caption := "Remove SFX"
 		ENDIF
-		
-		return self	
-		
-	METHOD CreatePB( ) 
+
+		RETURN SELF
+
+	METHOD CreatePB( )
 		LOCAL oOD		AS	SaveAsDialog
 		LOCAL oFS		AS	FileSpec
 		//
@@ -223,7 +224,7 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		// FabSaveAsDialogEx
 		//oOD:OkText := "Create"
 		oOD:Show()
-		//	
+		//
 		IF !Empty( oOD:FileName )
 			// Set FileName in the SLE
 			SELF:ZipFileName := oOD:FileName
@@ -241,10 +242,10 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 			SELF:oDCZip_Control:ZipFile:FileName := SELF:ZipFileName
 			// This is automatically done when setting the name
 			//	SELF:oDCZip_Control:FileZip:UpdateContents()
-		ENDIF	
+		ENDIF
 		return self
-		
-	METHOD DeletePB( ) 
+
+	METHOD DeletePB( )
 		LOCAL	oDlg	AS	DeleteWnd
 		LOCAL	nFrom	AS	INT
 		LOCAL	wCpt	AS	INT
@@ -288,16 +289,16 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		//
 		SELF:ProcessHide()
 		SELF:lNeedCancel := FALSE
-		
+
 		return self
-		
+
 	ACCESS DllMsg
 		RETURN SELF:FieldGet( #DllMsg )
-		
+
 	ASSIGN DllMsg( uValue )
 		SELF:FieldPut( #DllMsg , uValue )
-		
-	METHOD ExtractPB( ) 
+
+	METHOD ExtractPB( )
 		LOCAL oItem		AS	ListViewItem
 		LOCAL wCpt		AS	WORD
 		LOCAL nFrom		AS	WORD
@@ -351,109 +352,109 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		SELF:ProcessHide()
 		SELF:lNeedCancel := FALSE
 		return self
-		
+
 	ACCESS FabZipMsg
 		RETURN SELF:FieldGet( #FabZipMsg )
-		
+
 	ASSIGN FabZipMsg( uValue )
 		SELF:FieldPut( #FabZipMsg , uValue )
-		
+
 	CONSTRUCTOR(oWindow,iCtlID,oServer,uExtra)
-		
+
 		SELF:PreInit(oWindow,iCtlID,oServer,uExtra)
-		
+
 		SUPER(oWindow , ResourceID{"FabZipTest1" , _GetInst()},iCtlID)
-		
+
 		SELF:oDCZipFileName := SINGLELINEEDIT{SELF , ResourceID{ FABZIPTEST1_ZIPFILENAME  , _GetInst() } }
 		SELF:oDCZipFileName:HyperLabel := HyperLabel{#ZipFileName , NULL_STRING , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oCCOpenPB := PUSHBUTTON{SELF , ResourceID{ FABZIPTEST1_OPENPB  , _GetInst() } }
 		SELF:oCCOpenPB:HyperLabel := HyperLabel{#OpenPB , "Open Zip File" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oCCCreatePB := PUSHBUTTON{SELF , ResourceID{ FABZIPTEST1_CREATEPB  , _GetInst() } }
 		SELF:oCCCreatePB:HyperLabel := HyperLabel{#CreatePB , "Create Zip File" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCPassChk := CHECKBOX{SELF , ResourceID{ FABZIPTEST1_PASSCHK  , _GetInst() } }
 		SELF:oDCPassChk:HyperLabel := HyperLabel{#PassChk , "Use Password" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oCCAddPB := PUSHBUTTON{SELF , ResourceID{ FABZIPTEST1_ADDPB  , _GetInst() } }
 		SELF:oCCAddPB:HyperLabel := HyperLabel{#AddPB , "&Add" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oCCExtractPB := PUSHBUTTON{SELF , ResourceID{ FABZIPTEST1_EXTRACTPB  , _GetInst() } }
 		SELF:oCCExtractPB:HyperLabel := HyperLabel{#ExtractPB , "&Extract" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oCCDeletePB := PUSHBUTTON{SELF , ResourceID{ FABZIPTEST1_DELETEPB  , _GetInst() } }
 		SELF:oCCDeletePB:HyperLabel := HyperLabel{#DeletePB , "&Delete" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oCCConvertPB := PUSHBUTTON{SELF , ResourceID{ FABZIPTEST1_CONVERTPB  , _GetInst() } }
 		SELF:oCCConvertPB:HyperLabel := HyperLabel{#ConvertPB , "&Convert" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oCCCommentPB := PUSHBUTTON{SELF , ResourceID{ FABZIPTEST1_COMMENTPB  , _GetInst() } }
 		SELF:oCCCommentPB:HyperLabel := HyperLabel{#CommentPB , "&Comment" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oCCOkPB := PUSHBUTTON{SELF , ResourceID{ FABZIPTEST1_OKPB  , _GetInst() } }
 		SELF:oCCOkPB:HyperLabel := HyperLabel{#OkPB , "&Close" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCZip_Control := FABZIPFILECTRL{SELF , ResourceID{ FABZIPTEST1_ZIP_CONTROL  , _GetInst() } }
 		SELF:oDCZip_Control:HyperLabel := HyperLabel{#Zip_Control , "Zip Control" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCZipList := LISTVIEW{SELF , ResourceID{ FABZIPTEST1_ZIPLIST  , _GetInst() } }
 		SELF:oDCZipList:ContextMenu := LISTMENU{}
 		SELF:oDCZipList:HyperLabel := HyperLabel{#ZipList , NULL_STRING , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCDllMsg := CHECKBOX{SELF , ResourceID{ FABZIPTEST1_DLLMSG  , _GetInst() } }
 		SELF:oDCDllMsg:TooltipText := "Show Dll Messages"
 		SELF:oDCDllMsg:HyperLabel := HyperLabel{#DllMsg , "Show CallBack Messages" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCFabZipMsg := CHECKBOX{SELF , ResourceID{ FABZIPTEST1_FABZIPMSG  , _GetInst() } }
 		SELF:oDCFabZipMsg:TooltipText := "Show Dll Messages"
 		SELF:oDCFabZipMsg:HyperLabel := HyperLabel{#FabZipMsg , "Show FabZip Class Messages" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCGroupBox1 := GROUPBOX{SELF , ResourceID{ FABZIPTEST1_GROUPBOX1  , _GetInst() } }
 		SELF:oDCGroupBox1:HyperLabel := HyperLabel{#GroupBox1 , "Zip File" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCExtractBar := PROGRESSBAR{SELF , ResourceID{ FABZIPTEST1_EXTRACTBAR  , _GetInst() } }
 		SELF:oDCExtractBar:TooltipText := "Current File"
 		SELF:oDCExtractBar:HyperLabel := HyperLabel{#ExtractBar , NULL_STRING , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCFProcess := FIXEDTEXT{SELF , ResourceID{ FABZIPTEST1_FPROCESS  , _GetInst() } }
 		SELF:oDCFProcess:HyperLabel := HyperLabel{#FProcess , "Name of the file in process" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oCCCancelPB := PUSHBUTTON{SELF , ResourceID{ FABZIPTEST1_CANCELPB  , _GetInst() } }
 		SELF:oCCCancelPB:HyperLabel := HyperLabel{#CancelPB , "&Cancel" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCProcessGrp := GROUPBOX{SELF , ResourceID{ FABZIPTEST1_PROCESSGRP  , _GetInst() } }
 		SELF:oDCProcessGrp:HyperLabel := HyperLabel{#ProcessGrp , "Processing" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCTotalSizeBar := PROGRESSBAR{SELF , ResourceID{ FABZIPTEST1_TOTALSIZEBAR  , _GetInst() } }
 		SELF:oDCTotalSizeBar:TooltipText := "Total Size"
 		SELF:oDCTotalSizeBar:HyperLabel := HyperLabel{#TotalSizeBar , NULL_STRING , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCTotalFilesBar := PROGRESSBAR{SELF , ResourceID{ FABZIPTEST1_TOTALFILESBAR  , _GetInst() } }
 		SELF:oDCTotalFilesBar:TooltipText := "Total # of Files"
 		SELF:oDCTotalFilesBar:HyperLabel := HyperLabel{#TotalFilesBar , NULL_STRING , NULL_STRING , NULL_STRING}
-		
+
 		SELF:oDCZipMessages := FIXEDTEXT{SELF , ResourceID{ FABZIPTEST1_ZIPMESSAGES  , _GetInst() } }
 		SELF:oDCZipMessages:HyperLabel := HyperLabel{#ZipMessages , "ZipMessages" , NULL_STRING , NULL_STRING}
-		
+
 		SELF:Caption := "Fab Zip Test #1"
 		SELF:Icon := DelZip{}
 		SELF:HyperLabel := HyperLabel{#FabZipTest1 , "Fab Zip Test #1" , NULL_STRING , NULL_STRING}
 		IF !IsNil(oServer)
 			SELF:Use(oServer)
 		ENDIF
-		
-		
+
+
 		SELF:PostInit(oWindow,iCtlID,oServer,uExtra)
-		
+
 		RETURN
-		
-		
-	METHOD OkPB( ) 
+
+
+	METHOD OkPB( )
 		SELF:EndWindow()
 		return self
-		
-	METHOD	OnFabZipDirUpdate( oCtrl as object ) 
+
+	METHOD	OnFabZipDirUpdate( oCtrl AS OBJECT )
 		// In the following code the Commented lines ware using the FileSpec class
 		// to process the FileName and Path, but it seems that FileSpec is converting
 		// FileName to Upper case, so I now use the FabExtractFileXXX() function
@@ -485,7 +486,7 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 			// We need to save the value ( Name as it appears in the Zip File ) for extracting
 			//		oItem:SetValue( oFS:FullPath, #NAME )
 			oItem:SetValue( cTmp, #NAME )
-			// File¨Path
+			// Fileï¿½Path
 			//		oItem:SetValue( oFS:Path, #Path )
 			oItem:SetValue( FabExtractFilePath( cTmp ), #Path )
 			// File Date
@@ -510,9 +511,9 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 			// Add the line
 			SELF:oDCZipList:AddItem( oItem )
 		NEXT
-		return self	
-		
-	METHOD	OnFabZipMessage( oCtrl, nError, cMsg ) 
+		RETURN SELF
+
+	METHOD	OnFabZipMessage( oCtrl, nError, cMsg )
 		// If nError == 0, No error, just a message after each file
 		IF ( SELF:DllMsg )
 			IF ( nError == 0 )
@@ -526,9 +527,9 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 			ENDIF
 		ENDIF
 		// Special case, aborting for quitting....
-		
+
 		return self
-		
+
 	METHOD	OnFabZipProgress( oCtrl as object, symEvent as symbol, cFile as string, nSize as int64 ) as logic
 		//
 		TRY
@@ -580,8 +581,8 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		GetAppObject():Exec( EXECWHILEEVENT )
 		//
 		RETURN	SELF:lNeedCancel
-		
-	METHOD OpenPB( ) 
+
+	METHOD OpenPB( )
 		LOCAL oOD	AS	OpenDialog
 		LOCAL cInit	AS	STRING
 		LOCAL oFS	AS	FileSpec
@@ -615,16 +616,16 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 			SELF:oDCZip_Control:ZipFile:FileName := SELF:ZipFileName
 			// This is automatically done when setting the name
 			//	SELF:oDCZip_Control:FileZip:UpdateContents()
-		ENDIF	
+		ENDIF
 		return self
-		
+
 	ACCESS PassChk
 		RETURN SELF:FieldGet( #PassChk )
-		
+
 	ASSIGN PassChk( uValue )
 		SELF:FieldPut( #PassChk , uValue )
-		
-	METHOD PostInit(oWindow,iCtlID,oServer,uExtra) 
+
+	METHOD PostInit(oWindow,iCtlID,oServer,uExtra)
 		LOCAL oColumn	AS	ListViewColumn
 		//Put your PostInit additions here
 		// Crypted ?
@@ -657,8 +658,8 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		//
 		SELF:ZipFileName := ""
 		RETURN NIL
-		
-	METHOD ProcessHide() 
+
+	METHOD ProcessHide()
 		SELF:oDCFProcess:Hide()
 		SELF:oDCExtractBar:Hide()
 		SELF:oDCTotalFilesBar:Hide()
@@ -666,8 +667,8 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		SELF:oCCCancelPB:Hide()
 		SELF:oDCProcessGrp:Hide()
 		return self
-		
-	METHOD ProcessShow() 
+
+	METHOD ProcessShow()
 		SELF:oDCFProcess:Show()
 		SELF:oDCExtractBar:Show()
 		SELF:oDCTotalFilesBar:Show()
@@ -677,18 +678,18 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		//
 		SELF:Update()
 		return self
-		
-	METHOD QueryClose(oEvent) 
+
+	METHOD QueryClose(oEvent)
 		LOCAL lAllowClose AS LOGIC
 		lAllowClose := TRUE
 		//Put your changes here
 		IF ( SELF:oDCZip_Control:ZipFile:Processing )
 			// Sorry, you must first cancel the operation...
-			lAllowClose := FALSE		
+			lAllowClose := FALSE
 		ENDIF
 		RETURN lAllowClose
-		
-	METHOD SelectAll( ) 
+
+	METHOD SelectAll( )
 		LOCAL	wCpt	AS	WORD
 		LOCAL	oItem	AS	ListViewItem
 		//
@@ -703,12 +704,12 @@ PARTIAL CLASS FabZipTest1 INHERIT DATAWINDOW
 		NEXT
 		//
 		return self
-		
+
 	ACCESS ZipFileName
 		RETURN SELF:FieldGet( #ZipFileName )
-		
+
 	ASSIGN ZipFileName( uValue )
 		SELF:FieldPut( #ZipFileName , uValue )
-		
+
 END CLASS
 

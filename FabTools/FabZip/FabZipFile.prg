@@ -9,11 +9,11 @@ USING FabTools
 BEGIN NAMESPACE FabZip
 
 	CLASS FabZipFile
-		
+
 		// FileSpec for the Zip File
 		PROTECT	cZipFile			AS	STRING
 		// Array of Files in the Zip File
-		PROTECT	aContents			AS	List<FabZipDirEntry> 
+		PROTECT	aContents			AS	List<FabZipDirEntry>
 		// Array of Files to Add/Delete/Replace
 		PROTECT	aFilesArgs			AS	List<STRING>
 		// Compression Level is now a Enum
@@ -30,13 +30,13 @@ BEGIN NAMESPACE FabZip
 		PROTECT dwMinFreeVolume     AS  DWORD
 		PROTECT dwKeepFreeOnDisk1   AS  DWORD
 		PROTECT cLastWrittenFile    AS  STRING
-		
+
 		//
 		PROTECT cExtractDir AS STRING
 		PROTECT oOwner AS OBJECT
 		PROTECT lProcessing AS LOGIC
 		// Events Handler
-		// 
+		//
 		EXPORT ExtractHandler AS EventHandler<ExtractProgressEventArgs>
 		EXPORT SaveHandler AS EventHandler<SaveProgressEventArgs>
 		//
@@ -51,63 +51,63 @@ BEGIN NAMESPACE FabZip
 		PROTECT nFilesDone      AS DWORD
 		PROTECT nDiskNr         AS LONG
 		PROTECT HowToEncrypt         AS  Ionic.Zip.EncryptionAlgorithm
-		
+
 		/// <summary>
 			/// the dir where the next Extract operation will be done.
 		/// </summary>
 		ACCESS ExtractDir AS STRING
 			RETURN SELF:cExtractDir
-			
+
 		ASSIGN ExtractDir( cNew AS STRING )
 			SELF:cExtractDir := cNew
-			
+
 			/// <summary>
 				/// The List indicating all filenames to work with, on next operation.
 			/// </summary>
 		ACCESS FilesArg AS List<STRING>
 			RETURN SELF:aFilesArgs
-			
+
 			/// <summary>
 				/// The List indicating all filenames inside the Zip File
 			/// </summary>
-		ACCESS Contents AS FabArray //List<FabZipDirEntry> 
+		ACCESS Contents AS FabArray //List<FabZipDirEntry>
 			LOCAL aTemp AS FabArray
 			//
 			aTemp := FabArray{ SELF:aContents }
 			RETURN aTemp
-			
+
 		ACCESS FileName AS STRING
 			RETURN SELF:cZipFile
-			
+
 		ASSIGN FileName( cNew AS STRING )
 			SELF:cZipFile := cNew
 			SELF:aContents:Clear()
 			SELF:aFilesArgs:Clear() // ?????
 			SELF:UpdateContents()
-			
+
 		CONSTRUCTOR( )
 			SELF:InitComponents()
-			
-			
+
+
 		CONSTRUCTOR( cFileName AS STRING )
 			SELF:InitComponents()
 			//
 			IF ( cFileName != NULL_STRING )
 				SELF:FileName := cFilename
-			ENDIF    
-			
-			
+			ENDIF
+
+
 		CONSTRUCTOR( cFileName AS STRING, xOwner AS OBJECT )
 			SELF:InitComponents()
 			//
 			IF ( cFileName != NULL_STRING )
 				SELF:FileName := cFilename
-			ENDIF 
+			ENDIF
 			//
 			SELF:oOwner := xOwner
-			//        
+			//
 			RETURN
-			
+
 		PROTECT METHOD InitComponents() AS VOID
 			//
 			SELF:HowToEncrypt := Ionic.Zip.EncryptionAlgorithm.PkzipWeak
@@ -118,13 +118,13 @@ BEGIN NAMESPACE FabZip
 			//
 			SELF:aContents := List<FabZipDirEntry>{} //ArrayList{}
 			SELF:aFilesArgs := List<STRING>{} //ArrayList{}
-			//   
+			//
 			SELF:dwMaxVolumeSize := 0
 			//
-			
-			
-		
-		METHOD UpdateContents() AS VOID    
+
+
+
+		METHOD UpdateContents() AS VOID
 			LOCAL oZipFile := NULL AS ZipFile
 			LOCAL oFabEntry AS FabZipDirEntry
 			// Clear the current Content ArrayList
@@ -142,7 +142,7 @@ BEGIN NAMESPACE FabZip
 				NEXT
 				//
 			CATCH //Err AS Exception
-				
+				NOP
 			FINALLY
 				IF oZipFile != NULL
 					oZipFile:Dispose()
@@ -153,7 +153,7 @@ BEGIN NAMESPACE FabZip
 			//
 			SELF:lProcessing := FALSE
 			RETURN
-			
+
 		PROTECT METHOD ReportExtractSize() AS VOID
 			LOCAL zipParams AS OBJECT[]
 			LOCAL oZipFile := NULL AS ZipFile
@@ -170,7 +170,7 @@ BEGIN NAMESPACE FabZip
 				oZipFile := ZipFile.Read( SELF:cZipFile )
 				//
 				FOREACH oEntry AS ZipEntry IN oZipFile
-					IF ( SELF:aFilesArgs:Contains( StrTran( oEntry:FileName, "/", "\" ) ) ) 
+					IF ( SELF:aFilesArgs:Contains( StrTran( oEntry:FileName, "/", "\" ) ) )
 						// TotalSize in Zip
 						nTotalSize := nTotalSize + oEntry:UnCompressedSize
 						// Number of Files in Zip
@@ -179,21 +179,21 @@ BEGIN NAMESPACE FabZip
 				NEXT
 				//
 			CATCH //Err AS Exception
-				
+				NOP
 			FINALLY
 				IF oZipFile != NULL
 					oZipFile:Dispose()
 				ENDIF
-			END TRY  
-			//   
+			END TRY
+			//
 			IF ( SELF:oOwner != NULL )
 				//
 				zipParams := <OBJECT>{ nTotalFiles, nTotalSize }
 				//
 				ReflectionLib.InvokeMethod( SELF:oOwner, "OnFabOperationSize", zipParams )
-			ENDIF 
+			ENDIF
 			RETURN
-		
+
 		PROTECT METHOD ReportAddSize() AS VOID
 			LOCAL Params AS OBJECT[]
 			LOCAL nTotalSize AS INT64
@@ -214,17 +214,17 @@ BEGIN NAMESPACE FabZip
 					Info := System.IO.FileInfo{ cTmp }
 					nTotalSize := nTotalSize + Info:Length
 				ENDIF
-			NEXT 
-			//   
+			NEXT
+			//
 			IF ( SELF:oOwner != NULL )
 				//
 				PARAMS := <OBJECT>{ nTotalFiles, nTotalSize }
 				//
 				ReflectionLib.InvokeMethod( SELF:oOwner, "OnFabOperationSize", PARAMS )
-			ENDIF 
+			ENDIF
 			RETURN
-			
-			
+
+
 			/// <summary>
 				/// Extract Zip File
 		/// </summary>
@@ -235,25 +235,25 @@ BEGIN NAMESPACE FabZip
 			// Now, do the extract operation
 			lRet := SELF:DoExtract()
 			//
-			RETURN lRet        
-			
-		PROTECT METHOD DoExtract() AS LOGIC    
+			RETURN lRet
+
+		PROTECT METHOD DoExtract() AS LOGIC
 			LOCAL oZipFile AS ZipFile
 			LOCAL ZP AS ZipEntry
 			LOCAL FA AS ExtractExistingFileAction
 			//local e as ExtractProgressEventArgs
 			//Local ZP as ZipEntry
 			//
-			oZipFile := ZipFile.Read( SELF:cZipFile ) 
+			oZipFile := ZipFile.Read( SELF:cZipFile )
 			IF ( SELF:ExtractHandler != NULL )
 				oZipFile:ExtractProgress += SELF:ExtractHandler
 				//
-			ENDIF    
+			ENDIF
 			//
 			oZipFile:Password := SELF:cPassword
 			SELF:cZipComment := oZipFile:Comment
-			// 
-			SELF:lProcessing := TRUE  
+			//
+			SELF:lProcessing := TRUE
 			FOREACH cTmp AS STRING IN SELF:aFilesArgs
 				//
 				ZP := oZipFile[ cTmp ]
@@ -271,7 +271,7 @@ BEGIN NAMESPACE FabZip
 			//
 			SELF:lProcessing := FALSE
 			RETURN TRUE
-		
+
 		METHOD Add( ) AS LOGIC
 			LOCAL lRet AS LOGIC
 			//
@@ -280,7 +280,7 @@ BEGIN NAMESPACE FabZip
 			lRet := SELF:DoAdd()
 			//
 			RETURN lRet
-			
+
 			// Where the REAL Zip operations are done.
 		PROTECT METHOD DoAdd() AS LOGIC
 			LOCAL oZipFile AS Ionic.Zip.ZipFile
@@ -289,7 +289,7 @@ BEGIN NAMESPACE FabZip
 			LOCAL NewName AS STRING
 			LOCAL cTmpPath, cTmpMask AS STRING
 			LOCAL lRecurse  AS LOGIC
-			//Local 
+			//Local
 			// File Exist, but Size == 0 ?
 			IF System.IO.File.Exists( SELF:cZipFile )
 				Info := FileInfo{ SELF:cZipFile }
@@ -311,9 +311,9 @@ BEGIN NAMESPACE FabZip
 				ENDIF
 				NewName := ""
 				IF Empty( SELF:cTempDir )
-					FabGetTempFile( NewName, "zip" )
+					FabGetTempFile( REF NewName, "zip" )
 				ELSE
-					FabGetTempFile( NewName, "zip", SELF:cTempDir )
+					FabGetTempFile( Ref NewName, "zip", SELF:cTempDir )
 				ENDIF
 				// The temporary Zip FileName
 				TmpZipName := NewName
@@ -325,23 +325,23 @@ BEGIN NAMESPACE FabZip
 						ReflectionLib.InvokeMethod( SELF:oOwner, "OnFabZipMessage", <OBJECT>{0, "Temporary ZipFile: " + TmpZipName} )
 					ENDIF
 				ENDIF
-			ELSE	
+			ELSE
 				// Not Spanned - Create the outfile directly
 				TmpZipName := SELF:FileName
-			ENDIF            
+			ENDIF
 			// New File ?
 			IF System.IO.File.Exists( TmpZipName )
-				oZipFile := ZipFile.Read( TmpZipName )        
+				oZipFile := ZipFile.Read( TmpZipName )
 			ELSE
 				oZipFile := ZipFile{ TmpZipName }
-			ENDIF 
+			ENDIF
 			// No Multi Thread to Compress
-			oZipFile:ParallelDeflateThreshold := -1           
+			oZipFile:ParallelDeflateThreshold := -1
 			//
 			IF ( SELF:SaveHandler != NULL )
 				oZipFile:SaveProgress += SELF:SaveHandler
 			ENDIF
-			// 
+			//
 			SELF:lProcessing := TRUE
 			// No Files !?
 			IF ( SELF:aFilesArgs:Count == 0 )
@@ -364,7 +364,7 @@ BEGIN NAMESPACE FabZip
 				oZipFile:Password := NULL
 				oZipFile:Encryption := IOnic.Zip.EncryptionAlgorithm.None
 			ENDIF
-			
+
 			// Now, Add Files ...
 			FOREACH cTmp AS STRING IN SELF:aFilesArgs
 				// Try to handle Wildcards
@@ -380,7 +380,7 @@ BEGIN NAMESPACE FabZip
 					ELSE
 						// Remove Directory info, so everything is at root
 						oZipFile:AddSelectedFiles( "name = " + cTmpMask, cTmpPath, "", lRecurse )
-					ENDIF                    
+					ENDIF
 				ELSE
 					// If File already exist, we have an Update.....
 					// Keep Directory names
@@ -399,15 +399,15 @@ BEGIN NAMESPACE FabZip
 			// if we are using disk spanning, first create a temporary file
 			IF ( SELF:AddOptions:DiskSpan ) .OR. ( SELF:AddOptions:DiskSpanErase )
 				oZipFile:MaxOutputSegmentSize := (INT)SELF:MaxVolumeSize
-			ENDIF            
+			ENDIF
 			//
 			TRY
 				//
 				// This is where the real reading and adding of files is done
 				oZipFile:Save()
 				// How many segment files ?
-				SELF:nDiskNr := oZipFile:NumberOfSegmentsForMostRecentSave 
-				
+				SELF:nDiskNr := oZipFile:NumberOfSegmentsForMostRecentSave
+
 			CATCH Err AS Exception
 				// Handle here trouble with Save operation
 				THROW Err
@@ -428,17 +428,17 @@ BEGIN NAMESPACE FabZip
 			ELSE
 				// Single Part file : The final FileName is the temp one
 				SELF:FileName := TmpZipName
-			ENDIF              
+			ENDIF
 			//
 			SELF:aFilesArgs:Clear()
-			// 
+			//
 			SELF:lProcessing := FALSE
 			//
 			SELF:UpdateContents()
-			//     
-			SELF:cLastWrittenFile := SELF:FileName   
+			//
+			SELF:cLastWrittenFile := SELF:FileName
 			RETURN TRUE
-		
+
 		METHOD Delete() AS LOGIC
 			LOCAL Cpt AS INT
 			LOCAL Max AS INT
@@ -448,10 +448,10 @@ BEGIN NAMESPACE FabZip
 			//Local ZP as ZipEntry
 			//
 			SELF:lProcessing := TRUE
-			oZipFile := ZipFile.Read( SELF:cZipFile ) 
+			oZipFile := ZipFile.Read( SELF:cZipFile )
 			// No Multi Thread to Compress
 			oZipFile:ParallelDeflateThreshold := -1
-			//   
+			//
 			Max := SELF:aFilesArgs:Count
 			FOR Cpt := 1 TO Max
 				cTmp := (STRING)SELF:aFilesArgs[ Cpt -1]
@@ -466,82 +466,82 @@ BEGIN NAMESPACE FabZip
 			SELF:aFilesArgs:Clear()
 			SELF:lProcessing := FALSE
 			SELF:UpdateContents()
-			//        
-			RETURN TRUE            
-			
+			//
+			RETURN TRUE
+
 		ACCESS CompressionLevel AS WORD
 			RETURN Convert.ToUInt16( SELF:nCompLevel )
-			
+
 		ASSIGN CompressionLevel( nSet AS WORD )
 			LOCAL enumType AS System.Type
 			enumType := typeof( Ionic.Zlib.CompressionLevel )
 			///
 			SELF:nCompLevel := (Ionic.Zlib.CompressionLevel)Enum.ToObject(enumType, nSet )
-			
+
 		ACCESS Password AS STRING
 			RETURN SELF:cPassword
 		ASSIGN Password( cSet AS STRING )
 			SELF:cPassword := cSet
-			
+
 		ACCESS ZipComment AS STRING
 			RETURN SELF:cZipComment
-			
+
 		ACCESS Processing AS LOGIC
 			RETURN SELF:lProcessing
-			
-			
+
+
 		ACCESS MaxVolumeSize AS DWORD
 			// Max SIze of each part of MultiPart Archive
 			RETURN SELF:dwMaxVolumeSize
-			
+
 		ASSIGN MaxVolumeSize( nSet AS DWORD )
 			SELF:dwMaxVolumeSize := nSet
-			
+
 		ACCESS MinFreeVolumeSize AS DWORD
 			// Doesn't exist anymore
 			RETURN SELF:dwMinFreeVolume
-			
+
 		ASSIGN MinFreeVolumeSize( nSet AS DWORD )
 			// Doesn't exist anymore
 			SELF:dwMinFreeVolume := nSet
-			
+
 		ACCESS KeepFreeOnDisk1 AS DWORD
 			// Doesn't exist anymore
 			RETURN SELF:dwKeepFreeOnDisk1
-			
+
 		ASSIGN KeepFreeOnDisk1( nSet AS DWORD )
 			// Doesn't exist anymore
 			SELF:dwKeepFreeOnDisk1 := nSet
-			
+
 		ACCESS LastWrittenFile AS STRING
 			RETURN SELF:cLastWrittenFile
-			
+
 		ACCESS UnAttended AS LOGIC
 			RETURN FALSE
-			
+
 		ASSIGN UnAttended( lSet AS LOGIC )
 			RETURN
-			
-			
+
+
 		METHOD Convert2SFX() AS LOGIC
 			RETURN FALSE
-			
+
 		METHOD Convert2Zip() AS LOGIC
 			RETURN FALSE
-			
+
 		ACCESS TempDir AS STRING
 			RETURN SELF:cTempDir
-			
+
 		ASSIGN TempDir( cNew AS STRING )
 			SELF:cTempDir := cNew
-			
+
 		ACCESS Verbose	AS LOGIC
 			//r A logical value indicating the state of the Verbose Flag. This one MUST only be used for debugging purpose.
 			RETURN	SELF:lVerbose
-			
+
 		ASSIGN Verbose( lNew AS LOGIC )
 			SELF:lVerbose := lNew
-			
+
 		ACCESS ZipDLLVersion AS DWORD
 			LOCAL Ver AS System.Version
 			LOCAL nRet AS LONG
@@ -549,10 +549,10 @@ BEGIN NAMESPACE FabZip
 			Ver := ZipFile.LibraryVersion
 			nRet := Ver:Major * 100 + Ver:Minor
 			RETURN (DWORD)nRet
-			
+
 		ACCESS UnzipDLLVersion AS DWORD
 			RETURN SELF:ZipDLLVersion
-			
+
 		PROTECT METHOD HandleMultiPart( InFileName AS STRING, OutFileName AS STRING ) AS INT
 			//TODO Copy to Floppy...Or Not : Need to add an Option for that
 			//read a Zip source file and write it back to one or more disks
@@ -592,13 +592,13 @@ BEGIN NAMESPACE FabZip
 				File.Delete( TempInFile )
 			NEXT
 			RETURN 0
-			
-		
+
+
 		ACCESS Encryption AS Ionic.Zip.EncryptionAlgorithm
 			RETURN SELF:HowToEncrypt
 		ASSIGN Encryption ( How AS Ionic.Zip.EncryptionAlgorithm )
 			SELF:HowToEncrypt := How
-			
+
 	END CLASS
-	
+
 END NAMESPACE // FabZip

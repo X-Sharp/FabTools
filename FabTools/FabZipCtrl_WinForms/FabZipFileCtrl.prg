@@ -1,8 +1,8 @@
 ﻿// FabZipFileCtrl.prg
-#using System.Windows.Forms
-#using Ionic.Zip;
+USING System.Windows.Forms
+USING Ionic.Zip
 
-BEGIN NAMESPACE FabZip.WinForms
+BEGIN NAMESPACE FabZip
 
 	ENUM FabZipEvent
 		MEMBER NewEntry
@@ -11,36 +11,36 @@ BEGIN NAMESPACE FabZip.WinForms
 		MEMBER TotalFiles
 		MEMBER TotalSize
 	END ENUM
-	
-	CLASS FabZipFileCtrl Inherit UserControl
-		
-		Protect oZipFile as FabZipFile
-		
+
+	CLASS FabZipFileCtrl INHERIT UserControl
+
+		PROTECT oZipFile AS FabZipFile
+
 		PROTECT lStartNew AS LOGIC
 		PROTECT nDone	  AS INT64
-		
+
 		CONSTRUCTOR()
-			Super()
+			SUPER()
 			//
-			Self:oZipFile := FabZipFile{ NULL_String , SELF }
-			Self:oZipFile:ExtractHandler := EventHandler<ExtractProgressEventArgs>{SELF, @ExtractHandler() }
+			SELF:oZipFile := FabZipFile{ NULL_STRING , SELF }
+			SELF:oZipFile:ExtractHandler := EventHandler<ExtractProgressEventArgs>{SELF, @ExtractHandler() }
 			SELF:oZipFile:SaveHandler := EventHandler<SaveProgressEventArgs>{ SELF, @SaveHandler() }
 			SELF:lStartNew := FALSE
 			RETURN
-			
-		ACCESS ZipFile as FabZipFile
-			return SELF:oZipFile
-			
+
+		ACCESS ZipFile AS FabZipFile
+			RETURN SELF:oZipFile
+
 		PRIVATE METHOD ExtractHandler( sender AS System.Object, e AS ExtractProgressEventArgs ) AS System.Void
-			local zipParams as Object[]
-			local symEvent as FabZipEvent
-			local cFile as string
-			local nSize as int64
+			LOCAL zipParams AS OBJECT[]
+			LOCAL symEvent AS FabZipEvent
+			LOCAL cFile AS STRING
+			LOCAL nSize AS INT64
 			//
 			cFile := ""
 			nSize := 0
 			//
-			if ( SELF:Parent != NULL )
+			IF ( SELF:Parent != NULL )
 				//
 				DO CASE
 					CASE ( e:EventType == ZipProgressEventType.Extracting_BeforeExtractEntry )
@@ -59,13 +59,13 @@ BEGIN NAMESPACE FabZip.WinForms
 						RETURN
 				ENDCASE
 				//
-				zipParams := <Object>{ self, symEvent, cFile, nSize }
+				zipParams := <OBJECT>{ SELF, symEvent, cFile, nSize }
 				//
 				//Send( Self:Owner, "OnFabZipProgress", Self, symEvent, cFile, nSize )
 				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
-			endif
+			ENDIF
 			RETURN
-		
+
 		PRIVATE METHOD SaveHandler( sender AS System.Object, e AS SaveProgressEventArgs ) AS System.Void
 			LOCAL zipParams AS OBJECT[]
 			LOCAL symEvent AS SYMBOL
@@ -105,7 +105,7 @@ BEGIN NAMESPACE FabZip.WinForms
 						cFile := ""
 						nSize := e:BytesTransferred - SELF:nDone
 						SELF:nDone := e:BytesTransferred
-					OTHERWISE 
+					OTHERWISE
 						RETURN
 				END SWITCH
 				//
@@ -114,29 +114,29 @@ BEGIN NAMESPACE FabZip.WinForms
 				//Send( Self:Owner, "OnFabZipProgress", Self, symEvent, cFile, nSize )
 				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
 			ENDIF
-			RETURN    		
-		
-		METHOD	OnFabZipDirUpdate(  )  as void
-			local zipParams as Object[]
+			RETURN
+
+		METHOD	OnFabZipDirUpdate(  )  AS VOID
+			LOCAL zipParams AS OBJECT[]
 			//
-			zipParams := <Object>{ SELF }
-			ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipDirUpdate", zipParams ) 
+			zipParams := <OBJECT>{ SELF }
+			ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipDirUpdate", zipParams )
 			//
-			return
-			
-		METHOD OnFabOperationSize( nTotalFiles as Int64, nTotalSize as Int64 ) as VOID
-			local zipParams as Object[]
+			RETURN
+
+		METHOD OnFabOperationSize( nTotalFiles AS INT64, nTotalSize AS INT64 ) AS VOID
+			LOCAL zipParams AS OBJECT[]
 			//
-			if ( SELF:Parent != NULL )
+			IF ( SELF:Parent != NULL )
 				//
-				zipParams := <Object>{ Self, FabZipEvent.TotalFiles, "", nTotalFiles }
+				zipParams := <OBJECT>{ SELF, FabZipEvent.TotalFiles, "", nTotalFiles }
 				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
 				//
-				zipParams := <Object>{ Self, FabZipEvent.TotalSize, "", nTotalSize }
+				zipParams := <OBJECT>{ SELF, FabZipEvent.TotalSize, "", nTotalSize }
 				ReflectionLib.InvokeMethod( SELF:Parent, "OnFabZipProgress", zipParams )
-			ENDIF    
-			RETURN        
-			
+			ENDIF
+			RETURN
+
 	END CLASS
-	
+
 END NAMESPACE // FabZip

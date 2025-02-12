@@ -1,9 +1,8 @@
 USING System.Windows.Forms
-using FabZip
-USING FabZip.WinForms
+USING FabZip
 
 CLASS MainWindow INHERIT System.Windows.Forms.Form
-    
+
     PRIVATE ribbonSeparator1 AS System.Windows.Forms.RibbonSeparator
     PRIVATE ribbonOrbOptionButton1 AS System.Windows.Forms.RibbonOrbOptionButton
     PRIVATE ribbonSeparator2 AS System.Windows.Forms.RibbonSeparator
@@ -33,19 +32,19 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
     PRIVATE colAttributes AS System.Windows.Forms.ColumnHeader
     PRIVATE colPath AS System.Windows.Forms.ColumnHeader
     PRIVATE ZipList AS System.Windows.Forms.ListView
-    PRIVATE ZipCtrl AS FabZip.WinForms.FabZipFileCtrl
+    PRIVATE ZipCtrl AS FabZip.FabZipFileCtrl
     PRIVATE components := NULL AS System.ComponentModel.IContainer
     PRIVATE statusStrip1 AS System.Windows.Forms.StatusStrip
     PRIVATE toolStripStatusLabel1 AS System.Windows.Forms.ToolStripStatusLabel
     PRIVATE toolStripProgressBar1 AS System.Windows.Forms.ToolStripProgressBar
     PRIVATE ribbonPanel_MultiPart AS System.Windows.Forms.RibbonPanel
-    // 
+    //
     PROTECTED ZipFileName AS System.String
     CONSTRUCTOR()
       SUPER()
       SELF:InitializeComponent()
       RETURN
-    
+
    /// <summary>
    /// Clean up any resources being used.
    /// </summary>
@@ -56,7 +55,7 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
       ENDIF
       SUPER:Dispose( disposing )
       RETURN
-    
+
    /// <summary>
    /// Required method for Designer support - do not modify
    /// the contents of this method with the code editor.
@@ -82,7 +81,7 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonPanel_MultiPart := System.Windows.Forms.RibbonPanel{}
         SELF:ribbonSeparator1 := System.Windows.Forms.RibbonSeparator{}
         SELF:ribbonOrbOptionButton1 := System.Windows.Forms.RibbonOrbOptionButton{}
-        SELF:ZipCtrl := FabZip.WinForms.FabZipFileCtrl{}
+        SELF:ZipCtrl := FabZip.FabZipFileCtrl{}
         SELF:panel1 := System.Windows.Forms.Panel{}
         SELF:ZipList := System.Windows.Forms.ListView{}
         SELF:colCrypted := System.Windows.Forms.ColumnHeader{}
@@ -100,16 +99,16 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:panel1:SuspendLayout()
         SELF:statusStrip1:SuspendLayout()
         SELF:SuspendLayout()
-        // 
+        //
         // ribbonFabZip
-        // 
+        //
         SELF:ribbonFabZip:Font := System.Drawing.Font{"Segoe UI", ((Single) 9)}
         SELF:ribbonFabZip:Location := System.Drawing.Point{0, 0}
         SELF:ribbonFabZip:Minimized := FALSE
         SELF:ribbonFabZip:Name := "ribbonFabZip"
-        // 
-        // 
-        // 
+        //
+        //
+        //
         SELF:ribbonFabZip:OrbDropDown:BorderRoundness := 8
         SELF:ribbonFabZip:OrbDropDown:Location := System.Drawing.Point{0, 0}
         SELF:ribbonFabZip:OrbDropDown:MenuItems:Add(SELF:ribbonOrbMenuItemNew)
@@ -122,9 +121,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonFabZip:OrbDropDown:Size := System.Drawing.Size{227, 251}
         SELF:ribbonFabZip:OrbDropDown:TabIndex := 0
         SELF:ribbonFabZip:OrbImage := ((System.Drawing.Image)(resources:GetObject("ribbonFabZip.OrbImage")))
-        // 
-        // 
-        // 
+        //
+        //
+        //
         SELF:ribbonFabZip:QuickAcessToolbar:AltKey := NULL
         SELF:ribbonFabZip:QuickAcessToolbar:Image := NULL
         SELF:ribbonFabZip:QuickAcessToolbar:Items:Add(SELF:ribbonButtonHelp)
@@ -138,9 +137,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonFabZip:Tabs:Add(SELF:ribbonTab_FabZip)
         SELF:ribbonFabZip:TabSpacing := 6
         SELF:ribbonFabZip:Text := "ribbon1"
-        // 
+        //
         // ribbonOrbMenuItemNew
-        // 
+        //
         SELF:ribbonOrbMenuItemNew:AltKey := NULL
         SELF:ribbonOrbMenuItemNew:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Left
         SELF:ribbonOrbMenuItemNew:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -153,9 +152,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonOrbMenuItemNew:ToolTipImage := NULL
         SELF:ribbonOrbMenuItemNew:ToolTipTitle := NULL
         SELF:ribbonOrbMenuItemNew:Click += System.EventHandler{ SELF, @ribbonOrbMenuItemNew_Click() }
-        // 
+        //
         // ribbonOrbMenuItemOpen
-        // 
+        //
         SELF:ribbonOrbMenuItemOpen:AltKey := NULL
         SELF:ribbonOrbMenuItemOpen:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Left
         SELF:ribbonOrbMenuItemOpen:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -168,9 +167,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonOrbMenuItemOpen:ToolTipImage := NULL
         SELF:ribbonOrbMenuItemOpen:ToolTipTitle := NULL
         SELF:ribbonOrbMenuItemOpen:Click += System.EventHandler{ SELF, @ribbonOrbMenuItemOpen_Click() }
-        // 
+        //
         // ribbonOrbMenuItemSave
-        // 
+        //
         SELF:ribbonOrbMenuItemSave:AltKey := NULL
         SELF:ribbonOrbMenuItemSave:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Left
         SELF:ribbonOrbMenuItemSave:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -182,9 +181,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonOrbMenuItemSave:ToolTip := NULL
         SELF:ribbonOrbMenuItemSave:ToolTipImage := NULL
         SELF:ribbonOrbMenuItemSave:ToolTipTitle := NULL
-        // 
+        //
         // ribbonSeparator2
-        // 
+        //
         SELF:ribbonSeparator2:AltKey := NULL
         SELF:ribbonSeparator2:Image := NULL
         SELF:ribbonSeparator2:Tag := NULL
@@ -192,9 +191,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonSeparator2:ToolTip := NULL
         SELF:ribbonSeparator2:ToolTipImage := NULL
         SELF:ribbonSeparator2:ToolTipTitle := NULL
-        // 
+        //
         // ribbonOrbMenuItemSFX
-        // 
+        //
         SELF:ribbonOrbMenuItemSFX:AltKey := NULL
         SELF:ribbonOrbMenuItemSFX:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Left
         SELF:ribbonOrbMenuItemSFX:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -206,9 +205,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonOrbMenuItemSFX:ToolTip := NULL
         SELF:ribbonOrbMenuItemSFX:ToolTipImage := NULL
         SELF:ribbonOrbMenuItemSFX:ToolTipTitle := NULL
-        // 
+        //
         // ribbonOrbButton_Close
-        // 
+        //
         SELF:ribbonOrbButton_Close:AltKey := NULL
         SELF:ribbonOrbButton_Close:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Down
         SELF:ribbonOrbButton_Close:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -221,9 +220,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonOrbButton_Close:ToolTipImage := NULL
         SELF:ribbonOrbButton_Close:ToolTipTitle := NULL
         SELF:ribbonOrbButton_Close:Click += System.EventHandler{ SELF, @ribbonOrbButton_Close_Click() }
-        // 
+        //
         // ribbonButtonHelp
-        // 
+        //
         SELF:ribbonButtonHelp:AltKey := NULL
         SELF:ribbonButtonHelp:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Down
         SELF:ribbonButtonHelp:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -236,23 +235,23 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonButtonHelp:ToolTip := NULL
         SELF:ribbonButtonHelp:ToolTipImage := NULL
         SELF:ribbonButtonHelp:ToolTipTitle := NULL
-        // 
+        //
         // ribbonTab_FabZip
-        // 
+        //
         SELF:ribbonTab_FabZip:Panels:Add(SELF:ribbonPanel_Operation)
         SELF:ribbonTab_FabZip:Panels:Add(SELF:ribbonPanel_MultiPart)
         SELF:ribbonTab_FabZip:Tag := NULL
         SELF:ribbonTab_FabZip:Text := "FabZip"
-        // 
+        //
         // ribbonPanel_Operation
-        // 
+        //
         SELF:ribbonPanel_Operation:Items:Add(SELF:ribbonButtonAdd)
         SELF:ribbonPanel_Operation:Items:Add(SELF:ribbonButtonExtract)
         SELF:ribbonPanel_Operation:Tag := NULL
         SELF:ribbonPanel_Operation:Text := "Zip Operation"
-        // 
+        //
         // ribbonButtonAdd
-        // 
+        //
         SELF:ribbonButtonAdd:AltKey := NULL
         SELF:ribbonButtonAdd:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Down
         SELF:ribbonButtonAdd:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -266,9 +265,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonButtonAdd:ToolTip := NULL
         SELF:ribbonButtonAdd:ToolTipImage := NULL
         SELF:ribbonButtonAdd:ToolTipTitle := NULL
-        // 
+        //
         // ribbonButtonAdd_File
-        // 
+        //
         SELF:ribbonButtonAdd_File:AltKey := NULL
         SELF:ribbonButtonAdd_File:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Left
         SELF:ribbonButtonAdd_File:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -280,9 +279,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonButtonAdd_File:ToolTip := NULL
         SELF:ribbonButtonAdd_File:ToolTipImage := NULL
         SELF:ribbonButtonAdd_File:ToolTipTitle := NULL
-        // 
+        //
         // ribbonButtonAdd_Folder
-        // 
+        //
         SELF:ribbonButtonAdd_Folder:AltKey := NULL
         SELF:ribbonButtonAdd_Folder:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Left
         SELF:ribbonButtonAdd_Folder:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -294,9 +293,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonButtonAdd_Folder:ToolTip := NULL
         SELF:ribbonButtonAdd_Folder:ToolTipImage := NULL
         SELF:ribbonButtonAdd_Folder:ToolTipTitle := NULL
-        // 
+        //
         // ribbonButtonExtract
-        // 
+        //
         SELF:ribbonButtonExtract:AltKey := NULL
         SELF:ribbonButtonExtract:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Down
         SELF:ribbonButtonExtract:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -310,9 +309,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonButtonExtract:ToolTip := NULL
         SELF:ribbonButtonExtract:ToolTipImage := NULL
         SELF:ribbonButtonExtract:ToolTipTitle := NULL
-        // 
+        //
         // ribbonButtonExtract_Selected
-        // 
+        //
         SELF:ribbonButtonExtract_Selected:AltKey := NULL
         SELF:ribbonButtonExtract_Selected:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Left
         SELF:ribbonButtonExtract_Selected:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -325,9 +324,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonButtonExtract_Selected:ToolTipImage := NULL
         SELF:ribbonButtonExtract_Selected:ToolTipTitle := NULL
         SELF:ribbonButtonExtract_Selected:Click += System.EventHandler{ SELF, @ribbonButtonExtract_Selected_Click() }
-        // 
+        //
         // ribbonButtonExtract_All
-        // 
+        //
         SELF:ribbonButtonExtract_All:AltKey := NULL
         SELF:ribbonButtonExtract_All:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Left
         SELF:ribbonButtonExtract_All:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -339,14 +338,14 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonButtonExtract_All:ToolTip := NULL
         SELF:ribbonButtonExtract_All:ToolTipImage := NULL
         SELF:ribbonButtonExtract_All:ToolTipTitle := NULL
-        // 
+        //
         // ribbonPanel_MultiPart
-        // 
+        //
         SELF:ribbonPanel_MultiPart:Tag := NULL
         SELF:ribbonPanel_MultiPart:Text := "MultiPart"
-        // 
+        //
         // ribbonSeparator1
-        // 
+        //
         SELF:ribbonSeparator1:AltKey := NULL
         SELF:ribbonSeparator1:Image := NULL
         SELF:ribbonSeparator1:Tag := NULL
@@ -354,9 +353,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonSeparator1:ToolTip := NULL
         SELF:ribbonSeparator1:ToolTipImage := NULL
         SELF:ribbonSeparator1:ToolTipTitle := NULL
-        // 
+        //
         // ribbonOrbOptionButton1
-        // 
+        //
         SELF:ribbonOrbOptionButton1:AltKey := NULL
         SELF:ribbonOrbOptionButton1:DropDownArrowDirection := System.Windows.Forms.RibbonArrowDirection.Down
         SELF:ribbonOrbOptionButton1:DropDownArrowSize := System.Drawing.Size{5, 3}
@@ -368,25 +367,25 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ribbonOrbOptionButton1:ToolTip := NULL
         SELF:ribbonOrbOptionButton1:ToolTipImage := NULL
         SELF:ribbonOrbOptionButton1:ToolTipTitle := NULL
-        // 
+        //
         // ZipCtrl
-        // 
+        //
         SELF:ZipCtrl:Location := System.Drawing.Point{342, 296}
         SELF:ZipCtrl:Name := "ZipCtrl"
         SELF:ZipCtrl:Size := System.Drawing.Size{81, 67}
         SELF:ZipCtrl:TabIndex := 1
-        // 
+        //
         // panel1
-        // 
+        //
         SELF:panel1:Controls:Add(SELF:ZipList)
         SELF:panel1:Dock := System.Windows.Forms.DockStyle.Fill
         SELF:panel1:Location := System.Drawing.Point{0, 138}
         SELF:panel1:Name := "panel1"
         SELF:panel1:Size := System.Drawing.Size{704, 310}
         SELF:panel1:TabIndex := 2
-        // 
+        //
         // ZipList
-        // 
+        //
         SELF:ZipList:Columns:AddRange(<System.Windows.Forms.ColumnHeader>{ SELF:colCrypted, SELF:colName, SELF:colDate, SELF:colTime, SELF:colSize, SELF:colRatio, SELF:colPacked, SELF:colAttributes, SELF:colPath })
         SELF:ZipList:Dock := System.Windows.Forms.DockStyle.Fill
         SELF:ZipList:FullRowSelect := TRUE
@@ -396,78 +395,78 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:ZipList:TabIndex := 0
         SELF:ZipList:UseCompatibleStateImageBehavior := FALSE
         SELF:ZipList:View := System.Windows.Forms.View.Details
-        // 
+        //
         // colCrypted
-        // 
+        //
         SELF:colCrypted:Text := "Crypted"
         SELF:colCrypted:Width := 10
-        // 
+        //
         // colName
-        // 
+        //
         SELF:colName:Text := "File Name"
         SELF:colName:Width := 150
-        // 
+        //
         // colDate
-        // 
+        //
         SELF:colDate:Text := "Date"
         SELF:colDate:Width := 70
-        // 
+        //
         // colTime
-        // 
+        //
         SELF:colTime:Text := "Time"
         SELF:colTime:Width := 68
-        // 
+        //
         // colSize
-        // 
+        //
         SELF:colSize:Text := "Size"
         SELF:colSize:TextAlign := System.Windows.Forms.HorizontalAlignment.Right
-        // 
+        //
         // colRatio
-        // 
+        //
         SELF:colRatio:Text := "Ratio"
         SELF:colRatio:TextAlign := System.Windows.Forms.HorizontalAlignment.Right
         SELF:colRatio:Width := 40
-        // 
+        //
         // colPacked
-        // 
+        //
         SELF:colPacked:Text := "Packed"
         SELF:colPacked:TextAlign := System.Windows.Forms.HorizontalAlignment.Right
-        // 
+        //
         // colAttributes
-        // 
+        //
         SELF:colAttributes:Text := "Attributes"
         SELF:colAttributes:Width := 30
-        // 
+        //
         // colPath
-        // 
+        //
         SELF:colPath:Text := "Path"
         SELF:colPath:Width := 200
-        // 
+        //
         // statusStrip1
-        // 
+        //
         SELF:statusStrip1:Items:AddRange(<System.Windows.Forms.ToolStripItem>{ SELF:toolStripStatusLabel1, SELF:toolStripProgressBar1 })
         SELF:statusStrip1:Location := System.Drawing.Point{0, 426}
         SELF:statusStrip1:Name := "statusStrip1"
         SELF:statusStrip1:Size := System.Drawing.Size{704, 22}
         SELF:statusStrip1:TabIndex := 4
         SELF:statusStrip1:Text := "statusStrip1"
-        // 
+        //
         // toolStripStatusLabel1
-        // 
+        //
         SELF:toolStripStatusLabel1:AutoSize := FALSE
         SELF:toolStripStatusLabel1:Name := "toolStripStatusLabel1"
         SELF:toolStripStatusLabel1:Size := System.Drawing.Size{200, 17}
         SELF:toolStripStatusLabel1:TextAlign := System.Drawing.ContentAlignment.MiddleLeft
-        // 
+        //
         // toolStripProgressBar1
-        // 
+        //
         SELF:toolStripProgressBar1:AutoSize := FALSE
         SELF:toolStripProgressBar1:MarqueeAnimationSpeed := 10
         SELF:toolStripProgressBar1:Name := "toolStripProgressBar1"
         SELF:toolStripProgressBar1:Size := System.Drawing.Size{200, 16}
-        // 
+        //
         // MainWindow
-        // 
+        //
         SELF:AutoScaleDimensions := System.Drawing.SizeF{((Single) 6), ((Single) 13)}
         SELF:AutoScaleMode := System.Windows.Forms.AutoScaleMode.Font
         SELF:ClientSize := System.Drawing.Size{704, 448}
@@ -482,7 +481,7 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         SELF:statusStrip1:PerformLayout()
         SELF:ResumeLayout(FALSE)
         SELF:PerformLayout()
-    
+
     PRIVATE METHOD ribbonOrbButton_Close_Click( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         SELF:Close()
         RETURN
@@ -490,7 +489,7 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
 	    LOCAL oOD	AS	OpenFileDialog
 	    //
 	    oOD := OpenFileDialog{ }
-	    oOD:Filter := "Archives|*.Zip|Archives and Exe Files|*.Zip;*.Exe|All Files|*.*" 
+	    oOD:Filter := "Archives|*.Zip|Archives and Exe Files|*.Zip;*.Exe|All Files|*.*"
 	    oOD:FilterIndex := 1
 	    oOD:Title := "Choose a Zip File"
 	    IF ( oOD:ShowDialog() != DialogResult.OK )
@@ -511,9 +510,9 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
 		    SELF:toolStripProgressBar1:Style := System.Windows.Forms.ProgressBarStyle.Blocks
 		    // This is automatically done when setting the name
 		    //	SELF:oDCZip_Control:FileZip:UpdateContents()
-	    ENDIF	    
+	    ENDIF
         RETURN
-        
+
     PRIVATE METHOD ribbonOrbMenuItemNew_Click( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         RETURN
 
@@ -524,7 +523,7 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
     //	LOCAL oFS			AS	FileSpec
 	    // We come here due to FabZipFile creation, we are in the Init() of the Window
 	    IF ( SELF:ZipList == NULL_OBJECT )
-		    return 
+		    RETURN
 	    ENDIF
 	    //
 	    oCtrl := (FabZipFileCtrl)Ctrl
@@ -557,16 +556,16 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
 		    ENDIF
 		    // Files Attributes
 		    oItem:SubItems:Add( oZDir:Attributes )
-		    // File¨Path
+		    // Fileï¿½Path
     		oItem:SubItems:Add( FabExtractFilePath( cTmp ) )
     		// Set the real name of the file in the Tag
     		oItem:Tag := oZDir:FileName
 		    // Add the line
 		    Self:ZipList:Items:Add( oItem )
 	    NEXT
-    return	
+    RETURN
 
-    VIRTUAL METHOD OnFabZipProgress( oCtrl as object, symEvent as FabZipEvent, cFile as string, nSize as int64 ) AS VOID
+    VIRTUAL METHOD OnFabZipProgress( oCtrl AS OBJECT, symEvent AS FabZipEvent, cFile AS STRING, nSize AS INT64 ) AS VOID
 	    IF ( symEvent == FabZipEvent.NewEntry )
 		    // Convert Unix-style to Dos separator
 		    cFile := StrTran( cFile, "/", "\" )
@@ -611,8 +610,8 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
 		    //SELF:nCurrMaxSize := 0
 	    ENDIF
 	    //
-    RETURN	
-        
+    RETURN
+
     PRIVATE METHOD ribbonButtonExtract_Selected_Click( sender AS System.Object, e AS System.EventArgs ) AS System.Void
         // Extract Selected
         Local ToExtract AS ListView.SelectedListViewItemCollection
@@ -625,7 +624,7 @@ CLASS MainWindow INHERIT System.Windows.Forms.Form
         ToExtract := SELF:ZipList:SelectedItems
         //
         IF ( ToExtract:Count == 0 )
-            return 
+            RETURN
         endif
         //
         oDlg := ExtractWindow{}

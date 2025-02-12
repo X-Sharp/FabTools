@@ -43,6 +43,8 @@
     <NamedArgs>False</NamedArgs>
     <Memvar>False</Memvar>
     <Undeclared>False</Undeclared>
+    <Vo15>true</Vo15>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>

@@ -5,7 +5,7 @@
     <ProjectGuid>4dd08a41-2945-4ddd-9821-4bf8a301fa9b</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FabZipVo</RootNamespace>
+    <RootNamespace>FabZip</RootNamespace>
     <AssemblyName>FabZipVo</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <Name>FabZipVo</Name>
@@ -35,7 +35,8 @@
     <VulcanCompatibleResources>False</VulcanCompatibleResources>
     <NoWin32Manifest>False</NoWin32Manifest>
     <TargetFrameworkProfile />
-    <XSharpProjectversion>2.3.1.0</XSharpProjectversion>
+    <NamedArgs>false</NamedArgs>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'" Label="Configuration">
     <PlatformTarget>AnyCPU</PlatformTarget>

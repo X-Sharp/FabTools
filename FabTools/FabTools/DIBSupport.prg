@@ -32,11 +32,11 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 	LOCAL   hdrSize		AS      DWORD
 	LOCAL   hDib		AS		PTR		// VO2
 	LOCAL   BIHeader	IS      _WinBitmapInfoHeader
-	LOCAL   Bitmap		IS      _WinBitmap
+	LOCAL   wBitmap		IS      _WinBitmap
 	// Get some info about the Bitmap
-	GetObject( hbm, _SizeOf( _WinBitmap ), @Bitmap)
+	GetObject( hBm, _SIZEOF( _WinBitmap ), @wBitmap)
 	// "Standard" init of the BitmapInfoHeader
-	FabInitBitmapInfoHeader( @BIHeader, DWORD( Bitmap.bmWidth) , DWORD( Bitmap.bmHeight ), DWORD( Bitmap.bmPlanes * Bitmap.bmBitsPixel) )
+	FabInitBitmapInfoHeader( @BIHeader, DWORD( wBitmap.bmWidth) , DWORD( wBitmap.bmHeight ), DWORD( wBitmap.bmPlanes * wBitmap.bmBitsPixel) )
 	// Allocate memory for the DIB
 	hdrSize := _SizeOf( _WinBitmapInfoHeader ) + FabPaletteSize( @BIHeader ) + BIHeader.biSizeImage
 	hDib := GlobalAlloc(GHND, hdrSize )
@@ -62,7 +62,7 @@ FUNCTION FabBitmapToDIB( hBm AS PTR, hPal := NULL_PTR AS PTR ) AS PTR
 		MemCopy( ptrBIHeader, @BIHeader, WORD( hdrSize - BIHeader.biSizeImage ) )
 		// Get a pointer to Bits
 		ptrBits := FabDIBitmapBits( ptrBIHeader )
-		IF ( GetDIBits( hDC, hBm, 0, WORD( Bitmap.bmHeight ), ptrBits, ptrBIHeader, DIB_RGB_COLORS ) == 0 )
+		IF ( GetDIBits( hDC, hBm, 0, WORD( wBitmap.bmHeight ), ptrBits, ptrBIHeader, DIB_RGB_COLORS ) == 0 )
 			GlobalUnlock( hDib )
 			hDib := 0
 		ELSE

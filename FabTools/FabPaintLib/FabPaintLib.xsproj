@@ -48,6 +48,8 @@
     <IncludePaths />
     <StandardDefs />
     <InitLocals>true</InitLocals>
+    <Vo15>true</Vo15>
+    <Allowdot>false</Allowdot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EmitDebugInformation>true</EmitDebugInformation>

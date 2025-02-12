@@ -319,9 +319,9 @@ BEGIN NAMESPACE FabPaintLib
 				//
 				LOCAL nSize := GlobalSize(hDIB ) AS DWORD
 				nSize := nSize + SizeOf( _WINBITMAPFILEHEADER )
-				tempArray := BYTE[]{  nSize }
+				tempArray := BYTE[]{ (BYTE) nSize }
 				Marshal.Copy( @pBFH, tempArray, 0, SizeOf( _WINBITMAPFILEHEADER ) )
-				Marshal.Copy( (IntPtr)pBIH, tempArray, SizeOf( _WINBITMAPFILEHEADER ), GlobalSize( hDIB ) )
+				Marshal.Copy( (IntPtr)pBIH, tempArray, SIZEOF( _WINBITMAPFILEHEADER ), (INT)GlobalSize( hDib ) )
 				//
 				Memory := System.IO.MemoryStream{ tempArray }
 				Self:_CreateFromStream( Memory )
@@ -347,8 +347,8 @@ BEGIN NAMESPACE FabPaintLib
 			//d init the object. So you can copy a file to memory, with a ProgressBar, and then use this method.
 			//r A logical value indicating the success of the operation
 			// 
-			LOCAL tempArray := BYTE[]{nSize} AS BYTE[]
-			Marshal.Copy( pbImage, tempArray, 0, nSize )
+			LOCAL tempArray := BYTE[]{(BYTE)nSize} AS BYTE[]
+			Marshal.Copy( pbImage, tempArray, 0, (INT)nSize )
 			//
 			local Memory as System.IO.MemoryStream
 			Memory := System.IO.MemoryStream{ tempArray }
@@ -495,7 +495,7 @@ BEGIN NAMESPACE FabPaintLib
 					ELSE
 						nModel := SELF:EXIFModel
 					ENDIF
-					IF ( FreeImage.GetMetaData( nModel, SELF:oDibObject, cTagName, REF oTag ) )
+					IF ( FreeImage.GetMetaData( nModel, SELF:oDibObject, cTagName, OUT oTag ) )
 						cTagValue := oTag:ToString()
 					ENDIF			
 				ENDIF
@@ -533,7 +533,7 @@ BEGIN NAMESPACE FabPaintLib
 				//
 				lFind := FALSE
 				Count := 0
-				hFind := FreeImage.FindFirstMetadata( nModel, SELF:oDibObject, REF oTag )
+				hFind := FreeImage.FindFirstMetadata( nModel, SELF:oDibObject, OUT oTag )
 				//
 				IF ( ! hFind:IsNull )
 					REPEAT
@@ -543,7 +543,7 @@ BEGIN NAMESPACE FabPaintLib
 						ENDIF
 						// Tag Count
 						Count ++
-					UNTIL ( ! FreeImage.FindNextMetadata( hFind, REF oTag ) )
+					UNTIL ( ! FreeImage.FindNextMetadata( hFind, OUT oTag ) )
 					//
 					IF lFind
 						cTagDesc := oTag:Description
@@ -584,7 +584,7 @@ BEGIN NAMESPACE FabPaintLib
 					//
 					lFind := FALSE
 					Count := 0
-					hFind := FreeImage.FindFirstMetadata( nModel, SELF:oDibObject, REF oTag )
+					hFind := FreeImage.FindFirstMetadata( nModel, SELF:oDibObject, OUT oTag )
 					//
 					IF ( ! hFind:IsNull )
 						REPEAT
@@ -594,7 +594,7 @@ BEGIN NAMESPACE FabPaintLib
 							ENDIF
 							// Tag Count
 							Count ++
-						UNTIL ( ! FreeImage.FindNextMetadata( hFind, REF oTag ) )
+						UNTIL ( ! FreeImage.FindNextMetadata( hFind, OUT oTag ) )
 						//
 						IF lFind
 							cTagKey := oTag:Key
@@ -635,7 +635,7 @@ BEGIN NAMESPACE FabPaintLib
 					//
 					lFind := FALSE
 					Count := 0
-					hFind := FreeImage.FindFirstMetadata( nModel, SELF:oDibObject, REF oTag )
+					hFind := FreeImage.FindFirstMetadata( nModel, SELF:oDibObject, OUT oTag )
 					//
 					IF ( ! hFind:IsNull )
 						REPEAT
@@ -645,7 +645,7 @@ BEGIN NAMESPACE FabPaintLib
 							ENDIF
 							// Tag Count
 							Count ++
-						UNTIL ( ! FreeImage.FindNextMetadata( hFind, REF oTag ) )
+						UNTIL ( ! FreeImage.FindNextMetadata( hFind, OUT oTag ) )
 						//
 						IF lFind
 							cTagValue := oTag:ToString()
@@ -675,7 +675,7 @@ BEGIN NAMESPACE FabPaintLib
 					liTagCount  := FreeImage.GetMetadataCount( SELF:EXIFModel, SELF:oDibObject )
 				ENDIF
 			ENDIF
-			RETURN liTagCount	    
+			RETURN (LONG)liTagCount	    
 			
 		METHOD FromClipboard( dwFormat := 2 AS DWORD ) AS VOID  
 			//p Paste the DIB object from the clipboard
@@ -706,7 +706,7 @@ BEGIN NAMESPACE FabPaintLib
 			//
 			IF SELF:IsValid
 				pFIRGBQuad := FreeImageAPI.RGBQUAD{}
-				lOk := FreeImage.GetBackgroundColor( SELF:oDibObject, REF pFIRGBQuad )
+				lOk := FreeImage.GetBackgroundColor( SELF:oDibObject, OUT pFIRGBQuad )
 				IF ( lOk )
 					pRGB:rgbBlue := pFIRGBQuad:rgbBlue
 					pRGB:rgbGreen := pFIRGBQuad:rgbGreen
@@ -1223,8 +1223,8 @@ BEGIN NAMESPACE FabPaintLib
 				//                    0, 0, SELF:Width, SELF:Height,;
 				//                    Self:BitmapBits, Self:Info, DIB_RGB_COLORS, SRCCOPY )
 				SetStretchBltMode(hDC, 3)
-				StretchDIBits(hDC, 0, 0, SELF:Width, SELF:Height, ; 
-				0, 0, SELF:Width, SELF:Height,;
+				StretchDIBits(hDC, 0, 0, (INT)SELF:Width, (INT)SELF:Height, ; 
+				0, 0, (INT)SELF:Width, (INT)SELF:Height,;
 				SELF:BitmapBits, SELF:Info, DIB_RGB_COLORS, SRCCOPY )
 			ENDIF
 			// 
@@ -1243,8 +1243,8 @@ BEGIN NAMESPACE FabPaintLib
 				//                    0, 0, SELF:Width, SELF:Height,;
 				//                    Self:BitmapBits, Self:Info, DIB_RGB_COLORS, SRCCOPY )
 				SetStretchBltMode(hDC, 3)
-				StretchDIBits(hDC, XPos, YPos, XPos + SELF:Width, YPos + SELF:Height, ; 
-				0, 0, SELF:Width, SELF:Height,;
+				StretchDIBits(hDC, XPos, YPos, XPos + (INT)SELF:Width, YPos + (INT)SELF:Height, ; 
+				0, 0, (INT)SELF:Width, (INT)SELF:Height,;
 				SELF:BitmapBits, SELF:Info, 0, 0x00CC0020 )
 			ENDIF
 			// 
@@ -1264,7 +1264,7 @@ BEGIN NAMESPACE FabPaintLib
 				//                    Self:BitmapBits, Self:Info, DIB_RGB_COLORS, SRCCOPY )
 				SetStretchBltMode(hDC, 3)
 				StretchDIBits(hDC, XPos, YPos, Width, Height, ; 
-				0, 0, SELF:Width, SELF:Height,;
+				0, 0, (INT)SELF:Width, (INT)SELF:Height,;
 				SELF:BitmapBits, SELF:Info, 0, 0x00CC0020 )
 			ENDIF
 			// 
@@ -1575,13 +1575,13 @@ BEGIN NAMESPACE FabPaintLib
 				ENDIF
 				//
 				IF ( prcDest == NULL )
-					SetRect( @rcDest, 0, 0, FreeImage.GetWidth(oDisplayDib), FreeImage.GetHeight(oDisplayDib) )
+					SetRect( @rcDest, 0, 0, (INT)FreeImage.GetWidth(oDisplayDib), (INT)FreeImage.GetHeight(oDisplayDib) )
 				ELSE
 					SetRect( @rcDest, prcDest:left, prcDest:top, prcDest:right, prcDest:bottom )
 				ENDIF
 				//
 				IF ( prcSrc == NULL )
-					SetRect( @rcSrc, 0, 0, FreeImage.GetWidth(oDisplayDib), FreeImage.GetHeight(oDisplayDib) )
+					SetRect( @rcSrc, 0, 0, (INT)FreeImage.GetWidth(oDisplayDib), (INT)FreeImage.GetHeight(oDisplayDib) )
 				ELSE
 					SetRect( @rcSrc, prcSrc:left, prcSrc:top, prcSrc:right, prcSrc:bottom )
 				ENDIF
@@ -1697,6 +1697,7 @@ BEGIN NAMESPACE FabPaintLib
 			IF SELF:IsValid
 				// Nothing Todo here
 				//lSet := DIBGetUseGDI( SELF:pDibObject )
+                NOP
 			ENDIF
 			RETURN TRUE
 			
