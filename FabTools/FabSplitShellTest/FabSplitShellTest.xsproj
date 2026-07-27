@@ -42,7 +42,6 @@
     <VO16>true</VO16>
     <NoStandardDefs>false</NoStandardDefs>
     <IncludePaths />
-    <XSharpProjectversion>2.2.0.0</XSharpProjectversion>
     <NamedArgs>false</NamedArgs>
     <Allowdot>false</Allowdot>
   </PropertyGroup>
@@ -58,7 +57,7 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <UseSharedCompilation>true</UseSharedCompilation>
-    <DisabledWarnings>9032;9043;618;162;165;649;9025</DisabledWarnings>
+    <NoWarn>9032;9043;618;162;165;649;9025</NoWarn>
     <PPO>false</PPO>
     <SignAssembly>false</SignAssembly>
     <DelaySign>false</DelaySign>
@@ -77,7 +76,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseSharedCompilation>true</UseSharedCompilation>
-    <DisabledWarnings>9032;9043;618;162;165;649;9025</DisabledWarnings>
+    <NoWarn>9032;9043;618;162;165;649;9025</NoWarn>
     <PPO>false</PPO>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <Optimize>true</Optimize>

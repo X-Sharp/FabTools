@@ -7,7 +7,7 @@ Function FabCenterWindow( oForm as Form ) as void
 	oTemp := (System.Windows.Forms.Form) oForm
 	oTemp:StartPosition := FormStartPosition.CenterScreen
 	return
-	
+
 FUNCTION FabGetPercent( Value AS int64, Maximum AS int64 ) AS int64
 	LOCAL dwPercent AS int64
 	//
@@ -21,16 +21,16 @@ FUNCTION FabGetPercent( Value AS int64, Maximum AS int64 ) AS int64
 		dwPercent := 0
 	END TRY
 	RETURN dwPercent
-	
+
 FUNCTION FabLWSelectEntireRow( oListView AS VO.ListView, lSet:=TRUE AS LOGIC ) AS VOID
 	oListView:FullRowSelect := lSet
 	RETURN
-	
+
 STATIC FUNCTION _FabCheckDbServerErrorHandler(oError)
 	// My ErrorHandler, don't retry, just ignore and try the default action
 	RETURN FALSE
-	
-	
+
+
 PROCEDURE	FabAllButPaint( hWindow AS PTR )
 	LOCAL struMsg	IS	_WinMsg
 	//
@@ -48,9 +48,9 @@ PROCEDURE	FabAllButPaint( hWindow AS PTR )
 		ENDIF
 	ENDIF
 	//
-	
+
 	RETURN
-	
+
 FUNCTION FabArrayFill(a AS ARRAY, dwEl AS DWORD, u AS USUAL )
 	//g Array,Array Tools
 	//l Fill an array
@@ -65,12 +65,12 @@ FUNCTION FabArrayFill(a AS ARRAY, dwEl AS DWORD, u AS USUAL )
 		a[ Cpt ] := u
 	NEXT
 	RETURN u
-	
-	
-	
-	
+
+
+
+
 FUNCTION Fabatoi( cString AS STRING ) AS USUAL
-	
+
 	//
 	LOCAL cTrans	AS	STRING
 	LOCAL wPos		AS	DWORD
@@ -93,10 +93,10 @@ FUNCTION Fabatoi( cString AS STRING ) AS USUAL
 	NEXT
 	//
 	RETURN Val( cTrans )
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabBuildDbFile( symClass AS SYMBOL, lCheckIndexes := TRUE AS LOGIC, cPath := "" AS STRING, cName := "" AS STRING ) AS LOGIC
 	//g Files,Files Related Classes/Functions
 	//l  Create a DBF file from a class that was created using the DBServer editor.
@@ -282,10 +282,10 @@ FUNCTION FabBuildDbFile( symClass AS SYMBOL, lCheckIndexes := TRUE AS LOGIC, cPa
 	oDB:Close()
 	oDB := NULL_OBJECT
 	RETURN lSuccess
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabBuildFillUsingArray( aFirst AS ARRAY, aSecond AS ARRAY ) AS ARRAY
 	//l Merge two arrays
 	//p Merge to arrays to build a FillUsing() array
@@ -300,10 +300,10 @@ FUNCTION FabBuildFillUsingArray( aFirst AS ARRAY, aSecond AS ARRAY ) AS ARRAY
 		//
 	NEXT
 	RETURN aRet
-	
-	
-	
-	
+
+
+
+
 PROCEDURE FabCenterWindow( oWindow AS OBJECT  )
 	/*
 	Center a Window, in the desktop
@@ -328,18 +328,18 @@ PROCEDURE FabCenterWindow( oWindow AS OBJECT  )
 		wTop	:= ( rctDesktop.bottom / 2 ) - ( wHeight / 2 )
 		MoveWindow( hItem, wLeft, wTop, wWidth, wHeight, TRUE )
 	ENDIF
-	
-	
+
+
 	RETURN
-	
+
 FUNCTION FabColor2RGB( oColor AS Color ) AS DWORD
 	//l  Convert Color object to Windows RGB color
 	//p  Convert Color object to Windows RGB color
 	RETURN DWORD( oColor:Red ) + ( DWORD( oColor:Green ) << 8 ) + ( DWORD( oColor:Blue ) << 16 )
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabCreateFontIndirect( pLogFont AS _winLogFont ) AS Font
 	//l Create a Font
 	//p Create a Font using a _WinLogFont structure.
@@ -411,14 +411,14 @@ FUNCTION FabCreateFontIndirect( pLogFont AS _winLogFont ) AS Font
 	ENDCASE
 	//
 	RETURN oFont
-	
-	
+
+
 FUNCTION FabCreateInstance( aObject AS ARRAY ) AS OBJECT
 	//l Enhanced CreateInstance() Function
 	//p Enhanced CreateInstance() Function.
 	//a <aObject> is an Array with CreateInstance() parameters in an array
 	//r The created Object
-	
+
 	LOCAL oObject		AS	OBJECT
 	LOCAL wParam	AS	DWORD
 	// The number of parameter needed for the Instantiation
@@ -451,9 +451,9 @@ FUNCTION FabCreateInstance( aObject AS ARRAY ) AS OBJECT
 	ENDCASE
 	//
 	RETURN oObject
-	
-	
-	
+
+
+
 FUNCTION FabCursorArrow() AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Set The Mouse cursor as Arrow
@@ -463,10 +463,10 @@ FUNCTION FabCursorArrow() AS PTR
 	Set the cursor AS NormalCursor
 	*/
 	RETURN   SetCursor( LoadCursor( 0, PSZ( IDC_ARROW ) ) )
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabCursorWait() AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Set The Mouse cursor as WaitState
@@ -476,10 +476,10 @@ FUNCTION FabCursorWait() AS PTR
 	Set the cursor as WaitCursor
 	*/
 	RETURN   SetCursor( LoadCursor( 0, PSZ( IDC_WAIT ) ) )
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabDisableWindows( aWindows AS ARRAY, aExcept AS ARRAY ) AS ARRAY
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Disable a set of Window
@@ -509,9 +509,9 @@ FUNCTION FabDisableWindows( aWindows AS ARRAY, aExcept AS ARRAY ) AS ARRAY
 	NEXT
 	//
 	RETURN aDone
-	
-	
-	
+
+
+
 PROCEDURE FabEnableWindows( aWindows AS ARRAY, aExcept AS ARRAY )
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Enable a set of Window
@@ -532,17 +532,17 @@ PROCEDURE FabEnableWindows( aWindows AS ARRAY, aExcept AS ARRAY )
 			ENDIF
 		ENDIF
 	NEXT
-	
-	
+
+
 	RETURN
-	
+
 STATIC FUNCTION FabExecErr( ObjError )
 	BREAK ObjError
-	
-	
-	
-	
-	
+
+
+
+
+
 FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur REF USUAL  ) AS LOGIC
 	//l Execute a CodeBlock stored in a String
 	//p Execute a CodeBlock stored in a String
@@ -560,7 +560,7 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur REF USUAL  ) AS LOGIC
 		cbBlock := &("{||"+ cChaine +"}" )
 		xValeur := Eval( cbBlock )
 		lOk   := TRUE
-	RECOVER 
+	RECOVER
 		xValeur := NIL
 		lOk     := FALSE
 	END SEQUENCE
@@ -568,10 +568,10 @@ FUNCTION FabExecuteBlock( cChaine AS STRING , xValeur REF USUAL  ) AS LOGIC
 	ErrorBlock( oMyHandler )
 	//
 	RETURN lOk
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabExitWindows( dwMode AS DWORD ) AS LOGIC
 	//g System,System Functions
 	//l Replacement for the ExitWindowsEx() function
@@ -609,14 +609,14 @@ FUNCTION FabExitWindows( dwMode AS DWORD ) AS LOGIC
 	ENDIF
 	//
 	RETURN lRet
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 PROCEDURE	FabFilterMessages( hWindow AS PTR, aDontFilterMsgs AS ARRAY )
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Filter Messages in application Queue
@@ -660,10 +660,10 @@ PROCEDURE	FabFilterMessages( hWindow AS PTR, aDontFilterMsgs AS ARRAY )
 		ENDIF
 	ENDIF
 	//
-	
-	
+
+
 	RETURN
-	
+
 FUNCTION FabFormatCString( Format AS STRING, Args AS ARRAY ) AS STRING
 	//p Format a string using C langage format style
 	//l Format a string using C langage format style
@@ -889,11 +889,11 @@ FUNCTION FabFormatCString( Format AS STRING, Args AS ARRAY ) AS STRING
 	ENDDO
 	//
 	RETURN cResult
-	
-	
-	
-	
-	
+
+
+
+
+
 FUNCTION FabFormatMessage( dwErrorCode AS DWORD ) AS STRING
 	//l GetString message using GetLastError() code
 	//p GetString message using GetLastError() code
@@ -905,8 +905,8 @@ FUNCTION FabFormatMessage( dwErrorCode AS DWORD ) AS STRING
 	//
 	FormatMessage( _or( FORMAT_MESSAGE_ALLOCATE_BUFFER, FORMAT_MESSAGE_FROM_SYSTEM, FORMAT_MESSAGE_IGNORE_INSERTS),	;
 		NULL_ptr,	;
-		dwErrorCode,	;
-		VOWin32APILibrary.Functions.MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),	; // Default language
+        dwErrorCode,	;
+		XSharp.VO.Functions.MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),	; // Default language
 		@lpMsgBuf,	;
 		0,	;
 		NULL )
@@ -916,9 +916,9 @@ FUNCTION FabFormatMessage( dwErrorCode AS DWORD ) AS STRING
 	LocalFree( lpMsgBuf )
 	//
 	RETURN sRet
-	
-	
-	
+
+
+
 FUNCTION FabGetCmdExe() AS STRING
 	//g Files, Files Related Classes/Functions
 	//l Get the Executable fullpath from Command Line
@@ -944,9 +944,9 @@ FUNCTION FabGetCmdExe() AS STRING
 	ENDIF
 	//
 	RETURN CmdLine
-	
-	
-	
+
+
+
 FUNCTION FabGetCmdParams() AS STRING
 	//g Files, Files Related Classes/Functions
 	//l Get the Parameters from Command Line
@@ -975,10 +975,10 @@ FUNCTION FabGetCmdParams() AS STRING
 	ENDIF
 	//
 	RETURN CmdLine
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabGetFirstTabCtrl( oInWindow AS OBJECT ) AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Get the First Control Handle in Tab Order
@@ -989,10 +989,10 @@ FUNCTION FabGetFirstTabCtrl( oInWindow AS OBJECT ) AS PTR
 	// First Control
 	wFirst := FabGetNextTabCtrl( oInWindow, 0 )	// Buggy in Ws311
 	RETURN	wFirst
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabGetLastTabCtrl( oInWindow AS OBJECT ) AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Get the Last Control Handle in Tab Order
@@ -1006,10 +1006,10 @@ FUNCTION FabGetLastTabCtrl( oInWindow AS OBJECT ) AS PTR
 	// The "last" control is the previous one
 	wLast := FabGetPrevTabCtrl( oInWindow,WFirst )
 	RETURN	wLast
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabGetMenuID( oMenu, symEventName, hMenuHandle )
 	//l Retrieve an Item ID using it's Symbol EventName
 	//p Retrieve an Item ID using it's Symbol EventName
@@ -1020,10 +1020,10 @@ FUNCTION FabGetMenuID( oMenu, symEventName, hMenuHandle )
 	LOCAL wCtr := 0 AS INT
 	LOCAL wItemID AS DWORD
 	LOCAL wRetVal := 0 AS DWORD
-	
+
 	// hMenuHandle is really only for recursion; no need to pass it initially
 	hMenuHandle := If( hMenuHandle == NIL, oMenu:Handle(), hMenuHandle )
-	
+
 	WHILE TRUE
 		// Get item ID of current item
 		wItemID := GetMenuItemID( hMenuHandle, wCtr )
@@ -1054,12 +1054,12 @@ FUNCTION FabGetMenuID( oMenu, symEventName, hMenuHandle )
 			ENDIF
 		ENDIF
 	ENDDO
-	
+
 	RETURN wRetVal
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabGetNextTabCtrl( oInWindow AS OBJECT, hCtrl AS PTR ) AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Get the Next Control Handle in Tab Order
@@ -1078,10 +1078,10 @@ FUNCTION FabGetNextTabCtrl( oInWindow AS OBJECT, hCtrl AS PTR ) AS PTR
 	// First Control
 	wFirst := GetNextDlgTabItem( oSurface:Handle(), hCtrl, FALSE )
 	RETURN	wFirst
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabGetPercent( Value AS DWORD, Maximum AS DWORD ) AS DWORD
 	//l Calculate a percentage
 	//p Calculate a percentage
@@ -1098,10 +1098,10 @@ FUNCTION FabGetPercent( Value AS DWORD, Maximum AS DWORD ) AS DWORD
 		dwPercent := ( Value * 100 ) / Maximum
 	ENDIF
 	RETURN dwPercent
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabGetPrevTabCtrl( oInWindow AS OBJECT, hCtrl AS PTR ) AS PTR
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Get the Previous Control Handle in Tab Order
@@ -1120,10 +1120,10 @@ FUNCTION FabGetPrevTabCtrl( oInWindow AS OBJECT, hCtrl AS PTR ) AS PTR
 	// First Control
 	wFirst := GetNextDlgTabItem( oSurface:Handle(), hCtrl, TRUE )
 	RETURN	wFirst
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabGetSubMenuFromPos( oMenu AS VO.Menu , nPos AS INT ) AS VO.MENU
 	LOCAL wItemID AS DWORD
 	LOCAL hMenuHandle AS PTR
@@ -1143,11 +1143,11 @@ FUNCTION FabGetSubMenuFromPos( oMenu AS VO.Menu , nPos AS INT ) AS VO.MENU
 		ENDIF
 	ENDIF
 	RETURN oRetMenu
-	
-	
-	
-	
-	
+
+
+
+
+
 FUNCTION FabGetTime24() AS STRING
 	//l Retrieve the current time, in 24h format
 	//p Retrieve the current time, in 24h format
@@ -1177,16 +1177,16 @@ FUNCTION FabGetTime24() AS STRING
 	SetTimeSep( word( Asc( cSep ) ) )
 	//
 	RETURN cTime
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabIsNullPtr( ptrPointer AS PTR ) AS LOGIC
 	RETURN ( ptrPointer == NULL_PTR )
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabIsTime24( sString AS STRING )	AS	LOGIC
 	//l Check a Time String
 	//p Check a Time String in 24h format
@@ -1212,10 +1212,10 @@ FUNCTION FabIsTime24( sString AS STRING )	AS	LOGIC
 	ENDIF
 	//
 	RETURN lRetVal
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabIsWindowsNT() AS LOGIC
 	LOCAL ptrVI		IS	_winOSVERSIONINFO
 	//
@@ -1223,10 +1223,10 @@ FUNCTION FabIsWindowsNT() AS LOGIC
 	GetVersionEx( @ptrVI )
 	//
 	RETURN ( ptrVI.dwPlatformId == (DWORD)VER_PLATFORM_WIN32_NT )
-	
-	
-	
-	
+
+
+
+
 FUNCTION Fabitoa( nVal AS LONG, nBase AS WORD ) AS STRING
 	LOCAL nVal2		AS	LONG
 	LOCAL nDigit	AS	LONG
@@ -1258,16 +1258,16 @@ FUNCTION Fabitoa( nVal AS LONG, nBase AS WORD ) AS STRING
 	ENDIF
 	//
 	RETURN cResult
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabMakeIntResource( i AS DWORD )	AS PTR
 	RETURN  PTR( _CAST, DWORD( WORD( i ) ) )
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabRGB2Color( dwColor AS DWORD ) AS Color
 	//l Convert a RGB value to a Color Object
 	//p Convert a RGB value to a Color Object
@@ -1280,10 +1280,10 @@ FUNCTION FabRGB2Color( dwColor AS DWORD ) AS Color
 	//
 	oColor  := Color{ LoByte( loWord ), HiByte( loWord ), LoByte( HiWord ) }
 	RETURN oColor
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabSetWindowStyle( hWnd AS PTR, liAdd AS LONG ) AS LONG
 	//g Window,Window/Dialog Related Classes/Functions
 	//l Set Window style
@@ -1291,7 +1291,7 @@ FUNCTION FabSetWindowStyle( hWnd AS PTR, liAdd AS LONG ) AS LONG
 	//a <hWnd> is the Handle of the window who's style must be changed\line
 	//a <liAdd> is the Style Value to set
 	//r The previous Style Value
-	
+
 	LOCAL liStyle	AS	LONGINT
 	// Get Style
 	liStyle := GetWindowLong( hWnd, GWL_STYLE )
@@ -1299,10 +1299,10 @@ FUNCTION FabSetWindowStyle( hWnd AS PTR, liAdd AS LONG ) AS LONG
 	SetWindowLong( hWnd, GWL_STYLE, liStyle )
 	//
 	RETURN liStyle
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabShiftLeft( Value AS LONG, Count AS LONG ) AS LONG
 	//l Bit Shift Left
 	//p Bit Shift Left
@@ -1312,7 +1312,7 @@ FUNCTION FabShiftLeft( Value AS LONG, Count AS LONG ) AS LONG
 	/*
 	ShiftLeft a Value, a Count number of times
 	*/
-	
+
 	LOCAL Cpt       AS LONG
 	//
 	FOR Cpt := 1 TO Count
@@ -1320,10 +1320,10 @@ FUNCTION FabShiftLeft( Value AS LONG, Count AS LONG ) AS LONG
 	NEXT
 	//
 	RETURN Value
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabShiftRight( Value AS LONG, Count AS LONG ) AS LONG
 	//l Bit Shift Right
 	//p Bit Shift Right
@@ -1340,10 +1340,10 @@ FUNCTION FabShiftRight( Value AS LONG, Count AS LONG ) AS LONG
 	NEXT
 	//
 	RETURN Value
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabValueIsSet( nInValue AS DWORD, nVal1 := 0xFFFFFFFF AS DWORD, nVal2 := 0xFFFFFFFF AS DWORD, nVal3 := 0xFFFFFFFF AS DWORD, nVal4 := 0xFFFFFFFF AS DWORD, nVal5 := 0xFFFFFFFF AS DWORD )	AS	LOGIC
 	/*
 	Check if One or Up to Five value are existing in a Value
@@ -1364,10 +1364,10 @@ FUNCTION FabValueIsSet( nInValue AS DWORD, nVal1 := 0xFFFFFFFF AS DWORD, nVal2 :
 	lRes := ( nRes1 != 0 )  .and. ( nRes2 != 0 )  .and. ( nRes3 != 0 )  .and. ( nRes4 != 0 )  .and. ( nRes5 != 0 )
 	//
 	RETURN lRes
-	
-	
-	
-	
+
+
+
+
 FUNCTION FabWinExecPause( progname AS PSZ, cmdshow AS SHORTINT ) AS LOGIC
 	//l Run and Wait for a child process to end.
 	//d Run and Wait for a child process to end.
@@ -1392,9 +1392,8 @@ FUNCTION FabWinExecPause( progname AS PSZ, cmdshow AS SHORTINT ) AS LOGIC
 		WaitForSingleObject( sResult.hProcess , INFINITE )
 	ENDIF
 	RETURN lSuccess
-	
-	
-	
-	
-	
-	
+
+
+
+
+
